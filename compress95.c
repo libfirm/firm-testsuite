@@ -76,6 +76,9 @@ char_type magic_header[] = { "\037\235" };	/* 1F 9D */
  *
  * $Header$
  * $Log$
+ * Revision 1.2  2006/07/08 10:06:28  matze
+ * fixed some more testapps
+ *
  * Revision 1.1  2006/03/17 14:47:52  chriswue
  * added addtional test file
  *
@@ -1166,4 +1169,9 @@ int n;
 
 	for( i=0; i<n; i++ )
 		*OutBuff++ = buf[i];
+}
+
+int main()
+{
+    return 0;
 }
