@@ -23,7 +23,7 @@ LINKFLAGS="-lm"
 TIMEOUT_COMPILE=300
 TIMEOUT_RUN=30
 ECC_LINK="gcc -m32"
-DEFAULT_DIRS="backend opt ack langshootout llvm"
+DEFAULT_DIRS="backend opt C ack langshootout llvm"
 
 CFILES="*.c"
 OUTPUTDIR="reports/stats-`date +%y.%m.%d`"
