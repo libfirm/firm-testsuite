@@ -18,7 +18,7 @@ export TEST_CFLAGS="${ADDCFLAGS} -v -O3 -ffp-strict"
 export REF_COMPILER="icc -restrict"
 export REF_CFLAGS="-fomit-frame-pointer -Itcc -fp-model precise"
 export LINKFLAGS="-lm"
-export TIMEOUT_TEST=200
+export TIMEOUT_TEST=30
 export DEFAULT_DIRS="backend opt C C/should_fail ack langshootout llvm"
 export ALL_CFLAGS=""
 
@@ -77,6 +77,8 @@ showsummary() {
 	completeok=`expr $completeok + $okcount`
 }
 
+ulimit -t ${TIMEOUT_TEST}
+
 lastdir=""
 testcount="0"
 okcount="0"
@@ -102,7 +104,6 @@ for file in $FILES; do
 
 	rm -f "$logfile"
 	export CFLAGS="$ALL_CFLAGS -I$curdir"
-	#CMD="ulimit -t ${TIMEOUT_TEST}; ./default_test.sh"
 	CMD="./default_test.sh"
 
 	if test -x $curdir/test.sh; then
