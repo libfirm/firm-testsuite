@@ -30,6 +30,11 @@ OUTPUTDIR="reports/stats-`date +%y.%m.%d`"
 BUILDDIR="build"
 BUILDDIR_FIRM="$BUILDDIR/firm"
 BUILDDIR_GCC="$BUILDDIR/gcc"
+ESC=""
+COLOR_FAILED="$ESC[1;31m"
+COLOR_NORMAL="$ESC[0m"
+COLOR_DIR="$ESC[32m"
+FAILED=" ... ${COLOR_FAILED}FAILED${COLOR_NORMAL}"
 
 mkdir -p "$BUILDDIR_FIRM"
 mkdir -p "$BUILDDIR_GCC"
@@ -67,8 +72,13 @@ for d in $DIRS; do
 	done
 done
 
+lastdir=""
 for file in $FILES; do
 	curdir="`dirname $file`"
+	if [ "$curdir" != "$lastdir" ]; then
+		echo ">>>> [${COLOR_DIR}$curdir${COLOR_NORMAL}] <<<<"
+		lastdir="$curdir"
+	fi
     COMPILE_RES="ok"
     LINK_RES="omitted"
     GCC_RES="ok"
@@ -80,25 +90,25 @@ for file in $FILES; do
     name="`basename $file .c`"
 	obj_name="$BUILDDIR_FIRM/$name.o"
     res="$OUTPUTDIR/buildresult_$name.txt"
-    echo -n "Building $name"
+    echo -n "Building $file"
     echo "Results for $name" > $res
     echo "*** ECC/FIRM Compile" >> $res
     CMD="ulimit -t ${TIMEOUT_COMPILE} ; ${ECC} -c -o ${obj_name} ${ECC_CFLAGS} ${FILE_FLAGS} ${file}"
     echo "$CMD" >> $res
-    /bin/sh -c "$CMD" >> $res 2>&1 || { COMPILE_RES="failed"; echo -n " ... FAILED"; }
+    /bin/sh -c "$CMD" >> $res 2>&1 || { COMPILE_RES="failed"; echo -n "$FAILED"; }
 
     if [ ${COMPILE_RES} = "ok" ]; then
         LINK_RES="ok"
         echo "*** Linking" >> $res
         CMD="${ECC_LINK} $obj_name ${LINKFLAGS} -o $BUILDDIR_FIRM/$name.exe"
         echo "$CMD" >> $res
-        $CMD >> $res 2>&1 || { LINK_RES="failed"; echo -n " ... FAILED"; }
+        $CMD >> $res 2>&1 || { LINK_RES="failed"; echo -n "$FAILED"; }
     fi
 
     echo "*** GCC Compile" >> $res
      CMD="${GCC} ${GCC_CFLAGS} ${FILE_FLAGS} $file ${LINKFLAGS} -o $BUILDDIR_GCC/$name.exe"
     echo "$CMD" >> $res
-     /bin/sh -c "$CMD" >> $res 2>&1 || { GCC_RES="failed"; echo -n " ... FAILED"; }
+     /bin/sh -c "$CMD" >> $res 2>&1 || { GCC_RES="failed"; echo -n "$FAILED"; }
 
     if [ ${GCC_RES} = "ok" ]; then
         GCC_RUN_RES="ok"
@@ -115,7 +125,7 @@ for file in $FILES; do
         echo "*** Run Firm" >> $res
         CMD="ulimit -t ${TIMEOUT_RUN} ; ${EXEC_PREFIX} $BUILDDIR_FIRM/$name.exe > $OUTPUTDIR/result_firm_$name.txt 2>&1"
         echo "$CMD" >> $res
-        /bin/sh -c "$CMD" > $OUTPUTDIR/result_firm_$name.txt 2>&1 || { FIRM_RUN_RES="failed"; echo -n " ... FAILED"; }
+        /bin/sh -c "$CMD" > $OUTPUTDIR/result_firm_$name.txt 2>&1 || { FIRM_RUN_RES="failed"; echo -n "$FAILED"; }
     fi
 
     if [ ${GCC_RUN_RES} = "ok" -a ${FIRM_RUN_RES} = "ok" ]; then
@@ -123,7 +133,7 @@ for file in $FILES; do
 
         echo "*** Compare Results" >> $res
         CMD="diff -u $OUTPUTDIR/result_gcc_$name.txt $OUTPUTDIR/result_firm_$name.txt"
-        $CMD > $OUTPUTDIR/result_diff_$name.txt 2>&1 || { DIFF_RES="failed"; echo -n " ... FAILED"; }
+        $CMD > $OUTPUTDIR/result_diff_$name.txt 2>&1 || { DIFF_RES="failed"; echo -n "$FAILED"; }
     fi
     echo
 
