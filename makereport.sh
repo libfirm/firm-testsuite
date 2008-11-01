@@ -34,6 +34,7 @@ ESC=""
 COLOR_FAILED="$ESC[1;31m"
 COLOR_NORMAL="$ESC[0m"
 COLOR_DIR="$ESC[32m"
+COLOR_RESULT="$ESC[1m"
 FAILED=" ... ${COLOR_FAILED}FAILED${COLOR_NORMAL}"
 
 mkdir -p "$BUILDDIR_FIRM"
@@ -55,6 +56,7 @@ __END__
 
 basedir=`pwd`
 
+SHOW_DIR_MARKERS=0
 if [ -z "$1" ]; then
 	DIRS="$DEFAULT_DIRS"
 else
@@ -69,15 +71,35 @@ fi
 for d in $DIRS; do
 	for f in $d/*.c; do
 		FILES="$FILES $f"
+		SHOW_DIR_MARKERS=1
 	done
 done
 
+showsummary() {
+	if [ "$SHOW_DIR_MARKERS" = "1" -a "$testcount" != "0" ]; then
+		failcount=`expr $testcount - $okcount`
+		echo "---------------------------"
+		echo "${COLOR_RESULT} $failcount/$testcount tests failed"
+		echo ""
+	fi
+	completecount=`expr $completecount + $testcount`
+	completeok=`expr $completeok + $okcount`
+}
+
 lastdir=""
+testcount="0"
+okcount="0"
+completecount="0"
+completeok="0"
 for file in $FILES; do
 	curdir="`dirname $file`"
-	if [ "$curdir" != "$lastdir" ]; then
+	if [ "$SHOW_DIR_MARKERS" = "1" -a "$curdir" != "$lastdir" ]; then
+		showsummary
 		echo ">>>> [${COLOR_DIR}$curdir${COLOR_NORMAL}] <<<<"
+
 		lastdir="$curdir"
+		testcount="0"
+		okcount="0"
 	fi
     COMPILE_RES="ok"
     LINK_RES="omitted"
@@ -86,6 +108,8 @@ for file in $FILES; do
     FIRM_RUN_RES="omitted"
     DIFF_RES="omitted"
     FILE_FLAGS=`awk '/\/\\*\\$ .* \\$\\*\// { for (i = 2; i < NF; ++i) printf "%s ", $i }' $file`
+
+    testcount=`expr $testcount + 1`
 
     name="`basename $file .c`"
 	obj_name="$BUILDDIR_FIRM/$name.o"
@@ -134,6 +158,9 @@ for file in $FILES; do
         echo "*** Compare Results" >> $res
         CMD="diff -u $OUTPUTDIR/result_gcc_$name.txt $OUTPUTDIR/result_firm_$name.txt"
         $CMD > $OUTPUTDIR/result_diff_$name.txt 2>&1 || { DIFF_RES="failed"; echo -n "$FAILED"; }
+    	if [ "$DIFF_RES" = "ok" ]; then
+    		okcount=`expr $okcount + 1`
+    	fi
     fi
     echo
 
@@ -150,6 +177,11 @@ __END__
 done
 
 echo "</results>" >> $XMLRES
+
+showsummary
+testcount="$completecount"
+okcount="$completeok"
+showsummary
 
 xsltproc --output $OUTPUTDIR/index.html makehtml.xslt $XMLRES
 
