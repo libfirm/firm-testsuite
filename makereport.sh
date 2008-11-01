@@ -16,7 +16,7 @@ fi
 export TEST_COMPILER="$ECC"
 export TEST_CFLAGS="${ADDCFLAGS} -v -O3 -ffp-strict"
 export REF_COMPILER="icc -restrict"
-export REF_CFLAGS="-O0 -Itcc -fp-model precise"
+export REF_CFLAGS="-fomit-frame-pointer -Itcc -fp-model precise"
 export LINKFLAGS="-lm"
 export TIMEOUT_TEST=200
 export DEFAULT_DIRS="backend opt C C/should_fail ack langshootout llvm"
