@@ -23,12 +23,16 @@ LINKFLAGS="-lm"
 TIMEOUT_COMPILE=300
 TIMEOUT_RUN=30
 ECC_LINK="gcc -m32"
+DEFAULT_DIRS="backend opt ack langshootout llvm"
 
 CFILES="*.c"
-OUTPUTDIR="stats-`date +%y.%m.%d`"
+OUTPUTDIR="reports/stats-`date +%y.%m.%d`"
+BUILDDIR="build"
+BUILDDIR_FIRM="$BUILDDIR/firm"
+BUILDDIR_GCC="$BUILDDIR/gcc"
 
-mkdir -p build_firm
-mkdir -p build_gcc
+mkdir -p "$BUILDDIR_FIRM"
+mkdir -p "$BUILDDIR_GCC"
 mkdir -p $OUTPUTDIR
 
 XMLRES=$OUTPUTDIR/result.xml
@@ -47,7 +51,7 @@ __END__
 basedir=`pwd`
 
 if [ -z "$1" ]; then
-	DIRS=". langshootout ack"
+	DIRS="$DEFAULT_DIRS"
 else
 	for f in "$@"; do
 		if test -d "$f"; then
@@ -74,7 +78,7 @@ for file in $FILES; do
     FILE_FLAGS=`awk '/\/\\*\\$ .* \\$\\*\// { for (i = 2; i < NF; ++i) printf "%s ", $i }' $file`
 
     name="`basename $file .c`"
-	obj_name="build_firm/$name.o"
+	obj_name="$BUILDDIR_FIRM/$name.o"
     res="$OUTPUTDIR/buildresult_$name.txt"
     echo -n "Building $name"
     echo "Results for $name" > $res
@@ -86,13 +90,13 @@ for file in $FILES; do
     if [ ${COMPILE_RES} = "ok" ]; then
         LINK_RES="ok"
         echo "*** Linking" >> $res
-        CMD="${ECC_LINK} $obj_name ${LINKFLAGS} -o build_firm/$name.exe"
+        CMD="${ECC_LINK} $obj_name ${LINKFLAGS} -o $BUILDDIR_FIRM/$name.exe"
         echo "$CMD" >> $res
         $CMD >> $res 2>&1 || { LINK_RES="failed"; echo -n " ... FAILED"; }
     fi
 
     echo "*** GCC Compile" >> $res
-     CMD="${GCC} ${GCC_CFLAGS} ${FILE_FLAGS} $file ${LINKFLAGS} -o build_gcc/$name.exe"
+     CMD="${GCC} ${GCC_CFLAGS} ${FILE_FLAGS} $file ${LINKFLAGS} -o $BUILDDIR_GCC/$name.exe"
     echo "$CMD" >> $res
      /bin/sh -c "$CMD" >> $res 2>&1 || { GCC_RES="failed"; echo -n " ... FAILED"; }
 
@@ -100,7 +104,7 @@ for file in $FILES; do
         GCC_RUN_RES="ok"
 
         echo "*** Run GCC" >> $res
-        CMD="ulimit -t ${TIMEOUT_RUN} ; build_gcc/$name.exe > $OUTPUTDIR/result_gcc_$name.txt 2>&1"
+        CMD="ulimit -t ${TIMEOUT_RUN} ; $BUILDDIR_GCC/$name.exe > $OUTPUTDIR/result_gcc_$name.txt 2>&1"
         echo "$CMD" >> $res
         /bin/sh -c "$CMD" > $OUTPUTDIR/result_gcc_$name.txt 2>&1 || GCC_RUN_RES="failed"
     fi
@@ -109,7 +113,7 @@ for file in $FILES; do
         FIRM_RUN_RES="ok"
 
         echo "*** Run Firm" >> $res
-        CMD="ulimit -t ${TIMEOUT_RUN} ; ${EXEC_PREFIX} build_firm/$name.exe > $OUTPUTDIR/result_firm_$name.txt 2>&1"
+        CMD="ulimit -t ${TIMEOUT_RUN} ; ${EXEC_PREFIX} $BUILDDIR_FIRM/$name.exe > $OUTPUTDIR/result_firm_$name.txt 2>&1"
         echo "$CMD" >> $res
         /bin/sh -c "$CMD" > $OUTPUTDIR/result_firm_$name.txt 2>&1 || { FIRM_RUN_RES="failed"; echo -n " ... FAILED"; }
     fi
