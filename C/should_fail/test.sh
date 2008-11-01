@@ -6,7 +6,7 @@ command /bin/bash -c "$cmd" >> "$logfile" 2>&1
 RES="$?"
 if test "$RES" = "0" -o "$RES" -gt 128; then
 	if test "$RES" -gt 128; then
-		echo "segfault"
+		echo "aborted"
 	fi
 	exit 1
 fi
