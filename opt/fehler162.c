@@ -2,6 +2,7 @@ struct A { int k2; };
 
 struct A retMe(struct A a)
 {
+	printf("%d\n", a.k2);
 	return a;
 }
 
