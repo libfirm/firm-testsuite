@@ -1,4 +1,4 @@
-struct A { int k : 6; int k2 : 10; };
+struct A { int k2; };
 
 struct A retMe(struct A a)
 {
