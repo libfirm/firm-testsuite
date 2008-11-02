@@ -23,12 +23,12 @@ int main (int argc, char *argv[]) {
 
     printf("LongLong.c\n");
 
-    lmax   =  9223372036854775807LL; /* java.lang.Long.MAX_VALUE */
-    lmin1  = -9223372036854775807LL; /* java.lang.Long.MIN_VALUE */
-    lmin   = -9223372036854775808LL; /* java.lang.Long.MIN_VALUE */
-    limax  =  2147483647L;          /* java.lang.Integer.MAX_VALUE */
-    limin1 = -2147483647L;          /* java.lang.Integer.MAX_VALUE-1 */
-    limin  = -2147483648L;          /* java.lang.Integer.MIN_VALUE */
+    lmax   =  9223372036854775807LL;
+    lmin1  = -9223372036854775807LL;
+    lmin   = -9223372036854775808LL;
+    limax  =  2147483647L;
+    limin1 = -2147483647L;
+    limin  = -2147483648L;
 
     printf(" Long long values allowed in C:\n");
     /* So far, these values are not representable by libfirm. */
