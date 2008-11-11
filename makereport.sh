@@ -18,7 +18,7 @@ export TEST_CFLAGS="${ADDCFLAGS} -v -O3 -ffp-strict -std=c99"
 export REF_COMPILER="icc -restrict"
 export REF_CFLAGS="-fomit-frame-pointer -Itcc -fp-model precise -std=c99"
 export LINKFLAGS="-lm"
-export TIMEOUT_TEST=30
+export TIMEOUT_TEST=300
 export DEFAULT_DIRS="backend opt C C/should_fail ack langshootout llvm"
 export ALL_CFLAGS=""
 
