@@ -1,5 +1,10 @@
 . helpers.sh
 
+BASEDIR="`dirname ${file}`"
+if [ -e "$BASEDIR/config" ]; then
+	. "$BASEDIR/config"
+fi
+
 # build+execute reference executable
 exe_ref="$BUILDDIR_REF/$name.exe"
 cmd="${REF_COMPILER} ${REF_CFLAGS} ${CFLAGS} ${file} ${LINKFLAGS} -o ${exe_ref}"
