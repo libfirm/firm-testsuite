@@ -5,16 +5,26 @@ unsigned short swap16_8(unsigned short x)
 
 unsigned swap32_8(unsigned x)
 {
+	/* UNIX -> XINU */
 	return
-		(x >> 24               |
-		 x >>  8 & 0x0000FF00U |
-		 x <<  8 & 0x00FF0000U |
-		 x << 24);
+		x >> 24               |
+		x >>  8 & 0x0000FF00U |
+		x <<  8 & 0x00FF0000U |
+		x << 24;
 }
 
 unsigned swap32_16(unsigned x)
 {
+	/* UNIX -> IXUN */
 	return x << 16 | x >> 16;
+}
+
+unsigned swap32_16_8(unsigned x)
+{
+	/* UNIX -> NUXI */
+	return
+		x >>  8 & 0x00FF00FF |
+		x <<  8 & 0xFF00FF00;
 }
 
 unsigned long long swap64_8(unsigned long long x)
