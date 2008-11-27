@@ -1,5 +1,4 @@
 int l = 10;
-void *v;
 
 int main(int argc, char **argv)
 {
@@ -11,7 +10,7 @@ int main(int argc, char **argv)
 		return 42;
 	}
 	/* even stranger and apparently still legal... */
-	v = __builtin_expect;
+	void *v = __builtin_expect;
 
 	return 0;
 }
