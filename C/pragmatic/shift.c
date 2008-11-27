@@ -1,14 +1,12 @@
-static int get_x(void) {
-	return 1;
-}
+int x = 1;
+int y = 33;
+int g;
 
-static int get_y(void) {
-	return 33;
-}
+int main(void) {
+	if ( (x << y) != (1 << 33) )
+		return 1;
 
-int main(int argc, char *argv[]) {
-	int x = get_x();
-	int y = get_y();
-	printf("%d << %d = %d\n", x, y, x << y);
+	g = 1 << 33;
+
 	return 0;
 }
