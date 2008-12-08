@@ -32,7 +32,7 @@ do_test() {
 	    execute_cmd "$cmd" "" "FIRM_RUN_RES"
     fi
 
-    if [ "$GCC_RUN_RES" = "" -o "$FIRM_RUN_RES" = "" ]; then
+    if [ "$GCC_RUN_RES" != "ok" -o "$FIRM_RUN_RES" != "ok" ]; then
         return 0
     fi
 
