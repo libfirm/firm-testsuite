@@ -52,8 +52,10 @@ cat > $XMLRES << __END__
 <results>
     <datetime>`date "+%Y-%m-%d %T"`</datetime>
     <environment>
-        <ECC_CFLAGS>${ECC_CFLAGS}</ECC_CFLAGS>
-        <GCC_CFLAGS>${GCC_CFLAGS}</GCC_CFLAGS>
+        <TEST_COMPILER>${TEST_COMPILER}</TEST_COMPILER>
+        <TEST_CFLAGS>${TEST_CFLAGS}</TEST_CFLAGS>
+        <REF_COMPILER>${REF_COMPILER}</REF_COMPILER>
+        <REF_CFLAGS>${REF_CFLAGS}</REF_CFLAGS>
     </environment>
 __END__
 
