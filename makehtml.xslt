@@ -12,6 +12,9 @@
 			<xsl:if test="contains(text(), 'failed')">
 				<xsl:attribute name="style">background-color: red; color: white;</xsl:attribute>
 			</xsl:if>
+			<xsl:if test="contains(text(), 'aborted')">
+				<xsl:attribute name="style">background-color: red; color: yellow;</xsl:attribute>
+			</xsl:if>
 
 			<xsl:choose>
 				<xsl:when test="name() = 'gcc_run'">
@@ -24,7 +27,7 @@
 								<xsl:attribute name="style">color: black;</xsl:attribute>
 							</xsl:otherwise>
 						</xsl:choose>
-						<xsl:attribute name="href">result_gcc_<xsl:value-of select="../@name"/>.txt</xsl:attribute>
+						<xsl:attribute name="href">../../build/gcc/<xsl:value-of select="../@name"/>_result_ref.txt</xsl:attribute>
 						<xsl:value-of select="text()"/>
 					</xsl:element>
 				</xsl:when>
@@ -38,7 +41,7 @@
 								<xsl:attribute name="style">color: black;</xsl:attribute>
 							</xsl:otherwise>
 						</xsl:choose>
-						<xsl:attribute name="href">result_firm_<xsl:value-of select="../@name"/>.txt</xsl:attribute>
+						<xsl:attribute name="href">../../build/firm/<xsl:value-of select="../@name"/>_result_test.txt</xsl:attribute>
 						<xsl:value-of select="text()"/>
 					</xsl:element>
 				</xsl:when>
@@ -52,7 +55,7 @@
 								<xsl:attribute name="style">color: black;</xsl:attribute>
 							</xsl:otherwise>
 						</xsl:choose>
-						<xsl:attribute name="href">result_diff_<xsl:value-of select="../@name"/>.txt</xsl:attribute>
+						<xsl:attribute name="href"><xsl:value-of select="../@name"/>.diff.txt</xsl:attribute>
 						<xsl:value-of select="text()"/>
 					</xsl:element>
 				</xsl:when>
@@ -63,37 +66,46 @@
 		</xsl:element>
 	</xsl:template>
 
+	<xsl:template match="result">
+		<tr>
+			<td>
+				<xsl:element name="a">
+					<xsl:attribute name="href"><xsl:value-of select="@name"/>.log.txt</xsl:attribute>
+					<xsl:value-of select="@name"/>
+				</xsl:element>
+			</td>
+			<td><xsl:apply-templates select="compile"/></td>
+			<td><xsl:apply-templates select="gcc_compile"/></td>
+			<td><xsl:apply-templates select="gcc_run"/></td>
+			<td><xsl:apply-templates select="firm_run"/></td>
+			<td><xsl:apply-templates select="diff"/></td>
+		</tr>
+	</xsl:template>
+
 	<xsl:template match="/">
 		<html>
 			<head>
 				<title>Results</title>
 			</head>
 			<body>
+				<xsl:for-each select="results/datetime">
+					<h2>Results created on <xsl:value-of select="text()"/></h2>
+				</xsl:for-each>
 				<table>
 					<tr>
 						<th>Name</th>
 						<th>Compile</th>
-						<th>Link</th>
-						<th>GCC Compile</th>
-						<th>GCC Run</th>
+						<th>Ref Compile</th>
+						<th>Ref Run</th>
 						<th>Firm Run</th>
 						<th>Results</th>
 					</tr>
-					<xsl:for-each select="/results/result">
-						<tr>
-							<td>
-								<xsl:element name="a">
-									<xsl:attribute name="href">buildresult_<xsl:value-of select="@name"/>.txt</xsl:attribute>
-									<xsl:value-of select="@name"/>
-								</xsl:element>
-							</td>
-							<td><xsl:apply-templates select="compile"/></td>
-							<td><xsl:apply-templates select="link"/></td>
-							<td><xsl:apply-templates select="gcc_compile"/></td>
-							<td><xsl:apply-templates select="gcc_run"/></td>
-							<td><xsl:apply-templates select="firm_run"/></td>
-							<td><xsl:apply-templates select="diff"/></td>
-						</tr>
+
+					<xsl:apply-templates select="results/result" />
+
+					<xsl:for-each select="results/dir">
+						<tr><th colspan="7" style="background-color: yellow; color: black;"><xsl:value-of select="@name"/></th></tr>
+						<xsl:apply-templates select="result" />
 					</xsl:for-each>
 				</table>
 			</body>

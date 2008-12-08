@@ -12,11 +12,16 @@ fi
 
 if [ "$ECC" = "" ]; then
 	ECC="eccp"
+    ECCFLAGS="-v -O3 -ffp-strict"
 fi
 export TEST_COMPILER="$ECC"
-export TEST_CFLAGS="${ADDCFLAGS} -v -O3 -ffp-strict -std=c99"
-export REF_COMPILER="icc -restrict"
-export REF_CFLAGS="-fomit-frame-pointer -Itcc -fp-model precise -std=c99"
+export TEST_CFLAGS="${ADDCFLAGS} ${ECCFLAGS} -std=c99"
+if [ "$REF" = "" ]; then
+    REF="icc -restrict"
+    REFFLAGS="-fp-model precise"
+fi
+export REF_COMPILER="$REF"
+export REF_CFLAGS="${REFFLAGS} -fomit-frame-pointer -Itcc -std=c99"
 export LINKFLAGS="-lm"
 export TIMEOUT_TEST=300
 export DEFAULT_DIRS="backend opt C C/pragmatic C/should_fail C/gnu99 ack langshootout llvm"
@@ -41,6 +46,7 @@ XMLRES=$OUTPUTDIR/result.xml
 cat > $XMLRES << __END__
 <?xml version="1.0"?>
 <results>
+    <datetime>`date "+%Y-%m-%d %R"`</datetime>
     <environment>
         <ECC_CFLAGS>${ECC_CFLAGS}</ECC_CFLAGS>
         <GCC_CFLAGS>${GCC_CFLAGS}</GCC_CFLAGS>
@@ -84,11 +90,19 @@ testcount="0"
 okcount="0"
 completecount="0"
 completeok="0"
+firstdir=1
 for file in $FILES; do
 	curdir="`dirname $file`"
 	if [ "$SHOW_DIR_MARKERS" = "1" -a "$curdir" != "$lastdir" ]; then
 		showsummary
 		echo ">>>> [${COLOR_DIR}$curdir${COLOR_NORMAL}] <<<<"
+
+		if [ $firstdir == 1 ]; then
+			firstdir=0
+		else
+			echo "</dir>" >> $XMLRES
+		fi
+	    echo "<dir name=\"$curdir\">" >> $XMLRES
 
 		lastdir="$curdir"
 		testcount="0"
@@ -110,8 +124,16 @@ for file in $FILES; do
 		CMD="$curdir/test.sh"
 	fi
 
-	if ! $CMD > /tmp/message; then
-		echo -n "$FAILED `cat /tmp/message`"
+    # initialize variables
+    GCC_RES=""
+    GCC_RUN_RES=""
+    COMPILE_RES=""
+    FIRM_RUN_RES=""
+    DIFF_RES=""
+
+	. $CMD
+	if do_test; then
+		echo -n "$FAILED $ERROR"
 	else
 		okcount=`expr $okcount + 1`
 	fi
@@ -128,6 +150,10 @@ for file in $FILES; do
     </result>
 __END__
 done
+
+if [ $firstdir == 0 ]; then
+	echo "</dir>" >> $XMLRES
+fi
 
 echo "</results>" >> $XMLRES
 
