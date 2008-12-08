@@ -88,9 +88,9 @@
 				<title>Results</title>
 			</head>
 			<body>
-				<xsl:for-each select="results/datetime">
-					<h2>Results created on <xsl:value-of select="text()"/></h2>
-				</xsl:for-each>
+				<h2>Results created on <xsl:value-of select="results/datetime/text()"/></h2>
+				<h3><xsl:value-of select="results/summary/failed/text()"/>/<xsl:value-of select="results/summary/total/text()"/>
+					tests failed</h3>
 				<table>
 					<tr>
 						<th>Name</th>

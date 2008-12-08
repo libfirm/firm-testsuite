@@ -11,10 +11,11 @@ execute_cmd() {
 	if [ "$RES" != "0" ]; then
 		if test "$RES" -gt 127; then
 			ERROR="$EXTRA_MSG aborted"
+			eval $RES_VAR="aborted"
 		else
 			ERROR="$EXTRA_MSG"
+			eval $RES_VAR="failed"
 		fi
-		eval $RES_VAR="failed"
 		return 1
 	fi
 	eval $RES_VAR="ok"

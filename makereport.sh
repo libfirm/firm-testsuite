@@ -12,13 +12,17 @@ fi
 
 if [ "$ECC" = "" ]; then
 	ECC="eccp"
-    ECCFLAGS="-v -O3 -ffp-strict"
+	ECCFLAGS="-v -O3 -ffp-strict"
+elif [ `basename "$ECC"` = "cparser" -a "$ECCFLAGS" = "" ]; then
+	ECCFLAGS="-v -O3 -ffp-strict"
 fi
 export TEST_COMPILER="$ECC"
 export TEST_CFLAGS="${ADDCFLAGS} ${ECCFLAGS} -std=c99"
 if [ "$REF" = "" ]; then
-    REF="icc -restrict"
-    REFFLAGS="-fp-model precise"
+	REF="icc -restrict"
+	REFFLAGS="-fp-model precise"
+elif [ `basename "$REF"` = "gcc" -a "$REFFLAGS" = "" ]; then
+	REFFLAGS="-ffloat-store"
 fi
 export REF_COMPILER="$REF"
 export REF_CFLAGS="${REFFLAGS} -fomit-frame-pointer -Itcc -std=c99"
@@ -46,7 +50,7 @@ XMLRES=$OUTPUTDIR/result.xml
 cat > $XMLRES << __END__
 <?xml version="1.0"?>
 <results>
-    <datetime>`date "+%Y-%m-%d %R"`</datetime>
+    <datetime>`date "+%Y-%m-%d %T"`</datetime>
     <environment>
         <ECC_CFLAGS>${ECC_CFLAGS}</ECC_CFLAGS>
         <GCC_CFLAGS>${GCC_CFLAGS}</GCC_CFLAGS>
@@ -154,10 +158,16 @@ done
 if [ $firstdir == 0 ]; then
 	echo "</dir>" >> $XMLRES
 fi
-
-echo "</results>" >> $XMLRES
-
 showsummary
+
+cat >> $XMLRES << __END__
+    <summary>
+        <total>$completecount</total>
+        <failed>`expr $completecount - $completeok`</failed>
+    </summary>
+</results>
+__END__
+
 testcount="$completecount"
 okcount="$completeok"
 showsummary
