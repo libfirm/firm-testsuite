@@ -1,6 +1,9 @@
 do_test() {
     trap true SIGABRT
-    exe_test="$BUILDDIR_TEST/$name.exe"
+    BASEDIR="`dirname ${file}`"
+    dirprefix=`echo "${BASEDIR}" | sed -e "s/\\//_/"`
+
+    exe_test="$BUILDDIR_TEST/${dirprefix}_$name.exe"
     cmd="${TEST_COMPILER} ${file} ${TEST_CFLAGS} ${CFLAGS} ${FILE_FLAGS} ${LINKFLAGS} -o ${exe_test}"
     #we should fail when the compilation went ok
     echo "Command: $CMD" >> "$logfile"

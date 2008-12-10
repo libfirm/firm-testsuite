@@ -99,30 +99,31 @@ completeok="0"
 firstdir=1
 for file in $FILES; do
 	curdir="`dirname $file`"
+	dirprefix=`echo "${curdir}" | sed -e "s/\\//_/"`
 	if [ "$curdir" != "$lastdir" ]; then
-        if [ "$SHOW_DIR_MARKERS" = "1" ]; then
-    		showsummary
-	    	echo ">>>> [${COLOR_DIR}$curdir${COLOR_NORMAL}] <<<<"
-        fi
+		if [ "$SHOW_DIR_MARKERS" = "1" ]; then
+			showsummary
+			echo ">>>> [${COLOR_DIR}$curdir${COLOR_NORMAL}] <<<<"
+		fi
 
 		if [ $firstdir == 1 ]; then
 			firstdir=0
 		else
 			echo "</dir>" >> $XMLRES
 		fi
-	    echo "<dir name=\"$curdir\">" >> $XMLRES
+		echo "<dir name=\"$curdir\">" >> $XMLRES
 
 		lastdir="$curdir"
 		testcount="0"
 		okcount="0"
 	fi
 
-    testcount=`expr $testcount + 1`
+	testcount=`expr $testcount + 1`
 	export file
-    export name="`basename $file .c`"
-    export logfile="$OUTPUTDIR/${curdir}_${name}.log.txt"
-    export FILE_FLAGS=`awk '/\/\\*\\$ .* \\$\\*\// { for (i = 2; i < NF; ++i) printf "%s ", $i }' $file`
-    echo -n "Building $file"
+	export name="`basename $file .c`"
+	export logfile="$OUTPUTDIR/${dirprefix}_${name}.log.txt"
+	export FILE_FLAGS=`awk '/\/\\*\\$ .* \\$\\*\// { for (i = 2; i < NF; ++i) printf "%s ", $i }' $file`
+	echo -n "Building $file"
 
 	rm -f "$logfile"
 	export CFLAGS="$ALL_CFLAGS -I$curdir"
@@ -132,12 +133,12 @@ for file in $FILES; do
 		CMD="$curdir/test.sh"
 	fi
 
-    # initialize variables
-    GCC_RES=""
-    GCC_RUN_RES=""
-    COMPILE_RES=""
-    FIRM_RUN_RES=""
-    DIFF_RES=""
+	# initialize variables
+	GCC_RES=""
+	GCC_RUN_RES=""
+	COMPILE_RES=""
+	FIRM_RUN_RES=""
+	DIFF_RES=""
 
 	. $CMD
 	if do_test; then
@@ -145,7 +146,7 @@ for file in $FILES; do
 	else
 		okcount=`expr $okcount + 1`
 	fi
-    echo
+	echo
 
     cat >> $XMLRES << __END__
     <result name="$name">

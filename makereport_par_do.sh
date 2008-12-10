@@ -6,7 +6,8 @@ errorfile="$3"
 
 dir="`dirname $file`"
 name="`basename $file .c`"
-logfile="$OUTPUTDIR/${dir}_$name.log.txt"
+dirprefix=`echo "${dir}" | sed -e "s/\\//_/"`
+logfile="$OUTPUTDIR/${dirprefix}_$name.log.txt"
 FILE_FLAGS=`awk '/\/\\*\\$ .* \\$\\*\// { for (i = 2; i < NF; ++i) printf "%s ", $i }' $file`
 
 rm -f "$logfile"
@@ -26,10 +27,10 @@ DIFF_RES=""
 
 . $CMD
 if do_test; then
-    echo "$ERROR" > $errorfile
-    res=1
+	echo "$ERROR" > $errorfile
+	res=1
 else
-    res=0
+	res=0
 fi
 
 cat > $xmlresult << __END__

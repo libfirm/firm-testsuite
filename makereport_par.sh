@@ -14,11 +14,11 @@ MAXTHREADS=6
 VERBOSE=0
 
 while [ "$1" ]; do
-    case "$1" in
-        -v) shift; VERBOSE=`expr $VERBOSE + 1`;;
-        -j) shift; MAXTHREADS=$1; shift;;
-        * ) break;;
-    esac;
+	case "$1" in
+		-v) shift; VERBOSE=`expr $VERBOSE + 1`;;
+		-j) shift; MAXTHREADS=$1; shift;;
+		* ) break;;
+	esac;
 done
 
 if [ "$ECC" = "" ]; then
@@ -107,18 +107,22 @@ do_waitandoutput()
 	local FILE=${Threadfile[$1]}
 
 	curdir="`dirname $FILE`"
+	local dirprefix=`echo "${curdir}" | sed -e "s/\\//_/"`
+	local name="`basename $FILE .c`"
+	local logfile="$OUTPUTDIR/${dirprefix}_$name.log.txt"
+
 	if [ "$curdir" != "$lastdir" ]; then
-        if [ "$SHOW_DIR_MARKERS" = "1" ]; then
-    		showsummary
-	    	echo ">>>> [${COLOR_DIR}$curdir${COLOR_NORMAL}] <<<<"
-        fi
+		if [ "$SHOW_DIR_MARKERS" = "1" ]; then
+			showsummary
+			echo ">>>> [${COLOR_DIR}$curdir${COLOR_NORMAL}] <<<<"
+		fi
 
 		if [ $firstdir == 1 ]; then
 			firstdir=0
 		else
 			echo "</dir>" >> $XMLRES
 		fi
-	    echo "<dir name=\"$curdir\">" >> $XMLRES
+		echo "<dir name=\"$curdir\">" >> $XMLRES
 
 		lastdir="$curdir"
 		testcount="0"
@@ -126,29 +130,25 @@ do_waitandoutput()
 	fi
 
 	echo -n "=$1==> Building $FILE"
-    testcount=`expr $testcount + 1`
-    wait ${Threads[$1]}
+	testcount=`expr $testcount + 1`
+	wait ${Threads[$1]}
 	local STATUS=$?
 	if [ $STATUS -eq 1 ]; then
 		echo -n "$FAILED "
-        cat < $BUILDDIR/makereport_error_$1.txt
-        if [ $VERBOSE -ge 1 ]; then
-            local name="`basename $FILE .c`"
-            local logfile="$OUTPUTDIR/${curdir}_$name.log.txt"
-            cat < $logfile
-        fi
+		cat < $BUILDDIR/makereport_error_$1.txt
+		if [ $VERBOSE -ge 1 ]; then
+			cat < $logfile
+		fi
 	else
 		okcount=`expr $okcount + 1`
-        if [ $VERBOSE -ge 2 ]; then
-            local name="`basename $FILE .c`"
-            local logfile="$OUTPUTDIR/${curdir}_$name.log.txt"
-            cat < $logfile
-        else
-            echo
-        fi
+		if [ $VERBOSE -ge 2 ]; then
+			cat < $logfile
+		else
+			echo
+		fi
 	fi
 
-    cat >> $XMLRES < $BUILDDIR/makereport_res_$NEXTTHREAD.xml
+	cat >> $XMLRES < $BUILDDIR/makereport_res_$NEXTTHREAD.xml
 }
 
 do_test()
@@ -192,7 +192,7 @@ completecount="0"
 completeok="0"
 firstdir=1
 for file in $FILES; do
-    do_test "$file"
+	do_test "$file"
 done
 
 do_waitforrest
