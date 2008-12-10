@@ -99,9 +99,11 @@ completeok="0"
 firstdir=1
 for file in $FILES; do
 	curdir="`dirname $file`"
-	if [ "$SHOW_DIR_MARKERS" = "1" -a "$curdir" != "$lastdir" ]; then
-		showsummary
-		echo ">>>> [${COLOR_DIR}$curdir${COLOR_NORMAL}] <<<<"
+	if [ "$curdir" != "$lastdir" ]; then
+        if [ "$SHOW_DIR_MARKERS" = "1" ]; then
+    		showsummary
+	    	echo ">>>> [${COLOR_DIR}$curdir${COLOR_NORMAL}] <<<<"
+        fi
 
 		if [ $firstdir == 1 ]; then
 			firstdir=0
@@ -118,7 +120,7 @@ for file in $FILES; do
     testcount=`expr $testcount + 1`
 	export file
     export name="`basename $file .c`"
-    export logfile="$OUTPUTDIR/${name}.log.txt"
+    export logfile="$OUTPUTDIR/${curdir}_${name}.log.txt"
     export FILE_FLAGS=`awk '/\/\\*\\$ .* \\$\\*\// { for (i = 2; i < NF; ++i) printf "%s ", $i }' $file`
     echo -n "Building $file"
 

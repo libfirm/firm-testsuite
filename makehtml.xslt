@@ -9,21 +9,31 @@
 			<xsl:attribute name="class"><xsl:value-of select="text()"/></xsl:attribute>
 
 			<xsl:choose>
-				<xsl:when test="name() = 'gcc_run'">
+				<xsl:when test="self::gcc_compile or self::compile">
 					<xsl:element name="a">
-						<xsl:attribute name="href">../../build/gcc/<xsl:value-of select="../@name"/>_result_ref.txt</xsl:attribute>
+						<xsl:attribute name="href"><xsl:if test="parent::node()/parent::dir"><xsl:value-of
+							select="../../@name"/>_</xsl:if><xsl:value-of select="../@name"/>.log.txt</xsl:attribute>
 						<xsl:value-of select="text()"/>
 					</xsl:element>
 				</xsl:when>
-				<xsl:when test="name() = 'firm_run'">
+				<xsl:when test="self::gcc_run">
 					<xsl:element name="a">
-						<xsl:attribute name="href">../../build/firm/<xsl:value-of select="../@name"/>_result_test.txt</xsl:attribute>
+						<xsl:attribute name="href">../../build/gcc/<xsl:if test="parent::node()/parent::dir"><xsl:value-of
+							select="../../@name"/>_</xsl:if><xsl:value-of select="../@name"/>_result_ref.txt</xsl:attribute>
 						<xsl:value-of select="text()"/>
 					</xsl:element>
 				</xsl:when>
-				<xsl:when test="name() = 'diff'">
+				<xsl:when test="self::firm_run">
 					<xsl:element name="a">
-						<xsl:attribute name="href"><xsl:value-of select="../@name"/>.diff.txt</xsl:attribute>
+						<xsl:attribute name="href">../../build/firm/<xsl:if test="parent::node()/parent::dir"><xsl:value-of
+							select="../../@name"/>_</xsl:if><xsl:value-of select="../@name"/>_result_test.txt</xsl:attribute>
+						<xsl:value-of select="text()"/>
+					</xsl:element>
+				</xsl:when>
+				<xsl:when test="self::diff">
+					<xsl:element name="a">
+						<xsl:attribute name="href"><xsl:if test="parent::node()/parent::dir"><xsl:value-of
+							select="../../@name"/>_</xsl:if><xsl:value-of select="../@name"/>.diff.txt</xsl:attribute>
 						<xsl:value-of select="text()"/>
 					</xsl:element>
 				</xsl:when>
@@ -38,7 +48,8 @@
 		<tr>
 			<td>
 				<xsl:element name="a">
-					<xsl:attribute name="href"><xsl:value-of select="@name"/>.log.txt</xsl:attribute>
+					<xsl:attribute name="href">../../<xsl:if test="parent::dir"><xsl:value-of
+						select="../@name"/>/</xsl:if><xsl:value-of select="@name"/>.c</xsl:attribute>
 					<xsl:value-of select="@name"/>
 				</xsl:element>
 			</td>
