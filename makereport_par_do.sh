@@ -1,0 +1,46 @@
+#! /bin/sh
+
+file="$1"
+xmlresult="$2"
+errorfile="$3"
+
+dir="`dirname $file`"
+name="`basename $file .c`"
+logfile="$OUTPUTDIR/${dir}_$name.log.txt"
+FILE_FLAGS=`awk '/\/\\*\\$ .* \\$\\*\// { for (i = 2; i < NF; ++i) printf "%s ", $i }' $file`
+
+rm -f "$logfile"
+CFLAGS="$ALL_CFLAGS -I$dir"
+CMD="./default_test.sh"
+
+if test -x $dir/test.sh; then
+	CMD="$dir/test.sh"
+fi
+
+# initialize variables
+GCC_RES=""
+GCC_RUN_RES=""
+COMPILE_RES=""
+FIRM_RUN_RES=""
+DIFF_RES=""
+
+. $CMD
+if do_test; then
+    echo "$ERROR" > $errorfile
+    res=1
+else
+    res=0
+fi
+
+cat > $xmlresult << __END__
+    <result name="$name">
+        <compile>$COMPILE_RES</compile>
+        <link>$LINK_RES</link>
+        <gcc_compile>$GCC_RES</gcc_compile>
+        <gcc_run>$GCC_RUN_RES</gcc_run>
+        <firm_run>$FIRM_RUN_RES</firm_run>
+        <diff>$DIFF_RES</diff>
+    </result>
+__END__
+
+exit $res
