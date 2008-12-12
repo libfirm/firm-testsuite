@@ -2,7 +2,7 @@ struct X {
 	int x;
 } a;
 
-static const int* const arr[] = {
+static int* const arr[] = {
 	&a.x
 };
 
