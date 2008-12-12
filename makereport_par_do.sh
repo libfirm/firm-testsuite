@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 file="$1"
 xmlresult="$2"
