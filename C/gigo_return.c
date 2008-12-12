@@ -17,3 +17,7 @@ int f(int x)
 	 * unhappy. */
 	return x;
 }
+
+int main(int argc, char *argv[]) {
+	return f(3);
+}
