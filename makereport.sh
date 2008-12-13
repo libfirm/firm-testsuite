@@ -27,7 +27,7 @@ fi
 export REF_COMPILER="$REF"
 export REF_CFLAGS="${REFFLAGS} -fomit-frame-pointer -Itcc -std=c99"
 export LINKFLAGS="-lm"
-export TIMEOUT_TEST=10
+export TIMEOUT_TEST=20
 export DEFAULT_DIRS="backend opt C C/pragmatic C/should_fail C/gnu99 ack langshootout llvm"
 export ALL_CFLAGS=""
 
