@@ -27,7 +27,7 @@ fi
 export REF_COMPILER="$REF"
 export REF_CFLAGS="${REFFLAGS} -fomit-frame-pointer -Itcc -std=c99"
 export LINKFLAGS="-lm"
-export TIMEOUT_TEST=300
+export TIMEOUT_TEST=10
 export DEFAULT_DIRS="backend opt C C/pragmatic C/should_fail C/gnu99 ack langshootout llvm"
 export ALL_CFLAGS=""
 
@@ -134,10 +134,10 @@ for file in $FILES; do
 	fi
 
 	# initialize variables
-	GCC_RES=""
-	GCC_RUN_RES=""
 	COMPILE_RES=""
 	FIRM_RUN_RES=""
+	GCC_RES=""
+	GCC_RUN_RES=""
 	DIFF_RES=""
 
 	. $CMD
@@ -151,10 +151,9 @@ for file in $FILES; do
     cat >> $XMLRES << __END__
     <result name="$name">
         <compile>$COMPILE_RES</compile>
-        <link>$LINK_RES</link>
+        <firm_run>$FIRM_RUN_RES</firm_run>
         <gcc_compile>$GCC_RES</gcc_compile>
         <gcc_run>$GCC_RUN_RES</gcc_run>
-        <firm_run>$FIRM_RUN_RES</firm_run>
         <diff>$DIFF_RES</diff>
     </result>
 __END__
@@ -177,7 +176,7 @@ testcount="$completecount"
 okcount="$completeok"
 showsummary
 
-xsltproc --output $OUTPUTDIR/index.html makehtml.xslt $XMLRES
+xsltproc --stringparam ref "result-`basename $ECC`-`basename $REF`.xml" --output $OUTPUTDIR/index.html makehtml.xslt $XMLRES
 
 # maybe execute custom actions after result has been generated
 [ -e after_compile.sh ] && ./after_compile.sh "$OUTPUTDIR"

@@ -19,10 +19,10 @@ if test -x $dir/test.sh; then
 fi
 
 # initialize variables
-GCC_RES=""
-GCC_RUN_RES=""
 COMPILE_RES=""
 FIRM_RUN_RES=""
+GCC_RES=""
+GCC_RUN_RES=""
 DIFF_RES=""
 
 . $CMD
@@ -36,10 +36,9 @@ fi
 cat > $xmlresult << __END__
     <result name="$name">
         <compile>$COMPILE_RES</compile>
-        <link>$LINK_RES</link>
+        <firm_run>$FIRM_RUN_RES</firm_run>
         <gcc_compile>$GCC_RES</gcc_compile>
         <gcc_run>$GCC_RUN_RES</gcc_run>
-        <firm_run>$FIRM_RUN_RES</firm_run>
         <diff>$DIFF_RES</diff>
     </result>
 __END__
