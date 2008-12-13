@@ -17,6 +17,7 @@ while [ "$1" ]; do
 	case "$1" in
 		-v) shift; VERBOSE=`expr $VERBOSE + 1`;;
 		-j) shift; MAXTHREADS=$1; shift;;
+		-j*) MAXTHREADS=${1:2}; shift;;
 		* ) break;;
 	esac;
 done
