@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <results>
-    <datetime>2008-12-13 02:18:17</datetime>
+    <datetime>2008-12-13 20:39:40</datetime>
     <environment>
         <TEST_COMPILER>cparser</TEST_COMPILER>
         <TEST_CFLAGS> -v -O3 -ffp-strict -std=c99</TEST_CFLAGS>
@@ -1142,7 +1142,7 @@
         <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff>failed</diff>
+        <diff>ok</diff>
     </result>
     <result name="fehler044">
         <compile>ok</compile>
@@ -1170,7 +1170,7 @@
         <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff>failed</diff>
+        <diff>ok</diff>
     </result>
     <result name="fehler047">
         <compile>ok</compile>
@@ -1992,11 +1992,11 @@
         <diff>ok</diff>
     </result>
     <result name="fisttp">
-        <compile>aborted</compile>
-        <firm_run></firm_run>
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff></diff>
+        <diff>ok</diff>
     </result>
     <result name="float_if">
         <compile>ok</compile>
@@ -2090,7 +2090,7 @@
         <diff>ok</diff>
     </result>
     <result name="ijmp">
-        <compile>failed</compile>
+        <compile>aborted</compile>
         <firm_run></firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
@@ -2719,6 +2719,20 @@
         <firm_run></firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
+        <diff></diff>
+    </result>
+    <result name="bitfield3">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
+    </result>
+    <result name="combo_load_mode">
+        <compile>aborted</compile>
+        <firm_run></firm_run>
+        <gcc_compile>failed</gcc_compile>
+        <gcc_run></gcc_run>
         <diff></diff>
     </result>
     <result name="compoundlit">
@@ -4110,17 +4124,17 @@
     </result>
     <result name="t7">
         <compile>ok</compile>
-        <firm_run>aborted</firm_run>
+        <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff></diff>
+        <diff>ok</diff>
     </result>
     <result name="test">
-        <compile>aborted</compile>
-        <firm_run></firm_run>
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff></diff>
+        <diff>ok</diff>
     </result>
     <result name="test1">
         <compile>ok</compile>
@@ -4160,11 +4174,11 @@
         <diff>ok</diff>
     </result>
     <result name="n-body">
-        <compile>aborted</compile>
-        <firm_run></firm_run>
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff></diff>
+        <diff>ok</diff>
     </result>
     <result name="nsieve-bits">
         <compile>ok</compile>
@@ -4408,7 +4422,7 @@
     </result>
 </dir>
     <summary>
-        <total>626</total>
-        <failed>61</failed>
+        <total>628</total>
+        <failed>56</failed>
     </summary>
 </results>
