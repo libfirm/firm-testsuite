@@ -10,6 +10,15 @@ else
 	shift
 fi
 
+HTMLSOURCEDIR="../../"
+
+while [ "$1" ]; do
+	case "$1" in
+		--htmlsourcedir) shift; HTMLSOURCEDIR=$1; shift;;
+		* ) break;;
+	esac;
+done
+
 if [ "$ECC" = "" ]; then
 	ECC="eccp"
 	ECCFLAGS="-v -O3 -ffp-strict"
@@ -176,7 +185,7 @@ testcount="$completecount"
 okcount="$completeok"
 showsummary
 
-xsltproc --stringparam ref "result-`basename $ECC`-`basename $REF`.xml" --output $OUTPUTDIR/index.html makehtml.xslt $XMLRES
+xsltproc --stringparam ref "result-`basename $ECC`-`basename $REF`.xml" --stringparam sourcedir "$HTMLSOURCEDIR" --output $OUTPUTDIR/index.html makehtml.xslt $XMLRES
 
 # maybe execute custom actions after result has been generated
 [ -e after_compile.sh ] && ./after_compile.sh "$OUTPUTDIR"

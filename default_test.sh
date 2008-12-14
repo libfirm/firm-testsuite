@@ -16,7 +16,7 @@ do_test() {
 	cmd="${REF_COMPILER} ${REF_CFLAGS} ${CFLAGS} ${file} ${LINKFLAGS} -o ${exe_ref}"
 	if execute_cmd "$cmd" "reference compiler failed" "GCC_RES"; then
 		echo "*** \"${REF_COMPILER}\" Run" >> "$logfile"
-		res_ref="$BUILDDIR_REF/${dirprefix}_${name}_result_ref.txt"
+		res_ref="$OUTPUTDIR/${dirprefix}_${name}_result_ref.txt"
 		cmd="${exe_ref} >& $res_ref"
 		execute_cmd "$cmd" "reference executable failed" "GCC_RUN_RES"
 	fi
@@ -28,7 +28,7 @@ do_test() {
 	cmd="${TEST_COMPILER} ${file} ${TEST_CFLAGS} ${CFLAGS} ${FILE_FLAGS} ${LINKFLAGS} -o ${exe_test}"
 	if execute_cmd "$cmd" "" "COMPILE_RES"; then
 		echo "*** \"${TEST_COMPILER}\" Run" >> "$logfile"
-		res_test="$BUILDDIR_TEST/${dirprefix}_${name}_result_test.txt"
+		res_test="$OUTPUTDIR/${dirprefix}_${name}_result_test.txt"
 		cmd="${exe_test} >& $res_test"
 		execute_cmd "$cmd" "" "FIRM_RUN_RES"
 	fi
@@ -39,8 +39,13 @@ do_test() {
 
 	# compare results
 	echo "*** Compare Results" >> "$logfile"
-	cmd="diff -U100000 $res_test $res_ref > $OUTPUTDIR/${dirprefix}_${name}.diff.txt"
+	cmd="diff -U100000 $res_test $res_ref > $OUTPUTDIR/${dirprefix}_${name}_result_diff.txt"
 	execute_cmd "$cmd" "" "DIFF_RES" || return 0
+
+	# results are the same, so remove unnecessary files
+	rm "$OUTPUTDIR/${dirprefix}_${name}_result_diff.txt"
+	rm "$OUTPUTDIR/${dirprefix}_${name}_result_ref.txt"
+	mv -f "$OUTPUTDIR/${dirprefix}_${name}_result_test.txt" "$OUTPUTDIR/${dirprefix}_${name}_result.txt"
 
 	return 1
 }

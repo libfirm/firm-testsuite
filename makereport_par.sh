@@ -12,12 +12,14 @@ fi
 
 MAXTHREADS=6
 VERBOSE=0
+HTMLSOURCEDIR="../../"
 
 while [ "$1" ]; do
 	case "$1" in
 		-v) shift; VERBOSE=`expr $VERBOSE + 1`;;
 		-j) shift; MAXTHREADS=$1; shift;;
 		-j*) MAXTHREADS=${1:2}; shift;;
+		--htmlsourcedir) shift; HTMLSOURCEDIR=$1; shift;;
 		* ) break;;
 	esac;
 done
@@ -215,7 +217,7 @@ testcount="$completecount"
 okcount="$completeok"
 showsummary
 
-xsltproc --stringparam ref "result-`basename $ECC`-`basename $REF`.xml" --output $OUTPUTDIR/index.html makehtml.xslt $XMLRES
+xsltproc --stringparam ref "result-`basename $ECC`-`basename $REF`.xml" --stringparam sourcedir "$HTMLSOURCEDIR" --output $OUTPUTDIR/index.html makehtml.xslt $XMLRES
 
 # maybe execute custom actions after result has been generated
 [ -e after_compile.sh ] && ./after_compile.sh "$OUTPUTDIR"

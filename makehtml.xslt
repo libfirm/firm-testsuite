@@ -3,48 +3,29 @@
 	<xsl:param name="ref"/>
 	<xsl:variable name="refDoc" select="document($ref)"/>
 
+	<xsl:param name="sourcedir" select="'../../'"/>
+
 	<xsl:output method="html" indent="yes"
 			doctype-public="-//W3C//DTD HTML 4.01//EN"
 			doctype-system="http://www.w3.org/TR/html4/strict.dtd"/>
 
 	<xsl:template name="resultcell" match="result/*">
-		<xsl:element name="div">
-			<xsl:attribute name="class"><xsl:value-of select="text()"/></xsl:attribute>
+		<xsl:param name="file"/>
 
-			<xsl:choose>
-				<xsl:when test="self::gcc_compile or self::compile">
-					<xsl:element name="a">
-						<xsl:attribute name="href"><xsl:value-of
-							select="../../@name"/>_<xsl:value-of select="../@name"/>.log.txt</xsl:attribute>
-						<xsl:value-of select="text()"/>
-					</xsl:element>
-				</xsl:when>
-				<xsl:when test="self::gcc_run">
-					<xsl:element name="a">
-						<xsl:attribute name="href">../../build/gcc/<xsl:value-of
-							select="../../@name"/>_<xsl:value-of select="../@name"/>_result_ref.txt</xsl:attribute>
-						<xsl:value-of select="text()"/>
-					</xsl:element>
-				</xsl:when>
-				<xsl:when test="self::firm_run">
-					<xsl:element name="a">
-						<xsl:attribute name="href">../../build/firm/<xsl:value-of
-							select="../../@name"/>_<xsl:value-of select="../@name"/>_result_test.txt</xsl:attribute>
-						<xsl:value-of select="text()"/>
-					</xsl:element>
-				</xsl:when>
-				<xsl:when test="self::diff">
-					<xsl:element name="a">
-						<xsl:attribute name="href"><xsl:value-of
-							select="../../@name"/>_<xsl:value-of select="../@name"/>.diff.txt</xsl:attribute>
-						<xsl:value-of select="text()"/>
-					</xsl:element>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:value-of select="text()"/>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:element>
+		<xsl:if test="text()">
+			<xsl:element name="div">
+				<xsl:attribute name="class"><xsl:value-of select="text()"/></xsl:attribute>
+				<xsl:choose>
+					<xsl:when test="self::diff and text() = 'ok'">ok</xsl:when>
+					<xsl:otherwise>
+						<xsl:element name="a">
+							<xsl:attribute name="href"><xsl:value-of select="$file"/></xsl:attribute>
+							<xsl:value-of select="text()"/>
+						</xsl:element>
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:element>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template name="getval">
@@ -60,21 +41,55 @@
 
 	<xsl:template match="result">
 		<tr>
+			<xsl:variable name="dirname" select="../@name"/>
+			<xsl:variable name="testname" select="@name"/>
+			<xsl:variable name="prefix"><xsl:value-of select="$dirname"/>_<xsl:value-of select="$testname"/></xsl:variable>
+			<xsl:variable name="resulttest">
+				<xsl:choose>
+					<xsl:when test="diff/text() = 'ok'"><xsl:value-of select="$prefix"/>_result.txt</xsl:when>
+					<xsl:otherwise><xsl:value-of select="$prefix"/>_result_test.txt</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+			<xsl:variable name="resultref">
+				<xsl:choose>
+					<xsl:when test="diff/text() = 'ok'"><xsl:value-of select="$prefix"/>_result.txt</xsl:when>
+					<xsl:otherwise><xsl:value-of select="$prefix"/>_result_ref.txt</xsl:otherwise>
+				</xsl:choose>
+			</xsl:variable>
+
 			<td>
 				<xsl:element name="a">
-					<xsl:attribute name="href">../../<xsl:value-of select="../@name"/>/<xsl:value-of select="@name"/>.c</xsl:attribute>
-					<xsl:value-of select="@name"/>
+					<xsl:attribute name="href"><xsl:value-of select="$sourcedir"/><xsl:value-of select="$dirname"/>/<xsl:value-of select="$testname"/>.c</xsl:attribute>
+					<xsl:value-of select="$testname"/>
 				</xsl:element>
 			</td>
-			<td><xsl:apply-templates select="compile"/></td>
-			<td><xsl:apply-templates select="firm_run"/></td>
-			<td><xsl:apply-templates select="gcc_compile"/></td>
-			<td><xsl:apply-templates select="gcc_run"/></td>
-			<td><xsl:apply-templates select="diff"/></td>
+			<td>
+				<xsl:apply-templates select="compile">
+					<xsl:with-param name="file" select="concat($prefix, '.log.txt')"/>
+				</xsl:apply-templates>
+			</td>
+			<td>
+				<xsl:apply-templates select="firm_run">
+					<xsl:with-param name="file" select="$resulttest"/>
+				</xsl:apply-templates>
+			</td>
+			<td>
+				<xsl:apply-templates select="gcc_compile">
+					<xsl:with-param name="file" select="concat($prefix, '.log.txt')"/>
+				</xsl:apply-templates>
+			</td>
+			<td>
+				<xsl:apply-templates select="gcc_run">
+					<xsl:with-param name="file" select="$resultref"/>
+				</xsl:apply-templates>
+			</td>
+			<td>
+				<xsl:apply-templates select="diff">
+					<xsl:with-param name="file" select="concat($prefix, '_result_diff.txt')"/>
+				</xsl:apply-templates>
+			</td>
 			<xsl:if test="$refDoc and $ref">
 				<td>
-					<xsl:variable name="dirname" select="../@name"/>
-					<xsl:variable name="testname" select="@name"/>
 					<xsl:variable name="curval">
 						<xsl:call-template name="getval">
 							<xsl:with-param name="node" select="."/>
