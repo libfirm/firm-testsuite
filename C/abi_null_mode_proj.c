@@ -17,3 +17,10 @@ void h(X a)
  f(a, a);
  g(a, a);
 }
+
+int main(void)
+{
+	X x;
+	h(x);
+	return 0;
+}
