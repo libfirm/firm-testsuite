@@ -43,7 +43,7 @@
 		<tr>
 			<xsl:variable name="dirname" select="../@name"/>
 			<xsl:variable name="testname" select="@name"/>
-			<xsl:variable name="prefix"><xsl:value-of select="$dirname"/>_<xsl:value-of select="$testname"/></xsl:variable>
+			<xsl:variable name="prefix"><xsl:value-of select="translate($dirname, '/', '_')"/>_<xsl:value-of select="$testname"/></xsl:variable>
 			<xsl:variable name="resulttest">
 				<xsl:choose>
 					<xsl:when test="diff/text() = 'ok'"><xsl:value-of select="$prefix"/>_result.txt</xsl:when>
