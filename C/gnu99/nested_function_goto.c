@@ -1,16 +1,19 @@
 int f(int a) {
-	int v = a + a;
+	__label__ end;
 
 	int g(int k) {
-		return k + a + v;
+		if (k == 0)
+			goto end;
+		return k + a;
 	}
 
 	return g(1);
+end:
+	return 23;
 }
 
 int main(int argc, char *argv[]) {
 	(void) argc;
 	(void) argv;
-	printf("%d\n", f(1));
-	return 0;
+	return f(-1);
 }
