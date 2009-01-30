@@ -9,3 +9,8 @@ union tree_node {
 	float b;
 };
 union tree_node *make_tree(union tree_node* bla);
+
+int main(void)
+{
+	return 0;
+}
