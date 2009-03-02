@@ -37,6 +37,8 @@ if [ "$REF" = "" ]; then
 	REFFLAGS="-fp-model precise"
 elif [ `basename "$REF"` = "gcc" -a "$REFFLAGS" = "" ]; then
 	REFFLAGS="-ffloat-store"
+elif [ `basename "$REF"` = "cparser" -a "$REFFLAGS" = "" ]; then
+	REFFLAGS="-v -O3 -ffp-strict"
 fi
 export REF_COMPILER="$REF"
 export REF_CFLAGS="${REFFLAGS} -fomit-frame-pointer -Itcc -std=c99"
