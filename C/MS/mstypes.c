@@ -9,4 +9,5 @@ unsigned __int64 blup5 = 0xffffffff00000045;
 int main(void)
 {
 	printf("%d %d %u %I64d %I64u\n", blup, blup2, blup3, blup4, blup5);
+	return 0;
 }
