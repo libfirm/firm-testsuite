@@ -18,7 +18,7 @@ struct x {
 	int __declspec(property(get=get_a, put=put_a)) a;
 };
 
-__declspec(restrict) char * malloc_like();
+__declspec(restrict) char * malloc_like(void);
 int __declspec(noalias) test1(void *a, void *b);
 
 void test3(void) {
@@ -30,6 +30,6 @@ __declspec(deprecated) int (*ptr)(void) = ****test2;
 
 int main(void) {
 	int x  = ptr();
-	printf("%I64d\n", x);
+	printf("%d\n", x);
 	return x;
 }
