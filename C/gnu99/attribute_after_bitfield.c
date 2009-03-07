@@ -1,8 +1,11 @@
 struct X {
 	int x:1 __attribute__((deprecated));
+	int y : 2;
 };
 
 int main(void)
 {
-	return 0;
+	struct X x;
+	x.x = 0;
+	return x.x;
 }
