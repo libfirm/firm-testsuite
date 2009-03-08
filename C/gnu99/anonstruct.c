@@ -24,7 +24,7 @@ int main(void)
 	bl.l = 32;
 	bl.v.c = 23.4;
 
-	printf("%d\n", (char*)&bl.v.c - (char*)&bl);
+	printf("%d\n", (int) ((char*)&bl.v.c - (char*)&bl));
 
 	return 0;
 }
