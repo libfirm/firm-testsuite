@@ -9,3 +9,8 @@ void t(void)
 
 	k = 5; /* should fail, assignment to const */
 }
+
+int main(void)
+{
+	return 0;
+}
