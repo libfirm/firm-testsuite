@@ -15,6 +15,7 @@ struct C {
 	float l;
 };
 struct D {
+	int m;
 	int l[];
 };
 struct BF {
@@ -48,7 +49,7 @@ int main(void)
 	assert(offsetof(struct X, c) == 2*sizeof(int));
 
 	assert(sizeof(struct B) == 4);
-	assert(sizeof(struct D) == 0);
+	assert(sizeof(struct D) == sizeof(int));
 	assert(sizeof(struct BF) == 8);
 	assert(sizeof(struct BF2) == 3*sizeof(unsigned));
 	assert(sizeof(struct BF3) == sizeof(unsigned) + sizeof(int));
