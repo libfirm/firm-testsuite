@@ -2,10 +2,6 @@
 #include <stdlib.h>
 
 /* Test arithmetics on bitfields.  */
-
-extern void abort (void);
-extern void exit (int);
-
 unsigned int
 myrnd (void)
 {
