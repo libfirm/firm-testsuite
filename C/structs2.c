@@ -52,7 +52,7 @@ int main(void)
 	assert(sizeof(struct D) == sizeof(int));
 	assert(sizeof(struct BF) == 8);
 	assert(sizeof(struct BF2) == 3*sizeof(unsigned));
-	assert(sizeof(struct BF3) == sizeof(unsigned) + sizeof(int));
+	assert(sizeof(struct BF3) == sizeof(unsigned));
 
 	assert(__alignof__(struct X) == sizeof(int));
 	assert(__alignof__(struct B) == sizeof(char));
