@@ -56,12 +56,18 @@ struct BF5 {
 	unsigned b7 : 4;
 	int b8 : 4;
 };
+struct BF6 {
+	unsigned b1 : sizeof(unsigned)*8 - 5;
+	unsigned b2 : 9;
+	char     p;
+};
 
 int main(void)
 {
 	assert(offsetof(struct X, a) == 0);
 	assert(offsetof(struct X, b) == sizeof(int));
 	assert(offsetof(struct X, c) == 2*sizeof(int));
+	assert(offsetof(struct BF6, p) == sizeof(unsigned)+2);
 
 	assert(sizeof(struct B) == 4);
 	assert(sizeof(struct D) == sizeof(int));
