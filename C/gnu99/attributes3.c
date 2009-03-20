@@ -18,6 +18,8 @@ __attribute__((aligned(64))) int k;
 __typeof__(k) l;
 ta __attribute__((aligned(16))) m;
 
+struct { int x; } __attribute__((aligned(64))) n;
+
 int main(void)
 {
 	assert(__alignof__(a) == 128);
@@ -33,6 +35,7 @@ int main(void)
 	assert(__alignof__(k) == 64);
 	assert(__alignof__(l) == __alignof__(normal));
 	assert(__alignof__(m) == 16);
+	assert(__alignof__(n) == 64);
 
 	return 0;
 }

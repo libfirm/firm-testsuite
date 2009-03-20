@@ -1,5 +1,6 @@
 #include <assert.h>
 
+struct A0 { char x; int y; };
 struct __attribute__((packed)) A1 { char x; int y; }; // applied to struct
 __attribute__((packed)) struct A2 { char x; int y; }; // ignored
 struct A3 { char x; int y; } __attribute__((packed)); // applied to struct
@@ -10,6 +11,7 @@ int main(void)
 {
 #define CHECK_PACKED(x)   assert(sizeof(x) == sizeof(char)+sizeof(int))
 #define CHECK_NOT_PACKED(x)  assert(sizeof(x) != sizeof(char)+sizeof(int))
+	CHECK_NOT_PACKED(struct A0);
 	CHECK_PACKED(struct A1);
 	CHECK_NOT_PACKED(struct A2);
 	CHECK_PACKED(struct A3);

@@ -41,6 +41,21 @@ struct BF3 {
 	unsigned b1 : 1;
 	int      b2 : 2;
 };
+struct BF4 {
+	unsigned b1 : 1;
+	char     b2 : 2;
+};
+
+struct BF5 {
+	unsigned b1 : 4;
+	int b2 : 4;
+	unsigned b3 : 4;
+	int b4 : 4;
+	unsigned b5 : 4;
+	int b6 : 4;
+	unsigned b7 : 4;
+	int b8 : 4;
+};
 
 int main(void)
 {
@@ -53,10 +68,14 @@ int main(void)
 	assert(sizeof(struct BF) == 8);
 	assert(sizeof(struct BF2) == 3*sizeof(unsigned));
 	assert(sizeof(struct BF3) == sizeof(unsigned));
+	assert(sizeof(struct BF4) == sizeof(unsigned));
+	assert(sizeof(struct BF5) == sizeof(unsigned));
 
 	assert(__alignof__(struct X) == sizeof(int));
 	assert(__alignof__(struct B) == sizeof(char));
 	assert(__alignof__(struct C) == sizeof(float));
 	assert(__alignof__(struct D) == sizeof(int));
+	assert(__alignof__(struct BF3) == sizeof(unsigned));
+	assert(__alignof__(struct BF4) == sizeof(unsigned));
 	return 0;
 }
