@@ -25,7 +25,11 @@ do_test() {
 	# build+execute test executable
 	echo "*** \"${TEST_COMPILER}\" Compile" >> "$logfile"
 	exe_test="$BUILDDIR_TEST/${dirprefix}_$name.exe"
-	cmd="${TEST_COMPILER} ${file} ${TEST_CFLAGS} ${CFLAGS} ${FILE_FLAGS} ${LINKFLAGS} -o ${exe_test}"
+	if [ "$TESTIO" ]; then
+		cmd="${TEST_COMPILER} ${file} ${TEST_CFLAGS} ${CFLAGS} ${FILE_FLAGS} ${LINKFLAGS} --export-ir && ${TEST_COMPILER} $name.ir ${TEST_CFLAGS} ${CFLAGS} ${FILE_FLAGS} ${LINKFLAGS} -o ${exe_test}"
+	else
+		cmd="${TEST_COMPILER} ${file} ${TEST_CFLAGS} ${CFLAGS} ${FILE_FLAGS} ${LINKFLAGS} -o ${exe_test}"
+	fi
 	if execute_cmd "$cmd" "" "COMPILE_RES"; then
 		echo "*** \"${TEST_COMPILER}\" Run" >> "$logfile"
 		res_test="$OUTPUTDIR/${dirprefix}_${name}_result_test.txt"
