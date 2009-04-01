@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <results>
-    <datetime>2008-12-13 20:39:40</datetime>
+    <datetime>2009-04-01 16:18:31</datetime>
     <environment>
         <TEST_COMPILER>cparser</TEST_COMPILER>
         <TEST_CFLAGS> -v -O3 -ffp-strict -std=c99</TEST_CFLAGS>
@@ -66,10 +66,10 @@
     </result>
     <result name="asm_test">
         <compile>ok</compile>
-        <firm_run>ok</firm_run>
+        <firm_run>aborted</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff>failed</diff>
+        <diff></diff>
     </result>
     <result name="asm_test2">
         <compile>ok</compile>
@@ -135,6 +135,13 @@
         <diff>ok</diff>
     </result>
     <result name="optest_float">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
+    </result>
+    <result name="prefetch">
         <compile>ok</compile>
         <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
@@ -689,6 +696,13 @@
         <gcc_run>ok</gcc_run>
         <diff>ok</diff>
     </result>
+    <result name="condeval2">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
+    </result>
     <result name="confirm">
         <compile>ok</compile>
         <firm_run>ok</firm_run>
@@ -1142,7 +1156,7 @@
         <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff>ok</diff>
+        <diff>failed</diff>
     </result>
     <result name="fehler044">
         <compile>ok</compile>
@@ -1170,7 +1184,7 @@
         <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff>ok</diff>
+        <diff>failed</diff>
     </result>
     <result name="fehler047">
         <compile>ok</compile>
@@ -1733,11 +1747,11 @@
         <diff>ok</diff>
     </result>
     <result name="fehler127">
-        <compile>ok</compile>
-        <firm_run>ok</firm_run>
+        <compile>aborted</compile>
+        <firm_run></firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff>ok</diff>
+        <diff></diff>
     </result>
     <result name="fehler128">
         <compile>ok</compile>
@@ -1977,6 +1991,13 @@
         <gcc_run>ok</gcc_run>
         <diff>ok</diff>
     </result>
+    <result name="fehler164">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
+    </result>
     <result name="fib">
         <compile>ok</compile>
         <firm_run>ok</firm_run>
@@ -2010,7 +2031,7 @@
         <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff>failed</diff>
+        <diff>ok</diff>
     </result>
     <result name="floatcmp">
         <compile>ok</compile>
@@ -2088,13 +2109,6 @@
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
         <diff>ok</diff>
-    </result>
-    <result name="ijmp">
-        <compile>aborted</compile>
-        <firm_run></firm_run>
-        <gcc_compile>ok</gcc_compile>
-        <gcc_run>ok</gcc_run>
-        <diff></diff>
     </result>
     <result name="invsqrt">
         <compile>ok</compile>
@@ -2687,11 +2701,11 @@
 </dir>
 <dir name="C">
     <result name="abi_null_mode_proj">
-        <compile>failed</compile>
-        <firm_run></firm_run>
-        <gcc_compile>failed</gcc_compile>
-        <gcc_run></gcc_run>
-        <diff></diff>
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
     </result>
     <result name="abstract_declarator">
         <compile>ok</compile>
@@ -2729,7 +2743,7 @@
         <diff>ok</diff>
     </result>
     <result name="combo_load_mode">
-        <compile>aborted</compile>
+        <compile>failed</compile>
         <firm_run></firm_run>
         <gcc_compile>failed</gcc_compile>
         <gcc_run></gcc_run>
@@ -3113,6 +3127,27 @@
         <gcc_run>ok</gcc_run>
         <diff>ok</diff>
     </result>
+    <result name="cp_error053">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
+    </result>
+    <result name="cp_error055">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
+    </result>
+    <result name="cp_error056">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
+    </result>
     <result name="declarator_special">
         <compile>ok</compile>
         <firm_run>ok</firm_run>
@@ -3258,7 +3293,7 @@
         <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff>ok</diff>
+        <diff>failed</diff>
     </result>
     <result name="kr3">
         <compile>ok</compile>
@@ -3290,10 +3325,17 @@
     </result>
     <result name="long_double_int_conv">
         <compile>ok</compile>
-        <firm_run>failed</firm_run>
+        <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff></diff>
+        <diff>ok</diff>
+    </result>
+    <result name="mod">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
     </result>
     <result name="noconst">
         <compile>ok</compile>
@@ -3372,6 +3414,13 @@
         <gcc_run>ok</gcc_run>
         <diff>ok</diff>
     </result>
+    <result name="structs2">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
+    </result>
     <result name="switch">
         <compile>ok</compile>
         <firm_run>ok</firm_run>
@@ -3381,10 +3430,10 @@
     </result>
     <result name="tarval_sign_error">
         <compile>ok</compile>
-        <firm_run>failed</firm_run>
+        <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff></diff>
+        <diff>ok</diff>
     </result>
     <result name="union_init">
         <compile>ok</compile>
@@ -3394,18 +3443,18 @@
         <diff>failed</diff>
     </result>
     <result name="unkept_loop">
-        <compile>aborted</compile>
-        <firm_run></firm_run>
-        <gcc_compile>ok</gcc_compile>
-        <gcc_run>aborted</gcc_run>
-        <diff></diff>
-    </result>
-    <result name="vla">
-        <compile>aborted</compile>
-        <firm_run></firm_run>
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff></diff>
+        <diff>ok</diff>
+    </result>
+    <result name="vla">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>failed</diff>
     </result>
     <result name="whiles">
         <compile>ok</compile>
@@ -3455,6 +3504,13 @@
     </result>
     <result name="anonunion">
         <compile>failed</compile>
+        <firm_run></firm_run>
+        <gcc_compile></gcc_compile>
+        <gcc_run></gcc_run>
+        <diff></diff>
+    </result>
+    <result name="badarraytype">
+        <compile>ok</compile>
         <firm_run></firm_run>
         <gcc_compile></gcc_compile>
         <gcc_run></gcc_run>
@@ -3516,6 +3572,13 @@
         <gcc_run></gcc_run>
         <diff></diff>
     </result>
+    <result name="const2">
+        <compile>ok</compile>
+        <firm_run></firm_run>
+        <gcc_compile></gcc_compile>
+        <gcc_run></gcc_run>
+        <diff></diff>
+    </result>
     <result name="cp_error002">
         <compile>ok</compile>
         <firm_run></firm_run>
@@ -3524,6 +3587,13 @@
         <diff></diff>
     </result>
     <result name="cp_error003">
+        <compile>ok</compile>
+        <firm_run></firm_run>
+        <gcc_compile></gcc_compile>
+        <gcc_run></gcc_run>
+        <diff></diff>
+    </result>
+    <result name="cp_error054">
         <compile>ok</compile>
         <firm_run></firm_run>
         <gcc_compile></gcc_compile>
@@ -3601,7 +3671,7 @@
         <diff></diff>
     </result>
     <result name="incomplete_struct">
-        <compile>failed</compile>
+        <compile>ok</compile>
         <firm_run></firm_run>
         <gcc_compile></gcc_compile>
         <gcc_run></gcc_run>
@@ -3685,7 +3755,28 @@
         <diff></diff>
     </result>
     <result name="multiple_types">
-        <compile>failed</compile>
+        <compile>ok</compile>
+        <firm_run></firm_run>
+        <gcc_compile></gcc_compile>
+        <gcc_run></gcc_run>
+        <diff></diff>
+    </result>
+    <result name="multiple_types2">
+        <compile>ok</compile>
+        <firm_run></firm_run>
+        <gcc_compile></gcc_compile>
+        <gcc_run></gcc_run>
+        <diff></diff>
+    </result>
+    <result name="multiple_types3">
+        <compile>ok</compile>
+        <firm_run></firm_run>
+        <gcc_compile></gcc_compile>
+        <gcc_run></gcc_run>
+        <diff></diff>
+    </result>
+    <result name="noconst">
+        <compile>ok</compile>
         <firm_run></firm_run>
         <gcc_compile></gcc_compile>
         <gcc_run></gcc_run>
@@ -3810,6 +3901,20 @@
         <gcc_run></gcc_run>
         <diff></diff>
     </result>
+    <result name="struct">
+        <compile>ok</compile>
+        <firm_run></firm_run>
+        <gcc_compile></gcc_compile>
+        <gcc_run></gcc_run>
+        <diff></diff>
+    </result>
+    <result name="struct2">
+        <compile>ok</compile>
+        <firm_run></firm_run>
+        <gcc_compile></gcc_compile>
+        <gcc_run></gcc_run>
+        <diff></diff>
+    </result>
     <result name="struct_self">
         <compile>ok</compile>
         <firm_run></firm_run>
@@ -3846,7 +3951,7 @@
         <diff></diff>
     </result>
     <result name="transparent_union2">
-        <compile>ok</compile>
+        <compile>failed</compile>
         <firm_run></firm_run>
         <gcc_compile></gcc_compile>
         <gcc_run></gcc_run>
@@ -3860,6 +3965,13 @@
         <diff></diff>
     </result>
     <result name="unclosed_string">
+        <compile>ok</compile>
+        <firm_run></firm_run>
+        <gcc_compile></gcc_compile>
+        <gcc_run></gcc_run>
+        <diff></diff>
+    </result>
+    <result name="union">
         <compile>ok</compile>
         <firm_run></firm_run>
         <gcc_compile></gcc_compile>
@@ -3903,6 +4015,20 @@
         <gcc_run>ok</gcc_run>
         <diff>ok</diff>
     </result>
+    <result name="anonstruct2">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
+    </result>
+    <result name="anonstruct3">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
+    </result>
     <result name="asmname">
         <compile>ok</compile>
         <firm_run>ok</firm_run>
@@ -3911,11 +4037,11 @@
         <diff>ok</diff>
     </result>
     <result name="attribute_after_bitfield">
-        <compile>failed</compile>
-        <firm_run></firm_run>
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff></diff>
+        <diff>ok</diff>
     </result>
     <result name="attributes">
         <compile>failed</compile>
@@ -3931,12 +4057,33 @@
         <gcc_run>ok</gcc_run>
         <diff>ok</diff>
     </result>
-    <result name="builtin_expect">
+    <result name="attributes3">
         <compile>ok</compile>
         <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
+    </result>
+    <result name="attributes4">
+        <compile>ok</compile>
+        <firm_run>aborted</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff></diff>
+    </result>
+    <result name="builtin_expect">
+        <compile>aborted</compile>
+        <firm_run></firm_run>
         <gcc_compile>failed</gcc_compile>
         <gcc_run></gcc_run>
         <diff></diff>
+    </result>
+    <result name="cdecl">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
     </result>
     <result name="computed_goto">
         <compile>ok</compile>
@@ -3968,10 +4115,10 @@
     </result>
     <result name="extension_in_for_init">
         <compile>ok</compile>
-        <firm_run>failed</firm_run>
+        <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff></diff>
+        <diff>ok</diff>
     </result>
     <result name="flex_array_init">
         <compile>aborted</compile>
@@ -3979,6 +4126,13 @@
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
         <diff></diff>
+    </result>
+    <result name="ijmp">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
     </result>
     <result name="incomplete_array">
         <compile>ok</compile>
@@ -4023,6 +4177,13 @@
         <diff>ok</diff>
     </result>
     <result name="nested_function">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
+    </result>
+    <result name="nested_function_goto">
         <compile>aborted</compile>
         <firm_run></firm_run>
         <gcc_compile>ok</gcc_compile>
@@ -4035,6 +4196,20 @@
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
         <diff>ok</diff>
+    </result>
+    <result name="packed">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
+    </result>
+    <result name="packed_bf">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>aborted</gcc_run>
+        <diff></diff>
     </result>
     <result name="pointerarith">
         <compile>ok</compile>
@@ -4056,6 +4231,13 @@
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
         <diff></diff>
+    </result>
+    <result name="redirect_nowarn">
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
+        <gcc_compile>ok</gcc_compile>
+        <gcc_run>ok</gcc_run>
+        <diff>ok</diff>
     </result>
     <result name="transparent_union">
         <compile>ok</compile>
@@ -4225,11 +4407,11 @@
         <diff>ok</diff>
     </result>
     <result name="2003-05-21-BitfieldHandling">
-        <compile>failed</compile>
-        <firm_run></firm_run>
+        <compile>ok</compile>
+        <firm_run>ok</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff></diff>
+        <diff>ok</diff>
     </result>
     <result name="2003-05-21-UnionBitfields">
         <compile>ok</compile>
@@ -4331,10 +4513,10 @@
     </result>
     <result name="PR640">
         <compile>ok</compile>
-        <firm_run>ok</firm_run>
+        <firm_run>failed</firm_run>
         <gcc_compile>ok</gcc_compile>
         <gcc_run>ok</gcc_run>
-        <diff>ok</diff>
+        <diff></diff>
     </result>
     <result name="badidx">
         <compile>ok</compile>
@@ -4422,7 +4604,7 @@
     </result>
 </dir>
     <summary>
-        <total>628</total>
-        <failed>56</failed>
+        <total>654</total>
+        <failed>53</failed>
     </summary>
 </results>
