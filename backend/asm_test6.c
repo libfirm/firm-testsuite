@@ -11,7 +11,7 @@ void ngx_cpuid(unsigned i, unsigned *buf)
 
 			"    mov    %%esi, %%ebx;  "
 
-			: : "a" (i), "D" (buf) : "ecx", "edx", "esi", "memory" );
+			: "+a" (i) : "D" (buf) : "ecx", "edx", "esi", "memory" );
 }
 
 int main(void)
