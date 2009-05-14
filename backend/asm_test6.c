@@ -1,16 +1,15 @@
 void ngx_cpuid(unsigned i, unsigned *buf)
 {
 	__asm__ (
-			"    mov    %%ebx, %%esi;  "
+			"mov %%ebx, %%esi\n\t"
 
-			"    cpuid;                "
-			"    mov    %%eax, (%1);   "
-			"    mov    %%ebx, 4(%1);  "
-			"    mov    %%edx, 8(%1);  "
-			"    mov    %%ecx, 12(%1); "
+			"cpuid\n\t"
+			"mov %%eax, (%1)\n\t"
+			"mov %%ebx, 4(%1)\n\t"
+			"mov %%edx, 8(%1)\n\t"
+			"mov %%ecx, 12(%1)\n\t"
 
-			"    mov    %%esi, %%ebx;  "
-
+			"mov %%esi, %%ebx"
 			: "+a" (i) : "D" (buf) : "ecx", "edx", "esi", "memory" );
 }
 
