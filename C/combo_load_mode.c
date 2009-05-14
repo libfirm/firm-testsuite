@@ -8,3 +8,8 @@ u4:
 u8:
 	*(short*)dest = *(short*)src;
 }
+
+int main(void)
+{
+	return 0;
+}
