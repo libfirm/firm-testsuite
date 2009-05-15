@@ -1,0 +1,2 @@
+This directory contains automated scripts that grab external projects,
+compiles them with cparser/libfirm and runs some unit tests on them.
