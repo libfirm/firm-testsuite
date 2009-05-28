@@ -10,9 +10,9 @@ struct bitfield {
 int main()
 {
 	bf.code = 0xffffffff;
-	printf("Res: %d (should be 255)\n", bf.code);
-	printf("R2: %d %d %d (should be 1 0 1)\n", bf.bit1, bf.bit2, bf.bit3);
+	printf("Res: %u (should be 255)\n", bf.code);
+	printf("R2: %u %u %u (should be 1 0 1)\n", bf.bit1, bf.bit2, bf.bit3);
 	bf.code += 1;
-	printf("Res: %d (should be 0)\n", bf.code);
+	printf("Res: %u (should be 0)\n", bf.code);
 	return 0;
 }
