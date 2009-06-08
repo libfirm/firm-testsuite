@@ -1,3 +1,5 @@
+extern int printf(const char *str, ...);
+
 unsigned long get_sp(void)
 {
 	unsigned long esp;

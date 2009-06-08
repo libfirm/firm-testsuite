@@ -1,3 +1,4 @@
+extern int printf(const char *str, ...);
 
 unsigned get(void)
 {
