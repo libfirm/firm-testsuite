@@ -3,7 +3,7 @@
  */
 
 /*
- * Can you detct that this function ALWAYS returns 8?
+ * Can you detect that this function ALWAYS returns 8?
  */
 static int test(int a) {
 	int b;
