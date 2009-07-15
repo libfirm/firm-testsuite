@@ -1,4 +1,4 @@
-/*$ -fno-inline -fno-cond-eval $*/
+/*$ -fno-inline -fno-thread-jumps $*/
 
 int x;
 

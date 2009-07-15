@@ -1,4 +1,4 @@
-/*$ -fconfirm -fcond-eval $*/
+/*$ -fconfirm -fthread-jumps $*/
 
 int test(int lnWrd, int *ptExp) {
 	int idx = 0;
