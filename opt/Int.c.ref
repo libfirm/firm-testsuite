@@ -1,0 +1,18 @@
+Int.c
+ Extreme constant integer values allowed in C:
+  Integer.MAX_VALUE   ( 2147483647) = 2147483647
+  Integer.MIN_VALUE-1 (-2147483647) = -2147483647
+  Integer.MIN_VALUE   (-2147483648) = -2147483648
+
+ Computations with integers:
+  i = 2147483647 - 147483647 (2000000000): 2000000000
+  i = i / 5 (400000000): 400000000
+  i = i * -2 (-800000000): -800000000
+  i = i + 12344321 (-787655679): -787655679
+  i = i % 100000000 (-87655679): -87655679
+
+ Computations exceeding the maximal values:
+  i = imax + 1 () : -2147483648
+  i = imax * 2 () : -2
+  i = imin - 1 () : 2147483646
+  i = imin * 2 () : 0

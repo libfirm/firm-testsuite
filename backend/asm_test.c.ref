@@ -1,0 +1,2 @@
+Swap16(0xAABB): BBAA Swap32(0xAABBCCDD): DDCCBBAA
+mov(inc(41)): 42

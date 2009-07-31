@@ -1,0 +1,2 @@
+callref.c
+ i = 0 (should be 0)

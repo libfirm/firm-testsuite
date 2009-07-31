@@ -1,3 +1,5 @@
+/* Note: we're quiet sure this test is correct, nonetheless gcc and icc both
+   fail it */
 #include <stdarg.h>
 
 void f(char* fmt, ...);

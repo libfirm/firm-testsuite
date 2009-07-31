@@ -2,14 +2,14 @@
 #include <stdio.h>
 
 #define T_(op1, op2, va, vb, vc)       a = va; b = vb; c = vc; \
-	fprintf(stderr, "Test: (%d %s %d) %s (%d %s %d) -> ", a, #op1, c, #op2, b, #op1, c);\
-	fprintf(stderr, "%d\n", ((a op1 c) op2 (b op1 c)));
+	printf("Test: (%d %s %d) %s (%d %s %d) -> ", a, #op1, c, #op2, b, #op1, c);\
+	printf("%d\n", ((a op1 c) op2 (b op1 c)));
 
 #define T(op1, op2)	T_(op1, op2, rand(), rand(), rand()) T_(op1, op2, rand(), rand(), 42)
 
 #define TU_(op1, op2, va, vb)     a = va; b = vb; \
-	fprintf(stderr, "Test: (%s %d) %s (%s %d) -> ", #op1, a, #op2, #op1, b); \
-	fprintf(stderr, "%d\n", ((op1 a) op2 (op1 b)));
+	printf("Test: (%s %d) %s (%s %d) -> ", #op1, a, #op2, #op1, b); \
+	printf("%d\n", ((op1 a) op2 (op1 b)));
 
 #define TU(op1, op2) TU_(op1, op2, rand(), rand())
 

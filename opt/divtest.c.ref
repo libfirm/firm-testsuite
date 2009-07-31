@@ -1,0 +1,10 @@
++7 DIV +3 = +2   +7 MOD +3 = +1
+-7 DIV +3 = -2   -7 MOD +3 = -1
++7 DIV -3 = -2   +7 MOD -3 = +1
+-7 DIV -3 = +2   -7 MOD -3 = -1
+DivTest 1 = 8
+DivTest 2 = -2
+DivTest 3 = 2
+ModTest 1 = 1
+ModTest 2 = -1
+ModTest 3 = 1

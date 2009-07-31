@@ -1,0 +1,4 @@
+IfExpr.c
+ test(2) = 68 (should be 68)
+ test(3) = 80 (should be 80)
+ const_if(0) = 5 (should be 5)

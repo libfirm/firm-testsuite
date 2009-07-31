@@ -1,0 +1,66 @@
+3.000000 < 4.000000 = true
+3.000000 <= 4.000000 = true
+3.000000 == 4.000000 = false
+3.000000 >= 4.000000 = false
+3.000000 > 4.000000 = false
+3.000000 != 4.000000 = true
+3.000000 < nan = false
+3.000000 <= nan = false
+3.000000 == nan = false
+3.000000 >= nan = false
+3.000000 > nan = false
+3.000000 != nan = true
+nan != nan = true
+isgreater(3.000000, 4.000000) = false
+isgreaterequal(3.000000, 4.000000) = false
+isless(3.000000, 4.000000) = true
+islessequal(3.000000, 4.000000) = true
+islessgreater(3.000000, 4.000000) = true
+isunordered(3.000000, 4.000000) = false
+isgreater(3.000000, nan) = false
+isgreaterequal(3.000000, nan) = false
+isless(3.000000, nan) = false
+islessequal(3.000000, nan) = false
+islessgreater(3.000000, nan) = false
+isunordered(3.000000, nan) = true
+islessgreater(3.000000, 4.000000) = true
+islessgreater(nan, nan) = false
+!isgreater(3.000000, nan) = true
+!isgreaterequal(3.000000, nan) = true
+!isless(3.000000, nan) = true
+!islessequal(3.000000, nan) = true
+!islessgreater(3.000000, nan) = true
+!isunordered(3.000000, nan) = false
+3.000000 < 4.000000 = true
+3.000000 <= 4.000000 = true
+3.000000 == 4.000000 = false
+3.000000 >= 4.000000 = false
+3.000000 > 4.000000 = false
+3.000000 != 4.000000 = true
+3.000000 < nan = false
+3.000000 <= nan = false
+3.000000 == nan = false
+3.000000 >= nan = false
+3.000000 > nan = false
+3.000000 != nan = true
+nan != nan = true
+isgreater(3.000000, 4.000000) = false
+isgreaterequal(3.000000, 4.000000) = false
+isless(3.000000, 4.000000) = true
+islessequal(3.000000, 4.000000) = true
+islessgreater(3.000000, 4.000000) = true
+isunordered(3.000000, 4.000000) = false
+isgreater(3.000000, nan) = false
+isgreaterequal(3.000000, nan) = false
+isless(3.000000, nan) = false
+islessequal(3.000000, nan) = false
+islessgreater(3.000000, nan) = false
+isunordered(3.000000, nan) = true
+islessgreater(3.000000, 4.000000) = true
+islessgreater(nan, nan) = false
+!isgreater(3.000000, nan) = true
+!isgreaterequal(3.000000, nan) = true
+!isless(3.000000, nan) = true
+!islessequal(3.000000, nan) = true
+!islessgreater(3.000000, nan) = true
+!isunordered(3.000000, nan) = false

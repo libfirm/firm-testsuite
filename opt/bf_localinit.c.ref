@@ -1,0 +1,11 @@
+sizeof mybf 24
+offset a = 0
+offset c = 9
+offset d = 12
+int a (expected -1): -1
+unsigned x:13 (expected 4097): 4097
+unsigned y:17 (expected 65537): 65537
+unsigned y:3 (expected 5): 5
+unsigned char c (expected ff): ff
+double d (expected 4.5): 4.5
+unsigned w:9 (expected 257): 257

@@ -1,0 +1,5 @@
+sizeof(struct a) = 4
+sizeof(B) = 8
+x = -1
+y = 2
+z = 3

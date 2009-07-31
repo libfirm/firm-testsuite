@@ -1,0 +1,17 @@
+LongLong.c
+ Long long values allowed in C:
+  LongLong.MAX_VALUE   ( 9223372036854775807LL) = 9223372036854775807
+  LongLong.MIN_VALUE-1 (-9223372036854775807LL) = -9223372036854775807
+  LongLong.MIN_VALUE   (-9223372036854775808LL) = -9223372036854775808
+
+ Extreme integer values represented as long long:
+  Long.MAX_VALUE   ( 2147483647L) = 2147483647
+  Long.MIN_VALUE-1 (-2147483647L) = -2147483647
+  Long.MIN_VALUE   (-2147483648L) = 2147483648
+
+ Computations exceeding these barriers:
+  long long l = (int i = 2147483647) + 3LL (2147483650): 2147483650
+  long long l = 2 * l (4294967300): 4294967300
+  long long l = l * -1 (-4294967300): -4294967300
+  long long l = l / 3 (-1431655766): -1431655766
+  long long l = l % 1000000000 (-431655766): -431655766

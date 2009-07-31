@@ -1,0 +1,111 @@
+ i: 0  set: 0
+
+i: 0 v: 8 dig: 4 set:0
+ 0
+i: 0 v: 8 dig: 4 set:0
+
+i: 0 v: 8 dig: 2 set:0
+ 0
+i: 0 v: 8 dig: 2 set:0
+
+i: 0 v: 8 dig: 1 set:0
+ 0
+i: 0 v: 8 dig: 1 set:0
+
+ i: 1  set: 1
+
+i: 1 v: 8 dig: 4 set:1
+ 0
+i: 1 v: 8 dig: 4 set:1
+
+i: 1 v: 8 dig: 2 set:1
+ 0
+i: 1 v: 8 dig: 2 set:1
+
+i: 1 v: 8 dig: 1 set:1
+ 1
+i: 1 v: 8 dig: 1 set:1
+
+ i: 2  set: 3
+
+i: 2 v: 8 dig: 4 set:3
+ 0
+i: 2 v: 8 dig: 4 set:3
+
+i: 2 v: 8 dig: 2 set:3
+ 1
+i: 2 v: 8 dig: 2 set:3
+
+i: 2 v: 8 dig: 1 set:3
+ 1
+i: 2 v: 8 dig: 1 set:3
+
+ i: 3  set: 2
+
+i: 3 v: 8 dig: 4 set:2
+ 0
+i: 3 v: 8 dig: 4 set:2
+
+i: 3 v: 8 dig: 2 set:2
+ 1
+i: 3 v: 8 dig: 2 set:2
+
+i: 3 v: 8 dig: 1 set:2
+ 0
+i: 3 v: 8 dig: 1 set:2
+
+ i: 4  set: 6
+
+i: 4 v: 8 dig: 4 set:6
+ 1
+i: 4 v: 8 dig: 4 set:6
+
+i: 4 v: 8 dig: 2 set:6
+ 1
+i: 4 v: 8 dig: 2 set:6
+
+i: 4 v: 8 dig: 1 set:6
+ 0
+i: 4 v: 8 dig: 1 set:6
+
+ i: 5  set: 7
+
+i: 5 v: 8 dig: 4 set:7
+ 1
+i: 5 v: 8 dig: 4 set:7
+
+i: 5 v: 8 dig: 2 set:7
+ 1
+i: 5 v: 8 dig: 2 set:7
+
+i: 5 v: 8 dig: 1 set:7
+ 1
+i: 5 v: 8 dig: 1 set:7
+
+ i: 6  set: 5
+
+i: 6 v: 8 dig: 4 set:5
+ 1
+i: 6 v: 8 dig: 4 set:5
+
+i: 6 v: 8 dig: 2 set:5
+ 0
+i: 6 v: 8 dig: 2 set:5
+
+i: 6 v: 8 dig: 1 set:5
+ 1
+i: 6 v: 8 dig: 1 set:5
+
+ i: 7  set: 4
+
+i: 7 v: 8 dig: 4 set:4
+ 1
+i: 7 v: 8 dig: 4 set:4
+
+i: 7 v: 8 dig: 2 set:4
+ 0
+i: 7 v: 8 dig: 2 set:4
+
+i: 7 v: 8 dig: 1 set:4
+ 0
+i: 7 v: 8 dig: 1 set:4

@@ -1,0 +1,4 @@
+calltest.c
+  Calling int    function: 42
+  Calling float  function: 13.500000
+  Calling double function: 13.500000

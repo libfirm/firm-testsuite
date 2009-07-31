@@ -1,3 +1,7 @@
+/* Note: Matze: Seems to fail on my gcc 4.3. It definitely works on icc
+ * and older gccs. Because this packing stuff is not formally specified anywhere
+ * this is unfortunate...
+ */
 #include <assert.h>
 
 typedef struct unpacked {

@@ -1,0 +1,5 @@
+Hanoi.c
+Usage: hanoi n
+Where n is the number of pegs.
+Continuing with default: n = 21 (-> 2097151)
+ number of moves : 2097151

@@ -1,0 +1,9 @@
+SwitchTest
+ on -1 0
+ on 0 1
+ on 1 0
+ on 2 0
+ on 3 0
+ on 4 0
+ on 5 0
+ on 6 0
