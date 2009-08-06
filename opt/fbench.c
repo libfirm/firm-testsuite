@@ -780,7 +780,7 @@ char *argv[];
 #ifndef ACCURACY
 	}
 
-        printf("Stop the timer:\007");
+        printf("Stop the timer:");
 	//gets(tbfr);
 #endif
 
