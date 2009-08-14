@@ -25,7 +25,7 @@ while [ "$1" ]; do
 done
 
 if [ "$ECC" = "" ]; then
-	ECC="eccp"
+	ECC="cparser"
 	ECCFLAGS="-v -O3 -ffp-strict"
 elif [ `basename "$ECC"` = "cparser" -a "$ECCFLAGS" = "" ]; then
 	ECCFLAGS="-v -O3 -ffp-strict"
