@@ -1,7 +1,9 @@
+extern int printf(char const*, ...);
+
 long double l;
 
 int main(void) {
 		l = l + 1.0;
-		printf("%llf\n", l);
+		printf("%Lf\n", l);
 		return 0;
 }
