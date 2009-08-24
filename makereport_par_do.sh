@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 file="$1"
 xmlresult="$2"
@@ -8,7 +8,7 @@ dir="`dirname $file`"
 name="`basename $file .c`"
 dirprefix=`echo "${dir}" | sed -e "s/\\//_/"`
 logfile="$OUTPUTDIR/${dirprefix}_$name.log.txt"
-FILE_FLAGS=`awk '/\/\\*\\$ .* \\$\\*\// { for (i = 2; i < NF; ++i) printf "%s ", $i }' $file`
+FILE_FLAGS="`awk '/\/\\*\\$ .* \\$\\*\// { for (i = 2; i < NF; ++i) printf "%s ", $i }' $file`"
 
 rm -f "$logfile"
 CFLAGS="$ALL_CFLAGS -I$dir"

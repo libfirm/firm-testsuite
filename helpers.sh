@@ -5,7 +5,7 @@ execute_cmd() {
 	RES_VAR="$3"
 
 	echo "Command: $CMD" >> "$logfile"
-	command /bin/bash -c "$CMD" >> "$logfile" 2>&1
+	command /bin/sh -c "$CMD" >> "$logfile" 2>&1
 	RES="$?"
 	echo >> "$logfile"
 	if [ "$RES" != "0" ]; then

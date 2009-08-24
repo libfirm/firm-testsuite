@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 export LANG=
 export LC_ALL=
@@ -117,7 +117,7 @@ for file in $FILES; do
 			echo ">>>> [${COLOR_DIR}$curdir${COLOR_NORMAL}] <<<<"
 		fi
 
-		if [ $firstdir == 1 ]; then
+		if [ $firstdir = 1 ]; then
 			firstdir=0
 		else
 			echo "</dir>" >> $XMLRES
@@ -133,7 +133,7 @@ for file in $FILES; do
 	export file
 	export name="`basename $file .c`"
 	export logfile="$OUTPUTDIR/${dirprefix}_${name}.log.txt"
-	export FILE_FLAGS=`awk '/\/\\*\\$ .* \\$\\*\// { for (i = 2; i < NF; ++i) printf "%s ", $i }' $file`
+	export FILE_FLAGS="`awk '/\/\\*\\$ .* \\$\\*\// { for (i = 2; i < NF; ++i) printf "%s ", $i }' $file`"
 	echo -n "Building $file"
 
 	rm -f "$logfile"
@@ -170,7 +170,7 @@ for file in $FILES; do
 __END__
 done
 
-if [ $firstdir == 0 ]; then
+if [ $firstdir = 0 ]; then
 	echo "</dir>" >> $XMLRES
 fi
 showsummary

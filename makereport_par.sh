@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 export LANG=
 export LC_ALL=
@@ -122,7 +122,7 @@ do_waitandoutput()
 			echo ">>>> [${COLOR_DIR}$curdir${COLOR_NORMAL}] <<<<"
 		fi
 
-		if [ $firstdir == 1 ]; then
+		if [ $firstdir = 1 ]; then
 			firstdir=0
 		else
 			echo "</dir>" >> $XMLRES
@@ -202,7 +202,7 @@ done
 
 do_waitforrest
 
-if [ $firstdir == 0 ]; then
+if [ $firstdir = 0 ]; then
 	echo "</dir>" >> $XMLRES
 fi
 showsummary
