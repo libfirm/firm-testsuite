@@ -8,13 +8,10 @@
 ************************************************************************/
 
 #include <stdio.h>
-#include <malloc.h>
 #include <stdlib.h>
 
 float maxps();
 float ueberlappung();
-//void vadd_loop();
-//void array_test(int *a[]);
 
 int main()
 {
@@ -28,9 +25,6 @@ int main()
 	ueberlappung();
 
 	printf("2. vload -> vadd -> vstore, multi dimensional array, in loop\n==========================================\n\n");
-	//	vadd_loop();
-
-	//	array_test(a);
 
 	return 0;
 }
