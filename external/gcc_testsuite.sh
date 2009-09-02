@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 . `dirname "$0"`/utils.sh || exit 1
 

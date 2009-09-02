@@ -7,7 +7,7 @@ do_test() {
     cmd="${TEST_COMPILER} ${file} ${TEST_CFLAGS} ${CFLAGS} ${FILE_FLAGS} ${LINKFLAGS} -o ${exe_test}"
     #we should fail when the compilation went ok
     echo "Command: $CMD" >> "$logfile"
-    command /bin/bash -c "$cmd" >> "$logfile" 2>&1
+    command /bin/sh -c "$cmd" >> "$logfile" 2>&1
     RES="$?"
     echo >> "$logfile"
     if test "$RES" = "0" -o "$RES" -gt 128; then
