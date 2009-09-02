@@ -157,7 +157,7 @@ int main(void) {
 	printf("%llu << %d = %llu\n", ua, 2, shl_ull(ua, 2));
 	printf("%llu << %d = %llu\n", ua, 33, shl_ull(ua, 33));
 	printf("%llu >> %d = %llu\n", ua, 2, shr_ull(ua, 2));
-	printf("%llu >> %d = %llu\n", uc, 33, shr_ll(uc, 33));
+	printf("%llu >> %d = %llu\n", uc, 33, shr_ull(uc, 33));
 	printf("neg(%llu)    = %llu\n", ub, neg_ull(ub));
 #if 0
 	printf("conv(%llu)   = %lf\n",  uc, conv_ull_d(uc));
