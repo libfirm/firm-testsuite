@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 export LANG=
 export LC_ALL=

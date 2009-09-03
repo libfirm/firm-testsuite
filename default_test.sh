@@ -1,4 +1,4 @@
-. helpers.sh
+. ./helpers.sh
 
 do_test() {
 	BASEDIR="`dirname ${file}`"
@@ -33,7 +33,7 @@ do_test() {
 	echo "*** Compare Results" >> "$logfile"
 	res_ref="${file}.ref"
 	cmd="diff -U100000 $res_test $res_ref > $OUTPUTDIR/${dirprefix}_${name}_result_diff.txt"
-	execute_cmd "$cmd" "" "DIFF_RES" || return 0
+	execute_cmd "$cmd" "wrong results" "DIFF_RES" || return 0
 
 	# results are the same, so remove unnecessary files
 	rm "$OUTPUTDIR/${dirprefix}_${name}_result_diff.txt"
