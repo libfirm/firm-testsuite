@@ -1,5 +1,5 @@
 do_test() {
-    trap true SIGABRT
+    trap true ABRT
     BASEDIR="`dirname ${file}`"
     dirprefix=`echo "${BASEDIR}" | sed -e "s/\\//_/"`
 
