@@ -7,16 +7,11 @@ float k[] = { 2.8, 2.8, 2.8, 2.8, 2.8 };
 void print_fpcw()
 {
 #ifdef __i386__
-	int val = 0;
-	__asm__ (
-			"subl $4, %%esp\n"
-			"fnstcw (%%esp)\n"
-			"movzwl (%%esp), %0\n"
-			"addl $4, %%esp\n" : "=r"(val));
-
-	printf("%x\n", val);
+	unsigned short val;
+	asm("fnstcw %0" : "=m" (val));
+	printf("%04X\n", val & 0x0C00U); // show rounding mode
 #else
-	printf("%d\n", (int) k[0]);
+	printf("%d\n", (int)k[0]);
 #endif
 }
 
@@ -27,7 +22,7 @@ int main()
 
 	for(i = 0; i < end; ++i) {
 		print_fpcw();
-		res = (int) k[i];
+		res = (int)k[i];
 	}
 	print_fpcw();
 	printf("%d\n", res);
