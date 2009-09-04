@@ -9,7 +9,7 @@ void print_fpcw()
 #ifdef __i386__
 	unsigned short val;
 	asm("fnstcw %0" : "=m" (val));
-	printf("%04X\n", val & 0x0C00U); // show rounding mode
+	printf("0x%04X\n", val & 0x0C00U); // show rounding mode
 #else
 	printf("%d\n", (int)k[0]);
 #endif
