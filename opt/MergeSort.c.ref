@@ -1,5 +1,3 @@
 MergeSort.c
-Usage: MergeSort <list of numbers>
-Continuing with default input.
- array =  3.300000, 18.180000, 5.500000, 99.989998, 104.103996, 2.200000
- sorted array =  2.200000, 3.300000, 5.500000, 18.180000, 99.989998, 104.103996
+Sorting 10000 random numbers (seed 123456)
+Verify succeeded.
