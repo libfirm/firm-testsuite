@@ -1,7 +1,8 @@
 extern int printf(const char *str, ...);
 
-int main(void) {
-	/* %m is a GNU extension... */
+void f(void)
+{ /* %m is a GNU extension... */
 	printf("%m");
-	return 0;
 }
+
+int main(void) { return 0; }
