@@ -17,7 +17,7 @@ long long int add_dbl_to_ll(double d1, double d2) {
 	return d1 + d2;
 }
 
-int main(int argc) {
+int main(void) {
 	double d = 5.45, d1 = 1.00, d2 = 2.5;
 
 	printf("double (%lf) -> int = %lld\n", d, conv_dbl_to_ll(d));
