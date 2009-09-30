@@ -74,6 +74,7 @@ static void alloc (int depth) {
 	root = new_node(depth);
 }
 static void search (void) {
+	printf(" Count = %d\n", Node_count);
 	printf(" Max = %d\n", find_max(root));
 }
 

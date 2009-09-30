@@ -3,4 +3,5 @@ Usage: Do n
 Give search tree depth!
 10 is a good value, 12 too much.
 Continuing with default value 9.
+ Count = 87381
  Max = 29132

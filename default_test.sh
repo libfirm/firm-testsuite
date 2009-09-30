@@ -21,7 +21,7 @@ do_test() {
 	if execute_cmd "$cmd" "" "COMPILE_RES"; then
 		echo "*** \"${TEST_COMPILER}\" Run" >> "$logfile"
 		res_test="$OUTPUTDIR/${dirprefix}_${name}_result_test.txt"
-		cmd="${exe_test} > $res_test"
+		cmd="${RUNEXE}${exe_test} > $res_test"
 		execute_cmd "$cmd" "" "FIRM_RUN_RES"
 	fi
 
