@@ -96,7 +96,7 @@ int main()
 	assert(fd_isset(20, &s));
 
 	printf("Swap16(0xAABB): %X Swap32(0xAABBCCDD): %X\n",
-	       swap16(0xAABB), swap32(0xAABBCCDD));
+	       (unsigned) swap16(0xAABB), swap32(0xAABBCCDD));
 	k = 41;
 	inc(&k);
 	printf("mov(inc(41)): %d\n", mov_noeax(k));
