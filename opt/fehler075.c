@@ -1,4 +1,4 @@
-/*$ -fno-inline -fno-if-conv $*/
+/*$ -fno-inline -fno-if-conversion $*/
 
 long long k(long long a)
 {

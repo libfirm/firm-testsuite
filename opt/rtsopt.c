@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 
 /* transform into Abs node, gcc(+), icc(+), cl(+) */
 int test_abs(int a) {
@@ -361,10 +362,21 @@ double test_cbrt3(void) {
 	return cbrt(-1.0);
 }
 
+char foobar[] = "abcde";
+
 /* transform exit(3) into a return 3, gcc(-), icc(-), cl(-) */
 int main() {
 	printf("%f\n", test_asin1());
 	printf("%f\n", test_acos1());
+	assert(strlen("") == 0);
+	assert(strlen("ab") == 2);
+	assert(strlen("abcd\0abcd") == 4);
+	assert(abs(-5) == 5);
+	assert(abs(0) == 0);
+	assert(abs(5) == 5);
+	assert(labs(-5) == 5);
+	assert(fabs(-5.0) == 5.0);
+	assert(strcmp(foobar, foobar) == 0);
 	exit(0);
 	return 42;
 }

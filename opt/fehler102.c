@@ -1,4 +1,4 @@
-/*$ -fdeconv -fif-conv $*/
+/*$ -fdeconv -fif-conversion $*/
 
 char abs_Bs(char x)
 {

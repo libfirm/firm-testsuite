@@ -1,4 +1,4 @@
-/*$ -fno-if-conv -fno-inline $*/
+/*$ -fno-if-conversion -fno-inline $*/
 
 #include <stdio.h>
 #include <stdlib.h>
