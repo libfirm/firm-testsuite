@@ -12,6 +12,8 @@ int main(int argc, char* argv[])
 
 	printf("Signed:   a / b = %i\n",  (int)(a / b));
 	printf("Unsigned: a / b = %i\n",  (int)(c / d));
+	printf("Signed:   a %% b = %i\n",  (int)(a % b));
+	printf("Unsigned: a %% b = %i\n",  (int)(c % d));
 
 	return 0;
 }
