@@ -21,9 +21,9 @@ done
 
 if [ "$ECC" = "" ]; then
 	ECC="cparser"
-	ECCFLAGS="uu-v -O3 -ffp-strict"
+	ECCFLAGS="-v -O3 -ffp-strict"
 elif [ `basename "$ECC"` = "cparser" -a "$ECCFLAGS" = "" ]; then
-	ECCFLAGS="-v -O3 -ffp-strict -b ra-chordal-coloring=pbqp -b ra-chordal-co-algo=none"
+	ECCFLAGS="-v -O3 -ffp-strict"
 fi
 export TEST_COMPILER="$ECC"
 export TEST_CFLAGS="${ADDCFLAGS} ${ECCFLAGS} -std=c99"
