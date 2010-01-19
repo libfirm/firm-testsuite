@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ASM="$1"
+# Must generate "incl x"
+COUNT="`grep -c -E '^[ 	]+incl[ 	]+x' "$ASM"`"
+if [ "$COUNT" != "1" ]; then
+	echo "Couldn't find incl x"
+	exit 1
+fi
