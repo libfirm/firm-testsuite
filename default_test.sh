@@ -39,5 +39,24 @@ do_test() {
 	rm "$OUTPUTDIR/${dirprefix}_${name}_result_diff.txt"
 	mv -f "$OUTPUTDIR/${dirprefix}_${name}_result_test.txt" "$OUTPUTDIR/${dirprefix}_${name}_result.txt"
 
+	# Some tests have custom rules that check the assembly output
+	check_file="${file}.check"
+	if [ -e "$check_file" ]; then
+		chmod +x "$check_file" # just to be sure
+
+		output_asm="$BUILDDIR_TEST/${dirprefix}_${name}.s"
+		# build again
+		cmd="${TEST_COMPILER} -S ${file} ${TEST_CFLAGS} ${CFLAGS} ${FILE_FLAGS} ${LINKFLAGS} -o ${output_asm}"
+		echo "*** \"${TEST_COMPILER}\" Compile 2" >> "$logfile"
+		if execute_cmd "$cmd" "" "COMPILE2_RES"; then
+			echo "*** \"${TEST_COMPILER}\" Custom Check:" >> "$logfile"
+			cmd="${check_file} ${output_asm}"
+			execute_cmd "$cmd" "" "CUSTOM_CHECK_RES"
+		fi
+		if [ "$CUSTOM_CHECK_RES" != "ok" ]; then
+			return 0
+		fi
+	fi
+
 	return 1
 }

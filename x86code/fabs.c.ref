@@ -1,0 +1,10 @@
+abs1(nan) = nan
+abs2(nan) = nan
+abs1(1.000000) = 1.000000
+abs2(1.000000) = 1.000000
+abs1(-1.000000) = 1.000000
+abs2(-1.000000) = 1.000000
+abs1(inf) = inf
+abs2(inf) = inf
+abs1(-inf) = inf
+abs2(-inf) = inf

@@ -125,8 +125,8 @@ float fA = 3.0, fB = 4.0, fNan = NAN;
 
 int main() {
 #define test(type, name, a, b) test_##type##_##name(a,b)
-#define test_t(type, name, a, b) printf("%d\n", test_t_##type##_##name(a,b))
-#define test_f(type, name, a, b) printf("%d\n", test_f_##type##_##name(a,b))
+#define test_t(type, name, a, b) printf("%s %d\n", "test_t_" #type "_" #name, test_t_##type##_##name(a,b))
+#define test_f(type, name, a, b) printf("%s %d\n", "test_f_" #type "_" #name, test_f_##type##_##name(a,b))
 
   test(float, l,  fA, fA);
   test(float, le, fA, fA);
