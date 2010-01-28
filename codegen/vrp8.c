@@ -11,6 +11,8 @@ int f(int a) {
       case 5: return 13;
       case 6: return 17;
       case 7: return 19;
+	  default:
+			  return 22;
     }
 }
 
