@@ -12,7 +12,7 @@ int f(int a) {
       case 6: return 17;
       case 7: return 19;
 	  default:
-			  return 22
+			  return 22;
     }
 }
 
