@@ -1,4 +1,2 @@
-inf >= -inf: 1
-inf <= inf: 1
-inf < -inf: 0
-inf > -inf: 1
+inf >= -inf: 42
+inf <= inf: 42
