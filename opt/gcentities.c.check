@@ -1,0 +1,28 @@
+#!/bin/bash
+
+ASM="$1"
+
+should_not_remove() {
+	COUNT="`grep -c "$1" "$ASM"`"
+	if [ "$COUNT" == "0" ]; then
+		echo "Entity $1 was removed"
+		exit 1
+	fi
+}
+
+should_remove() {
+	COUNT="`grep -c "$1" "$ASM"`"
+	if [ "$COUNT" != "0" ]; then
+		echo "Entity $1 should have been removed"
+		exit 1
+	fi
+}
+
+should_remove unused_func
+should_remove unused_var
+should_remove global_var3
+should_remove i_should_be_removed
+should_not_remove global_var1
+should_not_remove global_var2
+should_not_remove main
+should_not_remove i_should_not_be_removed
