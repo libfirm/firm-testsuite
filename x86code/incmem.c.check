@@ -2,7 +2,7 @@
 
 ASM="$1"
 # Must generate "incl x"
-COUNT="`grep -c -E '^[ 	]+incl[ 	]+x' "$ASM"`"
+COUNT="`grep -c -E '^[ 	]+incl[ 	]+(\(|_?x)' "$ASM"`"
 if [ "$COUNT" != "1" ]; then
 	echo "Couldn't find incl x"
 	exit 1
