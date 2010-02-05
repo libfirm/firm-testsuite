@@ -21,6 +21,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "rand.h"
+
 unsigned int sad(int test_blockx, int test_blocky, int *best_block_x, int *best_block_y, int iterations);
 
 main()
@@ -50,7 +52,7 @@ unsigned int sad(int test_blockx, int test_blocky, int *best_block_x, int *best_
 	// Fill in some random values to compare
 	for(x = 0; x < 256; x++)
 		for(y = 0; y < 256; y++)
-			b[y][x] = (unsigned char) rand() % 255;
+			b[y][x] = (unsigned char) my_rand() % 255;
 
 	// Execute Block matching 100 times
 	for(i = 0; i < iterations; i++)
