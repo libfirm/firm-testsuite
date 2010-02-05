@@ -13,10 +13,10 @@ int main(void)
 	__asm__(
 			"pushl %0\n"
 			"pushl %1\n"
-			"call printadd\n"
+			"call *%2\n"
 			"addl $8, %%esp"
 		:  /* no outputs */
-		: "rmi"(n1), "rmi"(n2)
+		: "rmi"(n1), "rmi"(n2), "r" (printadd)
 		: "cc", "edx", "ecx", "eax", "memory" );
 
 	return 0;
