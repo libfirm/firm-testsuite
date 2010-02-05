@@ -18,11 +18,16 @@ should_remove() {
 	fi
 }
 
-should_remove unused_func
+should_remove remove_1
+should_remove remove_2
+should_remove remove_3
+should_remove remove_4
+should_remove remove_5
 should_remove unused_var
 should_remove global_var3
-should_remove i_should_be_removed
+should_not_remove remove_not_1
+should_not_remove remove_not_2
+should_not_remove remove_not_3
 should_not_remove global_var1
 should_not_remove global_var2
 should_not_remove main
-should_not_remove i_should_not_be_removed

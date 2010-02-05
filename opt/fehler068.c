@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "rand.h"
+
 float scalar_product(float *a, float *b, unsigned int max_elements);
 
 main()
@@ -28,7 +30,7 @@ main()
 	float *aa = (float *) ca;
 	float *ab = (float *) cb;
 
-	srand(0);
+	my_srand(0);
 
 	printf("Scalar product\n==============\n\n");
 
@@ -37,8 +39,8 @@ main()
 	// Fill both arrays with random values
 	for(i = 0; i < max_elements; i++)
 	{
-		aa[i] = (float) (rand() % 10);
-		ab[i] = (float) (rand() % 10);
+		aa[i] = (float) (my_rand() % 10);
+		ab[i] = (float) (my_rand() % 10);
 
 		//printf("(%g * %g)  +  ", a[i], b[i]);
 	}

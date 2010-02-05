@@ -12,6 +12,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include "rand.h"
 
 //#define COUNTACTIONS
 
@@ -113,11 +114,11 @@ int main(int argc, char *argv[]) {
   else
     seed = 123456;
 
-  srand(seed);
+  my_srand(seed);
 
   fld = (void*) malloc(sizeof(*fld) * count);
   for(i = 0; i < count; ++i)
-      fld[i] = rand();
+      fld[i] = my_rand();
 
   printf("Sorting %d random numbers (seed %d)\n",
           count, seed);

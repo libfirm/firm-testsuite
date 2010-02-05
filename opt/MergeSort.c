@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "rand.h"
+
 typedef int elem_t;
 
 void merge(elem_t *, int, int, int);
@@ -103,11 +105,11 @@ int main(int argc, char **argv)
 
 	count = argc > 1 ? atoi(argv[1]) : 10000;
 	seed  = argc > 2 ? atoi(argv[2]) : 123456;
-	srand(seed);
+	my_srand(seed);
 
 	array = malloc(count * sizeof(array[0]));
 	for (i = 0; i < count; ++i)
-		array[i] = rand();
+		array[i] = my_rand();
 
 	printf("Sorting %d random numbers (seed %d)\n", count, seed);
 

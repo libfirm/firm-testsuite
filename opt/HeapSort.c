@@ -15,6 +15,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "rand.h"
+
 /**
  * Heapsort-Algorithmus laut Vorlesung.
  */
@@ -161,11 +163,11 @@ int main (int argc, char *argv[]) {
 	else
 		seed = 123456;
 
-	srand(seed);
+	my_srand(seed);
 
 	b = (void*) malloc(sizeof(b[0]) * count);
 	for(i = 0; i < count; ++i)
-		b[i] = rand();
+		b[i] = my_rand();
 
 	printf("Sorting %d random numbers (seed %d)\n",
           count, seed);

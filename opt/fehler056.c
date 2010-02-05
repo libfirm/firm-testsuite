@@ -1,3 +1,5 @@
+#include "rand.h"
+
 typedef struct rtx_def
 {
 	unsigned short code;
@@ -12,7 +14,7 @@ void t(int num_eliminable, int n_reloads) {
 	int did_elimination = 0;
 
 	if(num_eliminable)
-		did_elimination = rand();
+		did_elimination = my_rand();
 
 	insn->mode = did_elimination ? 42 : insn->mode == 6 ? 6 : 0;
 }

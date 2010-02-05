@@ -4,6 +4,8 @@
 #include <math.h>
 #include <fcntl.h>
 
+#include "rand.h"
+
 #ifdef PLATFORM_NT
 #include <io.h>
 #endif
@@ -943,7 +945,7 @@ void sim_other_objects(int low, int high, int stop)
   if (high<=low) {
     return;
   }
-  srand(10);
+  my_srand(10);
   for (i=low;i<high;i++) {
     for (j=0;j<numf1s;j++) {
       if (i%low) {
@@ -957,7 +959,7 @@ void sim_other_objects(int low, int high, int stop)
   }
   for (i=low;i<high;i++) {
     for (j=0;j<numf1s;j++) {
-        noise1 = rand()&0xffff;
+        noise1 = my_rand()&0xffff;
         noise2 = (double)noise1/(double)0xffff;
         tds[j][i] += noise2;
         bus[j][i] += noise2;

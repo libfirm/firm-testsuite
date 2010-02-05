@@ -2,19 +2,21 @@
 
 #include <stdlib.h>
 
+#include "rand.h"
+
 void f(int x)
 {
 	int a[x];
 	int i;
 	for (i = 0; i < x; ++i) {
-		a[i] = rand();
+		a[i] = my_rand();
 	}
 }
 
 
 int main(void)
 {
-	srand(23);
-	f(rand() & 31);
+	my_srand(23);
+	f(my_rand() & 31);
 	return 0;
 }

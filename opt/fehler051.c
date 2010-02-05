@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "rand.h"
+
 float maxps();
 float ueberlappung();
 
@@ -19,7 +21,7 @@ int main()
 
 	a[1][1] = 20;
 
-	srand(12345);
+	my_srand(12345);
 
 	printf("1. vload -> vadd -> vstore\n===================\n\n");
 	ueberlappung();
@@ -40,10 +42,10 @@ float ueberlappung()
 
 	for(i = 0; i < 4; i++)
 	{
-		a[i] = rand() % 10;
-		b[i] = rand() % 10;
-		c[i] = rand() % 10;
-		d[i] = rand() % 10;
+		a[i] = my_rand() % 10;
+		b[i] = my_rand() % 10;
+		c[i] = my_rand() % 10;
+		d[i] = my_rand() % 10;
 	}
 
 

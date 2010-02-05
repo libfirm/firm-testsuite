@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "rand.h"
+
 typedef struct
 {
 	short sX;
@@ -14,7 +16,7 @@ static void GenerateExplosionFromExplosionPointer(EXPLOSIONTYPE* pExplosion)
 	short sX = pExplosion->sX;
 	short sY = pExplosion->sY;
 
-	if (pExplosion->iLightID = rand())
+	if (pExplosion->iLightID = my_rand())
 	{
 		printf("Blup: %d %d %d\n", pExplosion->iLightID, sX / 10, sY / 10);
 	}

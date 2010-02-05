@@ -35,7 +35,6 @@ int f(int f) {
 }
 
 int main(void) {
-	srand(0);
 	printf("Res: %d (should be 43)\n", f(1000000));
 	a = 42;
 	printf("Res2: %d (should be 43)\n", f2());

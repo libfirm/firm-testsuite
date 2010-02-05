@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "rand.h"
+
 #if 0
 void vadd_store(void)
 {
@@ -22,8 +24,8 @@ void vadd_store(void)
 
 	for(i = 0; i < 2; i++)
 	{
-		a[i] = rand() % 10;
-		b[i] = rand() % 10;
+		a[i] = my_rand() % 10;
+		b[i] = my_rand() % 10;
 	}
 
 
@@ -87,8 +89,8 @@ void vadd_loop(void)
 	for(j = 0; j < 4; j++)
 		for(i = 0; i < 2; i++)
 		{
-			e[j][i] = rand() % 10;
-			f[j][i] = rand() % 10;
+			e[j][i] = my_rand() % 10;
+			f[j][i] = my_rand() % 10;
 		}
 
 	for(j = 0; j < 4; j++)
@@ -109,7 +111,7 @@ void vadd_loop(void)
 
 int main()
 {
-	srand(12345);
+	my_srand(12345);
 
 	//vadd_store();
 	vadd_loop();
