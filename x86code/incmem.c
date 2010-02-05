@@ -1,6 +1,7 @@
-volatile int x = -1;
+int x = -1;
+int* p = &x;
 
 int main(void) {
 	x ++;
-	return x;
+	return *p;
 }
