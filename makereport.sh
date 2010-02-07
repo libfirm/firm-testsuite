@@ -47,7 +47,6 @@ export ALL_CFLAGS=""
 export OUTPUTDIR="reports/${REPORTNAME}"
 export BUILDDIR="build"
 export BUILDDIR_TEST="$BUILDDIR/firm"
-export BUILDDIR_REF="$BUILDDIR/gcc"
 export ESC=""
 export COLOR_FAILED="$ESC[1;31m"
 export COLOR_NORMAL="$ESC[0m"
@@ -56,7 +55,6 @@ export COLOR_RESULT="$ESC[1m"
 export FAILED=" ... ${COLOR_FAILED}FAILED${COLOR_NORMAL}"
 
 mkdir -p "$BUILDDIR_TEST"
-mkdir -p "$BUILDDIR_REF"
 mkdir -p "$OUTPUTDIR"
 
 EVRES=$OUTPUTDIR/result.ev
