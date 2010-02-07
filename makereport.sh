@@ -141,7 +141,7 @@ do_waitandoutput()
 		if [ $VERBOSE -ge 1 ]; then
 			cat < $logfile
 		fi
-		echo "N;test;${unique_name};ok;0" >> $EVRES
+		echo "E;\$test;${unique_name};?ok;0" >> $EVRES
 	else
 		okcount=`expr $okcount + 1`
 		if [ $VERBOSE -ge 2 ]; then
@@ -149,7 +149,7 @@ do_waitandoutput()
 		else
 			echo
 		fi
-		echo "N;test;${unique_name};ok;1" >> $EVRES
+		echo "E;\$test;${unique_name};?ok;1" >> $EVRES
 	fi
 
 	cat >> $XMLRES < $BUILDDIR/makereport_res_$NEXTTHREAD.xml
