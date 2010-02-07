@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 export LANG=
 export LC_ALL=
 export LC_COLLATE=
+# We have to start outself to have the LANG and LC_ALL changes take effect
 if test "$1" != "--recursive-hack"; then
 	"$0" --recursive-hack "$@"
 	exit $?
@@ -10,15 +11,24 @@ else
 	shift
 fi
 
+MAXTHREADS=6
+VERBOSE=0
 HTMLSOURCEDIR="../../"
+DEFAULT_DIRS="backend x86code opt C C/pragmatic C/should_fail C/gnu99 ack langshootout llvm"
 
+REPORTNAME="stats-`date +%y.%m.%d`"
 while [ "$1" ]; do
 	case "$1" in
+		-v) shift; VERBOSE=`expr $VERBOSE + 1`;;
+		-j) shift; MAXTHREADS=$1; shift;;
+		-j*) MAXTHREADS=${1:2}; shift;;
+		--reportname=*) REPORTNAME=${1:13}; shift;;
 		--htmlsourcedir) shift; HTMLSOURCEDIR=$1; shift;;
 		* ) break;;
 	esac;
 done
 
+# Determine compiler and set some sensible default flags
 if [ "$ECC" = "" ]; then
 	ECC="cparser"
 	ECCFLAGS="-v -O3 -ffp-strict"
@@ -29,22 +39,12 @@ elif [ `basename "$ECC"` = "cparser" -a "$ECCFLAGS" = "" ]; then
 fi
 export TEST_COMPILER="$ECC"
 export TEST_CFLAGS="${ADDCFLAGS} ${ECCFLAGS} -std=c99"
-if [ "$REF" = "" ]; then
-	REF="icc -restrict"
-	REFFLAGS="-fp-model precise"
-elif [ `basename "$REF"` = "gcc" -a "$REFFLAGS" = "" ]; then
-	REFFLAGS="-ffloat-store"
-elif [ `basename "$REF"` = "cparser" -a "$REFFLAGS" = "" ]; then
-	REFFLAGS="-v -O3 -ffp-strict"
-fi
-export REF_COMPILER="$REF"
-export REF_CFLAGS="${REFFLAGS} -fomit-frame-pointer -Itcc -std=c99"
+
 export LINKFLAGS="-lm"
 export TIMEOUT_TEST=20
-export DEFAULT_DIRS="backend x86code opt C C/pragmatic C/should_fail C/gnu99 ack langshootout llvm"
 export ALL_CFLAGS=""
 
-export OUTPUTDIR="reports/stats-`date +%y.%m.%d`"
+export OUTPUTDIR="reports/${REPORTNAME}"
 export BUILDDIR="build"
 export BUILDDIR_TEST="$BUILDDIR/firm"
 export BUILDDIR_REF="$BUILDDIR/gcc"
@@ -59,6 +59,13 @@ mkdir -p "$BUILDDIR_TEST"
 mkdir -p "$BUILDDIR_REF"
 mkdir -p "$OUTPUTDIR"
 
+EVRES=$OUTPUTDIR/result.ev
+cat > $EVRES << __END__
+P;report;${REPORTNAME}
+P;compiler;${TEST_COMPILER}
+P;cflags;${TEST_CFLAGS}
+__END__
+
 XMLRES=$OUTPUTDIR/result.xml
 cat > $XMLRES << __END__
 <?xml version="1.0"?>
@@ -67,8 +74,6 @@ cat > $XMLRES << __END__
     <environment>
         <TEST_COMPILER>${TEST_COMPILER}</TEST_COMPILER>
         <TEST_CFLAGS>${TEST_CFLAGS}</TEST_CFLAGS>
-        <REF_COMPILER>${REF_COMPILER}</REF_COMPILER>
-        <REF_CFLAGS>${REF_CFLAGS}</REF_CFLAGS>
     </environment>
 __END__
 
@@ -92,30 +97,27 @@ for d in $DIRS; do
 done
 
 showsummary() {
-	if [ "$SHOW_DIR_MARKERS" = "1" -a "$testcount" != "0" ]; then
-		failcount=`expr $testcount - $okcount`
-		echo "---------------------------"
-		echo "${COLOR_RESULT} $failcount/$testcount tests failed${COLOR_NORMAL}"
-		echo ""
-	fi
-	completecount=`expr $completecount + $testcount`
-	completeok=`expr $completeok + $okcount`
+	failcount=`expr $testcount - $okcount`
+	echo "---------------------------"
+	echo "${COLOR_RESULT} $failcount/$testcount tests failed${COLOR_NORMAL}"
+	echo ""
 }
 
-ulimit -t ${TIMEOUT_TEST}
+NEXTTHREAD=-1
 
-lastdir=""
-testcount="0"
-okcount="0"
-completecount="0"
-completeok="0"
-firstdir=1
-for file in $FILES; do
-	curdir="`dirname $file`"
-	dirprefix=`echo "${curdir}" | sed -e "s/\\//_/"`
+do_waitandoutput()
+{
+	local FILE=${Threadfile[$1]}
+
+	curdir="`dirname $FILE`"
+	local dirprefix=`echo "${curdir}" | sed -e "s/\\//_/"`
+	local name="`basename $FILE .c`"
+	local unique_name="${dirprefix}_${name}"
+	local logfile="$OUTPUTDIR/${unique_name}.log.txt"
+
 	if [ "$curdir" != "$lastdir" ]; then
 		if [ "$SHOW_DIR_MARKERS" = "1" ]; then
-			showsummary
+			#showsummary
 			echo ">>>> [${COLOR_DIR}$curdir${COLOR_NORMAL}] <<<<"
 		fi
 
@@ -131,46 +133,73 @@ for file in $FILES; do
 		okcount="0"
 	fi
 
+	echo -n "=$1==> Building $FILE"
 	testcount=`expr $testcount + 1`
-	export file
-	export name="`basename $file .c`"
-	export logfile="$OUTPUTDIR/${dirprefix}_${name}.log.txt"
-	export FILE_FLAGS="`awk '/\/\\*\\$ .* \\$\\*\// { for (i = 2; i < NF; ++i) printf "%s ", $i }' $file`"
-	echo -n "Building $file"
-
-	rm -f "$logfile"
-	export CFLAGS="$ALL_CFLAGS -I$curdir"
-	CMD="./default_test.sh"
-
-	if test -x $curdir/test.sh; then
-		CMD="$curdir/test.sh"
-	fi
-
-	# initialize variables
-	COMPILE_RES=""
-	FIRM_RUN_RES=""
-	GCC_RES=""
-	GCC_RUN_RES=""
-	DIFF_RES=""
-
-	. $CMD
-	if do_test; then
-		echo -n "$FAILED $ERROR"
+	wait ${Threads[$1]}
+	local STATUS=$?
+	if [ $STATUS -eq 1 ]; then
+		echo -n "$FAILED "
+		cat < $BUILDDIR/makereport_error_$1.txt
+		if [ $VERBOSE -ge 1 ]; then
+			cat < $logfile
+		fi
+		echo "N;test;${unique_name};ok;0" >> $EVRES
 	else
 		okcount=`expr $okcount + 1`
+		if [ $VERBOSE -ge 2 ]; then
+			cat < $logfile
+		else
+			echo
+		fi
+		echo "N;test;${unique_name};ok;1" >> $EVRES
 	fi
-	echo
 
-    cat >> $XMLRES << __END__
-    <result name="$name">
-        <compile>$COMPILE_RES</compile>
-        <firm_run>$FIRM_RUN_RES</firm_run>
-        <gcc_compile>$GCC_RES</gcc_compile>
-        <gcc_run>$GCC_RUN_RES</gcc_run>
-        <diff>$DIFF_RES</diff>
-    </result>
-__END__
+	cat >> $XMLRES < $BUILDDIR/makereport_res_$NEXTTHREAD.xml
+}
+
+do_test()
+{
+	NEXTTHREAD=`expr $NEXTTHREAD + 1`
+	if [ $NEXTTHREAD -eq $MAXTHREADS ]; then NEXTTHREAD=0; fi
+	if [ ${Threads[$NEXTTHREAD]} ]
+	then
+		do_waitandoutput "$NEXTTHREAD"
+	fi
+
+	./makereport_par_do.sh "$1" $BUILDDIR/makereport_res_$NEXTTHREAD.xml $BUILDDIR/makereport_error_$NEXTTHREAD.txt &
+	Threads[$NEXTTHREAD]=$!
+	Threadfile[$NEXTTHREAD]="$1"
+}
+
+do_waitforrest()
+{
+	local LASTTHREAD=$NEXTTHREAD
+
+	while true
+	do
+		NEXTTHREAD=`expr $NEXTTHREAD + 1`
+		if [ $NEXTTHREAD -eq $MAXTHREADS ]; then NEXTTHREAD=0; fi
+
+		if [ ${Threads[$NEXTTHREAD]} ]
+		then
+			do_waitandoutput "$NEXTTHREAD"
+		fi
+
+		if [ $NEXTTHREAD -eq $LASTTHREAD ]; then break; fi
+	done
+}
+
+ulimit -t ${TIMEOUT_TEST}
+
+lastdir=""
+testcount="0"
+okcount="0"
+firstdir=1
+for file in $FILES; do
+	do_test "$file"
 done
+
+do_waitforrest
 
 if [ $firstdir = 0 ]; then
 	echo "</dir>" >> $XMLRES
@@ -179,17 +208,17 @@ showsummary
 
 cat >> $XMLRES << __END__
     <summary>
-        <total>$completecount</total>
-        <failed>`expr $completecount - $completeok`</failed>
+        <total>$testcount</total>
+        <failed>`expr $testcount - $okcount`</failed>
     </summary>
 </results>
 __END__
 
-testcount="$completecount"
-okcount="$completeok"
-showsummary
-
-xsltproc --stringparam ref "result-`basename $ECC`-`basename $REF`.xml" --stringparam sourcedir "$HTMLSOURCEDIR" --output $OUTPUTDIR/index.html makehtml.xslt $XMLRES
+cat >> $EVRES << __END__
+O;cflags
+O;compiler
+O;report
+__END__
 
 # maybe execute custom actions after result has been generated
 [ -e after_compile.sh ] && ./after_compile.sh "$OUTPUTDIR"

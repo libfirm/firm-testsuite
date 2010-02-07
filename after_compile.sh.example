@@ -1,5 +1,7 @@
 #!/bin/sh
 
+xsltproc --stringparam ref "result-`basename $ECC`-`basename $REF`.xml" --stringparam sourcedir "$HTMLSOURCEDIR" --output $OUTPUTDIR/index.html makehtml.xslt $XMLRES
+
 # move results over to public_html dir
 rm -rf "$HOME/public_html/$1"
 mv "$1" "$HOME/public_html"
