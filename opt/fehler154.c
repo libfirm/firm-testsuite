@@ -16,6 +16,7 @@ int k;
 void handler(int sig)
 {
 	printf("ok\n");
+	fflush(stdout);
 	_exit(0);
 }
 
