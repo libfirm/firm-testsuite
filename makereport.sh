@@ -22,6 +22,8 @@ done
 if [ "$ECC" = "" ]; then
 	ECC="cparser"
 	ECCFLAGS="-v -O3 -ffp-strict"
+elif [ `basename "$ECC"` = "eccp" -a "$ECCFLAGS" = "" ]; then
+	ECCFLAGS="-v -O3 -ffp-strict"
 elif [ `basename "$ECC"` = "cparser" -a "$ECCFLAGS" = "" ]; then
 	ECCFLAGS="-v -O3 -ffp-strict"
 fi
