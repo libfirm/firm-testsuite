@@ -69,6 +69,7 @@ cat > $XMLRES << __END__
 <?xml version="1.0"?>
 <results>
     <datetime>`date "+%Y-%m-%d %T"`</datetime>
+    <reportname>${REPORTNAME}</reportname>
     <environment>
         <TEST_COMPILER>${TEST_COMPILER}</TEST_COMPILER>
         <TEST_CFLAGS>${TEST_CFLAGS}</TEST_CFLAGS>
@@ -118,13 +119,6 @@ do_waitandoutput()
 			#showsummary
 			echo ">>>> [${COLOR_DIR}$curdir${COLOR_NORMAL}] <<<<"
 		fi
-
-		if [ $firstdir = 1 ]; then
-			firstdir=0
-		else
-			echo "</dir>" >> $XMLRES
-		fi
-		echo "<dir name=\"$curdir\">" >> $XMLRES
 
 		lastdir="$curdir"
 		testcount="0"
@@ -198,10 +192,6 @@ for file in $FILES; do
 done
 
 do_waitforrest
-
-if [ $firstdir = 0 ]; then
-	echo "</dir>" >> $XMLRES
-fi
 showsummary
 
 cat >> $XMLRES << __END__
