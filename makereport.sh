@@ -121,8 +121,6 @@ do_waitandoutput()
 		fi
 
 		lastdir="$curdir"
-		testcount="0"
-		okcount="0"
 	fi
 
 	echo -n "=$1==> Building $FILE"
@@ -209,4 +207,4 @@ O;report
 __END__
 
 # maybe execute custom actions after result has been generated
-[ -e after_compile.sh ] && ./after_compile.sh "$OUTPUTDIR"
+[ -e after_compile.sh ] && ./after_compile.sh "$OUTPUTDIR" "$REPORTNAME"
