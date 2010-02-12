@@ -2,6 +2,8 @@
 #define __thread   __declspec( thread )
 #endif
 
+__thread int tls_g;
+__thread const int h = 42;
 __thread int tls_i[10];
 __thread int tls_j = 5;
 
@@ -14,5 +16,7 @@ int main()
 {
     printf("tls_i: %d\n", test(3));
     printf("tls_j: %d\n", tls_j);
+    printf("tls_d: %d\n", tls_g);
+    printf("tls_cnst: %d\n", h);
     return 0;
 }
