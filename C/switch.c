@@ -25,5 +25,6 @@ int main(void)
 	assert(switch1(-32000) == 3);
 	assert(switch1(INT_MAX) == 8);
 	assert(switch1(INT_MIN) == 9);
-	return 0;
+
+	switch(0) default: return 0;
 }
