@@ -15,7 +15,7 @@ int main(void)
 	__builtin_memset(vals0, 0, sizeof(vals0));
 	printf("Res3: %d %d %d %d %d\n", vals0[0], vals0[1], vals0[2], vals0[3], vals0[4]);
 	printf("Res4: %d\n", (int) __builtin_strlen("Hello World"));
-	printf("Res5: %d\n", __builtin_strcmp(hello, "Hello World"));
+	printf("Res5: %d\n", __builtin_strcmp(hello, "Hello World") > 0);
 	__builtin_strcpy(buf, hello);
 	printf("Res6: %s\n", buf);
 
