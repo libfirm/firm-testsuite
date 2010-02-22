@@ -93,10 +93,10 @@ int main(int argc, char* argv[])
 	char const*       i     = start;
 	NumKind           k;
 
-	switch (*i)
+	switch (*i++)
 	{
-		case DOT: ++i; goto s_dot;
-		case '0': ++i; goto s_0;
+		case DOT: goto s_dot;
+		case '0': goto s_0;
 		case '1':
 		case '2':
 		case '3':
@@ -105,147 +105,149 @@ int main(int argc, char* argv[])
 		case '6':
 		case '7':
 		case '8':
-		case '9': ++i; goto s_decimal;
+		case '9': goto s_decimal;
 		default:  goto error_rest;
 	}
 
 s_0: // 0
-	switch (*i)
+	switch (*i++)
 	{
-		case DOT: ++i; goto s_fractional_dot;
-		case OCT: ++i; goto s_octal;
+		case DOT: goto s_fractional_dot;
+		case OCT: goto s_octal;
 		case '8':
-		case '9': ++i; goto s_fractional;
-		case E__: ++i; goto s_exponent_part;
-		case X__: ++i; goto s_0x;
+		case '9': goto s_fractional;
+		case E__: goto s_exponent_part;
+		case X__: goto s_0x;
 		default:  k = NUM_OCT; goto rest;
 	}
 
 s_0x: // 0x
-	switch (*i)
+	switch (*i++)
 	{
-		case DOT: ++i; goto s_0x_dot;
-		case HEX: ++i; goto s_hexadecimal;
+		case DOT: goto s_0x_dot;
+		case HEX: goto s_hexadecimal;
 		default:  goto error_rest;
 	}
 
 s_0x_dot: // 0x.
-	switch (*i)
+	switch (*i++)
 	{
-		case HEX: ++i; goto s_hex_dot;
+		case HEX: goto s_hex_dot;
 		default:  goto error_rest;
 	}
 
 s_bin_exponent: // ...[Pp][+-]?[0-9]+
-	switch (*i)
+	switch (*i++)
 	{
-		case DEC: ++i; goto s_exponent;
+		case DEC: goto s_exponent;
 		default:  k = NUM_HEX_FLOAT; goto rest;
 	}
 
 s_bin_exponent_part: // ...[Pp]
-	switch (*i)
+	switch (*i++)
 	{
-		case SGN: ++i; goto s_bin_exponent_sign;
-		case DEC: ++i; goto s_bin_exponent;
+		case SGN: goto s_bin_exponent_sign;
+		case DEC: goto s_bin_exponent;
 		default:  goto error_rest;
 	}
 
 s_bin_exponent_sign: // ...[Pp][+-]
-	switch (*i)
+	switch (*i++)
 	{
-		case DEC: ++i; goto s_bin_exponent;
+		case DEC: goto s_bin_exponent;
 		default:  goto error_rest;
 	}
 
 s_decimal: // [1-9][0-9]*
-	switch (*i)
+	switch (*i++)
 	{
-		case DOT: ++i; goto s_fractional_dot;
-		case DEC: ++i; goto s_decimal;
-		case E__: ++i; goto s_exponent_part;
+		case DOT: goto s_fractional_dot;
+		case DEC: goto s_decimal;
+		case E__: goto s_exponent_part;
 		default:  k = NUM_DEC; goto rest;
 	}
 
 s_dot: // .
-	switch (*i)
+	switch (*i++)
 	{
-		case DEC: ++i; goto s_fractional_dot;
+		case DEC: goto s_fractional_dot;
 		default:  goto error_rest;
 	}
 
 s_exponent: // ...[Ee][+-]?[0-9]+
-	switch (*i)
+	switch (*i++)
 	{
-		case DEC: ++i; goto s_exponent;
+		case DEC: goto s_exponent;
 		default:  k = NUM_DEC_FLOAT; goto rest;
 	}
 
 s_exponent_part: // ...[Ee]
-	switch (*i)
+	switch (*i++)
 	{
-		case SGN: ++i; goto s_exponent_sign;
-		case DEC: ++i; goto s_exponent;
+		case SGN: goto s_exponent_sign;
+		case DEC: goto s_exponent;
 		default:  goto error_rest;
 	}
 
 s_exponent_sign: // ...[Ee][+-]
-	switch (*i)
+	switch (*i++)
 	{
-		case DEC: ++i; goto s_exponent;
+		case DEC: goto s_exponent;
 		default:  goto error_rest;
 	}
 
 s_fractional: // 0[0-7]*[89][0-9]*
-	switch (*i)
+	switch (*i++)
 	{
-		case DOT: ++i; goto s_fractional_dot;
-		case DEC: ++i; goto s_fractional;
-		case E__: ++i; goto s_exponent_part;
+		case DOT: goto s_fractional_dot;
+		case DEC: goto s_fractional;
+		case E__: goto s_exponent_part;
 		default:  goto error_rest;
 	}
 
 s_fractional_dot: // [0-9]+.[0-9]* .[0-9]+
-	switch (*i)
+	switch (*i++)
 	{
-		case DEC: ++i; goto s_fractional_dot;
-		case E__: ++i; goto s_exponent_part;
+		case DEC: goto s_fractional_dot;
+		case E__: goto s_exponent_part;
 		default:  k = NUM_DEC_FLOAT; goto rest;
 	}
 
 s_hex_dot: // 0x[0-9A-Fa-f]+.[0-9A-Fa-f]*  0x.[0-9A-Fa-f]+
-	switch (*i)
+	switch (*i++)
 	{
-		case HEX: ++i; goto s_hex_dot;
-		case P__: ++i; goto s_bin_exponent_part;
+		case HEX: goto s_hex_dot;
+		case P__: goto s_bin_exponent_part;
 		default:  k = NUM_HEX_FLOAT; goto rest;
 	}
 
 s_hexadecimal: // 0[Xx][0-9A-Fa-f]+
-	switch (*i)
+	switch (*i++)
 	{
-		case DOT: ++i; goto s_hex_dot;
-		case HEX: ++i; goto s_hexadecimal;
-		case P__: ++i; goto s_bin_exponent_part;
+		case DOT: goto s_hex_dot;
+		case HEX: goto s_hexadecimal;
+		case P__: goto s_bin_exponent_part;
 		default:  k = NUM_HEX; goto rest;
 	}
 
 s_octal: // 0[0-7]+
-	switch (*i)
+	switch (*i++)
 	{
-		case DOT: ++i; goto s_fractional_dot;
-		case OCT: ++i; goto s_octal;
+		case DOT: goto s_fractional_dot;
+		case OCT: goto s_octal;
 		case '8':
-		case '9': ++i; goto s_fractional;
-		case E__: ++i; goto s_exponent_part;
+		case '9': goto s_fractional;
+		case E__: goto s_exponent_part;
 		default:  k = NUM_OCT; goto rest;
 	}
 
 error_rest:
+	--i;
 	printf("error: \"%.*s\" \"%s\"\n", (int)(i - start), start, i);
 	return 1;
 
 rest:
+	--i;
 	printf("%s, \"%.*s\" \"%s\"\n", num_kind_name[k], (int)(i - start), start, i);
 	return 0;
 }
