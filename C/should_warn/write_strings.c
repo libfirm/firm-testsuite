@@ -1,6 +1,9 @@
 #include <wchar.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
+	(void) argc;
+	(void) argv;
 	char *p = "hallo";
 	wchar_t *w = L"hallo";
 	(void) p;

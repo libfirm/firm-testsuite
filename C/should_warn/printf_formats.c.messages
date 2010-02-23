@@ -1,0 +1,2 @@
+C/should_warn/printf_formats.c:7: warning: argument type 'int' does not match conversion specifier '%x' at position 1
+1 warning(s)

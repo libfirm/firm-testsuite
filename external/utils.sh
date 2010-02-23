@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Helper functions for testing stuff
 

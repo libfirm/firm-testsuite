@@ -55,8 +55,8 @@
 				Results created on <xsl:value-of select="results/datetime/text()"/>
 				<h3><xsl:value-of select="results/summary/failed/text()" />/<xsl:value-of select="results/summary/total/text()" /> tests failed</h3>
 				<p>
-					Test compiler: <xsl:value-of select="results/environment/TEST_COMPILER/text()" /><br/>
-					Test CFLAGS: <xsl:value-of select="results/environment/TEST_CFLAGS/text()" /><br/>
+					Compiler: <xsl:value-of select="results/environment/TEST_COMPILER/text()" /><br/>
+					CFLAGS: <xsl:value-of select="results/environment/TEST_CFLAGS/text()" /><br/>
 				</p>
 
 				<table>
