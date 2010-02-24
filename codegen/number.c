@@ -218,7 +218,7 @@ s_hex_dot: // 0x[0-9A-Fa-f]+.[0-9A-Fa-f]*  0x.[0-9A-Fa-f]+
 	{
 		case HEX: goto s_hex_dot;
 		case P__: goto s_bin_exponent_part;
-		default:  k = NUM_HEX_FLOAT; goto rest;
+		default:  goto error_rest;
 	}
 
 s_hexadecimal: // 0[Xx][0-9A-Fa-f]+
