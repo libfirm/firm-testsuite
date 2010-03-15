@@ -15,10 +15,10 @@ int main()
 {
 	printf("Res: %d\n", floor_log2_wide(4294967251));
 	printf("Res: %d\n", test_div(-5));
-        printf("Res: %d\n", -5%-1);
-        printf("Res: %d\n", +5%-1);
-        printf("Res: %d\n", -5%+1);
-        printf("Res: %d\n", +5%+1);
-        printf("Res: %d\n", X % -1);
-        return 0;
+	printf("Res: %d\n", -5%-1);
+	printf("Res: %d\n", +5%-1);
+	printf("Res: %d\n", -5%+1);
+	printf("Res: %d\n", +5%+1);
+	printf("Res: %d\n", X % -1);
+	return 0;
 }

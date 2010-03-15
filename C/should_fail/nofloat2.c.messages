@@ -1,0 +1,2 @@
+C/should_fail/nofloat2.c:4: error: hexadecimal floatingpoint constant requires an exponent
+1 error(s), 0 warning(s)
