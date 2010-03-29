@@ -41,7 +41,7 @@ export TEST_COMPILER="$ECC"
 export TEST_CFLAGS="${ADDCFLAGS} ${ECCFLAGS} -std=c99"
 
 export LINKFLAGS="-lm"
-export TIMEOUT_TEST=20
+export TIMEOUT_TEST=45
 export ALL_CFLAGS=""
 
 export OUTPUTDIR="reports/${REPORTNAME}"
