@@ -17,8 +17,8 @@ do_test() {
         else
             COMPILE_RES="failed"
     	fi
-    	return 0
+    	return 1
     fi
     COMPILE_RES="ok"
-    return 1
+    return 0
 }

@@ -28,7 +28,7 @@ DIFF_RES=""
 ERROR=""
 
 . $CMD
-if do_test; then
+if ! do_test; then
 	echo "$ERROR" > $errorfile
 	res=1
 else
