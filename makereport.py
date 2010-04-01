@@ -75,6 +75,7 @@ class Test:
 			self.reference_output = open(filename+".ref").read()
 		if os.path.isfile(filename+".check"):
 			self.check_script_filename = filename+".check"
+			self.asm_file = filename+".s"
 		self.should_fail = False
 		if "should_fail" in filename:
 		 	self.should_fail = True
@@ -108,6 +109,11 @@ class Test:
 			print "executable vanished?", self.id
 		else:
 			os.unlink(self.executable)
+		if hasattr(self, 'check_script_filename'):
+			if not os.path.isfile(self.asm_file):
+				print "asm file vanished?", self.id
+			else:
+				os.unlink(self.asm_file)
 	def compile(self):
 		"""Compile the test program"""
 		cmd = "%s %s %s %s -o %s" %\
@@ -143,6 +149,11 @@ class Test:
 			self.error_msg = "%d compile warnings" % warnings
 			return False
 		return True
+	def _compile_asm(self):
+		"""Compile the test program to assembler"""
+		cmd = "%s -S %s %s %s -o %s" %\
+					 (self.compiler, self.filename, self.cflags, self.ldflags, self.asm_file)
+		silent_shell(cmd) # assumed to succeed, because compile to exe did
 	def check_reference(self):
 		"""Run compiled test program and compare output to reference"""
 		try:
@@ -163,8 +174,10 @@ class Test:
 			return False
 	def check_script(self):
 		"""Execute the check script"""
-		ret = silent_shell(self.check_script_filename)
-		return True # TODO needs ASM file as argument
+		self._compile_asm()
+		cmd = "%s %s" % (self.check_script_filename, self.asm_file)
+		ret = silent_shell(cmd)
+		return ret == 0
 
 def _get_test_files(dir):
 	for tdir in _DEFAULT_DIRS:
