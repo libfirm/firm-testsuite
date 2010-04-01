@@ -21,6 +21,18 @@ _DEFAULT_DIRS = "backend x86code opt C C/pragmatic C/should_fail C/gnu99 ack lan
 _DEBUG = None
 _VERBOSE = None
 _REPORT_NAME = "stats-" +  datetime.now().strftime("%Y.%m.%d")
+_EXPECT_FILE = os.path.abspath("fail_expectations")
+
+def load_expectations():
+	for line in open(_EXPECT_FILE):
+		try:
+			i = line.index(" ")
+		except ValueError:
+			continue
+		test_id = line[:i]
+		error_msg = line[i:].strip()
+		yield test_id, error_msg
+_EXPECTATIONS = dict(load_expectations())
 
 _OPTS = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
 _OPTS.set_defaults(debug=False, verbose=False, threads=3, compiler="cparser")
@@ -159,12 +171,17 @@ def _get_test_files(dir):
 		for fname in glob("%s/%s/*.c" % (dir, tdir)):
 			yield fname
 
+_CONSOLE_RED = "\033[1;31m"
+_CONSOLE_NORMAL = "\033[0m"
 def console_output(test):
 	if test.success:
 		if _VERBOSE:
 			print test.id
 	else:
-		print "%-35s %s" % (test.id, test.error_msg)
+		prefix = _CONSOLE_RED
+		if test.id in _EXPECTATIONS and test.error_msg == _EXPECTATIONS[test.id]:
+			prefix = ""
+		print "%s%-35s %s%s" % (prefix, test.id, test.error_msg, _CONSOLE_NORMAL)
 
 class Report:
 	def __init__(self):
