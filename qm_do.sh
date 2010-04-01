@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Hardcode some values here for now...
 TEST_COMPILER="cparser"
