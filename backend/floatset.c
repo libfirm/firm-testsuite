@@ -93,7 +93,7 @@ int main() {
   test(float, islessequal, fA, fNan);
   test(float, islessgreater, fA, fNan);
   test(float, isunordered, fA, fNan);
-  test(double, islessgreater, fA, fB);
+  test(float, islessgreater, fA, fB);
   test(float, islessgreater, fNan, fNan);
 
   test(float, notisgreater, fA, fNan);
