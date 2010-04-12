@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 import difflib
 import optparse
 from datetime import datetime
+from time import time
 
 from futures import future, add_worker
 from shell import silent_shell, execute, SigKill
@@ -20,6 +21,7 @@ BASE_DIR = os.path.abspath(os.curdir)
 _DEFAULT_DIRS = "backend x86code opt C C/pragmatic C/should_fail C/gnu99 ack langshootout llvm".split(" ")
 _DEBUG = None
 _VERBOSE = None
+_COMPILE_TIMES = None
 _REPORT_NAME = "stats-" +  datetime.now().strftime("%Y.%m.%d")
 _EXPECT_FILE = os.path.abspath("fail_expectations")
 
@@ -40,6 +42,8 @@ _OPTS.add_option("-d", "--debug", dest="debug", action="store_true",
 				help="Enable debug messages")
 _OPTS.add_option("-v", "--verbose", dest="verbose", action="store_true",
 				help="More output")
+_OPTS.add_option("-c", "--compile-times", dest="compile_times", action="store_true",
+				help="Display compile time of each program")
 _OPTS.add_option("-t", "--threads", dest="threads",
 				help="Number of threads to use")
 _OPTS.add_option("", "--cflags", dest="cflags", default="",
@@ -62,6 +66,8 @@ class Test:
 		self.compiler = compiler
 		self.cflags = _MANDATORY_CFLAGS + cflags
 		self.ldflags = _MANDATORY_LDFLAGS + ldflags
+		self.compile_seconds = -1
+		self.run_seconds = -1
 		assert filename.endswith(".c")
 		self.filename = filename
 		self.name = filename
@@ -91,7 +97,9 @@ class Test:
 		if not c:
 			return
 		if hasattr(self, 'reference_output'):
+			start = time()
 			r = self.check_reference()
+			self.run_seconds = time() - start
 			if not r:
 				return
 		self.long_error_msg = ""
@@ -120,11 +128,14 @@ class Test:
 					 (self.compiler, self.filename, self.cflags, self.ldflags, self.executable)
 		self.compile_command = cmd
 		self.compiling = ""
+		start = time()
 		try:
 			output = list(execute(cmd, timeout=30))
 		except SigKill, e:
+			self.compile_seconds = time() - start
 			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
 			return False
+		self.compile_seconds = time() - start
 		warnings = 0
 		errors = 0
 		self.compiling = "\n".join(output)
@@ -189,12 +200,16 @@ _CONSOLE_NORMAL = "\033[0m"
 def console_output(test):
 	if test.success:
 		if _VERBOSE:
-			print test.id
+			print "%-37s" % test.id,
 	else:
 		prefix = _CONSOLE_RED
 		if test.id in _EXPECTATIONS and test.error_msg == _EXPECTATIONS[test.id]:
 			prefix = ""
-		print "%s%-35s %s%s" % (prefix, test.id, test.error_msg, _CONSOLE_NORMAL)
+		print "%s%-35s %s%s" % (prefix, test.id, test.error_msg, _CONSOLE_NORMAL),
+	if _COMPILE_TIMES:
+		print "(%.2fsec)" % (test.compile_seconds)
+	else:
+		print # newline
 
 class Report:
 	def __init__(self):
@@ -230,6 +245,8 @@ class Report:
 		result.set("name", test.filename)
 		result.set("ok", str(int(test.success)))
 		result.set("error", test.error_msg)
+		result.set("run_seconds", "%.2f" % (test.run_seconds))
+		result.set("compile_seconds", "%.2f" % (test.compile_seconds))
 		if not test.success and hasattr(test, 'long_error_msg'):
 			result.text = test.long_error_msg
 		result.tail = "\n" # pretty print
@@ -268,6 +285,7 @@ def makereport(config, tests):
 
 if __name__ == "__main__":
 	options, args = _OPTS.parse_args()
-	_DEBUG   = options.debug
-	_VERBOSE = options.verbose
+	_DEBUG         = options.debug
+	_VERBOSE       = options.verbose
+	_COMPILE_TIMES = options.compile_times
 	makereport(options, args)
