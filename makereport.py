@@ -198,18 +198,17 @@ def _get_test_files(dir):
 _CONSOLE_RED = "\033[1;31m"
 _CONSOLE_NORMAL = "\033[0m"
 def console_output(test):
+	timing = ""
+	if _COMPILE_TIMES:
+		timing = " (%.2fsec)" % (test.compile_seconds)
 	if test.success:
 		if _VERBOSE:
-			print "%-37s" % test.id,
+			print "%-37s%s" % (test.id, timing)
 	else:
 		prefix = _CONSOLE_RED
 		if test.id in _EXPECTATIONS and test.error_msg == _EXPECTATIONS[test.id]:
 			prefix = ""
-		print "%s%-35s %s%s" % (prefix, test.id, test.error_msg, _CONSOLE_NORMAL),
-	if _COMPILE_TIMES:
-		print "(%.2fsec)" % (test.compile_seconds)
-	else:
-		print # newline
+		print "%s%-35s %s%s%s" % (prefix, test.id, test.error_msg, _CONSOLE_NORMAL, timing)
 
 class Report:
 	def __init__(self):
