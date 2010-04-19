@@ -1,6 +1,11 @@
+/*$ -fno-omit-frame-pointer $*/
+
 int A, B, C, D;
 
-/* no spill frame is allocated when compiled with -fno-omit-frame-pointer */
+/* no spill frame is allocated when compiled with -fno-omit-frame-pointer
+ * (Unfortunately this doesn't necessarily lead to a crash or anything
+ *  so this test doesn't always catch the miscompile)
+ * */
 void test(int p[]) {
 	int a = A, b = B, c = C;
 	a += 1;
