@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int f(void)
 {
 	int i;
