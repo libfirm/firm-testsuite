@@ -1,6 +1,11 @@
-unsigned f(void)
+int f(void)
 {
-	unsigned i;
+	int i;
 	asm volatile("xor %0, %0" : "=r" (i));
 	return i;
+}
+
+int main(void)
+{
+	return f();
 }
