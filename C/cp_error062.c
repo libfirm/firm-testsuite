@@ -1,7 +1,4 @@
-#define NULL ((void*)0)
-
-#define APR_OFFSET(p_type,field) \
-	((((char *) (&(((p_type)NULL)->field))) - ((char *) NULL)))
+#define APR_OFFSET(p_type, field) ((char*)&((p_type)0)->field - (char*)0)
 
 typedef struct {
 	char *ap_auth_type;
