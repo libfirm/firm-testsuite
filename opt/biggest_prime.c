@@ -2,7 +2,7 @@
 
 static int m = 754974721;
 static int N;
-static int t[1 << 22];
+static int t[1 << 10];
 static int a;
 static int *p;
 static int i;
