@@ -9,12 +9,12 @@
  */
 double __attribute__((noinline)) func(double a, int b, double c)
 {
-	return a + b + c;
+	return a + b - c;
 }
 
 int main(void)
 {
-	double res = func(1.0, 1, 1.0);
+	double res = func(1.0, 1, 3.0);
 	printf("Result: %f\n", res);
 	return 0;
 }
