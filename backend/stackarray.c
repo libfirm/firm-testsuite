@@ -1,6 +1,6 @@
 extern int printf(const char *str, ...);
 
-int __attribute__((noinline)) swap(int *x, int *y)
+void __attribute__((noinline)) swap(int *x, int *y)
 {
 	int t = *x;
 	*x = *y;
