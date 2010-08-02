@@ -13,6 +13,20 @@ unsigned swap32_8(unsigned x)
 		x << 24;
 }
 
+unsigned swap32_8_variant2(unsigned x)
+{
+	/* slightly less operations than variant 1 but less intuitive */
+	unsigned y = x << 16 | x >> 16;
+	return y << 8 & 0xFF00FF00 | y >> 8 & 0x00FF00FF;
+}
+
+unsigned swap32_8_variant3(unsigned x)
+{
+	/* this one can be achieved with 4 instructions on arm (if you don't have
+	 * an arm with a real swap instructions) */
+	return ((x ^ (x << 16 | x >> 16)) & 0xFF00FFFF) >> 8 ^ (x << 24 | x >> 8);
+}
+
 unsigned swap32_16(unsigned x)
 {
 	/* UNIX -> IXUN */
