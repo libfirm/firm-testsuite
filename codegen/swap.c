@@ -15,7 +15,7 @@ unsigned swap32_8(unsigned x)
 
 unsigned swap32_8_variant2(unsigned x)
 {
-	/* slightly fewer operations than variant 1 but less intuitive */
+	/* Fewer operations than variant 1: Swap 16 bit halves, then bytes in them. */
 	unsigned y = x << 16 | x >> 16;
 	return y << 8 & 0xFF00FF00 | y >> 8 & 0x00FF00FF;
 }
@@ -52,6 +52,28 @@ unsigned long long swap64_8(unsigned long long x)
 		 x << 24 & 0x00FF0000000000U |
 		 x << 40 & 0xFF000000000000U |
 		 x << 56);
+}
+
+unsigned long long swap64_8_variant2(unsigned long long x)
+{
+	/* Swap 32 bit halves, then swap bytes in them. */
+	x = x << 32 | x >> 32;
+	x = x << 16 & 0xFFFF0000FFFF0000 | x >> 16 & 0x0000FFFF0000FFFF;
+	x = x <<  8 & 0xFF00FF00FF00FF00 | x >>  8 & 0x00FF00FF00FF00FF;
+	return x;
+}
+
+unsigned long long swap64_8_variant3(unsigned long long x)
+{
+	/* Swap 32 bit halves, then swap bytes in them.  Done on 32 bit variables to
+	 * avoid (unnecesary) 64 bit shifts. */
+	unsigned h = x;
+	unsigned l = x >> 32;
+	h = h << 16 | h >> 16;
+	h = h << 8 & 0xFF00FF00 | h >> 8 & 0x00FF00FF;
+	l = l << 16 | l >> 16;
+	l = l << 8 & 0xFF00FF00 | l >> 8 & 0x00FF00FF;
+	return (unsigned long long)h << 32 | l;
 }
 
 unsigned long long swap64_16(unsigned long long x)
