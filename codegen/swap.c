@@ -15,7 +15,7 @@ unsigned swap32_8(unsigned x)
 
 unsigned swap32_8_variant2(unsigned x)
 {
-	/* slightly less operations than variant 1 but less intuitive */
+	/* slightly fewer operations than variant 1 but less intuitive */
 	unsigned y = x << 16 | x >> 16;
 	return y << 8 & 0xFF00FF00 | y >> 8 & 0x00FF00FF;
 }
