@@ -5,36 +5,47 @@
 
 int f(int a, int b)
 {
+	/* ideally: (a&b)>>31 on a 32bit machine */
 	return a < 0 & b < 0;
 }
 
 int f2(short a, short b)
 {
+	/* ideally: return 0 (because these are integer modes) */
 	return a < b && b < a;
 }
 
 int f3(short a, short b)
 {
+	/* ideally: (a-b)>>31 on a 32bit machine
+	 * (note that this trick only works when you can perform arithmetic
+	 *  in modes bigger than a and b)*/
 	return a < b && b > a;
 }
 
 int f4(short a, short b, short c)
 {
+	/* ideally: !((a-c)|(b-c))>>31 on a 32bit machine
+	 * (note: depending on your target architecture 2 compares
+	 *  with Set and And might be better/equally good) */
 	return (a <= c) & (b <= c);
 }
 
 int g(unsigned a, unsigned b)
 {
+	/* ideally: (a&b) >> 12 | 5 */
 	return ((a >> 12) | 5) & ((b >> 12) | 5);
 }
 
 int g2(unsigned a, unsigned b)
 {
+	/* ideally: (a|b)&5 */
 	return (a & 5) | (b & 5);
 }
 
 int g3(int a, int b, int z)
 {
+	/* ideally: (a&b)|z */
 	return (a | z) & (b | z);
 }
 
@@ -46,41 +57,49 @@ int imp(int a, int b)
 
 int eq(int a, int b)
 {
+	/* ideally: return set(a==b) */
 	return (a < b) == (a <= b);
 }
 
 int neq(int a, int b)
 {
+	/* ideally: return set(a != b) */
 	return (a < b) != (a <= b);
 }
 
 int af(int a)
 {
+	/* ideally: return 0 */
 	return (a ? 1 : 0) && !a;
 }
 
 int at(int a)
 {
+	/* ideally: return 1 */
 	return (a ? 1 : 0) || !a;
 }
 
 int c(int a, int b)
 {
+	/* ideally: return set(a<=b) */
 	return a < b || a == b;
 }
 
 int c2(int a, int b)
 {
+	/* ideally: return set(a<b) */
 	return a < b && a <= b;
 }
 
 int c3(int a, int b)
 {
+	/* ideally: return 1 */
 	return a < b || a >= b;
 }
 
 int c4(int a, int b)
 {
+	/* ideally: return set(a==b) */
 	return a < b ^ a <= b;
 }
 
