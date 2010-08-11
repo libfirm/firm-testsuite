@@ -88,6 +88,8 @@ class Test:
 		self.should_warn = False
 		if "should_warn" in filename:
 		 	self.should_warn = True
+		if "gnu99" in filename:
+		 	self.cflags += " -std=gnu99"
 		self.executable = filename+".exe"
 	def run(self):
 		self.success = False

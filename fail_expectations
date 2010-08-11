@@ -4,29 +4,31 @@ opt_fehler143                       output mismatch
 opt_fehler132                       compiler aborted (SIG 6)
 opt_scanner                         output mismatch
 C_universal_character               21 compile errors
+C_should_fail_array5                no errors
 C_should_fail_randprog3             linker error
+C_should_fail_array8                compiler aborted (SIG 6)
+C_should_fail_large_array           no errors
+C_should_fail_array0                compiler aborted (SIG 6)
 C_should_fail_osmesa.cpp            compiler aborted (SIG 6)
 C_should_fail_decl_without_name     no errors
 C_should_fail_segfault3             linker error
 C_should_fail_weird_label           compiler aborted (SIG 6)
+C_should_fail_array7                no errors
 C_should_fail_transparent_union2    no errors
+C_should_fail_array6                no errors
 C_should_fail_anonunion             no errors
+C_should_fail_array4                no errors
 C_should_fail_t                     linker error
+C_should_fail_array2                no errors
 C_should_fail_randprog2             linker error
-C_gnu99_incomplete_enum             1 compile errors
-C_gnu99_cp_error059                 1 compile errors
+C_gnu99_cp_error059                 compiler aborted (SIG 6)
 C_gnu99_unused_label                4 compile errors
-C_gnu99_void_pointer_arithmetic     1 compile errors
-C_gnu99_ijmp                        17 compile errors
+C_gnu99_ijmp                        linker error
 C_gnu99_flex_array_init             compiler aborted (SIG 6)
-C_gnu99_nested_function_goto        2 compile errors
-C_gnu99_omitted_cond                1 compile errors
-C_gnu99_computed_goto               16 compile errors
+C_gnu99_nested_function_goto        compiler aborted (SIG 6)
+C_gnu99_computed_goto               linker error
 C_gnu99_union_cast                  2 compile errors
 C_gnu99_redirect                    linker error
 C_gnu99_attributes4                 execution aborted (SIG 6)
-C_gnu99_pointerarith                3 compile errors
 C_gnu99_attributes                  linker error
-C_gnu99_combo_load_mode             13 compile errors
-C_gnu99_escape                      1 compile errors
-C_gnu99_nested_function             2 compile errors
+C_gnu99_combo_load_mode             linker error
