@@ -1,8 +1,11 @@
-opt_fehler154                       execution kill (SIG 9)
+backend_asm_test10                  compiler aborted (SIG 6)
+backend_asm_test                    OSError on execution
 opt_shiftamount                     output mismatch
 opt_fehler143                       output mismatch
 opt_fehler132                       compiler aborted (SIG 6)
 opt_scanner                         output mismatch
+opt_compilerhang3                   compiler aborted (SIG 6)
+C_compoundlit3                      compiler aborted (SIG 6)
 C_universal_character               21 compile errors
 C_should_fail_array5                no errors
 C_should_fail_randprog3             linker error
@@ -30,5 +33,9 @@ C_gnu99_computed_goto               linker error
 C_gnu99_union_cast                  2 compile errors
 C_gnu99_redirect                    linker error
 C_gnu99_attributes4                 execution aborted (SIG 6)
+C_gnu99_nullarray                   compiler aborted (SIG 6)
 C_gnu99_attributes                  linker error
+C_gnu99_construct_destruct          OSError on execution
 C_gnu99_combo_load_mode             linker error
+llvm_2003-05-21-UnionTest           compiler aborted (SIG 6)
+llvm_ConstructorDestructorAttributes OSError on execution
