@@ -1,6 +1,8 @@
 /* Verify that flexible arrays can be initialized from STRING_CST
    constructors. */
 
+#include <stdlib.h>
+
 /* The tests.  */
 struct S3 {
   char a3c;
@@ -10,7 +12,7 @@ struct S3 {
   "wx"
 };
 
-main()
+int main()
 {
   if (a3.a3c != 'o')
     abort();
