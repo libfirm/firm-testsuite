@@ -51,7 +51,7 @@ int g3(int a, int b, int z)
 
 int imp(int a, int b)
 {
-	/* logical implication */
+	/* ideally: return 1 */
 	return (a < b) <= (a <= b);
 }
 

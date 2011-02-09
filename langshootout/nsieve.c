@@ -9,11 +9,12 @@
 
 typedef unsigned char boolean;
 
-
-static void nsieve(int m) {
+static void nsieve(unsigned m)
+{
     unsigned int count = 0, i, j;
-    boolean * flags = (boolean *) malloc(m * sizeof(boolean));
-    memset(flags, 1, m);
+    unsigned char *flags = malloc(m * sizeof(flags[0]));
+    for (i = 0; i < m; ++i)
+		flags[i] = 1;
 
     for (i = 2; i < m; ++i)
         if (flags[i]) {
@@ -26,9 +27,10 @@ static void nsieve(int m) {
     printf("Primes up to %8u %8u\n", m, count);
 }
 
-int main(int argc, char * argv[]) {
+int main(int argc, char * argv[])
+{
 	int i;
-    int m = 8;
+    unsigned m = 8;
 
 	if(argc > 1)
 		m = atoi(argv[1]);

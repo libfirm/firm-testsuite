@@ -107,7 +107,7 @@ int main(int argc, char* argv[])
     {
         long    i, iterations, check;
 
-        iterations = pow(2, maxDepth - depth + minDepth);
+        iterations = 1 << (maxDepth - depth + minDepth);
 
         check = 0;
 
