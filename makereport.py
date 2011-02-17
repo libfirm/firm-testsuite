@@ -170,7 +170,7 @@ class Test:
 	def check_reference(self):
 		"""Run compiled test program and compare output to reference"""
 		try:
-			output = list(execute(self.executable, timeout=30))
+			output = list(execute(self.executable, timeout=30, stderr=None))
 		except SigKill, e:
 			self.error_msg = "execution %s (SIG %d)" % (e.name, -e.retcode)
 			return False

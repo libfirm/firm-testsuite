@@ -24,8 +24,10 @@ _EXIT_CODES = {
 	-15: "termination",
 }
 
-def execute(cmd, env=None, timeout=0):
+def execute(cmd, env=None, timeout=0, stderr=subprocess.STDOUT):
 	"""Execute a command and return stderr and/or stdout data"""
+	if not stderr:
+		stderr = open("/dev/null", 'w')
 	preexec_fn = None
 	if timeout > 0.0:
 		def set_timeout():
@@ -34,7 +36,7 @@ def execute(cmd, env=None, timeout=0):
 	cmd = filter(lambda x: x, cmd.split(' '))
 	proc = subprocess.Popen(cmd,
 							stdout=subprocess.PIPE,
-							stderr=subprocess.STDOUT,
+							stderr=stderr,
 							preexec_fn = preexec_fn,
 							env=env)
 	out, err = proc.communicate()
