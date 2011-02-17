@@ -150,8 +150,11 @@ class Test:
 				self.error_msg = "libFirm panic"
 				return False
 			elif "linker reported an error" in line:
-				self.error_msg = "linker error"
-				return False
+				if self.should_fail:
+					return True
+				else:
+					self.error_msg = "linker error"
+					return False
 		if errors > 0 and not self.should_fail:
 			self.error_msg = "%d compile errors" % errors
 			return False
