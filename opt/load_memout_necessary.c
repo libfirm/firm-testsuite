@@ -1,6 +1,12 @@
+#ifdef _MSC_VER
+#define NO_INLINE __declspec(noinline)
+#else
+#define NO_INLINE __attribute__((noinline))
+#endif
+
 int x = 2;
 
-int __attribute__((noinline)) f() {
+int NO_INLINE f() {
    return x+1;
 }
 
