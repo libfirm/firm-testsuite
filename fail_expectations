@@ -1,9 +1,12 @@
 backend_asm_test10                  compiler aborted (SIG 6)
+backend_transform_loop              compiler aborted (SIG 6)
 opt_fehler132                       compiler aborted (SIG 6)
 opt_compilerhang3                   compiler aborted (SIG 6)
+opt_comboattrs                      execution aborted (SIG 6)
 C_universal_character               21 compile errors
-C_curl_sizeof_usage                 2 compile errors
 C_should_fail_array5                no errors
+C_should_fail_typedef_enum          no errors
+C_should_fail_typedef_init          compiler aborted (SIG 6)
 C_should_fail_large_array           no errors
 C_should_fail_weird_label           compiler aborted (SIG 6)
 C_should_fail_array7                no errors
@@ -17,6 +20,7 @@ C_gnu99_unused_label                4 compile errors
 C_gnu99_ijmp                        linker error
 C_gnu99_flex_array_init             compiler aborted (SIG 6)
 C_gnu99_nested_function_goto        compiler aborted (SIG 6)
+C_gnu99_typeprop_funcs              2 compile errors
 C_gnu99_computed_goto               linker error
 C_gnu99_union_cast                  2 compile errors
 C_gnu99_redirect                    linker error
