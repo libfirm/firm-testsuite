@@ -1,6 +1,7 @@
 backend_asm_test10                  compiler aborted (SIG 6)
 opt_fehler132                       compiler aborted (SIG 6)
 C_universal_character               21 compile errors
+C_mini_complex                      compiler aborted (SIG 6)
 C_should_fail_array5                no errors
 C_should_fail_typedef_enum          no errors
 C_should_fail_typedef_init          compiler aborted (SIG 6)
@@ -12,6 +13,7 @@ C_should_fail_array6                no errors
 C_should_fail_anonunion             no errors
 C_should_fail_array4                no errors
 C_should_fail_array2                no errors
+C_gnu99_basic_complex               compiler aborted (SIG 6)
 C_gnu99_cp_error059                 compiler aborted (SIG 6)
 C_gnu99_unused_label                4 compile errors
 C_gnu99_ijmp                        linker error
