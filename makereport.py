@@ -12,6 +12,7 @@ import difflib
 import optparse
 from datetime import datetime
 from time import time
+import re
 
 from futures import future, add_worker
 from shell import silent_shell, execute, SigKill
@@ -24,6 +25,7 @@ _VERBOSE = None
 _COMPILE_TIMES = None
 _REPORT_NAME = "stats-" +  datetime.now().strftime("%Y.%m.%d")
 _EXPECT_FILE = os.path.abspath("fail_expectations")
+_CFLAG_COMMENT = re.compile("/\\*\\$ (.+) \\$\\*/")
 
 def load_expectations():
 	for line in open(_EXPECT_FILE):
@@ -90,7 +92,14 @@ class Test:
 		 	self.should_warn = True
 		if "gnu99" in filename:
 		 	self.cflags += " -std=gnu99"
+		self.search_comment_cflags()
 		self.executable = filename+".exe"
+	def search_comment_cflags(self):
+		"""insert additional cflags within the test case source"""
+		for line in open(self.filename):
+			m = _CFLAG_COMMENT.match(line)
+			if m:
+				self.cflags += m.group(1)
 	def run(self):
 		self.success = False
 		self.error_msg = ""
