@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ASM="$1"
+# Must generate an "sbb"
+COUNT="`grep -c -E '^[ 	]+btl' "$ASM"`"
+if [ "$COUNT" != "4" ]; then
+	echo "Couldn't find sbb"
+	exit 1
+fi
