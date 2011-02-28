@@ -31,7 +31,7 @@ done
 # Determine compiler and set some sensible default flags
 if [ "$ECC" = "" ]; then
 	ECC="cparser"
-	ECCFLAGS="-v -O3 -ffp-strict"
+	ECCFLAGS="-v -O3 -ffp-strict -march=native"
 elif [ `basename "$ECC"` = "eccp" -a "$ECCFLAGS" = "" ]; then
 	ECCFLAGS="-v -O3 -ffp-strict"
 elif [ `basename "$ECC"` = "cparser" -a "$ECCFLAGS" = "" ]; then
