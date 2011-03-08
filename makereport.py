@@ -268,6 +268,8 @@ class Report:
 		result.set("error", test.error_msg)
 		result.set("run_seconds", "%.2f" % (test.run_seconds))
 		result.set("compile_seconds", "%.2f" % (test.compile_seconds))
+		if _DEBUG:
+			result.set("compile_command", test.compile_command)
 		if not test.success and hasattr(test, 'long_error_msg'):
 			result.text = test.long_error_msg
 		result.tail = "\n" # pretty print
