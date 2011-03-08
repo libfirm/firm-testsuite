@@ -20,6 +20,7 @@ from shell import silent_shell, execute, SigKill
 BASE_DIR = os.path.abspath(os.curdir)
 
 _DEFAULT_DIRS = "backend x86code opt C C/pragmatic C/should_fail C/gnu99 ack langshootout llvm".split(" ")
+_EXTENDED_DIRS = "C/should_warn armcode tcc paranoia".split(" ")
 _DEBUG = None
 _VERBOSE = None
 _COMPILE_TIMES = None
@@ -39,11 +40,13 @@ def load_expectations():
 _EXPECTATIONS = dict(load_expectations())
 
 _OPTS = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
-_OPTS.set_defaults(debug=False, verbose=False, threads=3, compiler="cparser")
+_OPTS.set_defaults(debug=False, verbose=False, extended=False, threads=3, compiler="cparser")
 _OPTS.add_option("-d", "--debug", dest="debug", action="store_true",
 				help="Enable debug messages")
 _OPTS.add_option("-v", "--verbose", dest="verbose", action="store_true",
 				help="More output")
+_OPTS.add_option("-e", "--extended-testsuite", dest="extended", action="store_true",
+				help="Test more programs (which makereport.sh does not)")
 _OPTS.add_option("-c", "--compile-times", dest="compile_times", action="store_true",
 				help="Display compile time of each program")
 _OPTS.add_option("-t", "--threads", dest="threads",
@@ -212,8 +215,12 @@ class Test:
 		ret = silent_shell(cmd)
 		return ret == 0
 
-def _get_test_files(dir):
+def _get_test_files(dir, extended):
 	for tdir in _DEFAULT_DIRS:
+		for fname in glob("%s/%s/*.c" % (dir, tdir)):
+			yield fname
+	if not extended: return
+	for tdir in _EXTENDED_DIRS:
 		for fname in glob("%s/%s/*.c" % (dir, tdir)):
 			yield fname
 
@@ -290,7 +297,7 @@ def _create_test(fname, config):
 def makereport(config, tests):
 	queue = list()
 	if not tests:
-		tests = _get_test_files(BASE_DIR)
+		tests = _get_test_files(BASE_DIR, config.extended)
 	for fname in tests:
 		t = _create_test(fname, config)
 		queue.append(future(_do_test(t)))

@@ -30,3 +30,18 @@ C_gnu99_nullarray                   compiler aborted (SIG 6)
 C_gnu99_attributes                  linker error
 C_gnu99_combo_load_mode             linker error
 ack_test2                           execution segfault (SIG 11)
+C_should_warn_switch_on_enum        0 compile warnings
+C_should_warn_nested_comment        0 compile warnings
+C_should_warn_unused_param          0 compile warnings
+C_should_warn_padded                0 compile warnings
+C_should_warn_write_strings         0 compile warnings
+C_should_warn_paramscope            0 compile warnings
+C_should_warn_write_only12          0 compile warnings
+C_should_warn_never_read1           0 compile warnings
+C_should_warn_write_only8           0 compile warnings
+C_should_warn_write_only6           0 compile warnings
+C_should_warn_write_only4           0 compile warnings
+C_should_warn_cp_error025           0 compile warnings
+C_should_warn_write_only11          0 compile warnings
+C_should_warn_write_only2           0 compile warnings
+tcc_tcctest                         23 compile errors
