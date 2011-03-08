@@ -1,5 +1,8 @@
 backend_asm_test10                  compiler aborted (SIG 6)
 opt_fehler132                       compiler aborted (SIG 6)
+opt_fehler159                       compiler segfault (SIG 11)
+opt_compilerhang3                   execution aborted (SIG 6)
+C_unkept_loop                       compiler segfault (SIG 11)
 C_universal_character               21 compile errors
 C_mini_complex                      compiler aborted (SIG 6)
 C_should_fail_array5                no errors
@@ -26,3 +29,4 @@ C_gnu99_attributes4                 execution aborted (SIG 6)
 C_gnu99_nullarray                   compiler aborted (SIG 6)
 C_gnu99_attributes                  linker error
 C_gnu99_combo_load_mode             linker error
+ack_test2                           execution segfault (SIG 11)

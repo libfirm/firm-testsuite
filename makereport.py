@@ -78,6 +78,8 @@ class Test:
 		self.cflags += "-I%s " % os.path.dirname(self.name)
 		if not "-O" in self.cflags:
 			self.cflags += "-O3 "
+		if not "-march" in self.cflags:
+			self.cflags += "-march=native "
 		self.id = file2id(self.name)
 		if os.path.isfile(filename+".ref"):
 			self.reference_output = open(filename+".ref").read()
