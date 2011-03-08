@@ -153,8 +153,14 @@ class Test:
 		errors = 0
 		self.compiling = "\n".join(output)
 		for line in output:
-			if " warning: " in line:
+			if ": warning: " in line: # frontend warnings
 				warnings += 1
+			if line.startswith("Verify warning:"): # libfirm verifier warnings
+				self.error_msg = "verify warning"
+				if not hasattr(self, 'long_error_msg'):
+					self.long_error_msg = ""
+				self.long_error_msg += line+"\n"
+				errors += 1
 			if " error: " in line:
 				errors += 1
 			if "libFirm panic" in line:
