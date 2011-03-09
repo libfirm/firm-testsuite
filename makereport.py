@@ -23,7 +23,6 @@ _DEFAULT_DIRS = "backend x86code opt C C/pragmatic C/should_fail C/gnu99 ack lan
 _EXTENDED_DIRS = "C/should_warn armcode tcc paranoia".split(" ")
 _DEBUG = None
 _VERBOSE = None
-_COMPILE_TIMES = None
 _REPORT_NAME = "stats-" +  datetime.now().strftime("%Y.%m.%d")
 _EXPECT_FILE = os.path.abspath("fail_expectations")
 _CFLAG_COMMENT = re.compile("/\\*\\$ (.+) \\$\\*/")
@@ -69,20 +68,13 @@ _MANDATORY_LDFLAGS = "-lm "
 class Test:
 	def __init__(self, filename, compiler, cflags, ldflags):
 		self.compiler = compiler
-		self.cflags = _MANDATORY_CFLAGS + cflags
-		self.ldflags = _MANDATORY_LDFLAGS + ldflags
 		self.compile_seconds = -1
 		self.run_seconds = -1
 		assert filename.endswith(".c")
 		self.filename = filename
 		self.name = filename
 		if self.name.startswith(BASE_DIR):
-				self.name = self.name[len(BASE_DIR)+1:]
-		self.cflags += " -I%s " % os.path.dirname(self.name)
-		if not "-O" in self.cflags:
-			self.cflags += " -O3 "
-		if not "-march" in self.cflags:
-			self.cflags += " -march=native "
+			self.name = self.name[len(BASE_DIR)+1:]
 		self.id = file2id(self.name)
 		if os.path.isfile(filename+".ref"):
 			self.reference_output = open(filename+".ref").read()
@@ -95,12 +87,19 @@ class Test:
 		self.should_warn = False
 		if "should_warn" in filename:
 		 	self.should_warn = True
-		if "gnu99" in filename:
-		 	self.cflags += " -std=gnu99"
-		self.search_comment_cflags()
 		self.executable = filename+".exe"
-	def search_comment_cflags(self):
-		"""insert additional cflags within the test case source"""
+		self._init_flags(cflags, ldflags)
+	def _init_flags(self, cflags, ldflags):
+		self.cflags = _MANDATORY_CFLAGS + cflags
+		self.ldflags = _MANDATORY_LDFLAGS + ldflags
+		self.cflags += " -I%s " % os.path.dirname(self.name)
+		if not "-O" in self.cflags:
+			self.cflags += " -O3 "
+		if not "-march" in self.cflags:
+			self.cflags += " -march=native "
+		if "gnu99" in self.filename:
+			self.cflags += " -std=gnu99 "
+		# insert additional cflags within the test case source
 		for line in open(self.filename):
 			m = _CFLAG_COMMENT.match(line)
 			if m:
@@ -108,25 +107,38 @@ class Test:
 	def run(self):
 		self.success = False
 		self.error_msg = ""
+		c = self._test_compile()
+		if not c: return
+		c = self._test_reference_output()
+		if not c: return
+		c = self._test_check_script()
+		if not c: return
+		self.clean()
+		self.success = True
+	def _test_compile(self):
+		"""Compile the test program"""
 		c = self.compile()
 		self.long_error_msg = "\n".join((self.compile_command, self.compiling))
-		if not c:
-			return
+		return c
+	def _test_reference_output(self):
+		"""Run test program and compare output to reference"""
 		if hasattr(self, 'reference_output'):
 			start = time()
 			r = self.check_reference()
 			self.run_seconds = time() - start
-			if not r:
-				return
+			return r
+		return True
+	def _test_check_script(self):
+		"""Execute check script"""
 		self.long_error_msg = ""
 		if hasattr(self, 'check_script_filename'):
 			s = self.check_script()
 			if not s:
 				self.error_msg = "check script failed"
-				return
-		self.clean()
-		self.success = True
+			return s
+		return True
 	def clean(self):
+		"""Remove intermediate files"""
 		if self.should_fail:
 			return # nothing to do
 		if not os.path.isfile(self.executable):
@@ -152,6 +164,7 @@ class Test:
 			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
 			return False
 		self.compile_seconds = time() - start
+		# Compiled. Now check the compiler output.
 		warnings = 0
 		errors = 0
 		self.compiling = "\n".join(output)
@@ -200,6 +213,7 @@ class Test:
 		except OSError, e:
 			self.error_msg = "OSError on execution"
 			return False
+		# Program run succeeded. Now compare output with reference.
 		ref = self.reference_output.splitlines()
 		diff = "\n".join(difflib.unified_diff(output, ref))
 		if diff == "":
@@ -225,11 +239,13 @@ def _get_test_files(dir, extended):
 			yield fname
 
 _CONSOLE_RED = "\033[1;31m"
-_CONSOLE_NORMAL = "\033[0m"
-def console_output(test):
+_CONSOLE_YELLOW = "\033[0;33m"
+_CONSOLE_BOLD = "\033[1m"
+_CONSOLE_NORMAL = "\033[m"
+def console_output(test, compile_times):
 	timing = ""
-	if _COMPILE_TIMES:
-		timing = " (%.2fsec)" % (test.compile_seconds)
+	if compile_times:
+		timing = " [%s%.2fs%s]" % (_CONSOLE_YELLOW, test.compile_seconds, _CONSOLE_NORMAL)
 	if test.success:
 		if _VERBOSE:
 			print "%-37s%s" % (test.id, timing)
@@ -247,8 +263,9 @@ class Report:
 	def addTest(self, test):
 		self.tests.append(test)
 	def printSummary(self):
-		print "-"*40
-		print "Ran %d tests, of which %d failed." % self.summary
+		print "---------------------------"
+		print "Ran %d tests, of which %s%d failed%s." %\
+			(self.summary[0], _CONSOLE_BOLD, self.summary[1], _CONSOLE_NORMAL)
 	def writeXML(self, fh):
 		xml = ET.Element("results")
 		ET.SubElement(xml, "datetime").text = str(datetime.now())
@@ -282,31 +299,31 @@ class Report:
 		result.tail = "\n" # pretty print
 		self.summary = (self.summary[0]+1, self.summary[1]+int(fail))
 
-def _do_test(t):
-	def func():
-		t.run()
-		return t
-	return func
-
-def _create_test(fname, config):
-	return Test(fname,
-			compiler=config.compiler,
-			cflags=config.cflags,
-			ldflags=config.ldflags)
+def _do_test(test):
+	def f():
+		test.run()
+		return test
+	return f
 
 def makereport(config, tests):
 	queue = list()
 	if not tests:
 		tests = _get_test_files(BASE_DIR, config.extended)
+	# create test futures for parallel evaluation
 	for fname in tests:
-		t = _create_test(fname, config)
+		t = Test(fname,
+			compiler=config.compiler,
+			cflags=config.cflags,
+			ldflags=config.ldflags)
 		queue.append(future(_do_test(t)))
+	# start actual work
 	add_worker(config.threads)
+	# collect report
 	r = Report()
 	try:
 		for promise in queue:
 			test = promise.force()
-			console_output(test)
+			console_output(test, options.compile_times)
 			r.addTest(test)
 	except KeyboardInterrupt:
 		pass
@@ -317,5 +334,4 @@ if __name__ == "__main__":
 	options, args = _OPTS.parse_args()
 	_DEBUG         = options.debug
 	_VERBOSE       = options.verbose
-	_COMPILE_TIMES = options.compile_times
 	makereport(options, args)
