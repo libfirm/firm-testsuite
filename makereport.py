@@ -33,7 +33,6 @@ _DEFAULT_DIRS = [
 	"C/gnu99",
 	"ack",
 	"langshootout",
-	"tcc",
 	"llvm" ]
 _DEBUG = None
 _VERBOSE = None
