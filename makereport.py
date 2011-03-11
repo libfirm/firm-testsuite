@@ -52,7 +52,7 @@ def load_expectations():
 _EXPECTATIONS = dict(load_expectations())
 
 _OPTS = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
-_OPTS.set_defaults(debug=False, verbose=False, threads=3, compiler="cparser", reportdir="reports/")
+_OPTS.set_defaults(debug=False, verbose=False, threads=3, compiler="cparser", reportdir="reports/", builddir="build/")
 _OPTS.add_option("-d", "--debug", dest="debug", action="store_true",
 				help="Enable debug messages")
 _OPTS.add_option("-v", "--verbose", dest="verbose", action="store_true",
@@ -89,12 +89,13 @@ class Test:
 		if self.name.startswith(BASE_DIR):
 			self.name = self.name[len(BASE_DIR)+1:]
 		self.id = file2id(self.name)
+		environment.id = self.id
 		if os.path.isfile(filename+".ref"):
 			self.reference_output = open(filename+".ref").read()
 		if os.path.isfile(filename+".check"):
 			environment.check_script_filename = filename+".check"
-			environment.asm_file = filename+".s"
-		environment.executable = filename+".exe"
+			environment.asm_file = environment.builddir + "/" + environment.id + ".s"
+		environment.executable = environment.builddir + "/" + environment.id + ".exe"
 		self._init_flags()
 	def _init_flags(self):
 		environment = self.environment
@@ -381,12 +382,13 @@ def makereport(config, tests):
 	r.printSummary()
 
 def init(config):
-	if not os.path.exists(config.reportdir):
-		sys.write("Createing reportdir '%s'\n" % config.reportdir)
-		os.path.mkdir(config.reportdir)
-	if not os.path.isdir(config.reportdir):
-		sys.stderr.write("Reportdir '%s' is not a directory\n" % config.reportdir)
-		sys.exit(1)
+	for dir in [config.reportdir, config.builddir]:
+		if not os.path.exists(dir):
+			sys.write("Createing reportdir '%s'\n" % dir)
+			os.path.mkdir(dir)
+		if not os.path.isdir(dir):
+			sys.stderr.write("Error: '%s' is not a directory\n" % dir)
+			sys.exit(1)
 
 if __name__ == "__main__":
 	options, args = _OPTS.parse_args()
