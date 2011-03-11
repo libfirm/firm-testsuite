@@ -1,0 +1,483 @@
+string:
+ab3c
+ABC:
+c=r
+wc=a 0x1234 c
+foo1_string='bar
+testa'
+test
+!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_
+fib=3524578
+262144
+524288
+1048576
+2097152
+4194304
+8388608
+16777216
+33554432
+67108864
+134217728
+268435456
+536870912
+1073741824
+1
+-1
+-31232132
+-7808033
+-13
+2
+5
+13
+1
+16
+22322
+22319
+6964152
+5580
+-5580
+1073736243
+1
+-1
+15
+0
+22326
+22329
+2790
+-2791
+536868121
+357136
+-22322
+-22321
+22321
+13
+10
+3744
+3
+12
+4
+11
+12
+3
+192
+-13
+-12
+12
+1 1 1 0
+case_2.1: Expect 0 1 0 -> 0 1 0
+case_2.2: Expect 0 1 1 -> 0 1 1
+case_2.1AND: Expect 0 1 0 -> 1 0 1
+case_2.2AND: Expect 0 1 0 -> 1 0 1
+macro:
+N=1236
+aaa=4
+min=-1
+s1=hello
+s2=hello, world
+s3="c"
+s4=a1
+B3=1
+A defined
+A defined
+B not defined
+A defined
+B1 not defined
+test true1
+test trueA
+test 2
+__LINE__ defined
+__LINE__=224 __FILE__=C/gnu99/tcctest.c
+__LINE__=201 __FILE__=C/gnu99/tcctest.c
+__LINE__=204 __FILE__=test
+__func__ = macro_test
+vaarg=1
+vaarg1
+vaarg1=2
+vaarg1=1 2
+func='macro_test'
+INT64_MIN=-9223372036854775808
+a=2
+a=8
+hi
+tralala
+hi
+qq=42
+qq1=1
+Nested macros: 0 == 0
+scope:
+g1=1
+g2=2
+g3=3
+g4=4
+g5=2
+forward:
+forward ok
+forward ok
+funcptr:
+12345
+12345
+12346
+sizeof1 = 1
+sizeof2 = 1
+sizeof3 = 4
+sizeof4 = 4
+case_9: 1 (7,8) -> 1 (7,8)
+0123456789
+0123456789
+0123456789
+12456
+12456
+012456789
+aa2b4567ccccc1314
+goto:
+0123456789
+label1
+label2
+label3
+enum:
+0 2 4 5 6 1000
+b1=1
+typedef:
+a=1234
+struct:
+sizes: 20 8 4 4
+st1: 1 2 3
+union1: 2
+union2: 2
+st2: 3 2 1
+str_addr=10
+aligntest1 sizeof=10 alignof=1
+aligntest2 sizeof=16 alignof=4
+aligntest3 sizeof=16 alignof=4
+aligntest4 sizeof=0 alignof=4
+sizeof(struct empty) = 0
+alignof(struct empty) = 1
+array:
+sizeof(a) = 4
+sizeof("a") = 2
+sizeof(__func__) = 11
+sizeof tab 12
+sizeof tab2 24
+1 2 3
+   0   1  10  11  20  21
+expr_ptr:
+diff=10
+inc=1
+dec=0
+inc=1
+dec=0
+add=3
+add=3
+!s=1
+a=1
+a=0 1 1
+a=0 0 1
+a=1 0
+a1
+a2
+a4
+b=6
+a=400
+exp=1
+r=1
+aspect=65535
+aspect=65536
+case_1.1: 10,20,30 -> 10,20,30
+case_1.2: other -> other
+34 -1
+60 31
+expr2:
+res= 112 2
+constant_expr:
+48
+3
+3
+constant_expr:
+1
+0
+1
+1
+1
+1
+1
+1
+0
+0
+1
+0
+1
+0
+char_short:
+s8=4 -4
+u8=4 252
+s16=772 -516
+u16=772 65020
+s32=16909060 -66052
+u32=16909060 -66052
+var1=1020308
+var1=1020809
+var1=8090a0b
+init_test:
+sinit1=2
+sinit2=3
+sinit3=12 1 2 3
+sinit6=12
+sinit7=12 1 2 3
+sinit8=hellotrala
+sinit9=1 2 3
+sinit10=1 2 3
+sinit11=1 2 3 0 0 0
+[0][0] = 1 1 1
+[0][1] = 2 2 2
+[1][0] = 3 3 3
+[1][1] = 4 4 4
+[2][0] = 5 5 5
+[2][1] = 6 6 6
+linit1=2
+linit2=3
+linit6=12
+linit8=11 hellotrala
+sinit12=hello world
+sinit13=12 test1 test2 test3
+sinit14=abc
+ 1 2 0 0 0 0 0 0 0 0
+ 1 2 0 4 0 0 0 3 0 0
+ 97 98 99 0 0 0 0 0 0 0
+ 2 3 0 0 0 0 4 0 0 0
+1 0 2 0
+linit17=4
+sinit15=12
+sinit16=1 2
+sinit17=a1 4 a2 1
+ 0 0 14 14 14 14 2 0 a 0
+compound_test:
+ 1 2 3
+321
+q1=tralala1
+q2=tralala2
+q3=tralala2
+q4=tralala3
+kr_test:
+func1=7
+func2=7
+1 2 3
+before call: 1 2
+after call: 5 -2
+struct assign, 0 -> 0
+cast_test:
+-1 -1 255 65535
+-1 -1 255 65535
+-1 -1 255 65535
+-127
+1
+sizeof(c) = 1, sizeof((int)c) = 4
+((unsigned)(short)0x0000f000) = 0xfffff000
+((unsigned)(char)0x0000f0f0) = 0xfffffff0
+Expect 3 1 -> 3 1
+1 2
+sizeof(+(char)'a') = 4
+sizeof(-(char)'a') = 4
+sizeof(~(char)'a') = 4
+1
+1 -> 1
+0xfffff000 == 0xfffff000
+0xfffffff0 == 0xfffffff0
+bitfield_test:sizeof(st1) = 8
+3 -1 15 -8 121
+st1.f1 == -1
+st1.f2 == -1
+case_3.1: 0101 -> 0101
+case_3.2: 1010 -> 1010
+float_test:
+sizeof(float) = 4
+sizeof(double) = 8
+sizeof(long double) = 12
+testing 'float'
+0 1 1 0 0 1
+1.000000 2.500000 3.500000 -1.500000 2.500000 0.400000 -1.000000
+2.000000
+2.000000
+3.000000
+0 1 0 1 1 0
+2.000000 1.500000 3.500000 0.500000 3.000000 1.333333 -2.000000
+3.000000
+3.000000
+4.000000
+1 0 0 0 1 1
+1.000000 1.000000 2.000000 0.000000 1.000000 1.000000 -1.000000
+2.000000
+2.000000
+3.000000
+ftof: 234.600006 234.600006 234.600006
+ftoi: 234 234
+itof: -1234.000000
+utof: 2166572288.000000
+ftof: -2334.600098 -2334.600098 -2334.600098
+ftoi: -2334 4294964962
+itof: -1234.000000
+utof: 2166572288.000000
+testing 'double'
+0 1 1 0 0 1
+1.000000 2.500000 3.500000 -1.500000 2.500000 0.400000 -1.000000
+2.000000
+2.000000
+3.000000
+0 1 0 1 1 0
+2.000000 1.500000 3.500000 0.500000 3.000000 1.333333 -2.000000
+3.000000
+3.000000
+4.000000
+1 0 0 0 1 1
+1.000000 1.000000 2.000000 0.000000 1.000000 1.000000 -1.000000
+2.000000
+2.000000
+3.000000
+ftof: 234.600006 234.600000 234.600000
+ftoi: 234 234
+itof: -1234.000000
+utof: 2166572288.000000
+ftof: -2334.600098 -2334.600000 -2334.600000
+ftoi: -2334 4294964962
+itof: -1234.000000
+utof: 2166572288.000000
+testing 'long double'
+0 1 1 0 0 1
+1.000000 2.500000 3.500000 -1.500000 2.500000 0.400000 -1.000000
+2.000000
+2.000000
+3.000000
+0 1 0 1 1 0
+2.000000 1.500000 3.500000 0.500000 3.000000 1.333333 -2.000000
+3.000000
+3.000000
+4.000000
+1 0 0 0 1 1
+1.000000 1.000000 2.000000 0.000000 1.000000 1.000000 -1.000000
+2.000000
+2.000000
+3.000000
+ftof: 234.600006 234.600000 234.600000
+ftoi: 234 234
+itof: -1234.000000
+utof: 2166572288.000000
+ftof: -2334.600098 -2334.600000 -2334.600000
+ftoi: -2334 4294964962
+itof: -1234.000000
+utof: 2166572288.000000
+1.200000 3.400000 -5.600000
+2.120000 0.500000 23000000000.000000
+da=123.000000
+fa=123.000000
+da = -294967296.000000
+db = 4000000000.000000
+longlong_test:
+sizeof(long long) = 8
+-1 4294967294
+1 -2 1 1234567812345679
+-6
+arith: 1023 977 23000
+arith1: 43 11
+bin: 0 1023 1023
+test: 0 1 0 1 1 0
+utest: 0 1 0 1 1 0
+arith2: 1001 24
+arith2: 1001 24
+arith2: 1001 24
+arith2: 1001 24
+arith: 4915 -4405 1188300
+arith1: 0 255
+bin: 52 4863 4811
+test: 0 1 1 0 0 1
+utest: 0 1 1 0 0 1
+arith2: 256 4661
+arith2: 256 4661
+arith2: 256 4661
+arith2: 256 4661
+arith: -782639107 782639101 2347917312
+arith1: 0 -3
+bin: -782639104 -3 782639101
+test: 0 1 0 1 1 0
+utest: 0 1 0 1 1 0
+arith2: -2 -782639103
+arith2: -2 -782639103
+arith2: -2 -782639103
+arith2: -2 -782639103
+shift: 9 9 9312
+shiftc: 36 36 2328
+shiftc: 0 0 9998683865088
+shift: 576460752303423487 -1 -736
+shiftc: 2305843009213693949 -3 -184
+shiftc: 536870911 -1 -790273982464
+shift: 0 0 -1152921504606846976
+shiftc: 245252176896 245252176896 15696139321344
+shiftc: 57 57 -8444530776296390656
+la=320255972942661 ula=16458594985017606144
+lltof: 320255981256704.000000 320255972942661.000000 320255972942661.000000
+ftoll: 320255981256704 320255972942661 320255972942661
+ulltof: 16458595053737082880.000000 16458594985017606144.000000 16458594985017606144.000000
+ftoull: 16458595053737082880 16458594985017606144 16458594985017606144
+12345677
+3
+arith: 2147483648 2147483648 0
+bin: 0 2147483648 2147483648
+test: 0 1 0 1 1 0
+utest: 0 1 0 1 1 0
+arith2: 2147483649 1
+arith2: 2147483649 1
+arith2: 2147483649 1
+arith2: 2147483649 1
+2
+ull=ffffffff00000000
+ull!=0  ull
+double->ull (grischka case 10): 24000000 -> 24000000
+1 2 3
+1.000000 2 3.000000
+1234567891234 987654321986 3 1234.000000
+whitspace:
+N=2
+min=4
+*rel1=2
+*rel2=3
+a=1 b=2 b=3.000000
+cmpfn=0
+cmpfn=0
+sizeof(int) = 4
+sizeof(unsigned int) = 4
+sizeof(short) = 2
+sizeof(unsigned short) = 2
+sizeof(char) = 1
+sizeof(unsigned char) = 1
+sizeof(func) = 1
+sizeof(a++) = 4
+a=1
+sizeof(**ptr) = 4
+-1>sizeof(int) = 1
+__alignof__(int) = 4
+__alignof__(unsigned int) = 4
+__alignof__(short) = 2
+__alignof__(unsigned short) = 2
+__alignof__(char) = 1
+__alignof__(unsigned char) = 1
+__alignof__(func) = 1
+a=1.500000 b=2.500000 c=3.500000
+a=110
+bb2
+bb1
+aa2
+aa3
+aa1
+a=2
+inline asm:
+hello wo
+mul64=0xc378af6c6ce0060
+inc64=0x1234567900000000
+set=0x1080fd
+swab32(0x01020304) = 0x4030201
+res = 1
+res = 1
+res = 0
+res = 0
+static_test Expect 1 -> 1
+static_test Expect 1 -> 1
+static_test Expect 1 -> 1
+static_test Expect 1 -> 1

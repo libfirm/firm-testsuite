@@ -13,7 +13,7 @@ int main(void) {
   p[1] = &j;
   zeiger = &p[0];
 
-  printf("%d %d \n",**zeiger, **(zeiger+1));
+  printf("%d %d\n",**zeiger, **(zeiger+1));
 
 	return 0;
 }

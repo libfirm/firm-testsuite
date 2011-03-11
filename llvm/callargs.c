@@ -36,7 +36,6 @@ printStructArgs(SmallStruct s1,              /* Could fit in reg */
   printf("\tArg  8    : %c %c %c %c %d\n",  s3.c1, s3.c2, s3.c3, s3.c4, s3.n);
   printf("\tArgs 9-13 : %d %f %c %lf %c\n", a6, a7, a8, a9, *a10);
   printf("\tArgs 14-18: %d %f %c %lf %c\n", a11, a12, a13, a14, *a15);
-  printf("\n");
 
   result.c1 = s2.c1;
   result.c2 = s2.c2;
@@ -48,7 +47,7 @@ printStructArgs(SmallStruct s1,              /* Could fit in reg */
 }
 #endif  /* LLVM_CAN_PASS_STRUCTS_BY_VALUE */
 
-#undef LLC_SUPPORTS_VARARGS_FUNCTIONS
+#define LLC_SUPPORTS_VARARGS_FUNCTIONS
 #ifdef LLC_SUPPORTS_VARARGS_FUNCTIONS
 void
 printVarArgs(int a1, ...)
@@ -82,7 +81,6 @@ printVarArgs(int a1, ...)
   printf("\tArgs 1-5  : %d %f %c %f %c\n", a1,  a2,  a3,  a4,  *a5);
   printf("\tArgs 6-10 : %d %f %c %f %c\n", a6,  a7,  a8,  a9,  *a10);
   printf("\tArgs 11-14: %d %f %c %f %c\n", a11, a12, a13, a14, *a15);
-  printf("\n");
   return;
 }
 #endif /* LLC_SUPPORTS_VARARGS_FUNCTIONS */
@@ -97,7 +95,6 @@ printArgsNoRet(int a1,  float a2,  char a3,  double a4,  char* a5,
   printf("\tArgs 1-5  : %d %f %c %f %c\n", a1,  a2,  a3,  a4,  *a5);
   printf("\tArgs 6-10 : %d %f %c %f %c\n", a6,  a7,  a8,  a9,  *a10);
   printf("\tArgs 11-14: %d %f %c %f %c\n", a11, a12, a13, a14, *a15);
-  printf("\n");
   return;
 }
 

@@ -128,8 +128,8 @@ int isid(int c);
 #define B3 4
 #endif
 
-#define __INT64_C(c)	c ## LL
-#define INT64_MIN	(-__INT64_C(9223372036854775807)-1)
+#define __INT64_C(c) c ## LL
+#define INT64_MIN (-__INT64_C(9223372036854775807)-1)
 
 int qq(int x)
 {
@@ -1352,7 +1352,7 @@ void init_test(void)
            sinit17[0].s, sinit17[0].len,
            sinit17[1].s, sinit17[1].len);
     for(i=0;i<10;i++)
-        printf("%x ", sinit18[i]);
+        printf(" %x", sinit18[i]);
     printf("\n");
 }
 
@@ -1761,7 +1761,7 @@ void longlong_test(void)
     ull = 0xffffffff00000000ULL;
     printf("ull=%llx\n",ull);
     printf("ull!=0  ", (ull != 0) ? "true" : "false");
-    printf("ull     ", ull ? "true" : "false");
+    printf("ull", ull ? "true" : "false");
 
     /* check double -> ull cast */
     {
@@ -2035,9 +2035,9 @@ static __inline__ void sigdelset1(unsigned int *set, int _sig)
 
 static __inline__ __const__ unsigned int swab32(unsigned int x)
 {
-	__asm__("xchgb %b0,%h0\n\t"	/* swap lower bytes	*/
-		"rorl $16,%0\n\t"	/* swap words		*/
-		"xchgb %b0,%h0"		/* swap higher bytes	*/
+	__asm__("xchgb %b0,%h0\n\t" /* swap lower bytes */
+		"rorl $16,%0\n\t" /* swap words */
+		"xchgb %b0,%h0" /* swap higher bytes */
 		:"=q" (x)
 		: "0" (x));
 	return x;

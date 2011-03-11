@@ -69,7 +69,7 @@ pch() {
 
 	printf("ch1\t%c(%d)\n",ch1,ch1) ;
 	printf("ch2\t%d\n",ch2) ;
-	printf("cha1\t%s\ncha2\t%s\ncha3\t%s\ncha4\t%s\n",
+	printf("cha1\t%s\ncha2 '%s'\ncha3\t%s\ncha4\t%s\n",
 		cha1,cha2,cha3,cha4 ) ;
 	printf("cha5\t%s\n\n",cha5) ;
 	printf("cha6\t%d, %d, %d\n\t%d, %d, %d\n",
@@ -236,7 +236,7 @@ pstruct() {
 
 	printf("\nbit fields:\n\n") ;
 	printf("sizeof stb %d\n",sizeof stb) ;
-	printf("stb\t%d %d %d %d %d %d %d\n\n",
+	printf("stb\t%d %d %d %d %d %d %d\n",
 		stb.s2_1,stb.s2_2,stb.s2_3,stb.s2_4,stb.s2_5,stb.s2_6,stb.s2_7);
 }
 

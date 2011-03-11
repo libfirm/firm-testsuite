@@ -26,7 +26,7 @@ int main()
 	printf("1. vload -> vadd -> vstore\n===================\n\n");
 	ueberlappung();
 
-	printf("2. vload -> vadd -> vstore, multi dimensional array, in loop\n==========================================\n\n");
+	printf("2. vload -> vadd -> vstore, multi dimensional array, in loop\n==========================================\n");
 
 	return 0;
 }

@@ -58,7 +58,7 @@ main(int argc, char** argv)
 
   printf("&TestArray[3] - TestArray = 0x%lx\n", diff1);
   printf("Xptr - Aptr          = 0x%lx\n", diff3);
-  printf("NextPtr - Xptr       = 0x%lx\n\n", diff4);
+  printf("NextPtr - Xptr       = 0x%lx\n", diff4);
 
   return 0;
 }

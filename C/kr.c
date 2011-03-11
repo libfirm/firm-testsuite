@@ -11,6 +11,6 @@ int a(first, second, third)
 
 int main(void)
 {
-	a(42, 42.42, "What is 6 times 9?\n");
+	a(42, 42.42, "What is 6 times 9?");
 	return 0;
 }

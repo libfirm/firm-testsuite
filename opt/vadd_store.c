@@ -104,7 +104,8 @@ void vadd_loop(void)
 	{
 		for(i = 0; i < 2; i++)
 			printf("%d + %d = %d\n", e[j][i], f[j][i], d[j][i]);
-		printf("\n");
+		if (j < 3)
+			printf("\n");
 	}
 }
 #endif

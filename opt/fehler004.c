@@ -6,7 +6,7 @@ int main(void) {
 	float f = 3.14;
 
 	zahl = (int)f;
-	printf("%d \n", zahl );
+	printf("%d\n", zahl );
 
 	return 0;
 }

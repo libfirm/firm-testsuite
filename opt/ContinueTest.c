@@ -56,7 +56,6 @@ int main(int argc, char *argv[]) {
   test_for_continue(array, 20);
   printf("\n");
   test_while_continue(array, 20);
-  printf("\n");
 
 	return 0;
 }

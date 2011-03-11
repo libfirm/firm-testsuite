@@ -19,7 +19,7 @@ static int simpleloop (int a, int b) {
 	for(i = 0; (i < 10) && loopfinal; i++) {
 		if(5 == i)
 			loopfinal = false;
-		printf("%d ", i);
+		printf(" %d", i);
 	}
 	printf("\n");
 

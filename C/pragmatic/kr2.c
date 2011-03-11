@@ -4,7 +4,7 @@ static int a(int first, float second, const char *third);
 
 int main(void)
 {
-	a(42, 42.42, "What is 6 times 9?\n");
+	a(42, 42.42, "What is 6 times 9?");
 	return 0;
 }
 

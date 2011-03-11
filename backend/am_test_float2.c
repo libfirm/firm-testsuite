@@ -27,7 +27,7 @@ int main(void) {
 
 #define CTYPE(type,name)   dest_am_##name##type(arr##type, 0, 10); \
 	for(i = 0; i < 10; ++i) {                 \
-		printf("%f ", arr##type[i]);          \
+		printf(" %f", arr##type[i]);          \
 	}                                         \
 	printf("\n");
 
