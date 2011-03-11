@@ -244,6 +244,8 @@ class TestShouldFail(Test):
 
 class TestShouldWarn(Test):
 	def __init__(self, filename, environment):
+		environment = deepcopy(environment)
+		environment.cflags += " -Wall -W"
 		Test.__init__(self, filename, environment)
 
 	def check_compiler_errors(self):
