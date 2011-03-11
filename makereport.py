@@ -48,7 +48,7 @@ _OPTS.add_option("-e", "--extended-testsuite", dest="extended", action="store_tr
 				help="Test more programs (which makereport.sh does not)")
 _OPTS.add_option("-c", "--compile-times", dest="compile_times", action="store_true",
 				help="Display compile time of each program")
-_OPTS.add_option("-t", "--threads", dest="threads",
+_OPTS.add_option("-t", "--threads", dest="threads", type="int",
 				help="Number of threads to use")
 _OPTS.add_option("", "--cflags", dest="cflags", default="",
 				help="Use CFLAGS to compile test programs", metavar="CFLAGS")
