@@ -9,3 +9,7 @@ void blup(void)
 		k = 5.2;
 	}
 }
+
+int main(void)
+{
+}
