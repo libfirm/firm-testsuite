@@ -1,0 +1,8 @@
+*.o
+*.po
+*.pyc
+*.s
+*.vcg
+/build
+/reports
+a.out
