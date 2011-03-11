@@ -23,19 +23,18 @@ BASE_DIR = os.path.abspath(os.curdir)
 _DEFAULT_DIRS = [
 	"backend",
 	"x86code",
-	"opt"
+	"armcode",
+	"opt",
 	"C",
 	"C/pragmatic",
 	"C/should_fail",
+	"C/should_warn",
+	"C/nowarn",
 	"C/gnu99",
 	"ack",
 	"langshootout",
-	"llvm" ]
-_EXTENDED_DIRS = [
-	"C/should_warn",
-	"armcode",
 	"tcc",
-	"paranoia" ]
+	"llvm" ]
 _DEBUG = None
 _VERBOSE = None
 _REPORT_NAME = "stats-" +  datetime.now().strftime("%Y.%m.%d")
@@ -54,13 +53,11 @@ def load_expectations():
 _EXPECTATIONS = dict(load_expectations())
 
 _OPTS = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
-_OPTS.set_defaults(debug=False, verbose=False, extended=False, threads=3, compiler="cparser", reportdir="reports/")
+_OPTS.set_defaults(debug=False, verbose=False, threads=3, compiler="cparser", reportdir="reports/")
 _OPTS.add_option("-d", "--debug", dest="debug", action="store_true",
 				help="Enable debug messages")
 _OPTS.add_option("-v", "--verbose", dest="verbose", action="store_true",
 				help="More output")
-_OPTS.add_option("-e", "--extended-testsuite", dest="extended", action="store_true",
-				help="Test more programs (which makereport.sh does not)")
 _OPTS.add_option("-c", "--compile-times", dest="compile_times", action="store_true",
 				help="Display compile time of each program")
 _OPTS.add_option("-t", "--threads", dest="threads", type="int",
@@ -266,15 +263,6 @@ class TestShouldNotWarn(Test):
 			return False
 		return Test.check_compiler_errors(self)
 
-def _get_test_files(dir, extended):
-	for tdir in _DEFAULT_DIRS:
-		for fname in glob("%s/%s/*.c" % (dir, tdir)):
-			yield fname
-	if not extended: return
-	for tdir in _EXTENDED_DIRS:
-		for fname in glob("%s/%s/*.c" % (dir, tdir)):
-			yield fname
-
 _CONSOLE_RED = "\033[1;31m"
 _CONSOLE_YELLOW = "\033[0;33m"
 _CONSOLE_BOLD = "\033[1m"
@@ -360,11 +348,16 @@ def make_test(environment, filename):
 def makereport(config, tests):
 	queue = list()
 	if not tests:
-		tests = _get_test_files(BASE_DIR, config.extended)
+		tests = _DEFAULT_DIRS
 	# create test futures for parallel evaluation
-	for fname in tests:
-		t = make_test(config, fname)
-		queue.append(future(_do_test(t)))
+	for test in tests:
+		if os.path.isdir(test):
+			for fname in glob("%s/*.c" % test):
+				t = make_test(config, fname)
+				queue.append(future(_do_test(t)))
+		else:
+			t = make_test(config, test)
+			queue.append(future(_do_test(t)))
 	# start actual work
 	add_worker(config.threads)
 	# collect report
