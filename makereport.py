@@ -16,6 +16,7 @@ import re
 
 from futures import future, add_worker
 from shell import silent_shell, execute, SigKill
+from copy import deepcopy
 
 BASE_DIR = os.path.abspath(os.curdir)
 
@@ -53,7 +54,7 @@ def load_expectations():
 _EXPECTATIONS = dict(load_expectations())
 
 _OPTS = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
-_OPTS.set_defaults(debug=False, verbose=False, extended=False, threads=3, compiler="cparser")
+_OPTS.set_defaults(debug=False, verbose=False, extended=False, threads=3, compiler="cparser", reportdir="reports/")
 _OPTS.add_option("-d", "--debug", dest="debug", action="store_true",
 				help="Enable debug messages")
 _OPTS.add_option("-v", "--verbose", dest="verbose", action="store_true",
@@ -80,8 +81,10 @@ def file2id(filename):
 _MANDATORY_CFLAGS = "-v -ffp-strict -std=c99 "
 _MANDATORY_LDFLAGS = "-lm "
 class Test:
-	def __init__(self, filename, compiler, cflags, ldflags):
-		self.compiler = compiler
+	def __init__(self, filename, environment):
+		environment = deepcopy(environment)
+		self.environment = environment
+		environment.filename = filename
 		self.compile_seconds = -1
 		self.run_seconds = -1
 		assert filename.endswith(".c")
@@ -93,23 +96,24 @@ class Test:
 		if os.path.isfile(filename+".ref"):
 			self.reference_output = open(filename+".ref").read()
 		if os.path.isfile(filename+".check"):
-			self.check_script_filename = filename+".check"
-			self.asm_file = filename+".s"
-		self.executable = filename+".exe"
-		self._init_flags(cflags, ldflags)
-	def _init_flags(self, cflags, ldflags):
-		self.cflags = _MANDATORY_CFLAGS + cflags
-		self.ldflags = _MANDATORY_LDFLAGS + ldflags
-		self.cflags += " -I%s " % os.path.dirname(self.name)
-		if not "-O" in self.cflags:
-			self.cflags += " -O3 "
-		if not "-march" in self.cflags:
-			self.cflags += " -march=native "
+			environment.check_script_filename = filename+".check"
+			environment.asm_file = filename+".s"
+		environment.executable = filename+".exe"
+		self._init_flags()
+	def _init_flags(self):
+		environment = self.environment
+		environment.cflags = _MANDATORY_CFLAGS + environment.cflags
+		environment.ldflags = _MANDATORY_LDFLAGS + environment.ldflags
+		environment.cflags += " -I%s " % os.path.dirname(environment.filename)
+		if not "-O" in environment.cflags:
+			environment.cflags += " -O3 "
+		if not "-march" in environment.cflags:
+			environment.cflags += " -march=native "
 		# insert additional cflags within the test case source
-		for line in open(self.filename):
+		for line in open(environment.filename):
 			m = _CFLAG_COMMENT.match(line)
 			if m:
-				self.cflags += m.group(1)
+				environment.cflags += m.group(1)
 	def run(self):
 		self.success = False
 		self.error_msg = ""
@@ -150,17 +154,15 @@ class Test:
 		return True
 	def clean(self):
 		"""Remove intermediate files"""
-		if os.path.isfile(self.executable):
-			os.unlink(self.executable)
-		if hasattr(self, 'check_script_filename'):
-			if not os.path.isfile(self.asm_file):
-				print "asm file vanished?", self.id
-			else:
-				os.unlink(self.asm_file)
+		environment = self.environment
+		if os.path.isfile(environment.executable):
+			os.unlink(environment.executable)
+		if hasattr(environment, 'asm_file') and os.path.isfile(environment.asm_file):
+			os.unlink(environment.asm_file)
 	def compile(self):
 		"""Compile the test program"""
-		cmd = "%s %s %s %s -o %s" %\
-					 (self.compiler, self.filename, self.cflags, self.ldflags, self.executable)
+		environment = self.environment
+		cmd = "%(compiler)s %(filename)s %(cflags)s %(ldflags)s -o %(executable)s" % environment.__dict__
 		self.compile_command = cmd
 		self.compiling = ""
 		start = time()
@@ -203,13 +205,14 @@ class Test:
 		return True
 	def _compile_asm(self):
 		"""Compile the test program to assembler"""
-		cmd = "%s -S %s %s %s -o %s" %\
-					 (self.compiler, self.filename, self.cflags, self.ldflags, self.asm_file)
+		environment = self.environment
+		cmd = "%(compiler)s -S %(filename)s %(cflags)s %(ldflags)s -o %(asm_file)s" % environment.__dict__
 		silent_shell(cmd) # assumed to succeed, because compile to exe did
 	def check_reference(self):
 		"""Run compiled test program and compare output to reference"""
+		environment = self.environment
 		try:
-			output = list(execute(self.executable, timeout=30, stderr=None))
+			output = list(execute(environment.executable, timeout=30, stderr=None))
 		except SigKill, e:
 			self.error_msg = "execution %s (SIG %d)" % (e.name, -e.retcode)
 			return False
@@ -228,13 +231,14 @@ class Test:
 	def check_script(self):
 		"""Execute the check script"""
 		self._compile_asm()
-		cmd = "%s %s" % (self.check_script_filename, self.asm_file)
+		environment = self.environment
+		cmd = "%(check_script_filename)s %(asm_file)s" % environment.__dict__
 		ret = silent_shell(cmd)
 		return ret == 0
 
 class TestShouldFail(Test):
-	def __init__(self, filename, compiler, cflags, ldflags):
-		Test.__init__(self, filename, compiler, cflags, ldflags)
+	def __init__(self, filename, environment):
+		Test.__init__(self, filename, environment)
 
 	def check_compiler_errors(self):
 		if len(self.errors) == 0:
@@ -243,24 +247,24 @@ class TestShouldFail(Test):
 		return True
 
 class TestShouldWarn(Test):
-	def __init__(self, filename, compiler, cflags, ldflags):
-		Test.__init__(self, filename, compiler, cflags, ldflags)
+	def __init__(self, filename, environment):
+		Test.__init__(self, filename, environment)
 
 	def check_compiler_errors(self):
 		if len(self.warnings) == 0:
 			self.error_msg = "compiler missed warnings"
 			return False
-		return self.check_compiler_errors()
+		return Test.check_compiler_errors(self)
 
 class TestShouldNotWarn(Test):
-	def __init__(self, filename, compiler, cflags, ldflags):
-		Test.__init__(self, filename, compiler, cflags, ldflags)
+	def __init__(self, filename, environment):
+		Test.__init__(self, filename, environment)
 
 	def check_compiler_errors(self):
-		if self.warnings > 0:
+		if len(self.warnings) > 0:
 			self.error_msg = "compiler produced invalid warning"
 			return False
-		return self.check_compiler_errors()
+		return Test.check_compiler_errors(self)
 
 def _get_test_files(dir, extended):
 	for tdir in _DEFAULT_DIRS:
@@ -299,15 +303,13 @@ class Report:
 		print "---------------------------"
 		print "Ran %d tests, of which %s%d failed%s." %\
 			(self.summary[0], _CONSOLE_BOLD, self.summary[1], _CONSOLE_NORMAL)
-	def writeXML(self, fh):
+	def writeXML(self, fh, config):
 		xml = ET.Element("results")
 		ET.SubElement(xml, "datetime").text = str(datetime.now())
 		ET.SubElement(xml, "reportname").text = _REPORT_NAME
 		env = ET.SubElement(xml, "environment")
-		example = self.tests[0]
-		ET.SubElement(env, "TEST_COMPILER").text = example.compiler
-		ET.SubElement(env, "TEST_CFLAGS").text = example.cflags
-		ET.SubElement(env, "TEST_LDFLAGS").text = example.ldflags
+		for (key,value) in config.__dict__.iteritems():
+			ET.SubElement(env, key).text = str(value)
 		env.tail = "\n" # pretty print
 		for test in self.tests:
 			self._addTestXML(xml, test)
@@ -320,7 +322,7 @@ class Report:
 		fail = not test.success
 		result = ET.SubElement(xml, "result")
 		result.set("id", test.id)
-		result.set("name", test.filename)
+		result.set("name", test.environment.filename)
 		result.set("ok", str(int(test.success)))
 		result.set("error", test.error_msg)
 		result.set("run_seconds", "%.2f" % (test.run_seconds))
@@ -338,22 +340,22 @@ def _do_test(test):
 		return test
 	return f
 
-def make_test(config, filename):
+def make_test(environment, filename):
 	testclass = Test
-	cflags = config.cflags
+	environment = deepcopy(environment)
 	if "C/gnu99/" in filename:
 		testclass = Test
-		cflags += " -std=gnu99"
+		environment.cflags += " -std=gnu99"
 	if "C/MS/" in filename:
 		testclass = Test
-		cflags += " --ms"
+		environment.cflags += " --ms"
 	elif "C/should_fail/" in filename:
 		testclass = TestShouldFail
 	elif "C/should_warn/" in filename:
 		testclass = TestShouldWarn
 	elif "C/nowarn/" in filename:
 		testclass = TestShouldNotWarn
-	return testclass(filename, compiler=config.compiler, cflags=cflags, ldflags=config.ldflags)
+	return testclass(filename, environment)
 
 def makereport(config, tests):
 	queue = list()
@@ -374,10 +376,16 @@ def makereport(config, tests):
 			r.addTest(test)
 	except KeyboardInterrupt:
 		pass
-	if not os.path.isdir("reports"):
-		os.mkdir("reports")
-	r.writeXML(open("reports/"+_REPORT_NAME+".xml", 'w'))
+	r.writeXML(open(config.reportdir + "/" + _REPORT_NAME + ".xml", 'w'), config)
 	r.printSummary()
+
+def init(config):
+	if not os.path.exists(config.reportdir):
+		sys.write("Createing reportdir '%s'\n" % config.reportdir)
+		os.path.mkdir(config.reportdir)
+	if not os.path.isdir(config.reportdir):
+		sys.stderr.write("Reportdir '%s' is not a directory\n" % config.reportdir)
+		sys.exit(1)
 
 if __name__ == "__main__":
 	options, args = _OPTS.parse_args()
