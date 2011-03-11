@@ -163,20 +163,20 @@ class Test:
 		self.compiling = ""
 		start = time()
 		try:
-			self.output = list(execute(cmd, timeout=30))
+			self.compile_out, self.compile_err, self.compile_retcode = execute(cmd, timeout=30)
 		except SigKill, e:
-			self.compile_seconds = time() - start
 			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
 			return False
-		self.compile_seconds = time() - start
+		finally:
+			self.compile_seconds = time() - start
 		return True
 
 	def parse_compiler_output(self):
 		# Compiled. Now check the compiler output.
 		self.warnings = []
 		self.errors = []
-		self.compiling = "\n".join(self.output)
-		for line in self.output:
+		self.compiling = "\n".join(self.compile_out)
+		for line in self.compile_err.splitlines() + self.compile_out.splitlines():
 			if ": warning: " in line: # frontend warnings
 				self.warnings.append(line)
 			elif " error: " in line: # frontend errors
@@ -195,6 +195,9 @@ class Test:
 				return False
 		return True
 	def check_compiler_errors(self):
+		if self.compile_retcode != 0:
+			self.error_msg = "compilation not ok (returncode %d)" % self.compile_retcode
+			return False
 		if len(self.errors) > 0:
 			self.error_msg = "%d compile errors" % len(self.errors)
 			return False
@@ -208,16 +211,20 @@ class Test:
 		"""Run compiled test program and compare output to reference"""
 		environment = self.environment
 		try:
-			output = list(execute(environment.executable, timeout=30, stderr=None))
+			out, err, retcode = execute(environment.executable, timeout=30)
+			if retcode != 0:
+				self.error_msg = "Return code not zero but %d" % retcode
+				return False
 		except SigKill, e:
 			self.error_msg = "execution %s (SIG %d)" % (e.name, -e.retcode)
 			return False
 		except OSError, e:
 			self.error_msg = "OSError on execution"
 			return False
+
 		# Program run succeeded. Now compare output with reference.
 		ref = self.reference_output.splitlines()
-		diff = "\n".join(difflib.unified_diff(output, ref))
+		diff = "\n".join(difflib.unified_diff(out.splitlines(), ref))
 		if diff == "":
 			return True
 		else:

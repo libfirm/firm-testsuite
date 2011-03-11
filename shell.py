@@ -24,10 +24,8 @@ _EXIT_CODES = {
 	-15: "termination",
 }
 
-def execute(cmd, env=None, timeout=0, stderr=subprocess.STDOUT):
-	"""Execute a command and return stderr and/or stdout data"""
-	if not stderr:
-		stderr = open("/dev/null", 'w')
+def execute(cmd, env=None, timeout=0):
+	"""Execute a command and return stderr and stdout data"""
 	preexec_fn = None
 	if timeout > 0.0:
 		def set_timeout():
@@ -36,19 +34,13 @@ def execute(cmd, env=None, timeout=0, stderr=subprocess.STDOUT):
 	cmd = filter(lambda x: x, cmd.split(' '))
 	proc = subprocess.Popen(cmd,
 							stdout=subprocess.PIPE,
-							stderr=stderr,
+							stderr=subprocess.PIPE,
 							preexec_fn = preexec_fn,
 							env=env)
 	out, err = proc.communicate()
-	try:
-		for line in out.splitlines():
-			yield line
-	except Exception, e:
-		print "'%s' -> %s" % (cmd, e)
 	if proc.returncode in _EXIT_CODES:
 		raise SigKill(proc.returncode, _EXIT_CODES[proc.returncode])
-	elif proc.returncode < 0: # program aborted
-		raise Exception(proc.returncode, cmd)
+	return (out, err, proc.returncode)
 
 def silent_shell(cmd, env=None, debug=False):
 	"""Execute a shell command"""
@@ -70,7 +62,5 @@ def write_file(filename, content):
 	fh.close()
 
 if __name__ == "__main__":
-	for line in execute("hostname"):
-		print line
-	for line in execute("hostname", True, True):
-		print line
+	out,err,retcode = execute("hostname")
+	print out
