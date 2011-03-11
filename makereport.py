@@ -19,8 +19,22 @@ from shell import silent_shell, execute, SigKill
 
 BASE_DIR = os.path.abspath(os.curdir)
 
-_DEFAULT_DIRS = "backend x86code opt C C/pragmatic C/should_fail C/gnu99 ack langshootout llvm".split(" ")
-_EXTENDED_DIRS = "C/should_warn armcode tcc paranoia".split(" ")
+_DEFAULT_DIRS = [
+	"backend",
+	"x86code",
+	"opt"
+	"C",
+	"C/pragmatic",
+	"C/should_fail",
+	"C/gnu99",
+	"ack",
+	"langshootout",
+	"llvm" ]
+_EXTENDED_DIRS = [
+	"C/should_warn",
+	"armcode",
+	"tcc",
+	"paranoia" ]
 _DEBUG = None
 _VERBOSE = None
 _REPORT_NAME = "stats-" +  datetime.now().strftime("%Y.%m.%d")
