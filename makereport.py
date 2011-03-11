@@ -95,12 +95,6 @@ class Test:
 		if os.path.isfile(filename+".check"):
 			self.check_script_filename = filename+".check"
 			self.asm_file = filename+".s"
-		self.should_fail = False
-		if "should_fail" in filename:
-		 	self.should_fail = True
-		self.should_warn = False
-		if "should_warn" in filename:
-		 	self.should_warn = True
 		self.executable = filename+".exe"
 		self._init_flags(cflags, ldflags)
 	def _init_flags(self, cflags, ldflags):
@@ -111,8 +105,6 @@ class Test:
 			self.cflags += " -O3 "
 		if not "-march" in self.cflags:
 			self.cflags += " -march=native "
-		if "gnu99" in self.filename:
-			self.cflags += " -std=gnu99 "
 		# insert additional cflags within the test case source
 		for line in open(self.filename):
 			m = _CFLAG_COMMENT.match(line)
@@ -123,6 +115,8 @@ class Test:
 		self.error_msg = ""
 		c = self._test_compile()
 		if not c: return
+		c = self.check_compiler_errors()
+		if not c: return
 		c = self._test_reference_output()
 		if not c: return
 		c = self._test_check_script()
@@ -132,8 +126,11 @@ class Test:
 	def _test_compile(self):
 		"""Compile the test program"""
 		c = self.compile()
+		if not c: return c
+		c = self.parse_compiler_output()
+		if not c: return c
 		self.long_error_msg = "\n".join((self.compile_command, self.compiling))
-		return c
+		return True
 	def _test_reference_output(self):
 		"""Run test program and compare output to reference"""
 		if hasattr(self, 'reference_output'):
@@ -153,11 +150,7 @@ class Test:
 		return True
 	def clean(self):
 		"""Remove intermediate files"""
-		if self.should_fail:
-			return # nothing to do
-		if not os.path.isfile(self.executable):
-			print "executable vanished?", self.id
-		else:
+		if os.path.isfile(self.executable):
 			os.unlink(self.executable)
 		if hasattr(self, 'check_script_filename'):
 			if not os.path.isfile(self.asm_file):
@@ -172,44 +165,40 @@ class Test:
 		self.compiling = ""
 		start = time()
 		try:
-			output = list(execute(cmd, timeout=30))
+			self.output = list(execute(cmd, timeout=30))
 		except SigKill, e:
 			self.compile_seconds = time() - start
 			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
 			return False
 		self.compile_seconds = time() - start
+		return True
+
+	def parse_compiler_output(self):
 		# Compiled. Now check the compiler output.
-		warnings = 0
-		errors = 0
-		self.compiling = "\n".join(output)
-		for line in output:
+		self.warnings = []
+		self.errors = []
+		self.compiling = "\n".join(self.output)
+		for line in self.output:
 			if ": warning: " in line: # frontend warnings
-				warnings += 1
-			if line.startswith("Verify warning:"): # libfirm verifier warnings
+				self.warnings.append(line)
+			elif " error: " in line: # frontend errors
+				self.errors.append(line)
+			elif line.startswith("Verify warning:"): # libfirm verifier warnings
 				self.error_msg = "verify warning"
 				if not hasattr(self, 'long_error_msg'):
 					self.long_error_msg = ""
 				self.long_error_msg += line+"\n"
-				errors += 1
-			if " error: " in line:
-				errors += 1
-			if "libFirm panic" in line:
-				self.error_msg = "libFirm panic"
+				return False
+			elif "libFirm panic" in line:
+				self.errors_msg = "libFirm panic"
 				return False
 			elif "linker reported an error" in line:
-				if self.should_fail:
-					return True
-				else:
-					self.error_msg = "linker error"
-					return False
-		if errors > 0 and not self.should_fail:
-			self.error_msg = "%d compile errors" % errors
-			return False
-		elif errors == 0 and self.should_fail:
-			self.error_msg = "no errors"
-			return False
-		elif warnings == 0 and self.should_warn:
-			self.error_msg = "%d compile warnings" % warnings
+				self.error_msg = "linker error"
+				return False
+		return True
+	def check_compiler_errors(self):
+		if len(self.errors) > 0:
+			self.error_msg = "%d compile errors" % len(self.errors)
 			return False
 		return True
 	def _compile_asm(self):
@@ -242,6 +231,36 @@ class Test:
 		cmd = "%s %s" % (self.check_script_filename, self.asm_file)
 		ret = silent_shell(cmd)
 		return ret == 0
+
+class TestShouldFail(Test):
+	def __init__(self, filename, compiler, cflags, ldflags):
+		Test.__init__(self, filename, compiler, cflags, ldflags)
+
+	def check_compiler_errors(self):
+		if len(self.errors) == 0:
+			self.error_msg = "compiler missed error"
+			return False
+		return True
+
+class TestShouldWarn(Test):
+	def __init__(self, filename, compiler, cflags, ldflags):
+		Test.__init__(self, filename, compiler, cflags, ldflags)
+
+	def check_compiler_errors(self):
+		if len(self.warnings) == 0:
+			self.error_msg = "compiler missed warnings"
+			return False
+		return self.check_compiler_errors()
+
+class TestShouldNotWarn(Test):
+	def __init__(self, filename, compiler, cflags, ldflags):
+		Test.__init__(self, filename, compiler, cflags, ldflags)
+
+	def check_compiler_errors(self):
+		if self.warnings > 0:
+			self.error_msg = "compiler produced invalid warning"
+			return False
+		return self.check_compiler_errors()
 
 def _get_test_files(dir, extended):
 	for tdir in _DEFAULT_DIRS:
@@ -319,16 +338,30 @@ def _do_test(test):
 		return test
 	return f
 
+def make_test(config, filename):
+	testclass = Test
+	cflags = config.cflags
+	if "C/gnu99/" in filename:
+		testclass = Test
+		cflags += " -std=gnu99"
+	if "C/MS/" in filename:
+		testclass = Test
+		cflags += " --ms"
+	elif "C/should_fail/" in filename:
+		testclass = TestShouldFail
+	elif "C/should_warn/" in filename:
+		testclass = TestShouldWarn
+	elif "C/nowarn/" in filename:
+		testclass = TestShouldNotWarn
+	return testclass(filename, compiler=config.compiler, cflags=cflags, ldflags=config.ldflags)
+
 def makereport(config, tests):
 	queue = list()
 	if not tests:
 		tests = _get_test_files(BASE_DIR, config.extended)
 	# create test futures for parallel evaluation
 	for fname in tests:
-		t = Test(fname,
-			compiler=config.compiler,
-			cflags=config.cflags,
-			ldflags=config.ldflags)
+		t = make_test(config, fname)
 		queue.append(future(_do_test(t)))
 	# start actual work
 	add_worker(config.threads)
