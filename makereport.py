@@ -52,7 +52,15 @@ def load_expectations():
 _EXPECTATIONS = dict(load_expectations())
 
 _OPTS = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
-_OPTS.set_defaults(debug=False, verbose=False, threads=3, compiler="cparser", reportdir="reports/", builddir="build/")
+_OPTS.set_defaults(
+	debug=False,
+	verbose=False,
+	threads=3,
+	compiler="cparser",
+	reportdir="reports/",
+	builddir="build/",
+	cflags="-march=native -O3",
+	ldflags="-lm")
 _OPTS.add_option("-d", "--debug", dest="debug", action="store_true",
 				help="Enable debug messages")
 _OPTS.add_option("-v", "--verbose", dest="verbose", action="store_true",
@@ -61,9 +69,9 @@ _OPTS.add_option("-c", "--compile-times", dest="compile_times", action="store_tr
 				help="Display compile time of each program")
 _OPTS.add_option("-t", "--threads", dest="threads", type="int",
 				help="Number of threads to use")
-_OPTS.add_option("", "--cflags", dest="cflags", default="",
+_OPTS.add_option("", "--cflags", dest="cflags",
 				help="Use CFLAGS to compile test programs", metavar="CFLAGS")
-_OPTS.add_option("", "--ldflags", dest="ldflags", default="",
+_OPTS.add_option("", "--ldflags", dest="ldflags",
 				help="Use LDFLAGS to compile test programs", metavar="LDFLAGS")
 _OPTS.add_option("", "--compiler", dest="compiler",
 				help="Use COMPILER to compile test programs", metavar="COMPILER")
@@ -74,8 +82,6 @@ def file2id(filename):
 	filename = filename.replace("/", "_")
 	return filename
 
-_MANDATORY_CFLAGS = "-v -ffp-strict -std=c99 "
-_MANDATORY_LDFLAGS = "-lm "
 class Test:
 	def __init__(self, filename, environment):
 		environment = deepcopy(environment)
@@ -99,8 +105,6 @@ class Test:
 		self._init_flags()
 	def _init_flags(self):
 		environment = self.environment
-		environment.cflags = _MANDATORY_CFLAGS + environment.cflags
-		environment.ldflags = _MANDATORY_LDFLAGS + environment.ldflags
 		environment.cflags += " -I%s " % os.path.dirname(environment.filename)
 		if not "-O" in environment.cflags:
 			environment.cflags += " -O3 "
