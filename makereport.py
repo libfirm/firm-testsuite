@@ -327,6 +327,8 @@ def makereport(config, tests):
 			r.addTest(test)
 	except KeyboardInterrupt:
 		pass
+	if not os.path.isdir("reports"):
+		os.mkdir("reports")
 	r.writeXML(open("reports/"+_REPORT_NAME+".xml", 'w'))
 	r.printSummary()
 
