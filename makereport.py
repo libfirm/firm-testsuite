@@ -320,6 +320,10 @@ class Report:
 		ET.SubElement(summary, "failed").text = str(self.summary[1])
 		tree = ET.ElementTree(xml)
 		tree.write(fh)
+	def writeFaillog(self, fh, config):
+		for test in self.tests:
+			if test.success: continue
+			fh.write("%-35s %s\n" % (test.id, test.error_msg))
 	def _addTestXML(self, xml, test):
 		fail = not test.success
 		result = ET.SubElement(xml, "result")
@@ -385,6 +389,7 @@ def makereport(config, tests):
 	except KeyboardInterrupt:
 		pass
 	r.writeXML(open(config.reportdir + "/" + _REPORT_NAME + ".xml", 'w'), config)
+	r.writeFaillog(open(config.reportdir + "/" + _REPORT_NAME + ".faillog", 'w'), config)
 	r.printSummary()
 
 def init(config):
