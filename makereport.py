@@ -14,7 +14,7 @@ import optparse
 from datetime import datetime
 from time import time
 import re
-import sys
+import multiprocessing
 
 from futures import future, add_worker
 from shell import silent_shell, execute, SigKill
@@ -57,7 +57,7 @@ _OPTS = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
 _OPTS.set_defaults(
 	debug=False,
 	verbose=False,
-	threads=3,
+	threads=multiprocessing.cpu_count() + 1,
 	compiler="cparser",
 	reportdir="reports/",
 	builddir="build/",
