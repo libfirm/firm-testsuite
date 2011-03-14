@@ -22,8 +22,6 @@ from copy import deepcopy
 
 _DEFAULT_DIRS = [
 	"backend",
-	"x86code",
-	"armcode",
 	"opt",
 	"C",
 	"C/pragmatic",
@@ -34,12 +32,16 @@ _DEFAULT_DIRS = [
 	"ack",
 	"langshootout",
 	"llvm" ]
+_ARCH_DIRS = [
+	"x86code" ]
 _DEBUG = None
 _VERBOSE = None
 _REPORT_NAME = "stats-" +  datetime.now().strftime("%Y.%m.%d")
 _CFLAG_COMMENT = re.compile("/\\*\\$ (.+) \\$\\*/")
 
 def setup_sparc(option, opt_str, value, parser):
+	global _ARCH_DIRS
+	_ARCH_DIRS = []
 	config = parser.values
 	config.cflags += " -mtarget=sparc-linux-gnu"
 	config.ldflags += " -static"
@@ -47,6 +49,8 @@ def setup_sparc(option, opt_str, value, parser):
 	config.expect_file = "fail_expectations_sparc"
 
 def setup_arm(option, opt_str, value, parser):
+	global _ARCH_DIRS
+	_ARCH_DIRS = [ "armcode" ]
 	config = parser.values
 	config.cflags += " -mtarget=arm-linux-gnu"
 	config.ldflags += " -static"
@@ -429,7 +433,7 @@ def makereport(config, tests):
 	init(config)
 	queue = list()
 	if not tests:
-		tests = _DEFAULT_DIRS
+		tests = _DEFAULT_DIRS + _ARCH_DIRS
 
 	if os.path.exists(config.expect_file):
 		global _EXPECTATIONS
