@@ -14,12 +14,11 @@ import optparse
 from datetime import datetime
 from time import time
 import re
+import sys
 
 from futures import future, add_worker
 from shell import silent_shell, execute, SigKill
 from copy import deepcopy
-
-BASE_DIR = os.path.abspath(os.curdir)
 
 _DEFAULT_DIRS = [
 	"backend",
@@ -77,32 +76,28 @@ _OPTS.add_option("", "--ldflags", dest="ldflags",
 _OPTS.add_option("", "--compiler", dest="compiler",
 				help="Use COMPILER to compile test programs", metavar="COMPILER")
 
-def file2id(filename):
-	assert filename.endswith(".c")
-	filename = filename[:-2]
-	filename = filename.replace("/", "_")
-	return filename
+def ensure_dir(name):
+	if not os.path.exists(name):
+		os.mkdir(name)
+	if not os.path.isdir(name):
+		sys.stderr.write("Error: '%s' is not a directory\n" % name)
+		sys.exit(1)
 
 class Test:
 	def __init__(self, filename, environment):
 		environment = deepcopy(environment)
 		self.environment = environment
-		environment.filename = filename
+		self.id = filename
 		self.compile_seconds = -1
 		self.run_seconds = -1
-		assert filename.endswith(".c")
-		self.filename = filename
-		self.name = filename
-		if self.name.startswith(BASE_DIR):
-			self.name = self.name[len(BASE_DIR)+1:]
-		self.id = file2id(self.name)
-		environment.id = self.id
+
+		environment.filename = filename
 		if os.path.isfile(filename+".ref"):
-			self.reference_output = open(filename+".ref").read()
+			environment.reference_output = open(filename+".ref").read()
 		if os.path.isfile(filename+".check"):
 			environment.check_script_filename = filename+".check"
-			environment.asm_file = environment.builddir + "/" + environment.id + ".s"
-		environment.executable = environment.builddir + "/" + environment.id + ".exe"
+			environment.asm_file = environment.builddir + "/" + environment.filename + ".s"
+		environment.executable = environment.builddir + "/" + environment.filename + ".exe"
 		self._init_flags()
 	def _init_flags(self):
 		environment = self.environment
@@ -116,9 +111,15 @@ class Test:
 			m = _CFLAG_COMMENT.match(line)
 			if m:
 				environment.cflags += m.group(1)
+	def _prepare(self):
+		environment = self.environment
+		if hasattr(environment, "asm_file"):
+			ensure_dir(os.path.dirname(environment.asm_file))
+		ensure_dir(os.path.dirname(environment.executable))
 	def run(self):
 		self.success = False
 		self.error_msg = ""
+		self._prepare()
 		c = self._test_compile()
 		if not c: return
 		c = self.check_compiler_errors()
@@ -139,7 +140,8 @@ class Test:
 		return True
 	def _test_reference_output(self):
 		"""Run test program and compare output to reference"""
-		if hasattr(self, 'reference_output'):
+		environment = self.environment
+		if hasattr(environment, 'reference_output'):
 			start = time()
 			r = self.check_reference()
 			self.run_seconds = time() - start
@@ -229,7 +231,7 @@ class Test:
 			return False
 
 		# Program run succeeded. Now compare output with reference.
-		ref = self.reference_output.splitlines()
+		ref = environment.reference_output.splitlines()
 		diff = "\n".join(difflib.unified_diff(out.splitlines(), ref))
 		if diff == "":
 			return True
@@ -328,7 +330,6 @@ class Report:
 		fail = not test.success
 		result = ET.SubElement(xml, "result")
 		result.set("id", test.id)
-		result.set("name", test.environment.filename)
 		result.set("ok", str(int(test.success)))
 		result.set("error", test.error_msg)
 		result.set("run_seconds", "%.2f" % (test.run_seconds))
@@ -395,13 +396,8 @@ def makereport(config, tests):
 	r.printSummary()
 
 def init(config):
-	for dir in [config.reportdir, config.builddir]:
-		if not os.path.exists(dir):
-			sys.stderr.write("Createing dir '%s'\n" % dir)
-			os.mkdir(dir)
-		if not os.path.isdir(dir):
-			sys.stderr.write("Error: '%s' is not a directory\n" % dir)
-			sys.exit(1)
+	ensure_dir(config.reportdir)
+	ensure_dir(config.builddir)
 
 if __name__ == "__main__":
 	options, args = _OPTS.parse_args()
