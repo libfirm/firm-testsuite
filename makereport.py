@@ -300,21 +300,23 @@ def load_expectations(filename):
 _EXPECTATIONS = {}
 
 _CONSOLE_RED = "\033[1;31m"
+_CONSOLE_GREEN = "\033[1;32m"
 _CONSOLE_YELLOW = "\033[0;33m"
 _CONSOLE_BOLD = "\033[1m"
 _CONSOLE_NORMAL = "\033[m"
 def console_output(test, compile_times):
 	timing = ""
+	prefix = ""
 	if compile_times:
 		timing = " [%s%.2fs%s]" % (_CONSOLE_YELLOW, test.compile_seconds, _CONSOLE_NORMAL)
 	if test.success:
-		if _VERBOSE:
-			print "%-37s%s" % (test.id, timing)
-	else:
+		if test.id in _EXPECTATIONS:
+			prefix = _CONSOLE_GREEN
+		elif not _VERBOSE:
+			return
+	elif not test.id in _EXPECTATIONS or test.error_msg != _EXPECTATIONS[test.id]:
 		prefix = _CONSOLE_RED
-		if test.id in _EXPECTATIONS and test.error_msg == _EXPECTATIONS[test.id]:
-			prefix = ""
-		print "%s%-35s %s%s%s" % (prefix, test.id, test.error_msg, _CONSOLE_NORMAL, timing)
+	print "%s%-35s %s%s%s" % (prefix, test.id, test.error_msg, _CONSOLE_NORMAL, timing)
 
 class Report:
 	def __init__(self):
