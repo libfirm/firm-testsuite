@@ -349,18 +349,20 @@ def _do_test(test):
 def make_test(environment, filename):
 	testclass = Test
 	environment = deepcopy(environment)
-	if "C/gnu99/" in filename:
-		testclass = Test
+	if filename.startswith("C/gnu99"):
 		environment.cflags += " -std=gnu99"
-	if "C/MS/" in filename:
-		testclass = Test
+	elif filename.startswith("C/MS"):
 		environment.cflags += " --ms"
-	elif "C/should_fail/" in filename:
+	elif filename.startswith("C/"):
+		environment.cflags += " -std=c99"
+
+	if "C/should_fail/" in filename:
 		testclass = TestShouldFail
 	elif "C/should_warn/" in filename:
 		testclass = TestShouldWarn
 	elif "C/nowarn/" in filename:
 		testclass = TestShouldNotWarn
+
 	return testclass(filename, environment)
 
 def makereport(config, tests):
