@@ -37,19 +37,21 @@ _DEFAULT_DIRS = [
 _DEBUG = None
 _VERBOSE = None
 _REPORT_NAME = "stats-" +  datetime.now().strftime("%Y.%m.%d")
-_EXPECT_FILE = os.path.abspath("fail_expectations")
 _CFLAG_COMMENT = re.compile("/\\*\\$ (.+) \\$\\*/")
 
-def load_expectations():
-	for line in open(_EXPECT_FILE):
-		try:
-			i = line.index(" ")
-		except ValueError:
-			continue
-		test_id = line[:i]
-		error_msg = line[i:].strip()
-		yield test_id, error_msg
-_EXPECTATIONS = dict(load_expectations())
+def setup_sparc(option, opt_str, value, parser):
+	config = parser.values
+	config.cflags += " -mtarget=sparc-linux-gnu"
+	config.ldflags += " -static"
+	config.runexe += "qemu-sparc32plus "
+	config.expect_file = "fail_expectations_sparc"
+
+def setup_arm(option, opt_str, value, parser):
+	config = parser.values
+	config.cflags += " -mtarget=arm-linux-gnu"
+	config.ldflags += " -static"
+	config.runexe += "qemu-arm "
+	config.expect_file = "fail_expectations_arm"
 
 _OPTS = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
 _OPTS.set_defaults(
@@ -60,7 +62,9 @@ _OPTS.set_defaults(
 	reportdir="reports/",
 	builddir="build/",
 	cflags="-march=native -O3",
-	ldflags="-lm")
+	ldflags="-lm",
+	expect_file="fail_expectations",
+	runexe="")
 _OPTS.add_option("-d", "--debug", dest="debug", action="store_true",
 				help="Enable debug messages")
 _OPTS.add_option("-v", "--verbose", dest="verbose", action="store_true",
@@ -75,6 +79,8 @@ _OPTS.add_option("", "--ldflags", dest="ldflags",
 				help="Use LDFLAGS to compile test programs", metavar="LDFLAGS")
 _OPTS.add_option("", "--compiler", dest="compiler",
 				help="Use COMPILER to compile test programs", metavar="COMPILER")
+_OPTS.add_option("", "--sparc", action="callback", callback=setup_sparc)
+_OPTS.add_option("", "--arm", action="callback", callback=setup_arm)
 
 def ensure_dir(name):
 	if not os.path.exists(name):
@@ -201,6 +207,9 @@ class Test:
 			elif "linker reported an error" in line:
 				self.error_msg = "linker error"
 				return False
+			elif "assembler reported an error" in line:
+				self.error_msg = "assembler error"
+				return False
 		return True
 	def check_compiler_errors(self):
 		if len(self.errors) > 0:
@@ -221,7 +230,7 @@ class Test:
 		try:
 			out, err, retcode = execute(environment.executable, timeout=30)
 			if retcode != 0:
-				self.error_msg = "Return code not zero but %d" % retcode
+				self.error_msg = "Test return code not zero but %d" % retcode
 				return False
 		except SigKill, e:
 			self.error_msg = "execution %s (SIG %d)" % (e.name, -e.retcode)
@@ -278,6 +287,17 @@ class TestShouldNotWarn(Test):
 			self.error_msg = "compiler produced invalid warning"
 			return False
 		return Test.check_compiler_errors(self)
+
+def load_expectations(filename):
+	for line in open(filename):
+		try:
+			i = line.index(" ")
+		except ValueError:
+			continue
+		test_id = line[:i]
+		error_msg = line[i:].strip()
+		yield test_id, error_msg
+_EXPECTATIONS = {}
 
 _CONSOLE_RED = "\033[1;31m"
 _CONSOLE_YELLOW = "\033[0;33m"
@@ -371,6 +391,10 @@ def makereport(config, tests):
 	queue = list()
 	if not tests:
 		tests = _DEFAULT_DIRS
+
+	if os.path.exists(config.expect_file):
+		global _EXPECTATIONS
+		_EXPECTATIONS = dict(load_expectations(config.expect_file))
 	# create test futures for parallel evaluation
 	for test in tests:
 		if os.path.isdir(test):
