@@ -83,8 +83,10 @@ _OPTS.add_option("", "--sparc", action="callback", callback=setup_sparc)
 _OPTS.add_option("", "--arm", action="callback", callback=setup_arm)
 
 def ensure_dir(name):
-	if not os.path.exists(name):
+	try:
 		os.mkdir(name)
+	except Exception:
+		pass
 	if not os.path.isdir(name):
 		sys.stderr.write("Error: '%s' is not a directory\n" % name)
 		sys.exit(1)
