@@ -140,9 +140,9 @@ class Test:
 		self.success = True
 	def _test_compile(self):
 		"""Compile the test program"""
+		start = time()
 		c = self.compile()
-		if not c: return c
-		c = self.parse_compiler_output()
+		self.compile_seconds = time() - start
 		if not c: return c
 		self.long_error_msg = "\n".join((self.compile_command, self.compiling))
 		return True
@@ -177,14 +177,15 @@ class Test:
 		cmd = "%(compiler)s %(filename)s %(cflags)s %(ldflags)s -o %(executable)s" % environment.__dict__
 		self.compile_command = cmd
 		self.compiling = ""
-		start = time()
 		try:
 			self.compile_out, self.compile_err, self.compile_retcode = execute(cmd, timeout=30)
 		except SigKill, e:
 			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
 			return False
-		finally:
-			self.compile_seconds = time() - start
+
+		c = self.parse_compiler_output()
+		if not c: return c
+
 		return True
 
 	def parse_compiler_output(self):
@@ -290,6 +291,38 @@ class TestShouldNotWarn(Test):
 			return False
 		return Test.check_compiler_errors(self)
 
+class TestJava(Test):
+	def __init__(self, filename, environment):
+		Test.__init__(self, filename, environment)
+	def _init_flags(self):
+		Test._init_flags(self)
+		environment = self.environment
+		if not hasattr(environment, "bytecodec"):
+			environment.bytecodec = "bytecode2firm"
+			environment.bytecodecflags = ""
+		environment.bytecodecflags += "-cp %s" % os.path.dirname(environment.filename)
+		environment.mainclass = os.path.basename(environment.filename[:-6])
+	def compile(self):
+		environment = self.environment
+		cmd = "%(bytecodec)s %(bytecodecflags)s %(mainclass)s -o %(executable)s" % environment.__dict__
+		self.compile_command = cmd
+		self.compiling = ""
+		print cmd
+		try:
+			self.compile_out, self.compile_err, self.compile_retcode = execute(cmd, timeout=30)
+		except SigKill, e:
+			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
+			return False
+		return True
+	def check_compiler_errors(self):
+		if self.compile_retcode != 0:
+			self.error_msg = "compilation not ok (returncode %d)" % self.compile_retcode
+			return False
+		return True
+	def _compile_asm(self):
+		self.error_msg = "bytecode->asm not implemented yet"
+		return False
+
 def load_expectations(filename):
 	for line in open(filename):
 		try:
@@ -387,6 +420,8 @@ def make_test(environment, filename):
 		testclass = TestShouldWarn
 	elif "C/nowarn/" in filename:
 		testclass = TestShouldNotWarn
+	elif "bytecode2firm/" in filename:
+		testclass = TestJava
 
 	return testclass(filename, environment)
 
