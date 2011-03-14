@@ -200,11 +200,11 @@ class Test:
 				return False
 		return True
 	def check_compiler_errors(self):
-		if self.compile_retcode != 0:
-			self.error_msg = "compilation not ok (returncode %d)" % self.compile_retcode
-			return False
 		if len(self.errors) > 0:
 			self.error_msg = "%d compile errors" % len(self.errors)
+			return False
+		if self.compile_retcode != 0:
+			self.error_msg = "compilation not ok (returncode %d)" % self.compile_retcode
 			return False
 		return True
 	def _compile_asm(self):
