@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
 
-#ifdef __i386__
 static inline unsigned char inb(const unsigned short port)
 {
     unsigned char val;
@@ -56,14 +55,10 @@ void inc2(int *v)
 	__asm__("incl %0" : "+m" (*v) : : "cc");
 }
 
-#if 1
 typedef struct kernel_fd_set {
 	int bla;
 	int blup;
 } kernel_fd_set;
-#else
-typedef int kernel_fd_set;
-#endif
 
 void fd_set(int fd, kernel_fd_set* set) {
 	__asm__("btsl %1,%0" : "=m" (*(set)) : "r" (fd) : "cc");
@@ -103,13 +98,3 @@ int main()
 
 	return mov_noeax(0);
 }
-
-#else
-
-int main()
-{
-	printf("Warning: asmtest only work on x86\n");
-	return 0;
-}
-
-#endif
