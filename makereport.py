@@ -6,6 +6,7 @@ Makereport (ported from makereport.sh)
 from glob import iglob as glob
 from threading import Thread
 import os
+import sys
 import time
 import xml.etree.ElementTree as ET
 import difflib
@@ -359,6 +360,7 @@ def make_test(environment, filename):
 	return testclass(filename, environment)
 
 def makereport(config, tests):
+	init(config)
 	queue = list()
 	if not tests:
 		tests = _DEFAULT_DIRS
@@ -388,8 +390,8 @@ def makereport(config, tests):
 def init(config):
 	for dir in [config.reportdir, config.builddir]:
 		if not os.path.exists(dir):
-			sys.write("Createing reportdir '%s'\n" % dir)
-			os.path.mkdir(dir)
+			sys.stderr.write("Createing dir '%s'\n" % dir)
+			os.mkdir(dir)
 		if not os.path.isdir(dir):
 			sys.stderr.write("Error: '%s' is not a directory\n" % dir)
 			sys.exit(1)
