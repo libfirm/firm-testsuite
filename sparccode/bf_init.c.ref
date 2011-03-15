@@ -1,0 +1,18 @@
+
+ffffffff
+800c0004
+a0ff0000
+00000000
+40120000
+00000000
+80800000
+00000000
+
+sizeof mybf 32
+int a (expected -1): -1
+unsigned x:13 (expected 4097): 4097
+unsigned y:17 (expected 65537): 65537
+unsigned y:3 (expected 5): 5
+unsigned char c (expected ff): ff
+double d (expected 4.5): 4.5
+unsigned w:9 (expected 257): 257
