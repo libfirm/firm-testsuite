@@ -22,6 +22,7 @@ _EXIT_CODES = {
 	-13: "broken pipe",
 	-14: "timeout",
 	-15: "termination",
+	-24: "timeout",
 }
 
 def execute(cmd, env=None, timeout=0):
