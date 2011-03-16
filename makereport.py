@@ -185,6 +185,7 @@ class Test:
 			self.compile_out, self.compile_err, self.compile_retcode = execute(cmd, timeout=30)
 		except SigKill, e:
 			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
+			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
 			return False
 
 		c = self.parse_compiler_output()
