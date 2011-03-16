@@ -1,10 +1,9 @@
 backend/asm_test10.c                compiler aborted (SIG 6)
 opt/compilerhang3.c                 execution aborted (SIG 6)
 opt/fehler132.c                     compiler aborted (SIG 6)
-opt/fehler159.c                     compiler segfault (SIG 11)
+opt/fehler159.c                     execution timeout (SIG 24)
 C/mini_complex.c                    compiler aborted (SIG 6)
 C/universal_character.c             21 compile errors
-C/unkept_loop.c                     compiler segfault (SIG 11)
 C/should_fail/anonunion.c           compiler missed error
 C/should_fail/array2.c              compiler missed error
 C/should_fail/array4.c              compiler missed error
