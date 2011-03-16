@@ -8,6 +8,7 @@ int test(void)
 	return 0;
 }
 
-int main(void) {
+int main(void)
+{
 	return 0;
 }
