@@ -62,6 +62,7 @@ _OPTS.set_defaults(
 	debug=False,
 	verbose=False,
 	threads=multiprocessing.cpu_count() + 1,
+	show_disappeared=False,
 	compiler="cparser",
 	reportdir="reports/",
 	builddir="build/",
@@ -70,19 +71,23 @@ _OPTS.set_defaults(
 	expect_file="fail_expectations",
 	runexe="")
 _OPTS.add_option("-d", "--debug", dest="debug", action="store_true",
-				help="Enable debug messages")
+                 help="Enable debug messages")
 _OPTS.add_option("-v", "--verbose", dest="verbose", action="store_true",
-				help="More output")
-_OPTS.add_option("-c", "--compile-times", dest="compile_times", action="store_true",
-				help="Display compile time of each program")
+                 help="More output")
+_OPTS.add_option("-c", "--compile-times", dest="compile_times",
+                 action="store_true",
+                 help="Display compile time of each program")
 _OPTS.add_option("-t", "--threads", dest="threads", type="int",
-				help="Number of threads to use")
+                 help="Number of threads to use")
 _OPTS.add_option("", "--cflags", dest="cflags",
-				help="Use CFLAGS to compile test programs", metavar="CFLAGS")
+                 help="Use CFLAGS to compile test programs", metavar="CFLAGS")
 _OPTS.add_option("", "--ldflags", dest="ldflags",
-				help="Use LDFLAGS to compile test programs", metavar="LDFLAGS")
+                 help="Use LDFLAGS to compile test programs", metavar="LDFLAGS")
 _OPTS.add_option("", "--compiler", dest="compiler",
-				help="Use COMPILER to compile test programs", metavar="COMPILER")
+                 help="Use COMPILER to compile test programs",
+                 metavar="COMPILER")
+_OPTS.add_option("", "--show-disappeared", dest="show_disappeared",
+                 action="store_true", help="show disappeared tests")
 _OPTS.add_option("", "--sparc", action="callback", callback=setup_sparc)
 _OPTS.add_option("", "--arm", action="callback", callback=setup_arm)
 
@@ -130,7 +135,7 @@ class Test:
 		ensure_dir(os.path.dirname(environment.executable))
 	def run(self):
 		self.success = False
-		self.error_msg = ""
+		self.error_msg = "ok"
 		self._prepare()
 		c = self._test_compile()
 		if not c: return
@@ -349,13 +354,14 @@ def console_output(test, compile_times):
 	prefix = ""
 	if compile_times:
 		timing = " [%s%.2fs%s]" % (_CONSOLE_YELLOW, test.compile_seconds, _CONSOLE_NORMAL)
-	if test.success:
-		if test.id in _EXPECTATIONS:
-			prefix = _CONSOLE_GREEN
-		elif not _VERBOSE:
+	if test.id in _EXPECTATIONS and test.error_msg == _EXPECTATIONS[test.id]:
+		if test.success and not _VERBOSE:
 			return
-	elif not test.id in _EXPECTATIONS or test.error_msg != _EXPECTATIONS[test.id]:
-		prefix = _CONSOLE_RED
+	else:
+		if test.success:
+			prefix = _CONSOLE_GREEN
+		else:
+			prefix = _CONSOLE_RED
 	print "%s%-35s %s%s%s" % (prefix, test.id, test.error_msg, _CONSOLE_NORMAL, timing)
 
 class Report:
@@ -386,7 +392,6 @@ class Report:
 		tree.write(fh)
 	def writeFaillog(self, fh, config):
 		for test in self.tests:
-			if test.success: continue
 			fh.write("%-35s %s\n" % (test.id, test.error_msg))
 	def _addTestXML(self, xml, test):
 		fail = not test.success
@@ -453,10 +458,17 @@ def makereport(config, tests):
 	# collect report
 	r = Report()
 	try:
+		found = {}
 		for promise in queue:
 			test = promise.force()
+			found[test.id] = True
 			console_output(test, options.compile_times)
 			r.addTest(test)
+		if config.show_disappeared:
+			for t in _EXPECTATIONS:
+				if t not in found:
+					print "%s%-35s %s%s" % (_CONSOLE_RED, t, "test disappeared", _CONSOLE_NORMAL)
+
 	except KeyboardInterrupt:
 		pass
 	r.writeXML(open(config.reportdir + "/" + _REPORT_NAME + ".xml", 'w'), config)
