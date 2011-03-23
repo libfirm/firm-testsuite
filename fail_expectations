@@ -236,7 +236,7 @@ opt/fehler100.c                     ok
 opt/fehler101.c                     ok
 opt/fehler102.c                     ok
 opt/fehler103.c                     ok
-opt/fehler159.c                     compiler segfault (SIG 11)
+opt/fehler159.c                     execution kill (SIG 9)
 opt/fehler105.c                     ok
 opt/fehler106.c                     ok
 opt/fehler107.c                     ok
@@ -536,7 +536,7 @@ C/switch.c                          ok
 C/tarval_sign_error.c               ok
 C/union_init.c                      ok
 C/universal_character.c             21 compile errors
-C/unkept_loop.c                     compiler segfault (SIG 11)
+C/unkept_loop.c                     ok
 C/utf8input.c                       ok
 C/vla.c                             ok
 C/whiles.c                          ok
