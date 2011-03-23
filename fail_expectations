@@ -20,6 +20,7 @@ backend/fdiv.c                      ok
 backend/float_ret_sse.c             ok
 backend/floatset.c                  ok
 backend/longfunc.c                  ok
+backend/longlongptr.c               output mismatch
 backend/optest.c                    ok
 backend/optest_float.c              ok
 backend/pic_const.c                 ok
