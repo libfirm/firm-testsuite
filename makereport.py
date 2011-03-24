@@ -166,8 +166,9 @@ class Test:
 		return True
 	def _test_check_script(self):
 		"""Execute check script"""
+		environment = self.environment
 		self.long_error_msg = ""
-		if hasattr(self, 'check_script_filename'):
+		if hasattr(environment, 'check_script_filename'):
 			s = self.check_script()
 			if not s:
 				self.error_msg = "check script failed"
