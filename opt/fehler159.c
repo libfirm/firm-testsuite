@@ -1,4 +1,4 @@
-/*$  -fgvn-pre -fno-gcse $*/
+/*$  -fgvn-pre $*/
 
 #include "rand.h"
 

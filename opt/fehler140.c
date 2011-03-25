@@ -1,4 +1,4 @@
-/*$ -fgvn-pre -fno-gcse $*/
+/*$ -fgvn-pre $*/
 char arr[256];
 char X;
 
