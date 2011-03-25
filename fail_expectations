@@ -30,6 +30,7 @@ backend/am_test3.c                  ok
 backend/optest_float.c              ok
 backend/am_test_float2.c            ok
 backend/longlongptr.c               output mismatch
+backend/fehler_mux_am.c             ok
 opt/Bucmp.c                         ok
 opt/HeapSort.c                      ok
 opt/jumpthreading2.c                ok
