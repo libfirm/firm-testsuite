@@ -448,7 +448,7 @@ def makereport(config, tests):
 	# create test futures for parallel evaluation
 	for test in tests:
 		if os.path.isdir(test):
-			for fname in glob("%s/*.c" % test):
+			for fname in sorted(glob("%s/*.c" % test)):
 				t = make_test(config, fname)
 				queue.append(future(_do_test(t)))
 		else:
