@@ -228,6 +228,8 @@ opt/fehler068.c                     ok
 opt/fehler013.c                     ok
 opt/MergeSort.c                     ok
 opt/fehler007.c                     ok
+opt/fehler_no_equality_0.c          ok
+opt/fehler_gt_0.c                   ok
 opt/func_arg.c                      ok
 opt/fehler127.c                     ok
 opt/fehler120.c                     ok
