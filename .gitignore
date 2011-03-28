@@ -3,6 +3,7 @@
 *.pyc
 *.s
 *.vcg
+*.exe
 /build
 /reports
 a.out
