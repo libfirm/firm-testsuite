@@ -712,6 +712,7 @@ C/gnu99/computed_goto.c             linker error
 C/gnu99/construct_destruct.c        ok
 C/gnu99/cp_error059.c               compiler aborted (SIG 6)
 C/gnu99/cp_error064.c               ok
+C/gnu99/csmith3.c                   compiler aborted (SIG 6)
 C/gnu99/emptystruct.c               ok
 C/gnu99/escape.c                    ok
 C/gnu99/extension_in_for_init.c     ok
