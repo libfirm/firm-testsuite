@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 	OP *o = ptr;
 
 	if(!o || o->op_seq)
-		return;
+		return 0;
 	printf("%d\n", o->op_seq);
 	rand();
 

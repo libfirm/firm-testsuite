@@ -284,7 +284,7 @@ opt/fehler154.c                     ok
 opt/fehler155.c                     ok
 opt/fehler157.c                     ok
 opt/fehler158.c                     ok
-opt/fehler159.c                     execution kill (SIG 9)
+opt/fehler159.c                     ok
 opt/fehler160.c                     ok
 opt/fehler161.c                     ok
 opt/fehler162.c                     ok

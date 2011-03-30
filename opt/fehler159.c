@@ -1,5 +1,4 @@
-/*$  -fgvn-pre $*/
-
+/* gvn-pre failed for this */
 #include "rand.h"
 
 int test()
@@ -21,5 +20,5 @@ int test()
 
 int main(void)
 {
-	return test() != 23;
+	return !(test() != 23);
 }

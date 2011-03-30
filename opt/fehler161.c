@@ -1,4 +1,3 @@
-/*$ -O4 -march=core2 $*/
 #include <alloca.h>
 
 extern void puts(const char *text);

@@ -6,7 +6,7 @@ int main(int argc, char **argv) {
 	return 0;
 }
 
-unsigned rot(unsigned x, unsigned y)
+int rot(unsigned x, unsigned y)
 {
 	return x << y | x >> (32-y);
 }
