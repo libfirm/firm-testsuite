@@ -1,3 +1,4 @@
+/*$ -fif-conversion $*/
 extern int printf(const char *str, ...);
 
 /* some variations of the doz pattern */
