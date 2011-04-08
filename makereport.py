@@ -193,7 +193,10 @@ class Test:
 			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
 			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
 			return False
-
+		except OSError, e:
+			self.error_msg = "compilation failed (%s)" % (e.strerror)
+			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
+			return False
 		c = self.parse_compiler_output()
 		if not c: return c
 
