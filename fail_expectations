@@ -20,7 +20,7 @@ backend/fdiv.c                      ok
 backend/fehler_mux_am.c             ok
 backend/float_ret_sse.c             ok
 backend/floatset.c                  ok
-backend/initializer_bug.c           compiler aborted (SIG 6)
+backend/initializer_bug.c           ok
 backend/longfunc.c                  ok
 backend/longlongptr.c               output mismatch
 backend/optest.c                    ok
