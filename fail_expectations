@@ -309,7 +309,7 @@ opt/fehler179.c                     ok
 opt/fehler180.c                     ok
 opt/fehler181.c                     ok
 opt/fehler182.c                     ok
-opt/fehler183.c                     compiler aborted (SIG 6)
+opt/fehler183.c                     ok
 opt/fehler184.c                     ok
 opt/fehler185.c                     ok
 opt/fehler_gt_0.c                   ok
