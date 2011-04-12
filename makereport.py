@@ -66,7 +66,7 @@ _OPTS.set_defaults(
 	compiler="cparser",
 	reportdir="reports/",
 	builddir="build/",
-	cflags="-march=native -O3",
+	cflags="-march=native -O3 -std=c99",
 	ldflags="-lm",
 	expect_file="fail_expectations",
 	runexe="")
