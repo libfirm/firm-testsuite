@@ -312,6 +312,7 @@ opt/fehler182.c                     ok
 opt/fehler183.c                     ok
 opt/fehler184.c                     ok
 opt/fehler185.c                     ok
+opt/fehler186.c                     execution segfault (SIG 11)
 opt/fehler_gt_0.c                   ok
 opt/fehler_no_equality_0.c          ok
 opt/fib.c                           ok
