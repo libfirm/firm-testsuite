@@ -17,9 +17,12 @@ backend/builtin_parity.c            compiler aborted (SIG 6)
 backend/builtin_popcount.c          compiler aborted (SIG 6)
 backend/cmovs.c                     ok
 backend/fdiv.c                      compiler aborted (SIG 6)
+backend/fehler_mux_am.c             ok
 backend/float_ret_sse.c             compiler aborted (SIG 6)
 backend/floatset.c                  compiler aborted (SIG 6)
+backend/initializer_bug.c           compiler aborted (SIG 6)
 backend/longfunc.c                  ok
+backend/longlongptr.c               compiler aborted (SIG 6)
 backend/optest.c                    ok
 backend/optest_float.c              compiler aborted (SIG 6)
 backend/pic_const.c                 compiler aborted (SIG 6)
@@ -27,7 +30,8 @@ backend/prefetch.c                  compiler aborted (SIG 6)
 backend/sparc_bitopcc.c             ok
 backend/sparc_immediates.c          ok
 backend/stackarray.c                ok
-backend/transform_loop.c            compiler aborted (SIG 6)
+backend/tls_ptr.c                   compiler aborted (SIG 6)
+backend/transform_loop.c            ok
 opt/20001212-1.c                    compiler segfault (SIG 11)
 opt/Args.c                          ok
 opt/Arrays.c                        ok
@@ -80,13 +84,11 @@ opt/addr_test.c                     compiler aborted (SIG 6)
 opt/alloca.c                        compiler aborted (SIG 6)
 opt/andtest.c                       ok
 opt/apfel.c                         compiler aborted (SIG 6)
-opt/arr_init.c                      ok
 opt/apfel_readable.c                compiler aborted (SIG 6)
+opt/arr_init.c                      ok
 opt/array_type.c                    ok
 opt/bad.c                           compiler aborted (SIG 6)
 opt/bf_constfold.c                  ok
-opt/fehler067.c                     output mismatch
-opt/fehler120.c                     ok
 opt/biggest_prime.c                 ok
 opt/bitfield.c                      ok
 opt/bittest.c                       ok
@@ -198,6 +200,7 @@ opt/fehler063.c                     ok
 opt/fehler064.c                     ok
 opt/fehler065.c                     compiler aborted (SIG 6)
 opt/fehler066.c                     compiler aborted (SIG 6)
+opt/fehler067.c                     output mismatch
 opt/fehler068.c                     compiler aborted (SIG 6)
 opt/fehler069.c                     ok
 opt/fehler070.c                     ok
@@ -234,7 +237,6 @@ opt/fehler100.c                     ok
 opt/fehler101.c                     compiler aborted (SIG 6)
 opt/fehler102.c                     ok
 opt/fehler103.c                     compiler aborted (SIG 6)
-opt/fehler159.c                     execution kill (SIG 9)
 opt/fehler105.c                     ok
 opt/fehler106.c                     compiler aborted (SIG 6)
 opt/fehler107.c                     compiler aborted (SIG 6)
@@ -249,6 +251,7 @@ opt/fehler116.c                     ok
 opt/fehler117.c                     compiler aborted (SIG 6)
 opt/fehler118.c                     ok
 opt/fehler119.c                     ok
+opt/fehler120.c                     ok
 opt/fehler121.c                     ok
 opt/fehler122.c                     ok
 opt/fehler123.c                     ok
@@ -282,6 +285,7 @@ opt/fehler154.c                     Test return code not zero but 1
 opt/fehler155.c                     ok
 opt/fehler157.c                     compiler aborted (SIG 6)
 opt/fehler158.c                     ok
+opt/fehler159.c                     ok
 opt/fehler160.c                     ok
 opt/fehler161.c                     compiler aborted (SIG 6)
 opt/fehler162.c                     compiler segfault (SIG 11)
@@ -304,12 +308,19 @@ opt/fehler178.c                     ok
 opt/fehler179.c                     ok
 opt/fehler180.c                     ok
 opt/fehler181.c                     ok
+opt/fehler182.c                     compiler aborted (SIG 6)
+opt/fehler183.c                     ok
+opt/fehler184.c                     ok
+opt/fehler185.c                     ok
+opt/fehler186.c                     ok
+opt/fehler187.c                     ok
+opt/fehler_gt_0.c                   ok
+opt/fehler_no_equality_0.c          ok
 opt/fib.c                           ok
 opt/fib_iter.c                      ok
 opt/fisttp.c                        compiler aborted (SIG 6)
 opt/float_if.c                      compiler aborted (SIG 6)
 opt/func_arg.c                      ok
-opt/functest.c                      ok
 opt/gcd.c                           ok
 opt/gcd_bench.c                     ok
 opt/gcentities.c                    ok
@@ -482,6 +493,8 @@ C/cp_error062.c                     ok
 C/cp_error063.c                     ok
 C/cp_error064.c                     ok
 C/cp_error065.c                     ok
+C/csmith1.c                         ok
+C/csmith2.c                         ok
 C/declarator_special.c              ok
 C/designators.c                     ok
 C/designators2.c                    ok
@@ -576,6 +589,9 @@ C/should_fail/decl_without_name.c   ok
 C/should_fail/enum_forward.c        ok
 C/should_fail/error_directive.c     ok
 C/should_fail/f.c                   ok
+C/should_fail/float_and.c           ok
+C/should_fail/float_or.c            ok
+C/should_fail/float_xor.c           ok
 C/should_fail/forscope.c            ok
 C/should_fail/funcassign.c          ok
 C/should_fail/function_return.c     ok
@@ -615,7 +631,6 @@ C/should_fail/pointerarith3.c       ok
 C/should_fail/pointerarith4.c       ok
 C/should_fail/pointerarith5.c       ok
 C/should_fail/randprog1.c           ok
-C/should_fail/t.c                   compiler missed error
 C/should_fail/segfault1.c           ok
 C/should_fail/segfault2.c           ok
 C/should_fail/segfault4.c           ok
@@ -629,6 +644,7 @@ C/should_fail/suffix1.c             ok
 C/should_fail/suffix2.c             ok
 C/should_fail/suffix3.c             ok
 C/should_fail/switches.c            ok
+C/should_fail/t.c                   compiler missed error
 C/should_fail/transparent_union2.c  compiler aborted (SIG 6)
 C/should_fail/typedef_enum.c        ok
 C/should_fail/typedef_in_expr.c     ok
@@ -641,9 +657,6 @@ C/should_fail/unspec_params.c       ok
 C/should_fail/voidarray.c           ok
 C/should_fail/weird_label.c         compiler aborted (SIG 6)
 C/should_fail/wrongtype.c           ok
-C/should_fail/float_and.c           ok
-C/should_fail/float_or.c            ok
-C/should_fail/float_xor.c           ok
 C/should_warn/cast_qual.c           ok
 C/should_warn/cp_error025.c         compiler missed warnings
 C/should_warn/div_by_zero.c         ok
@@ -722,10 +735,13 @@ C/gnu99/omitted_cond.c              ok
 C/gnu99/packed.c                    ok
 C/gnu99/packed_bf.c                 ok
 C/gnu99/pointerarith.c              ok
+C/gnu99/pretty_function.c           ok
 C/gnu99/printfm.c                   ok
 C/gnu99/redirect.c                  ok
 C/gnu99/redirect_nowarn.c           ok
+C/gnu99/sizeof_function.c           ok
 C/gnu99/strangeattr.c               ok
+C/gnu99/tcctest.c                   2 compile errors
 C/gnu99/transparent_union.c         compiler aborted (SIG 6)
 C/gnu99/transparent_union3.c        compiler aborted (SIG 6)
 C/gnu99/typeof.c                    ok
@@ -733,14 +749,12 @@ C/gnu99/typeprop_funcs.c            ok
 C/gnu99/union_cast.c                2 compile errors
 C/gnu99/unused_label.c              4 compile errors
 C/gnu99/void_pointer_arithmetic.c   ok
-C/gnu99/tcctest.c                   2 compile errors
-C/gnu99/sizeof_function.c           ok
 ack/ack_conv.c                      compiler aborted (SIG 6)
 ack/decl.c                          ok
 ack/init.c                          compiler aborted (SIG 6)
 ack/ops.c                           ok
 ack/str.c                           compiler segfault (SIG 11)
-ack/t7.c                            ok
+ack/t7.c                            compiler aborted (SIG 6)
 ack/test.c                          compiler aborted (SIG 6)
 ack/test1.c                         compiler aborted (SIG 6)
 ack/test2.c                         ok
@@ -765,9 +779,9 @@ llvm/2003-06-16-VolatileError.c     ok
 llvm/2003-10-12-GlobalVarInitializers.c compiler aborted (SIG 6)
 llvm/2004-02-03-AggregateCopy.c     ok
 llvm/2004-08-12-InlinerAndAllocas.c compiler aborted (SIG 6)
-llvm/DuffsDevice.c                  ok
 llvm/2005-05-06-LongLongSignedShift.c compiler aborted (SIG 6)
 llvm/ConstructorDestructorAttributes.c ok
+llvm/DuffsDevice.c                  ok
 llvm/PR491.c                        ok
 llvm/PR640.c                        compiler aborted (SIG 6)
 llvm/badidx.c                       ok
@@ -782,6 +796,6 @@ llvm/sumarray2d.c                   ok
 llvm/sumarraymalloc.c               ok
 llvm/test_indvars.c                 compiler aborted (SIG 6)
 llvm/testtrace.c                    ok
-sparccode/fehler104.c               ok
 sparccode/bf_init.c                 compiler aborted (SIG 6)
 sparccode/bf_localinit.c            compiler aborted (SIG 6)
+sparccode/fehler104.c               ok
