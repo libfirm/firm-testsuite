@@ -101,6 +101,11 @@ def ensure_dir(name):
 		sys.stderr.write("Error: '%s' is not a directory\n" % name)
 		sys.exit(1)
 
+def my_execute(cmd, env=None, timeout=0):
+	if _DEBUG:
+		print(cmd)
+	return execute(cmd,env,timeout)
+
 class Test:
 	def __init__(self, filename, environment):
 		environment = deepcopy(environment)
@@ -189,7 +194,7 @@ class Test:
 		self.compile_command = cmd
 		self.compiling = ""
 		try:
-			self.compile_out, self.compile_err, self.compile_retcode = execute(cmd, timeout=30)
+			self.compile_out, self.compile_err, self.compile_retcode = my_execute(cmd, timeout=30)
 		except SigKill, e:
 			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
 			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
@@ -246,7 +251,7 @@ class Test:
 		"""Run compiled test program and compare output to reference"""
 		environment = self.environment
 		try:
-			out, err, retcode = execute(environment.executable, timeout=30)
+			out, err, retcode = my_execute(environment.executable, timeout=30)
 			if retcode != 0:
 				self.error_msg = "Test return code not zero but %d" % retcode
 				return False
@@ -324,7 +329,7 @@ class TestJava(Test):
 		self.compiling = ""
 		print cmd
 		try:
-			self.compile_out, self.compile_err, self.compile_retcode = execute(cmd, timeout=30)
+			self.compile_out, self.compile_err, self.compile_retcode = my_execute(cmd, timeout=30)
 		except SigKill, e:
 			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
 			return False
