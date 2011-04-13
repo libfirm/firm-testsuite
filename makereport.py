@@ -351,8 +351,8 @@ class TestX10(Test):
 		environment = self.environment
 		if not hasattr(environment, "x10firmc"):
 			environment.x10c = "x10firm"
-			environment.x10cflags = ""
-		environment.x10cflags += "-sourcepath %s " % os.path.dirname(environment.filename)
+			environment.x10cflags = "-nooutput" # don't keep temp asm files
+		environment.x10cflags += " -sourcepath %s " % os.path.dirname(environment.filename)
 	def compile(self):
 		environment = self.environment
 		cmd = "%(x10c)s %(x10cflags)s %(filename)s -o %(executable)s" % environment.__dict__
