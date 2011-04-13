@@ -15,6 +15,7 @@ from datetime import datetime
 from time import time
 import re
 import multiprocessing
+import itertools
 
 from futures import future, add_worker
 from shell import silent_shell, execute, SigKill
@@ -337,6 +338,37 @@ class TestJava(Test):
 		self.error_msg = "bytecode->asm not implemented yet"
 		return False
 
+class TestX10(Test):
+	def __init__(self, filename, environment):
+		Test.__init__(self, filename, environment)
+	def _init_flags(self):
+		Test._init_flags(self)
+		environment = self.environment
+		if not hasattr(environment, "x10firmc"):
+			environment.x10c = "x10firm"
+			environment.x10cflags = ""
+		environment.x10cflags += "-sourcepath %s " % os.path.dirname(environment.filename)
+	def compile(self):
+		environment = self.environment
+		cmd = "%(x10c)s %(x10cflags)s %(filename)s -o %(executable)s" % environment.__dict__
+		self.compile_command = cmd
+		self.compiling = ""
+		try:
+			self.compile_out, self.compile_err, self.compile_retcode = execute(cmd, timeout=30)
+		except SigKill, e:
+			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
+			return False
+		return True
+	def check_compiler_errors(self):
+		if self.compile_retcode != 0:
+			self.error_msg = "compilation not ok (returncode %d)" % self.compile_retcode
+			return False
+		return True
+	def _compile_asm(self):
+		self.error_msg = "x10->asm not implemented yet"
+		return False
+
+
 def load_expectations(filename):
 	for line in open(filename):
 		try:
@@ -436,6 +468,8 @@ def make_test(environment, filename):
 		testclass = TestShouldNotWarn
 	elif "bytecode2firm/" in filename:
 		testclass = TestJava
+	elif "x10firm/" in filename:
+		testclass = TestX10
 
 	return testclass(filename, environment)
 
@@ -451,7 +485,7 @@ def makereport(config, tests):
 	# create test futures for parallel evaluation
 	for test in tests:
 		if os.path.isdir(test):
-			for fname in sorted(glob("%s/*.c" % test)):
+			for fname in sorted(itertools.chain(glob("%s/*.c" % test), glob("%s/*.java" % test), glob("%s/*.x10" % test))):
 				t = make_test(config, fname)
 				queue.append(future(_do_test(t)))
 		else:
