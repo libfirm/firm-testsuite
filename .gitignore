@@ -7,3 +7,5 @@
 /build
 /reports
 a.out
+/external/packages
+/external/build
