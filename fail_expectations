@@ -127,6 +127,7 @@ opt/divs.c                          ok
 opt/divtest.c                       ok
 opt/dowhile.c                       ok
 opt/duffs.c                         ok
+opt/endless_phi_cons.c              ok
 opt/enum.c                          ok
 opt/fabs.c                          ok
 opt/fak.c                           ok
