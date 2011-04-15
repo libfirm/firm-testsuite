@@ -18,6 +18,7 @@ _EXIT_CODES = {
 	-6: "aborted",
 	-8: "floating point exception",
 	-9: "kill",
+	-10: "bus error",
 	-11: "segfault",
 	-13: "broken pipe",
 	-14: "timeout",
