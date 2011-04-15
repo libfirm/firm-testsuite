@@ -31,6 +31,7 @@ backend/prefetch.c                  ok
 backend/sparc_bitopcc.c             ok
 backend/sparc_immediates.c          ok
 backend/stackarray.c                ok
+backend/taken64.c                   output mismatch
 backend/tls_ptr.c                   ok
 backend/transform_loop.c            ok
 opt/20001212-1.c                    ok
