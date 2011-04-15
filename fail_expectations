@@ -801,6 +801,7 @@ llvm/test_indvars.c                 ok
 llvm/testtrace.c                    ok
 x86code/asm_test.c                  ok
 x86code/asm_test10.c                compiler aborted (SIG 6)
+x86code/asm_test11.c                ok
 x86code/asm_test2.c                 ok
 x86code/asm_test3.c                 ok
 x86code/asm_test4.c                 ok
