@@ -2,7 +2,7 @@
 
 ASM="$1"
 # Must generate an "sbb"
-COUNT="`grep -c -E '^[ 	]+btl' "$ASM"`"
+COUNT="`grep -c -E '^[[:space:]]+btl' "$ASM"`"
 if [ "$COUNT" != "6" ]; then
 	echo "Couldn't find sbb"
 	exit 1
