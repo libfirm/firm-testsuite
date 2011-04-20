@@ -24,7 +24,7 @@ backend/initializer_bug.c           ok
 backend/longfunc.c                  ok
 backend/longlongptr.c               output mismatch
 backend/lower_call.c                ok
-backend/lower_call2.c               compiler aborted (SIG 6)
+backend/lower_call2.c               ok
 backend/optest.c                    ok
 backend/optest_float.c              ok
 backend/pic_const.c                 ok
@@ -339,6 +339,7 @@ opt/implicit_call.c                 ok
 opt/invsqrt.c                       ok
 opt/jumpthreading.c                 ok
 opt/jumpthreading2.c                ok
+opt/jumpthreading3.c                compiler aborted (SIG 6)
 opt/kahansum.c                      ok
 opt/labs.c                          ok
 opt/ll.c                            ok
