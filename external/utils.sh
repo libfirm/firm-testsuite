@@ -4,9 +4,9 @@
 set -e
 
 TOPDIR="$(dirname $0)"
-pushd "$TOPDIR" > /dev/null
+cd "$TOPDIR"
 TOPDIR="$(pwd)"
-popd > /dev/null
+cd -
 
 PACKAGEDIR="$TOPDIR/packages"
 BUILDDIR="$TOPDIR/build"
