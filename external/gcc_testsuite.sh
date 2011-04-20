@@ -1,6 +1,7 @@
 #!/bin/bash
+set -e
 
-. `dirname "$0"`/utils.sh || exit 1
+. `dirname "$0"`/utils.sh
 
 GCC_VERSION="4.4.0"
 grab "ftp://ftp.mpi-sb.mpg.de/pub/gnu/mirror/gcc.gnu.org/pub/gcc/releases/gcc-$GCC_VERSION/gcc-testsuite-$GCC_VERSION.tar.bz2"

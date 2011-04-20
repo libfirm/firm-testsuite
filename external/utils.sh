@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # Helper functions for testing stuff
+set -e
 
 TOPDIR="`dirname $0`"
 pushd $TOPDIR > /dev/null
@@ -29,5 +30,5 @@ MAKEFLAGS=-j2
 
 # Cleanup builddir
 echo "Cleanup $BUILDDIR"
-mkdir -p "$BUILDDIR" || exit 1
-rm -rf "$BUILDDIR/*" || exit 1
+mkdir -p "$BUILDDIR"
+rm -rf "$BUILDDIR/*"

@@ -1,8 +1,9 @@
 #!/bin/bash
 #
 # Test lua
+set -e
 
-. `dirname "$0"`/utils.sh || exit 1
+. `dirname "$0"`/utils.sh
 
 # Lua
 LUAVERSION="5.1.4"
@@ -12,8 +13,8 @@ grab "http://www.inf.puc-rio.br/~roberto/lua/$TESTS"
 pushd $BUILDDIR > /dev/null
 tar -xf "$PACKAGEDIR/lua-$LUAVERSION.tar.gz"
 cd lua-$LUAVERSION
-sed -e 's/gcc/cparser/g' -i src/Makefile || exit 1
-make $MAKEFLAGS linux || exit 1
+sed -e 's/gcc/cparser/g' -i src/Makefile
+make $MAKEFLAGS linux
 popd > /dev/null
 pushd $BUILDDIR > /dev/null
 tar -xf "$PACKAGEDIR/$TESTS"
