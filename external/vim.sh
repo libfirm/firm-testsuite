@@ -3,13 +3,13 @@
 # Test vim
 set -e
 
-. $(dirname "$0")/utils.sh
+. "$(dirname "$0")/utils.sh"
 
 # Vim
 VIMVERSION="7.2"
 VIMVERSIONSHORT="72"
 grab "ftp://ftp.vim.org/pub/vim/unix/vim-$VIMVERSION.tar.bz2"
-pushd $BUILDDIR > /dev/null
+pushd "$BUILDDIR" > /dev/null
 echo "Extracting..."
 tar -xf "$PACKAGEDIR/vim-$VIMVERSION.tar.bz2"
 cd "vim$VIMVERSIONSHORT"

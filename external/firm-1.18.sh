@@ -3,13 +3,13 @@
 # Test libfirm (bootstrap)
 set -e
 
-. $(dirname "$0")/utils.sh
+. "$(dirname "$0")/utils.sh"
 
 FIRMVERSION="1.18.0"
 grab "http://switch.dl.sourceforge.net/sourceforge/libfirm/libfirm-$FIRMVERSION.tar.bz2"
 CPARSERVERSION="0.9.11"
 grab "http://switch.dl.sourceforge.net/sourceforge/cparser/cparser-${CPARSERVERSION}a.tar.bz2"
-pushd $BUILDDIR > /dev/null
+pushd "$BUILDDIR" > /dev/null
 echo "Extracting..."
 tar -xf "$PACKAGEDIR/libfirm-$FIRMVERSION.tar.bz2"
 tar -xf "$PACKAGEDIR/cparser-${CPARSERVERSION}a.tar.bz2"

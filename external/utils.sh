@@ -4,14 +4,14 @@
 set -e
 
 TOPDIR="$(dirname $0)"
-pushd $TOPDIR > /dev/null
+pushd "$TOPDIR" > /dev/null
 TOPDIR="$(pwd)"
 popd > /dev/null
 
-PACKAGEDIR=$TOPDIR/packages
-BUILDDIR=$TOPDIR/build
+PACKAGEDIR="$TOPDIR/packages"
+BUILDDIR="$TOPDIR/build"
 
-mkdir -p $PACKAGEDIR
+mkdir -p "$PACKAGEDIR"
 
 grab() {
 	URL="$1"
