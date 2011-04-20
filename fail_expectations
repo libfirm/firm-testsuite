@@ -25,7 +25,7 @@ backend/longfunc.c                  ok
 backend/longlongptr.c               output mismatch
 backend/lower_call.c                ok
 backend/lower_call2.c               ok
-backend/lower_call3.c               compiler aborted (SIG 6)
+backend/lower_call3.c               ok
 backend/optest.c                    ok
 backend/optest_float.c              ok
 backend/pic_const.c                 ok
@@ -717,8 +717,8 @@ C/gnu99/basic_complex.c             compiler aborted (SIG 6)
 C/gnu99/builtin_expect.c            ok
 C/gnu99/builtins_libc.c             ok
 C/gnu99/cdecl.c                     ok
-C/gnu99/combo_load_mode.c           linker error
-C/gnu99/computed_goto.c             linker error
+C/gnu99/combo_load_mode.c           ok
+C/gnu99/computed_goto.c             ok
 C/gnu99/construct_destruct.c        ok
 C/gnu99/cp_error059.c               compiler aborted (SIG 6)
 C/gnu99/cp_error064.c               ok
@@ -726,7 +726,7 @@ C/gnu99/emptystruct.c               ok
 C/gnu99/escape.c                    ok
 C/gnu99/extension_in_for_init.c     ok
 C/gnu99/flex_array_init.c           compiler aborted (SIG 6)
-C/gnu99/ijmp.c                      linker error
+C/gnu99/ijmp.c                      ok
 C/gnu99/incomplete_array.c          ok
 C/gnu99/incomplete_enum.c           ok
 C/gnu99/inlineextern.c              ok
