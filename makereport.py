@@ -1,7 +1,4 @@
 #!/usr/bin/env python
-"""
-Makereport (ported from makereport.sh)
-"""
 
 from glob import iglob as glob
 from threading import Thread
