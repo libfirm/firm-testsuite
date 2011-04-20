@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Helper functions for testing stuff
 set -e
