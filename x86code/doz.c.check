@@ -3,7 +3,7 @@ set -e
 
 ASM="$1"
 # Must generate an "sbb"
-COUNT="`grep -c -E '^[[:space:]]+sbb' "$ASM"`"
+COUNT="$(grep -c -E '^[[:space:]]+sbb' "$ASM")"
 if [ "$COUNT" != "4" ]; then
 	echo "Couldn't find sbb"
 	exit 1

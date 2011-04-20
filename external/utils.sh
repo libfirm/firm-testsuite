@@ -3,9 +3,9 @@
 # Helper functions for testing stuff
 set -e
 
-TOPDIR="`dirname $0`"
+TOPDIR="$(dirname $0)"
 pushd $TOPDIR > /dev/null
-TOPDIR="`pwd`"
+TOPDIR="$(pwd)"
 popd > /dev/null
 
 PACKAGEDIR=$TOPDIR/packages
@@ -16,7 +16,7 @@ mkdir -p $PACKAGEDIR
 grab() {
 	URL="$1"
 	MD5="$2"
-	FILENAME="`basename "$URL"`"
+	FILENAME="$(basename "$URL")"
 	DESTFILE="$PACKAGEDIR/$FILENAME"
 
 	if ! [ -e "$DESTFILE" ]; then

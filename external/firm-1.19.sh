@@ -3,7 +3,7 @@
 # Test libfirm (bootstrap)
 set -e
 
-. `dirname "$0"`/utils.sh
+. $(dirname "$0")/utils.sh
 
 FIRMVERSION="1.19.0"
 grab "http://switch.dl.sourceforge.net/sourceforge/libfirm/libfirm-$FIRMVERSION.tar.bz2"

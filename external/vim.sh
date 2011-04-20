@@ -3,7 +3,7 @@
 # Test vim
 set -e
 
-. `dirname "$0"`/utils.sh
+. $(dirname "$0")/utils.sh
 
 # Vim
 VIMVERSION="7.2"

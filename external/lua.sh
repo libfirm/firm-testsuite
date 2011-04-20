@@ -3,7 +3,7 @@
 # Test lua
 set -e
 
-. `dirname "$0"`/utils.sh
+. $(dirname "$0")/utils.sh
 
 # Lua
 LUAVERSION="5.1.4"
