@@ -3,16 +3,14 @@
 ASM="$1"
 
 should_not_remove() {
-	COUNT="`grep -c "$1" "$ASM"`"
-	if [ "$COUNT" == "0" ]; then
+	if ! grep -q "$1" "$ASM"; then
 		echo "Entity $1 was removed"
 		exit 1
 	fi
 }
 
 should_remove() {
-	COUNT="`grep -c "$1" "$ASM"`"
-	if [ "$COUNT" != "0" ]; then
+	if grep -q "$1" "$ASM"; then
 		echo "Entity $1 should have been removed"
 		exit 1
 	fi
