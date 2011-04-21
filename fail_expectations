@@ -342,6 +342,7 @@ opt/invsqrt.c                       ok
 opt/jumpthreading.c                 ok
 opt/jumpthreading2.c                ok
 opt/jumpthreading3.c                ok
+opt/jumpthreading4.c                ok
 opt/kahansum.c                      ok
 opt/labs.c                          ok
 opt/ll.c                            ok
