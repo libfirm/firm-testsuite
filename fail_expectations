@@ -30,6 +30,7 @@ backend/optest.c                    ok
 backend/optest_float.c              ok
 backend/pic_const.c                 ok
 backend/prefetch.c                  ok
+backend/segfault.c                  compiler segfault (SIG 11)
 backend/sparc_bitopcc.c             ok
 backend/sparc_immediates.c          ok
 backend/stackarray.c                ok
@@ -343,6 +344,7 @@ opt/jumpthreading.c                 ok
 opt/jumpthreading2.c                ok
 opt/jumpthreading3.c                ok
 opt/jumpthreading4.c                ok
+opt/jumpthreading5.c                compiler kill (SIG 9)
 opt/kahansum.c                      ok
 opt/labs.c                          ok
 opt/ll.c                            ok
