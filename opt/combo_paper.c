@@ -15,5 +15,5 @@ int main() {
 	}
 	printf("%d\n", x);
 
-	return x;
+	return x == 1;
 }
