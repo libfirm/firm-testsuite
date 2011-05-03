@@ -9,5 +9,5 @@ int main()
 	float b = a;
 	sqrt(a);
 	printf("%f\n", b);
-  	return 0;
+	return 0;
 }

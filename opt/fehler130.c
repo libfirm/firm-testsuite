@@ -15,13 +15,13 @@ int outbuf;
 }
 
 void send_bits(int value) {
-    if (bi_valid > 0) {
-        bi_buf |= bi_valid;
-        if (outbuf > 0) {
-    		outbuf = bi_buf;
-  		}
-        bi_buf = value;
-    }
+	if (bi_valid > 0) {
+		bi_buf |= bi_valid;
+		if (outbuf > 0) {
+			outbuf = bi_buf;
+		}
+		bi_buf = value;
+	}
 }
 
 int main() {

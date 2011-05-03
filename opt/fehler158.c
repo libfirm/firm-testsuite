@@ -4,10 +4,10 @@ int test(int lnWrd, int *ptExp) {
 	int idx = 0;
 
 	while ( lnWrd > 0 ) {
-        	if ( *ptExp ) {
+		if ( *ptExp ) {
 			*ptExp = 0;
 			lnWrd--;
-	 	}
+		}
 		idx++;
 		ptExp++;
 	}

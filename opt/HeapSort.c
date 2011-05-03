@@ -27,7 +27,7 @@ static int N;
  * Tauscht die Elemente a[i] und a[j].
  */
 static void exchange(int *a, int i, int j) {
-  	int v;
+	int v;
 	v = a[i];
 	a[i] = a[j];
 	a[j] = v;
@@ -54,8 +54,8 @@ static void insert(int *a, int v) {
 }
 
 /**
-* Läßt a[k] im Feld versickern.
-*/
+ * Läßt a[k] im Feld versickern.
+ */
 static void downheap(int *a, int k) {
 	int j = 2 * k;
 	if (j < N) {    // a[k] hat linken Sohn a[j]
@@ -126,15 +126,15 @@ static int *heapsort_(int *b, int len) {
 }
 
 static int verify(int* fld, int count) {
-    int i;
-    int last = fld[0];
-    for(i = 1; i < count; ++i) {
-        if(fld[i] < last)
-            return 0;
-        last = fld[i];
-    }
+	int i;
+	int last = fld[0];
+	for(i = 1; i < count; ++i) {
+		if(fld[i] < last)
+			return 0;
+		last = fld[i];
+	}
 
-    return 1;
+	return 1;
 }
 
 /**
@@ -147,7 +147,7 @@ static int verify(int* fld, int count) {
  * </pre>
  */
 int main (int argc, char *argv[]) {
-   	// Umwandeln der Argumente in Zahlen
+	// Umwandeln der Argumente in Zahlen
 	int *b;
 	int i, count, seed;
 
@@ -170,7 +170,7 @@ int main (int argc, char *argv[]) {
 		b[i] = my_rand();
 
 	printf("Sorting %d random numbers (seed %d)\n",
-          count, seed);
+			count, seed);
 
 	// Sortieren
 	b = heapsort_(b, count);

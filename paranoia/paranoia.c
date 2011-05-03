@@ -1617,7 +1617,7 @@ void part7(VOID){
 		Q = POW(X, Z) - Exp2;
 		if (FABS(Q) > TwoForty * U2) {
 			N = 1;
-	 		V9 = (X - BInvrse) - (One - BInvrse);
+			V9 = (X - BInvrse) - (One - BInvrse);
 			BadCond(Defect, "Calculated");
 			printf(" %.17e for\n", POW(X,Z));
 			printf("\t(1 + (%.17e) ^ (%.17e);\n", V9, Z);

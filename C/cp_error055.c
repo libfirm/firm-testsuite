@@ -7,5 +7,5 @@ int main (int argc, char **argv) {
 			case 1:  x = 1; break;
 		}
 	}
-  	return 0;
+	return 0;
 }

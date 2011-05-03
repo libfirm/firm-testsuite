@@ -6,12 +6,12 @@ char *test(char *name) {
 	int plen;
 	int min_part = 3;
 	do {
-	        p = name;
-	        while (*p) {
-	            	plen = 3;
-	                p += plen;
-	            	if (plen > min_part) trunc = p-1;
-	        }
+		p = name;
+		while (*p) {
+			plen = 3;
+			p += plen;
+			if (plen > min_part) trunc = p-1;
+		}
 	} while (trunc == NULL && --min_part != 0);
 	return p;
 }
