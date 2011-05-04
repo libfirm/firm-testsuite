@@ -378,7 +378,7 @@ opt/pbqpHeur2.c                     ok
 opt/pbqpHeur3.c                     ok
 opt/pbqp_RedN.c                     ok
 opt/phi_bad.c                       ok
-opt/place.c                         compiler aborted (SIG 6)
+opt/place.c                         ok
 opt/postinc.c                       ok
 opt/psi_test.c                      ok
 opt/ptr_to_int.c                    ok
