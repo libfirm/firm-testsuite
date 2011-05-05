@@ -1,3 +1,8 @@
+/* No TLS support. */
+#ifdef __APPLE__
+#	define __thread
+#endif
+
 extern int printf(const char *str, ...);
 
 int __thread i[10];

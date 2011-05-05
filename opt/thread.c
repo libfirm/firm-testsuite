@@ -1,3 +1,8 @@
+/* No TLS support. */
+#ifdef __APPLE__
+#	define __thread
+#endif
+
 #ifdef _WIN32
 #define __thread   __declspec( thread )
 #endif
