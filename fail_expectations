@@ -332,6 +332,7 @@ opt/func_arg.c                      ok
 opt/gcd.c                           ok
 opt/gcd_bench.c                     ok
 opt/gcentities.c                    ok
+opt/gcse_no_end.c                   ok
 opt/git_error.c                     ok
 opt/global_null_test.c              ok
 opt/globalrefs.c                    ok
