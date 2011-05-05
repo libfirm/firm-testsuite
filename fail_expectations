@@ -356,6 +356,7 @@ opt/ll_call.c                       ok
 opt/load_memout_necessary.c         ok
 opt/localopts.c                     ok
 opt/longlong.c                      ok
+opt/loop_without_phi.c              ok
 opt/loopana.c                       ok
 opt/loopspilling.c                  ok
 opt/lrot.c                          ok
