@@ -320,7 +320,7 @@ opt/fehler182.c                     ok
 opt/fehler183.c                     ok
 opt/fehler184.c                     ok
 opt/fehler185.c                     ok
-opt/fehler186.c                     execution segfault (SIG 11)
+opt/fehler186.c                     ok
 opt/fehler187.c                     ok
 opt/fehler_gt_0.c                   ok
 opt/fehler_no_equality_0.c          ok
@@ -773,7 +773,7 @@ ack/str.c                           ok
 ack/t7.c                            ok
 ack/test.c                          ok
 ack/test1.c                         ok
-ack/test2.c                         execution segfault (SIG 11)
+ack/test2.c                         ok
 langshootout/bintree.c              ok
 langshootout/fannkuch.c             ok
 langshootout/fasta.c                ok
