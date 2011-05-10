@@ -393,7 +393,7 @@ def expectation_match(error, expectation):
 
 _CONSOLE_RED = "\033[1;31m"
 _CONSOLE_GREEN = "\033[1;32m"
-_CONSOLE_YELLOW = "\033[0;33m"
+_CONSOLE_YELLOW = "\033[1;33m"
 _CONSOLE_BOLD = "\033[1m"
 _CONSOLE_NORMAL = "\033[m"
 def console_output(test, compile_times):
@@ -407,6 +407,8 @@ def console_output(test, compile_times):
 	else:
 		if test.success:
 			prefix = _CONSOLE_GREEN
+		elif test.id in _EXPECTATIONS and _EXPECTATIONS[test.id] != "ok":
+			prefix = _CONSOLE_YELLOW
 		else:
 			prefix = _CONSOLE_RED
 	print "%s%-35s %s%s%s" % (prefix, test.id, test.error_msg, _CONSOLE_NORMAL, timing)
