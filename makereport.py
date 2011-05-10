@@ -386,8 +386,8 @@ def expectation_match(error, expectation):
 	if error.endswith(" compile errors") and expectation.endswith(" compile errors"):
 		# exact number of compile errors does not matter
 		return True
-	if error == "compiler: SIGXCPU" and expectation == "compiler: SIGABRT":
-		# BSD on timeout signals SIGXCPU and Linux SIGABRT
+	if error == "compiler: SIGXCPU" and expectation == "compiler: SIGKILL":
+		# BSD on timeout signals SIGXCPU and Linux SIGKILL
 		return True
 	return error == expectation
 
