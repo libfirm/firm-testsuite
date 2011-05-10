@@ -401,7 +401,8 @@ def console_output(test, compile_times):
 	prefix = ""
 	if compile_times:
 		timing = " [%s%.2fs%s]" % (_CONSOLE_YELLOW, test.compile_seconds, _CONSOLE_NORMAL)
-	if test.id in _EXPECTATIONS and expectation_match(test.error_msg, _EXPECTATIONS[test.id]):
+	error_msg = test.error_msg
+	if test.id in _EXPECTATIONS and expectation_match(error_msg, _EXPECTATIONS[test.id]):
 		if test.success and not _VERBOSE:
 			return
 	else:
@@ -409,9 +410,10 @@ def console_output(test, compile_times):
 			prefix = _CONSOLE_GREEN
 		elif test.id in _EXPECTATIONS and _EXPECTATIONS[test.id] != "ok":
 			prefix = _CONSOLE_YELLOW
+			error_msg += " (expected %s)" % _EXPECTATIONS[test.id]
 		else:
 			prefix = _CONSOLE_RED
-	print "%s%-35s %s%s%s" % (prefix, test.id, test.error_msg, _CONSOLE_NORMAL, timing)
+	print "%s%-35s %s%s%s" % (prefix, test.id, error_msg, _CONSOLE_NORMAL, timing)
 
 class Report:
 	def __init__(self):
