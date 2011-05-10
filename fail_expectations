@@ -114,7 +114,7 @@ opt/combo_comm.c                    ok
 opt/combo_paper.c                   ok
 opt/comboattrs.c                    ok
 opt/compilerhang2.c                 ok
-opt/compilerhang3.c                 execution aborted (SIG 6)
+opt/compilerhang3.c                 execution: SIGABRT
 opt/compilerhang4.c                 ok
 opt/compilerhang5.c                 ok
 opt/confirm.c                       ok
@@ -348,7 +348,7 @@ opt/jumpthreading.c                 ok
 opt/jumpthreading2.c                ok
 opt/jumpthreading3.c                ok
 opt/jumpthreading4.c                ok
-opt/jumpthreading5.c                compiler aborted (SIG 6)
+opt/jumpthreading5.c                compiler: SIGKILL
 opt/jumpthreading6.c                ok
 opt/kahansum.c                      ok
 opt/labs.c                          ok
@@ -543,7 +543,7 @@ C/kr8.c                             ok
 C/ldst_opt_id.c                     ok
 C/localfuncdecl.c                   ok
 C/long_double_int_conv.c            ok
-C/mini_complex.c                    compiler aborted (SIG 6)
+C/mini_complex.c                    compiler: SIGABRT
 C/mod.c                             ok
 C/noconst.c                         ok
 C/number2.c                         ok
@@ -673,7 +673,7 @@ C/should_fail/universal_character.c ok
 C/should_fail/universal_character2.c ok
 C/should_fail/unspec_params.c       ok
 C/should_fail/voidarray.c           ok
-C/should_fail/weird_label.c         compiler aborted (SIG 6)
+C/should_fail/weird_label.c         compiler: SIGABRT
 C/should_fail/wrongtype.c           ok
 C/should_warn/cast_qual.c           ok
 C/should_warn/cp_error025.c         compiler missed warnings
@@ -723,21 +723,21 @@ C/gnu99/attribute_after_bitfield.c  ok
 C/gnu99/attributes.c                linker error
 C/gnu99/attributes2.c               ok
 C/gnu99/attributes3.c               ok
-C/gnu99/attributes4.c               execution aborted (SIG 6)
+C/gnu99/attributes4.c               execution: SIGABRT
 C/gnu99/attributes5.c               ok
-C/gnu99/basic_complex.c             compiler aborted (SIG 6)
+C/gnu99/basic_complex.c             compiler: SIGABRT
 C/gnu99/builtin_expect.c            ok
 C/gnu99/builtins_libc.c             ok
 C/gnu99/cdecl.c                     ok
 C/gnu99/combo_load_mode.c           ok
 C/gnu99/computed_goto.c             ok
 C/gnu99/construct_destruct.c        ok
-C/gnu99/cp_error059.c               compiler aborted (SIG 6)
+C/gnu99/cp_error059.c               compiler: SIGABRT
 C/gnu99/cp_error064.c               ok
 C/gnu99/emptystruct.c               ok
 C/gnu99/escape.c                    ok
 C/gnu99/extension_in_for_init.c     ok
-C/gnu99/flex_array_init.c           compiler aborted (SIG 6)
+C/gnu99/flex_array_init.c           compiler: SIGABRT
 C/gnu99/ijmp.c                      ok
 C/gnu99/incomplete_array.c          ok
 C/gnu99/incomplete_enum.c           ok
@@ -747,8 +747,8 @@ C/gnu99/local_label.c               ok
 C/gnu99/mode_attrib.c               ok
 C/gnu99/multichar.c                 ok
 C/gnu99/nested_function.c           ok
-C/gnu99/nested_function_goto.c      compiler aborted (SIG 6)
-C/gnu99/nullarray.c                 compiler aborted (SIG 6)
+C/gnu99/nested_function_goto.c      compiler: SIGABRT
+C/gnu99/nullarray.c                 compiler: SIGABRT
 C/gnu99/omitted_cond.c              ok
 C/gnu99/packed.c                    ok
 C/gnu99/packed_bf.c                 ok
@@ -815,7 +815,7 @@ llvm/sumarraymalloc.c               ok
 llvm/test_indvars.c                 ok
 llvm/testtrace.c                    ok
 x86code/asm_test.c                  ok
-x86code/asm_test10.c                compiler aborted (SIG 6)
+x86code/asm_test10.c                compiler: SIGABRT
 x86code/asm_test11.c                ok
 x86code/asm_test2.c                 ok
 x86code/asm_test3.c                 ok

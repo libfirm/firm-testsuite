@@ -193,7 +193,7 @@ class Test:
 		try:
 			self.compile_out, self.compile_err, self.compile_retcode = my_execute(cmd, timeout=30)
 		except SigKill, e:
-			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
+			self.error_msg = "compiler: %s" % (e.name)
 			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
 			return False
 		except OSError, e:
@@ -253,7 +253,7 @@ class Test:
 				self.error_msg = "Test return code not zero but %d" % retcode
 				return False
 		except SigKill, e:
-			self.error_msg = "execution %s (SIG %d)" % (e.name, -e.retcode)
+			self.error_msg = "execution: %s" % (e.name)
 			return False
 		except OSError, e:
 			self.error_msg = "OSError on execution"

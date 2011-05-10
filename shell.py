@@ -5,26 +5,15 @@ Alternative to subprocess and os.system
 import subprocess
 import resource
 import sys
+import signal
 
 class SigKill(Exception):
 	def __init__(self, retcode, name):
 		self.retcode = retcode
 		self.name = name
 
-_EXIT_CODES = {
-	-2: "keyboard interrupt",
-	-3: "keyboard quit",
-	-4: "illegal instruction",
-	-6: "aborted",
-	-8: "floating point exception",
-	-9: "kill",
-	-10: "bus error",
-	-11: "segfault",
-	-13: "broken pipe",
-	-14: "timeout",
-	-15: "termination",
-	-24: "timeout",
-}
+_EXIT_CODES = dict((-k, v) for v, k in signal.__dict__.iteritems() if v.startswith('SIG'))
+del _EXIT_CODES[0]
 
 def execute(cmd, env=None, timeout=0):
 	"""Execute a command and return stderr and stdout data"""
