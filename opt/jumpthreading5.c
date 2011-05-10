@@ -4,29 +4,22 @@
 
 int func_107(int p_110)
 {
-	if (1)
-	{
-		int l_128 = 1;
-		{
+	int l_128 = 1;
 lbl_156:
-			if (p_110)
-				goto lbl_159;
+	if (p_110)
+		goto lbl_159;
 lbl_191:
-			if (l_128)
-				goto lbl_156;
-		}
-		{
+	if (l_128)
+		goto lbl_156;
 lbl_159:
-			for (l_128 = 0; l_128 < 1; l_128 += 1)
-			{
-			}
-		}
-		for (p_110 = 0; (p_110 == -15); p_110 = 1)
-		{
-		}
-		if (l_128)
-			goto lbl_191;
+	for (l_128 = 0; l_128 < 1; l_128 += 1)
+	{
 	}
+	for (p_110 = 0; (p_110 == -15); p_110 = 1)
+	{
+	}
+	if (l_128)
+		goto lbl_191;
 	return 0;
 }
 
