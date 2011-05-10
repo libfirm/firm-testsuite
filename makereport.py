@@ -382,6 +382,15 @@ def load_expectations(filename):
 		yield test_id, error_msg
 _EXPECTATIONS = {}
 
+def expectation_match(error, expectation):
+	if error.endswith(" compile errors") and expectation.endswith(" compile errors"):
+		# exact number of compile errors does not matter
+		return True
+	if error == "compiler: SIGXCPU" and expectation == "compiler: SIGABRT":
+		# BSD on timeout signals SIGXCPU and Linux SIGABRT
+		return True
+	return error == expectation
+
 _CONSOLE_RED = "\033[1;31m"
 _CONSOLE_GREEN = "\033[1;32m"
 _CONSOLE_YELLOW = "\033[0;33m"
@@ -392,7 +401,7 @@ def console_output(test, compile_times):
 	prefix = ""
 	if compile_times:
 		timing = " [%s%.2fs%s]" % (_CONSOLE_YELLOW, test.compile_seconds, _CONSOLE_NORMAL)
-	if test.id in _EXPECTATIONS and test.error_msg == _EXPECTATIONS[test.id]:
+	if test.id in _EXPECTATIONS and expectation_match(test.error_msg, _EXPECTATIONS[test.id]):
 		if test.success and not _VERBOSE:
 			return
 	else:
