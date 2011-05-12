@@ -84,6 +84,12 @@ _OPTS.add_option("", "--ldflags", dest="ldflags",
 _OPTS.add_option("", "--compiler", dest="compiler",
                  help="Use COMPILER to compile test programs",
                  metavar="COMPILER")
+_OPTS.add_option("", "--x10compiler", dest="x10c",
+                 help="Use X10COMPILER to compile X10 test programs",
+                 metavar="X10COMPILER")
+_OPTS.add_option("", "--x10cflags", dest="x10cflags",
+                 help="Use X10CFLAGS to compile X10 test programs",
+                 metavar="X10CFLAGS")
 _OPTS.add_option("", "--show-disappeared", dest="show_disappeared",
                  action="store_true", help="show disappeared tests")
 _OPTS.add_option("", "--sparc", action="callback", callback=setup_sparc)
@@ -346,7 +352,7 @@ class TestX10(Test):
 	def _init_flags(self):
 		Test._init_flags(self)
 		environment = self.environment
-		if not hasattr(environment, "x10firmc"):
+		if not hasattr(environment, "x10c"):
 			environment.x10c = "x10firm"
 			environment.x10cflags = "-nooutput" # don't keep temp asm files
 		environment.x10cflags += " -sourcepath %s " % os.path.dirname(environment.filename)
