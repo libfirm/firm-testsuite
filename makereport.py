@@ -66,6 +66,8 @@ _OPTS.set_defaults(
 	builddir="build/",
 	cflags="-march=native -O3 -std=c99",
 	ldflags="-lm",
+	x10c="x10firm",
+	x10cflags="-nooutput",
 	expect_file="fail_expectations",
 	runexe="")
 _OPTS.add_option("-d", "--debug", dest="debug", action="store_true",
