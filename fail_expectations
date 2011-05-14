@@ -707,6 +707,7 @@ C/should_warn/write_only6.c         ok
 C/should_warn/write_only8.c         ok
 C/should_warn/write_strings.c       ok
 C/nowarn/fooredirect.c              ok
+C/nowarn/main.c                     compiler produced invalid warning
 C/nowarn/printf.c                   ok
 C/nowarn/redirect.c                 ok
 C/nowarn/write_only1.c              ok
