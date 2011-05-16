@@ -35,7 +35,8 @@ _ARCH_DIRS = [
 _DEBUG = None
 _VERBOSE = None
 _REPORT_NAME = "stats-" +  datetime.now().strftime("%Y.%m.%d")
-_CFLAG_COMMENT = re.compile("/\\*\\$ (.+) \\$\\*/")
+_EMBEDDED_CMD = re.compile("/\\*\\$ (.+) \\$\\*/")
+_CMD = re.compile("(!?check|shell|cflags|ldflags)(.*)")
 
 def setup_sparc(option, opt_str, value, parser):
 	global _ARCH_DIRS
@@ -118,15 +119,18 @@ class Test:
 		self.id = filename
 		self.compile_seconds = -1
 		self.run_seconds = -1
+		self.checks = []
+		self.shell_cmds = []
 
 		environment.filename = filename
 		if os.path.isfile(filename+".ref"):
 			environment.reference_output = open(filename+".ref").read()
 		if os.path.isfile(filename+".check"):
-			environment.check_script_filename = filename+".check"
-			environment.asm_file = environment.builddir + "/" + environment.filename + ".s"
+			self._add_shell_cmd(filename+".check %(asm_file)s")
 		environment.executable = environment.builddir + "/" + environment.filename + ".exe"
 		self._init_flags()
+		self._parse_embedded_commands(filename)
+
 	def _init_flags(self):
 		environment = self.environment
 		environment.cflags += " -I%s " % os.path.dirname(environment.filename)
@@ -134,11 +138,53 @@ class Test:
 			environment.cflags += " -O3 "
 		if not "-march" in environment.cflags:
 			environment.cflags += " -march=native "
-		# insert additional cflags within the test case source
-		for line in open(environment.filename):
-			m = _CFLAG_COMMENT.match(line)
+
+	def _add_check(self, regex, flag):
+		"""add a check for regex."""
+		self.checks.append((re.compile(regex), flag, regex))
+		if not hasattr(self.environment, 'asm_file'):
+			self.environment.asm_file = self.environment.builddir + "/" + self.environment.filename + ".s"
+
+	def _add_shell_cmd(self, cmd):
+		"""execute the given command."""
+		self.shell_cmds.append(cmd)
+		if not hasattr(self.environment, 'asm_file'):
+			self.environment.asm_file = self.environment.builddir + "/" + self.environment.filename + ".s"
+
+	def _add_cflags(self, flags):
+		"""Add to cflags"""
+		self.environment.cflags += " " + flags
+
+	def _add_ldflags(self, flags):
+		"""Add to ldflags"""
+		self.environment.ldflags += " " + flags
+
+	def _parse_embedded_command(self, cmd):
+		"""parse one /*$ $*/ embedded command"""
+		m = _CMD.match(cmd)
+		if m:
+			base = m.group(1)
+			if base == "check":
+				self._add_check(m.group(2).strip(), True)
+			elif base == "!check":
+				self._add_check(m.group(2).strip(), False)
+			elif base == "shell":
+				self._add_shell_cmd(m.group(2).strip())
+			elif base == "cflags":
+				self._add_cflags(m.group(2).strip())
+			elif base == "ldflags":
+				self._add_ldflags(m.group(2).strip())
+		else:
+			# threat as an cflag option
+			self._add_cflags(cmd.strip())
+
+	def _parse_embedded_commands(self, filename):
+		"""check input for /*$ $*/ embedded command and parse them."""
+		for line in open(filename):
+			m = _EMBEDDED_CMD.match(line)
 			if m:
-				environment.cflags += m.group(1)
+				self._parse_embedded_command(m.group(1))
+
 	def _prepare(self):
 		environment = self.environment
 		if hasattr(environment, "asm_file"):
@@ -154,7 +200,9 @@ class Test:
 		if not c: return
 		c = self._test_reference_output()
 		if not c: return
-		c = self._test_check_script()
+		c = self._test_shell_commands()
+		if not c: return
+		c = self._test_check_commands()
 		if not c: return
 		self.clean()
 		self.success = True
@@ -175,16 +223,50 @@ class Test:
 			self.run_seconds = time() - start
 			return r
 		return True
-	def _test_check_script(self):
-		"""Execute check script"""
-		environment = self.environment
-		self.long_error_msg = ""
-		if hasattr(environment, 'check_script_filename'):
-			s = self.check_script()
-			if not s:
-				self.error_msg = "check script failed"
-			return s
+
+	def _test_check_commands(self):
+		"""Execute all embedded check commands"""
+		if len(self.checks) == 0:
+			return True
+
+		self._compile_asm()
+		asm_name = "%(asm_file)s" % self.environment.__dict__
+		for regex, flag, txt in self.checks:
+			if _DEBUG:
+				prefix = "checking !"
+				if flag: prefix = "checking"
+				print "%s '%s'" % (prefix, txt)
+			s = self._grep_asm(asm_name, regex)
+			if flag != s:
+				prefix = "!check"
+				if flag: prefix = "check"
+				self.error_msg = "%s '%s' failed" % (prefix, txt)
+				return False
 		return True
+
+	def _test_shell_commands(self):
+		"""Execute all embedded shell commands"""
+		if len(self.shell_cmds) == 0:
+			return True
+
+		self._compile_asm()
+		for txt in self.shell_cmds:
+			cmd = txt % self.environment.__dict__
+			if _DEBUG:
+				print "shell", txt
+			ret = silent_shell(cmd)
+			if ret != 0:
+				self.error_msg = "shell '%s' failed" % cmd
+				return False
+		return True
+
+	def _grep_asm(self, asm_name, regex):
+		"""Check for regex in the generated assembler file."""
+		for line in open(asm_name):
+			if regex.search(line):
+				return True
+		return False
+
 	def clean(self):
 		"""Remove intermediate files"""
 		environment = self.environment
@@ -276,13 +358,6 @@ class Test:
 			self.error_msg = "output mismatch"
 			self.long_error_msg = diff
 			return False
-	def check_script(self):
-		"""Execute the check script"""
-		self._compile_asm()
-		environment = self.environment
-		cmd = "%(check_script_filename)s %(asm_file)s" % environment.__dict__
-		ret = silent_shell(cmd)
-		return ret == 0
 
 class TestShouldFail(Test):
 	def __init__(self, filename, environment):

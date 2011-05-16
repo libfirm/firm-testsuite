@@ -3,6 +3,7 @@
 int x = -1;
 int* p = &x;
 
+/*$ check incl _?x $*/
 int main(void) {
 	x ++;
 	return *p;

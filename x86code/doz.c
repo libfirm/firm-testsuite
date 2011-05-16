@@ -3,6 +3,7 @@ extern int printf(const char *str, ...);
 
 /* some variations of the doz pattern */
 
+/*$ check sbb $*/
 unsigned __attribute__((noinline)) doz0(unsigned a, unsigned b)
 {
 	return a >= b ? a-b : 0;
