@@ -428,6 +428,7 @@ opt/unary.c                         ok
 opt/union_init.c                    ok
 opt/unknown_combo.c                 ok
 opt/unknown_combo2.c                ok
+opt/unreachable_block.c             ok
 opt/use_uninit_ptr.c                ok
 opt/vadd_store.c                    ok
 opt/valist.c                        ok
