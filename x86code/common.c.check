@@ -1,9 +1,0 @@
-#!/bin/sh
-set -e
-
-ASM="$1"
-COUNT="$(grep -c -E '^[[:space:]]+.comm[[:space:]]+_?commonvar' "$ASM")"
-if [ "$COUNT" != "2" ]; then
-	echo "Couldn't find .comm commonvar & .comm commonvar2"
-	exit 1
-fi

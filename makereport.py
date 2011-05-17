@@ -36,7 +36,7 @@ _DEBUG = None
 _VERBOSE = None
 _REPORT_NAME = "stats-" +  datetime.now().strftime("%Y.%m.%d")
 _EMBEDDED_CMD = re.compile("/\\*\\$ (.+) \\$\\*/")
-_CMD = re.compile("(!?check|shell|cflags|ldflags)(.*)")
+_CMD = re.compile("(!?check(\[[0-9]+\])?|shell|cflags|ldflags)(.*)")
 
 def setup_sparc(option, opt_str, value, parser):
 	global _ARCH_DIRS
@@ -139,24 +139,44 @@ class Test:
 		if not "-march" in environment.cflags:
 			environment.cflags += " -march=native "
 
-	def _add_check(self, regex, flag):
+	def _add_check(self, regex, count_arg, flag):
 		"""add a check for regex."""
-		self.checks.append((re.compile(regex), flag, regex))
+		c = 0
+		if count_arg:
+			if flag:
+				c = int(count_arg[1:-1])
+			else:
+				print "!check cannot be used with an argument"
+		if _DEBUG:
+			if flag:
+				if c > 0:
+					print "Adding to checks: check[%d] %s" % (c, regex)
+				else:
+					print "Adding to checks: check %s" % regex
+			else:
+				print "Adding to checks: !check %s" % regex
+		self.checks.append((re.compile(regex), flag, c, regex))
 		if not hasattr(self.environment, 'asm_file'):
 			self.environment.asm_file = self.environment.builddir + "/" + self.environment.filename + ".s"
 
 	def _add_shell_cmd(self, cmd):
 		"""execute the given command."""
+		if _DEBUG:
+			print "Adding to shell commands: '%s'" % cmd
 		self.shell_cmds.append(cmd)
 		if not hasattr(self.environment, 'asm_file'):
 			self.environment.asm_file = self.environment.builddir + "/" + self.environment.filename + ".s"
 
 	def _add_cflags(self, flags):
 		"""Add to cflags"""
+		if _DEBUG:
+			print "Adding to cflags: '%s'" % flags
 		self.environment.cflags += " " + flags
 
 	def _add_ldflags(self, flags):
 		"""Add to ldflags"""
+		if _DEBUG:
+			print "Adding to ldflags: '%s'" % flags
 		self.environment.ldflags += " " + flags
 
 	def _parse_embedded_command(self, cmd):
@@ -164,16 +184,20 @@ class Test:
 		m = _CMD.match(cmd)
 		if m:
 			base = m.group(1)
+			if m.group(2):
+				base = base[0:-len(m.group(2))]
 			if base == "check":
-				self._add_check(m.group(2).strip(), True)
+				self._add_check(m.group(3).strip(), m.group(2), True)
 			elif base == "!check":
-				self._add_check(m.group(2).strip(), False)
+				self._add_check(m.group(3).strip(), m.group(2), False)
 			elif base == "shell":
-				self._add_shell_cmd(m.group(2).strip())
+				self._add_shell_cmd(m.group(3).strip())
 			elif base == "cflags":
-				self._add_cflags(m.group(2).strip())
+				self._add_cflags(m.group(3).strip())
 			elif base == "ldflags":
-				self._add_ldflags(m.group(2).strip())
+				self._add_ldflags(m.group(3).strip())
+			else:
+				print "Error: unsupported command", base
 		else:
 			# threat as an cflag option
 			self._add_cflags(cmd.strip())
@@ -183,6 +207,8 @@ class Test:
 		for line in open(filename):
 			m = _EMBEDDED_CMD.match(line)
 			if m:
+				if _DEBUG:
+					print "Processing embedded cmd:", m.group(1)
 				self._parse_embedded_command(m.group(1))
 
 	def _prepare(self):
@@ -231,15 +257,17 @@ class Test:
 
 		self._compile_asm()
 		asm_name = "%(asm_file)s" % self.environment.__dict__
-		for regex, flag, txt in self.checks:
+		for regex, flag, c, txt in self.checks:
 			if _DEBUG:
 				prefix = "checking !"
 				if flag: prefix = "checking"
+				if c > 0: prefix += " %d *" % c
 				print "%s '%s'" % (prefix, txt)
-			s = self._grep_asm(asm_name, regex)
+			s = self._grep_asm(asm_name, regex, c)
 			if flag != s:
 				prefix = "!check"
 				if flag: prefix = "check"
+				if c > 0: prefix += "[%d]" % c
 				self.error_msg = "%s '%s' failed" % (prefix, txt)
 				return False
 		return True
@@ -260,11 +288,17 @@ class Test:
 				return False
 		return True
 
-	def _grep_asm(self, asm_name, regex):
+	def _grep_asm(self, asm_name, regex, count):
 		"""Check for regex in the generated assembler file."""
-		for line in open(asm_name):
-			if regex.search(line):
-				return True
+		if count > 0:
+			for line in open(asm_name):
+				if regex.search(line):
+					count -= 1
+			return count == 0
+		else:
+			for line in open(asm_name):
+				if regex.search(line):
+					return True
 		return False
 
 	def clean(self):

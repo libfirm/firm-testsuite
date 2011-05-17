@@ -1,9 +1,0 @@
-#!/bin/sh
-set -e
-
-ASM="$1"
-COUNT="$(grep -c -E '^[[:space:]]+btl' "$ASM")"
-if [ "$COUNT" != "6" ]; then
-	echo "Couldn't find bt"
-	exit 1
-fi
