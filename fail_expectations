@@ -351,7 +351,7 @@ opt/jumpthreading3.c                ok
 opt/jumpthreading4.c                ok
 opt/jumpthreading5.c                compiler: SIGKILL
 opt/jumpthreading6.c                ok
-opt/jumpthreading7.c                compiler: SIGABRT
+opt/jumpthreading7.c                ok
 opt/kahansum.c                      ok
 opt/labs.c                          ok
 opt/ldst.c                          ok
