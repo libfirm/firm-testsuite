@@ -2,7 +2,7 @@
 /* core2 should use the bt instruction */
 #include <assert.h>
 
-/*$ check[5] btl $*/
+/*$ check[6] btl $*/
 unsigned __attribute__((noinline)) bit_set(unsigned val, unsigned bit)
 {
 	return ((1u << bit) & val) != 0;
