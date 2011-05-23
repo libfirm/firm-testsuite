@@ -343,6 +343,7 @@ opt/gnu_def.c                       ok
 opt/gzip_error.c                    ok
 opt/iabs.c                          ok
 opt/if.c                            ok
+opt/ifconv.c                        compiler: SIGABRT
 opt/implicit_call.c                 ok
 opt/inline_infinite_loop.c          ok
 opt/invsqrt.c                       ok
