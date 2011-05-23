@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#define RES_FORMAT "%f"
 #define TEST_FLOAT
 
 #define tname(x) x##float

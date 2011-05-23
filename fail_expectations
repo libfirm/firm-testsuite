@@ -29,6 +29,7 @@ backend/lower_call2.c               ok
 backend/lower_call3.c               ok
 backend/optest.c                    ok
 backend/optest_float.c              ok
+backend/optest_longlong.c           ok
 backend/pic_const.c                 ok
 backend/prefetch.c                  ok
 backend/segfault.c                  ok

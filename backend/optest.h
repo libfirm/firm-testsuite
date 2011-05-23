@@ -13,6 +13,10 @@
 #define test32_s    7
 #endif
 
+#ifndef RES_FORMAT
+#define RES_FORMAT "%d"
+#endif
+
 T tname(test_add_) (T a, T b) {
 	return a+b;
 }
@@ -92,7 +96,8 @@ T tname(test_cmpi_) (T a) {
 T tname(res16_) [TESTANZ];
 T tname(res32_) [TESTANZ];
 
-void tname(test_) () {
+void tname(test_) ()
+{
 	int i;
 	T *res16 = tname(res16_);
 	memset(res16, 0, TESTANZ * sizeof(res16[0]));
@@ -157,12 +162,7 @@ void tname(test_) () {
 
 	printf("Result for %s\n", __PRETTY_FUNCTION__);
 	for (i=0; i<TESTANZ; i++) {
-#ifndef TEST_FLOAT
-		printf("res16[%d] = %d\n", i, res16[i]);
-		printf("res32[%d] = %d\n", i, res32[i]);
-#else
-		printf("res16[%d] = %f\n", i, res16[i]);
-		printf("res32[%d] = %f\n", i, res32[i]);
-#endif
+		printf("res16[%d] = " RES_FORMAT "\n", i, res16[i]);
+		printf("res32[%d] = " RES_FORMAT "\n", i, res32[i]);
 	}
 }
