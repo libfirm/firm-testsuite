@@ -34,6 +34,7 @@ backend/pic_const.c                 ok
 backend/prefetch.c                  ok
 backend/segfault.c                  ok
 backend/shift64.c                   ok
+backend/should_be_same.c            compiler: SIGABRT
 backend/sparc_bitopcc.c             ok
 backend/sparc_immediates.c          ok
 backend/stackarray.c                ok
