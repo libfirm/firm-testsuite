@@ -32,6 +32,7 @@ backend/optest_float.c              ok
 backend/pic_const.c                 ok
 backend/prefetch.c                  ok
 backend/segfault.c                  ok
+backend/shift64.c                   ok
 backend/sparc_bitopcc.c             ok
 backend/sparc_immediates.c          ok
 backend/stackarray.c                ok
