@@ -26,20 +26,20 @@ int printf(const char *str, ...);
 
 int main(void)
 {
-#define TEST(x)    printf(#x "(0xAABBCCDD) = 0x%X\n", x(0xAABBCCDD))
-#define ALLTESTS(pf)  \
-	TEST(pf##k1); \
-	TEST(pf##k2); \
-	TEST(pf##k3); \
-	TEST(pf##k4); \
-	TEST(pf##k5); \
-	TEST(pf##k6); \
-	TEST(pf##k7); \
-	TEST(pf##k8);
+#define TEST(x,format)    printf(#x "(0xAABBCCDD) = 0x" format "\n", x(0xAABBCCDD))
+#define ALLTESTS(pf,format)  \
+	TEST(pf##k1, format); \
+	TEST(pf##k2, format); \
+	TEST(pf##k3, format); \
+	TEST(pf##k4, format); \
+	TEST(pf##k5, format); \
+	TEST(pf##k6, format); \
+	TEST(pf##k7, format); \
+	TEST(pf##k8, format);
 
-	ALLTESTS(u_);
-	ALLTESTS(i_);
-	ALLTESTS(ll_);
-	ALLTESTS(sc_);
+	ALLTESTS(u_, "%X");
+	ALLTESTS(i_, "%X");
+	ALLTESTS(ll_, "%llX");
+	ALLTESTS(sc_, "%X");
 	return 0;
 }
