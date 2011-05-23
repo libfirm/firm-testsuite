@@ -10,10 +10,10 @@ int main(int argc, char* argv[])
 	unsigned long long c = (unsigned long long)a;
 	unsigned long long d = (unsigned long long)b;
 
-	printf("Signed:   a / b = %i\n",  (int)(a / b));
-	printf("Unsigned: a / b = %i\n",  (int)(c / d));
-	printf("Signed:   a %% b = %i\n",  (int)(a % b));
-	printf("Unsigned: a %% b = %i\n",  (int)(c % d));
+	printf("Signed:   a / b = %lli\n", (a / b));
+	printf("Unsigned: a / b = %llu\n", (c / d));
+	printf("Signed:   a %% b = %lli\n", (a % b));
+	printf("Unsigned: a %% b = %llu\n", (c % d));
 
 	return 0;
 }
