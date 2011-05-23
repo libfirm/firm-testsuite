@@ -362,6 +362,7 @@ opt/ll.c                            ok
 opt/ll_call.c                       ok
 opt/load_memout_necessary.c         ok
 opt/localopts.c                     ok
+opt/localopts2.c                    compiler: SIGABRT
 opt/longlong.c                      ok
 opt/loop_without_phi.c              ok
 opt/loopana.c                       ok
