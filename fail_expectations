@@ -690,6 +690,10 @@ C/should_warn/cp_error025.c         compiler missed warnings
 C/should_warn/div_by_zero.c         ok
 C/should_warn/implicit_int.c        ok
 C/should_warn/init_self.c           ok
+C/should_warn/main0.c               ok
+C/should_warn/main1.c               ok
+C/should_warn/main2.c               ok
+C/should_warn/main3.c               ok
 C/should_warn/missing_return.c      ok
 C/should_warn/nested_comment.c      compiler missed warnings
 C/should_warn/never_read1.c         ok
