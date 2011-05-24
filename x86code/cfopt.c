@@ -1,4 +1,4 @@
-/*$ !check j[a-z]* .L $*/
+/*$ !check j[a-z]* .?L $*/
 /*$ cflags -fno-if-conversion $*/
 
 int x;
