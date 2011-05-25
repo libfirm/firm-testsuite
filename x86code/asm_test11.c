@@ -8,7 +8,7 @@ unsigned long long __attribute__((noinline)) foobar(void)
 	__asm__ __volatile__(
 		"movl $0xdeadbeef, %0\n"
 		"\tmovl $0xcafebabe, %%edx\n"
-		"\tleal 1(%1), %2\n"
+		"\tleal 1(%2), %1\n"
 		"\tleal 1(%%ebx), %%ebx\n"
 		: "=A"(res0), "=b"(res1)
 		: "b"(arg));
