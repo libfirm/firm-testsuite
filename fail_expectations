@@ -34,7 +34,6 @@ backend/pic_const.c                 ok
 backend/prefetch.c                  ok
 backend/segfault.c                  ok
 backend/shift64.c                   ok
-backend/should_be_same.c            compiler: SIGABRT
 backend/sparc_bitopcc.c             ok
 backend/sparc_immediates.c          ok
 backend/stackarray.c                ok
@@ -109,7 +108,6 @@ opt/boolsimplify.c                  ok
 opt/bttest.c                        ok
 opt/callref.c                       ok
 opt/calls.c                         ok
-x86code/cfopt.c                     !check 'j[a-z]* .?L' failed
 opt/cfoptbug.c                      ok
 opt/cmp.c                           ok
 opt/cmp2.c                          ok
@@ -347,7 +345,6 @@ opt/gnu_def.c                       ok
 opt/gzip_error.c                    ok
 opt/iabs.c                          ok
 opt/if.c                            ok
-opt/ifconv.c                        compiler: SIGABRT
 opt/implicit_call.c                 ok
 opt/inline_infinite_loop.c          ok
 opt/invsqrt.c                       ok
@@ -365,7 +362,7 @@ opt/ll.c                            ok
 opt/ll_call.c                       ok
 opt/load_memout_necessary.c         ok
 opt/localopts.c                     ok
-opt/localopts2.c                    compiler: SIGABRT
+opt/localopts2.c                    ok
 opt/longlong.c                      ok
 opt/loop_without_phi.c              ok
 opt/loopana.c                       ok
@@ -721,7 +718,7 @@ C/should_warn/write_only6.c         ok
 C/should_warn/write_only8.c         ok
 C/should_warn/write_strings.c       ok
 C/nowarn/fooredirect.c              ok
-C/nowarn/main.c                     compiler produced invalid warning
+C/nowarn/main.c                     ok
 C/nowarn/printf.c                   ok
 C/nowarn/redirect.c                 ok
 C/nowarn/write_only1.c              ok
@@ -845,6 +842,7 @@ x86code/asmq3.c                     ok
 x86code/bf_init.c                   ok
 x86code/bf_localinit.c              ok
 x86code/bittest.c                   ok
+x86code/cfopt.c                     !check 'j[a-z]* .?L' failed
 x86code/common.c                    ok
 x86code/cp_error040.c               ok
 x86code/doz.c                       ok
