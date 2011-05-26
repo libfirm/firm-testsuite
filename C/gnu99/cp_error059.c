@@ -2,11 +2,11 @@
 int main(void)
 {
 	typedef int foot;
-	foot foo;
+	foot foo = 42;
 
-	int k(void) {
+	int __attribute__((noinline)) k(void) {
 		return foo;
 	}
 
-	return k();
+	return k() != 42;
 }
