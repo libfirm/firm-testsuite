@@ -401,6 +401,7 @@ opt/rtsopt.c                        ok
 opt/setjump.c                       ok
 opt/shiftamount.c                   ok
 opt/shiftconst.c                    ok
+opt/should_be_same.c                compilation not ok (returncode 1)
 opt/simd1-i.c                       ok
 opt/simd1.c                         ok
 opt/simd2.c                         ok
