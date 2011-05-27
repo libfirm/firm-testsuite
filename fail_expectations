@@ -119,6 +119,7 @@ opt/compilerhang2.c                 ok
 opt/compilerhang3.c                 execution: SIGABRT
 opt/compilerhang4.c                 ok
 opt/compilerhang5.c                 ok
+opt/cond.c                          ok
 opt/confirm.c                       ok
 opt/const.c                         ok
 opt/const_load.c                    ok
