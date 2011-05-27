@@ -586,6 +586,7 @@ C/pragmatic/shift.c                 ok
 C/pragmatic/toomuchparams.c         ok
 C/should_fail/adr_reg.c             ok
 C/should_fail/anonunion.c           compiler missed error
+C/should_fail/arr_idx_float.c       compiler missed error
 C/should_fail/array0.c              ok
 C/should_fail/array1.c              ok
 C/should_fail/array2.c              compiler missed error
