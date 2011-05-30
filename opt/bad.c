@@ -30,42 +30,10 @@ int main ()
 	int i;
 	for (i = 0; i <= 10; i++)
 	{
-#if 0
-		if (f1 (i) != i) {
-			printf("f1(%d)\n", i);
-			abort ();
-		}
-		if (f1 (-i) != i) {
-			printf("f1(%d)\n", -i);
-			abort ();
-		}
-		if (f2 (i) != i) {
-			printf("f2(%d)\n", i);
-			abort ();
-		}
-#endif
 		if ((int) f2 (-i) != i) {
 			printf("f2(%d) -> %d\n", -i, f2(-i));
 			abort ();
 		}
-#if 0
-		if (f3 ((long long) i) != i) {
-			printf("f3(%lld)\n", i);
-			abort ();
-		}
-		if (f3 ((long long) -i) != i) {
-			printf("f3(%lld)\n", -i);
-			abort ();
-		}
-		if (f4 ((long long) i) != i) {
-			printf("f4(%lld)\n", i);
-			abort ();
-		}
-		if (f4 ((long long) -i) != i) {
-			printf("f4(%d)\n", -i);
-			abort ();
-		}
-#endif
 	}
 	exit (0);
 }
