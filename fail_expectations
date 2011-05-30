@@ -737,6 +737,7 @@ C/gnu99/anonstruct3.c               ok
 C/gnu99/asmname.c                   ok
 C/gnu99/attribute_after_bitfield.c  ok
 C/gnu99/attribute_empty.c           ok
+C/gnu99/attribute_in_decl.c         2 compile errors
 C/gnu99/attributes.c                linker error
 C/gnu99/attributes2.c               ok
 C/gnu99/attributes3.c               ok
