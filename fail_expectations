@@ -347,7 +347,7 @@ opt/gzip_error.c                    ok
 opt/iabs.c                          ok
 opt/if.c                            ok
 opt/implicit_call.c                 ok
-opt/inline.c                        compiler: SIGABRT
+opt/inline.c                        ok
 opt/inline_infinite_loop.c          ok
 opt/invsqrt.c                       ok
 opt/jumpthreading.c                 ok
