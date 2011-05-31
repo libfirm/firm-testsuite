@@ -565,6 +565,7 @@ C/scanf.c                           ok
 C/segfault4.c                       ok
 C/segfault5.c                       ok
 C/segfault6.c                       ok
+C/segfault7.c                       compiler: SIGSEGV
 C/sideeffects.c                     ok
 C/statics.c                         ok
 C/struct_init.c                     ok
