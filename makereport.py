@@ -237,8 +237,8 @@ class Test:
 		start = time()
 		c = self.compile()
 		self.compile_seconds = time() - start
-		if not c: return c
 		self.long_error_msg = "\n".join((self.compile_command, self.compiling))
+		if not c: return c
 		return True
 	def _test_reference_output(self):
 		"""Run test program and compare output to reference"""
