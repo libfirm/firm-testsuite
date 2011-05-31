@@ -616,6 +616,7 @@ C/should_fail/cp_error054.c         ok
 C/should_fail/cpponly.c             ok
 C/should_fail/decl_after_label.c    ok
 C/should_fail/decl_without_name.c   ok
+C/should_fail/empty_char.c          ok
 C/should_fail/enum_forward.c        ok
 C/should_fail/error_directive.c     ok
 C/should_fail/f.c                   ok
