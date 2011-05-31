@@ -350,6 +350,7 @@ opt/implicit_call.c                 ok
 opt/inline.c                        ok
 opt/inline_infinite_loop.c          ok
 opt/invsqrt.c                       ok
+opt/ioet.c                          ok
 opt/jumpthreading.c                 ok
 opt/jumpthreading2.c                ok
 opt/jumpthreading3.c                ok
