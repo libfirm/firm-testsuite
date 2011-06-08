@@ -1,7 +1,6 @@
 
-int main (int argc, char* argv[])
+void f(int x)
 {
-	int x = argc;
 	if (!x) {
 		x = 8;
 	}
@@ -11,5 +10,11 @@ int main (int argc, char* argv[])
 		{
 		}
 	}
+	return;
+}
+
+int main (int argc, char* argv[])
+{
+	f(12);
 	return 0;
 }
