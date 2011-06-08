@@ -356,6 +356,7 @@ opt/jumpthreading2.c                ok
 opt/jumpthreading3.c                ok
 opt/jumpthreading4.c                ok
 opt/jumpthreading5.c                compiler: SIGKILL
+opt/jumpthreading5b.c               compiler: SIGKILL
 opt/jumpthreading6.c                ok
 opt/jumpthreading7.c                ok
 opt/kahansum.c                      ok
