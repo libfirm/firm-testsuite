@@ -1,5 +1,5 @@
 /* originally from csmith 2.0.0 with seed 3973658307 */
-/*$ cflags -fno-ifconversion $*/
+/*$ cflags -fno-if-conversion $*/
 
 long long (safe_sub_func_uint64_t_u_u)(long long ui1, int ui2 )
 {
