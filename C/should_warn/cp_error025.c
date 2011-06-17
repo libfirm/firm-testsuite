@@ -2,7 +2,8 @@ struct s {
 	char x[30];
 };
 
-struct s x[] = { "blup" };
+/* should warn about missing braces around initializer */
+static struct s x[] = { "blup" };
 
 int main(void)
 {
