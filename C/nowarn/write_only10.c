@@ -1,4 +1,4 @@
-struct X { int i[10]; int j; struct X* next; } gX;
+static struct X { int i[10]; int j; struct X* next; } gX;
 
 int main(void)
 {

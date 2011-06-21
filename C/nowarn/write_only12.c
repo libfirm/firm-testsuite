@@ -1,4 +1,4 @@
-unsigned gstat[100];
+static unsigned gstat[100];
 
 int main(void)
 {
