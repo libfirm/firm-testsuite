@@ -1,4 +1,4 @@
-int A;
+static int A;
 
 int main(void)
 {
