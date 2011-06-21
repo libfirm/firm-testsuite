@@ -598,6 +598,7 @@ def make_test(environment, filename):
 		testclass = TestShouldWarn
 	elif "C/nowarn/" in filename:
 		testclass = TestShouldNotWarn
+		environment.cflags += " -Wall -W"
 	elif "bytecode2firm/" in filename:
 		testclass = TestJava
 	elif "x10firm/" in filename:

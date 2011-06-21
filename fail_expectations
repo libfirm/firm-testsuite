@@ -328,6 +328,7 @@ opt/fehler186.c                     ok
 opt/fehler187.c                     ok
 opt/fehler188.c                     ok
 opt/fehler189.c                     ok
+opt/fehler190.c                     ok
 opt/fehler_gt_0.c                   ok
 opt/fehler_no_equality_0.c          ok
 opt/fib.c                           ok
@@ -521,6 +522,7 @@ C/cp_error062.c                     ok
 C/cp_error063.c                     ok
 C/cp_error064.c                     ok
 C/cp_error065.c                     ok
+C/cp_error066.c                     ok
 C/csmith1.c                         ok
 C/csmith2.c                         ok
 C/declarator_special.c              ok
@@ -615,6 +617,7 @@ C/should_fail/cp_error002.c         ok
 C/should_fail/cp_error003.c         ok
 C/should_fail/cp_error054.c         ok
 C/should_fail/cp_error066.c         ok
+C/should_fail/cp_error066a.c        ok
 C/should_fail/cpponly.c             ok
 C/should_fail/decl_after_label.c    ok
 C/should_fail/decl_without_name.c   ok
@@ -731,7 +734,8 @@ C/nowarn/redirect.c                 ok
 C/nowarn/write_only1.c              ok
 C/nowarn/write_only10.c             ok
 C/nowarn/write_only11.c             ok
-C/nowarn/write_only12.c             ok
+C/nowarn/write_only12.c             compiler produced invalid warning
+C/nowarn/write_only13.c             compiler produced invalid warning
 C/nowarn/write_only5.c              ok
 C/nowarn/write_only7.c              ok
 C/nowarn/write_only9.c              ok
