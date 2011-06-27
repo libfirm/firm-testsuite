@@ -452,6 +452,7 @@ opt/wrong_cmp.c                     ok
 C/LongLong.c                        ok
 C/abi_null_mode_proj.c              ok
 C/abstract_declarator.c             ok
+C/anon_entity.c                     compiler: SIGABRT
 C/array.c                           ok
 C/bitfield.c                        ok
 C/bitfield2.c                       ok
