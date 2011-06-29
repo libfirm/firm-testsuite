@@ -638,6 +638,7 @@ C/should_fail/init1.c               ok
 C/should_fail/init2.c               ok
 C/should_fail/init3.c               ok
 C/should_fail/init4.c               ok
+C/should_fail/init5.c               ok
 C/should_fail/init8.c               ok
 C/should_fail/kr1.c                 ok
 C/should_fail/kr2.c                 ok
@@ -741,6 +742,7 @@ C/should_warn/write_only6.c         ok
 C/should_warn/write_only8.c         ok
 C/should_warn/write_strings.c       ok
 C/nowarn/fooredirect.c              ok
+C/nowarn/init_self.c                compiler produced invalid warning
 C/nowarn/main.c                     ok
 C/nowarn/printf.c                   ok
 C/nowarn/redirect.c                 ok
