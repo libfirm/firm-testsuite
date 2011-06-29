@@ -5,5 +5,5 @@ int main(void)
 		(void)sizeof(enum { A });
 	else
 		return A;
-	return A;
+	return 0;
 }
