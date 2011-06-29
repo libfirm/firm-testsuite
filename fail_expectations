@@ -671,6 +671,7 @@ C/should_fail/pointerarith5.c       ok
 C/should_fail/randprog1.c           ok
 C/should_fail/scope_do_while_body.c compiler missed error
 C/should_fail/scope_do_while_cond.c compiler missed error
+C/should_fail/scope_do_while_body_cond.c compiler missed error
 C/should_fail/scope_for_body.c      ok
 C/should_fail/scope_for_cond.c      ok
 C/should_fail/scope_if_cond.c       compiler missed error
