@@ -621,12 +621,12 @@ C/should_fail/cp_error066.c         ok
 C/should_fail/cp_error066a.c        ok
 C/should_fail/cpponly.c             ok
 C/should_fail/decl_after_label.c    ok
-C/should_fail/decl_in_do_while.c    compiler missed error
-C/should_fail/decl_in_else.c        compiler missed error
-C/should_fail/decl_in_for.c         compiler missed error
-C/should_fail/decl_in_switch.c      compiler missed error
-C/should_fail/decl_in_then.c        compiler missed error
-C/should_fail/decl_in_while.c       compiler missed error
+C/should_fail/decl_in_do_while.c    ok
+C/should_fail/decl_in_else.c        ok
+C/should_fail/decl_in_for.c         ok
+C/should_fail/decl_in_switch.c      ok
+C/should_fail/decl_in_then.c        ok
+C/should_fail/decl_in_while.c       ok
 C/should_fail/decl_without_name.c   ok
 C/should_fail/empty_char.c          ok
 C/should_fail/enum_forward.c        ok
