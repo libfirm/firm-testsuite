@@ -785,6 +785,7 @@ C/gnu99/cp_error059.c               compiler: SIGABRT
 C/gnu99/cp_error064.c               ok
 C/gnu99/emptystruct.c               ok
 C/gnu99/escape.c                    ok
+C/gnu99/extension_in_compound.c     ok
 C/gnu99/extension_in_for_init.c     ok
 C/gnu99/flex_array_init.c           compiler: SIGABRT
 C/gnu99/ijmp.c                      ok
