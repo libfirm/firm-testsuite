@@ -189,7 +189,6 @@ opt/fehler041.c                     ok
 opt/fehler042.c                     ok
 opt/fehler043.c                     ok
 opt/fehler044.c                     ok
-opt/fehler044b.c                    ok
 opt/fehler045.c                     ok
 opt/fehler046.c                     ok
 opt/fehler047.c                     ok
