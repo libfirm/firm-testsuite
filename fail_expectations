@@ -729,6 +729,8 @@ C/should_warn/padded.c              compiler missed warnings
 C/should_warn/paramscope.c          compiler missed warnings
 C/should_warn/printf2.c             ok
 C/should_warn/printf_formats.c      ok
+C/should_warn/printf_int_for_short.c ok
+C/should_warn/printf_zero_precision.c ok
 C/should_warn/prototype.c           ok
 C/should_warn/prototype2.c          ok
 C/should_warn/ref_local.c           ok
@@ -751,6 +753,7 @@ C/nowarn/fooredirect.c              ok
 C/nowarn/init_self.c                compiler produced invalid warning
 C/nowarn/main.c                     ok
 C/nowarn/printf.c                   ok
+C/nowarn/printf_unsigned_short.c    ok
 C/nowarn/redirect.c                 ok
 C/nowarn/write_only1.c              ok
 C/nowarn/write_only10.c             ok
