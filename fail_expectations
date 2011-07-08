@@ -736,6 +736,8 @@ C/should_warn/prototype2.c          ok
 C/should_warn/ref_local.c           ok
 C/should_warn/return_with_void.c    ok
 C/should_warn/scanf_formats.c       ok
+C/should_warn/scanf_width_c.c       ok
+C/should_warn/scanf_width_s.c       ok
 C/should_warn/struct_ret.c          ok
 C/should_warn/stupid_formats.c      ok
 C/should_warn/switch_on_enum.c      ok
@@ -755,6 +757,9 @@ C/nowarn/main.c                     ok
 C/nowarn/printf.c                   ok
 C/nowarn/printf_unsigned_short.c    ok
 C/nowarn/redirect.c                 ok
+C/nowarn/scanf_suppress.c           ok
+C/nowarn/scanf_width_c.c            ok
+C/nowarn/scanf_width_s.c            ok
 C/nowarn/write_only1.c              ok
 C/nowarn/write_only10.c             ok
 C/nowarn/write_only11.c             ok
