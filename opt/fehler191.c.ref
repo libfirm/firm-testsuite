@@ -1,0 +1,1 @@
+(0xfffffff >> 1) | 0x80000000 = 0x87ffffff
