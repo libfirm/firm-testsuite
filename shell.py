@@ -24,11 +24,12 @@ def execute(cmd, env=None, timeout=0):
 		preexec_fn = set_timeout
 	cmd = filter(lambda x: x, cmd.split(' '))
 	proc = subprocess.Popen(cmd,
+							stdin =subprocess.PIPE,
 							stdout=subprocess.PIPE,
 							stderr=subprocess.PIPE,
 							preexec_fn = preexec_fn,
 							env=env)
-	out, err = proc.communicate()
+	out, err = proc.communicate(input="")
 	if proc.returncode in _EXIT_CODES:
 		raise SigKill(proc.returncode, _EXIT_CODES[proc.returncode])
 	return (out, err, proc.returncode)

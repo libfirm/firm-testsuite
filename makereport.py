@@ -243,12 +243,10 @@ class Test:
 	def _test_reference_output(self):
 		"""Run test program and compare output to reference"""
 		environment = self.environment
-		if hasattr(environment, 'reference_output'):
-			start = time()
-			r = self.check_reference()
-			self.run_seconds = time() - start
-			return r
-		return True
+		start = time()
+		r = self.check_execution()
+		self.run_seconds = time() - start
+		return r
 
 	def _test_check_commands(self):
 		"""Execute all embedded check commands"""
@@ -368,7 +366,7 @@ class Test:
 		environment = self.environment
 		cmd = "%(compiler)s -S %(filename)s %(cflags)s %(ldflags)s -o %(asm_file)s" % environment.__dict__
 		silent_shell(cmd) # assumed to succeed, because compile to exe did
-	def check_reference(self):
+	def check_execution(self):
 		"""Run compiled test program and compare output to reference"""
 		environment = self.environment
 		try:
@@ -384,6 +382,14 @@ class Test:
 			return False
 
 		# Program run succeeded. Now compare output with reference.
+		if not hasattr(environment, 'reference_output'):
+			self.error_msg = "no reference output"
+			if out:
+				out = "Output was:\n"+out
+			else:
+				out = "Empty Output."
+			self.long_error_msg = "Add .ref file for this test case! "+out
+			return False
 		ref = environment.reference_output.splitlines()
 		diff = "\n".join(difflib.unified_diff(out.splitlines(), ref))
 		if diff == "":
@@ -402,6 +408,8 @@ class TestShouldFail(Test):
 			self.error_msg = "compiler missed error"
 			return False
 		return True
+	def check_execution(self):
+		return True # nothing to execute
 
 class TestShouldWarn(Test):
 	def __init__(self, filename, environment):
@@ -414,6 +422,8 @@ class TestShouldWarn(Test):
 			self.error_msg = "compiler missed warnings"
 			return False
 		return Test.check_compiler_errors(self)
+	def check_execution(self):
+		return True # only check compilation
 
 class TestShouldNotWarn(Test):
 	def __init__(self, filename, environment):
@@ -424,6 +434,8 @@ class TestShouldNotWarn(Test):
 			self.error_msg = "compiler produced invalid warning"
 			return False
 		return Test.check_compiler_errors(self)
+	def check_execution(self):
+		return True # only check compilation
 
 class TestJava(Test):
 	def __init__(self, filename, environment):
