@@ -330,7 +330,7 @@ opt/fehler189.c                     ok
 opt/fehler190.c                     ok
 opt/fehler191.c                     ok
 opt/fehler192.c                     ok
-opt/fehler193.c                     Test return code not zero but 1
+opt/fehler193.c                     ok
 opt/fehler_gt_0.c                   ok
 opt/fehler_no_equality_0.c          ok
 opt/fib.c                           ok
