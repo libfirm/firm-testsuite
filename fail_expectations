@@ -754,7 +754,7 @@ C/should_warn/write_only6.c         ok
 C/should_warn/write_only8.c         ok
 C/should_warn/write_strings.c       ok
 C/nowarn/fooredirect.c              ok
-C/nowarn/init_self.c                compiler produced invalid warning
+C/nowarn/init_self.c                ok
 C/nowarn/main.c                     ok
 C/nowarn/printf.c                   ok
 C/nowarn/printf_unsigned_short.c    ok
