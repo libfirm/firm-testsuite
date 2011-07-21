@@ -4,12 +4,12 @@
 int main(void)
 {
 	int res = 0;
-	long long solution = 42;
+	long long solution = 42000000000;
 
-	for (int i = 1; i < 42; i++) {
+	for (int i = 20; i < 42; i++) {
 		int out = solution/i;
 
-		if (i == 7) {
+		if (i == 23) {
 			res = 42;
 		}
 		else {
