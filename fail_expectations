@@ -331,7 +331,7 @@ opt/fehler190.c                     ok
 opt/fehler191.c                     ok
 opt/fehler192.c                     ok
 opt/fehler193.c                     ok
-opt/fehler194.c                     compiler: SIGABRT
+opt/fehler194.c                     ok
 opt/fehler_gt_0.c                   ok
 opt/fehler_no_equality_0.c          ok
 opt/fib.c                           ok
