@@ -12,6 +12,18 @@ struct y {
 	int d[20];
 };
 
+static int t(struct x x)
+{
+  return x.b;
+}
+
+static int z(struct y x)
+{
+  return x.c;
+}
+
+extern int printf(const char *str, ...);
+
 int main()
 {
   struct x A;
@@ -30,14 +42,4 @@ int main()
   printf("%d\n", z(B));
 
   return 0;
-}
-
-int t(struct x x)
-{
-  return x.b;
-}
-
-int z(struct y x)
-{
-  return x.c;
 }
