@@ -9,6 +9,7 @@ static void __attribute__((noinline)) varfoo(long long l, ...)
 		int val = va_arg(ap, int);
 		printf("%d\n", val);
 	}
+	va_end(ap);
 }
 
 int main(void)
