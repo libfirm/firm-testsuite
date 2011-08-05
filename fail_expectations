@@ -23,21 +23,23 @@ backend/floatset.c                  ok
 backend/inconsistent_outs.c         ok
 backend/initializer_bug.c           ok
 backend/longfunc.c                  ok
-backend/longlongptr.c               output mismatch
+backend/longlongptr.c               ok
 backend/lower_call.c                ok
 backend/lower_call2.c               ok
 backend/lower_call3.c               ok
 backend/optest.c                    ok
 backend/optest_float.c              ok
 backend/optest_longlong.c           ok
+backend/paramaddr.c                 ok
 backend/pic_const.c                 ok
 backend/prefetch.c                  ok
 backend/segfault.c                  ok
 backend/shift64.c                   ok
 backend/sparc_bitopcc.c             ok
 backend/sparc_immediates.c          ok
+backend/srettaken.c                 ok
 backend/stackarray.c                ok
-backend/taken64.c                   output mismatch
+backend/taken64.c                   ok
 backend/tls_ptr.c                   ok
 backend/transform_loop.c            ok
 opt/20001212-1.c                    ok
@@ -448,6 +450,7 @@ opt/vadd_store.c                    ok
 opt/valist.c                        ok
 opt/vandrunen.c                     ok
 opt/vararray.c                      ok
+opt/variadic_longlong.c             ok
 opt/vla.c                           ok
 opt/volatile.c                      ok
 opt/while-printf.c                  ok
@@ -681,8 +684,8 @@ C/should_fail/pointerarith4.c       ok
 C/should_fail/pointerarith5.c       ok
 C/should_fail/randprog1.c           ok
 C/should_fail/scope_do_while_body.c compiler missed error
-C/should_fail/scope_do_while_cond.c compiler missed error
 C/should_fail/scope_do_while_body_cond.c compiler missed error
+C/should_fail/scope_do_while_cond.c compiler missed error
 C/should_fail/scope_for_body.c      ok
 C/should_fail/scope_for_cond.c      ok
 C/should_fail/scope_if_cond.c       compiler missed error
@@ -822,13 +825,13 @@ C/gnu99/redirect.c                  ok
 C/gnu99/redirect_nowarn.c           ok
 C/gnu99/sizeof_function.c           ok
 C/gnu99/strangeattr.c               ok
-C/gnu99/tcctest.c                   2 compile errors
+C/gnu99/tcctest.c                   1 compile errors
 C/gnu99/transparent_union.c         ok
 C/gnu99/transparent_union3.c        ok
 C/gnu99/typeof.c                    ok
 C/gnu99/typeprop_funcs.c            ok
 C/gnu99/union_cast.c                2 compile errors
-C/gnu99/unused_label.c              4 compile errors
+C/gnu99/unused_label.c              ok
 C/gnu99/void_pointer_arithmetic.c   ok
 ack/ack_conv.c                      ok
 ack/decl.c                          ok
