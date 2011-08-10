@@ -463,7 +463,7 @@ C/array.c                           ok
 C/bitfield.c                        ok
 C/bitfield2.c                       ok
 C/bitfield3.c                       ok
-C/bitfield_conversion.c             output mismatch
+C/bitfield_conversion.c             ok
 C/bool.c                            ok
 C/bool2.c                           ok
 C/compoundlit.c                     ok
@@ -811,6 +811,7 @@ C/gnu99/incomplete_enum.c           ok
 C/gnu99/inlineextern.c              ok
 C/gnu99/l1.c                        ok
 C/gnu99/local_label.c               ok
+C/gnu99/longlong_bf.c               ok
 C/gnu99/mode_attrib.c               ok
 C/gnu99/multichar.c                 ok
 C/gnu99/nested_function.c           ok
