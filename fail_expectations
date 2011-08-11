@@ -543,7 +543,7 @@ C/enum.c                            ok
 C/flexarray.c                       ok
 C/floatcmp.c                        ok
 C/floatvals.c                       ok
-C/folderror.c                       compiler: SIGABRT
+C/folderror.c                       ok
 C/funcname.c                        ok
 C/function.c                        ok
 C/function_declarator.c             ok
