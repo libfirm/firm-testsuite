@@ -3,7 +3,7 @@ typedef struct _foo_t {
   char b;
 } foo_t;
 
-foo_t sret_func(int c) {
+foo_t __attribute__((noinline)) sret_func(int c) {
   foo_t x;
   x.a = c;
   x.b = 0;
