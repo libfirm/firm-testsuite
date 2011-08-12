@@ -354,6 +354,7 @@ opt/iabs.c                          ok
 opt/if.c                            ok
 opt/implicit_call.c                 ok
 opt/inline.c                        ok
+opt/inline2.c                       ok
 opt/inline_infinite_loop.c          ok
 opt/invsqrt.c                       ok
 opt/ioet.c                          ok
@@ -376,7 +377,6 @@ opt/longlong.c                      ok
 opt/loop_without_phi.c              ok
 opt/loopana.c                       ok
 opt/loopspilling.c                  ok
-opt/lower.c                         compiler: SIGABRT
 opt/lrot.c                          ok
 opt/max.c                           ok
 opt/most_complex_conv.c             ok
