@@ -16,6 +16,7 @@ backend/builtin_ffs.c               ok
 backend/builtin_parity.c            ok
 backend/builtin_popcount.c          ok
 backend/cmovs.c                     ok
+backend/extern_sret.c               ok
 backend/fdiv.c                      ok
 backend/fehler_mux_am.c             ok
 backend/float_ret_sse.c             ok
@@ -380,7 +381,7 @@ opt/loopana.c                       ok
 opt/loopspilling.c                  ok
 opt/lrot.c                          ok
 opt/max.c                           ok
-opt/mismatch.c                      output mismatch
+opt/mismatch.c                      ok
 opt/most_complex_conv.c             ok
 opt/mul.c                           ok
 opt/mul2n.c                         ok
@@ -760,6 +761,7 @@ C/should_warn/traditional.c         ok
 C/should_warn/unused_param.c        ok
 C/should_warn/write_only11.c        ok
 C/should_warn/write_only12.c        ok
+C/should_warn/write_only14.c        compiler missed warnings
 C/should_warn/write_only2.c         ok
 C/should_warn/write_only3.c         ok
 C/should_warn/write_only4.c         ok
