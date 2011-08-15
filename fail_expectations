@@ -471,7 +471,7 @@ C/bitfield4.c                       output mismatch
 C/bitfield_conversion.c             ok
 C/bool.c                            ok
 C/bool2.c                           ok
-C/bool3.c                           output mismatch
+C/bool3.c                           ok
 C/compoundlit.c                     ok
 C/compoundlit2.c                    ok
 C/compoundlit3.c                    ok
