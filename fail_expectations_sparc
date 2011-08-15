@@ -16,6 +16,7 @@ backend/builtin_ffs.c               compiler: SIGABRT
 backend/builtin_parity.c            compiler: SIGABRT
 backend/builtin_popcount.c          compiler: SIGABRT
 backend/cmovs.c                     ok
+backend/extern_sret.c               ok
 backend/fdiv.c                      compiler: SIGABRT
 backend/fehler_mux_am.c             ok
 backend/float_ret_sse.c             compiler: SIGABRT
@@ -24,8 +25,8 @@ backend/inconsistent_outs.c         ok
 backend/initializer_bug.c           compiler: SIGABRT
 backend/longfunc.c                  ok
 backend/longlongptr.c               ok
-backend/lower_call.c                compiler: SIGABRT
-backend/lower_call2.c               compiler: SIGABRT
+backend/lower_call.c                ok
+backend/lower_call2.c               ok
 backend/lower_call3.c               ok
 backend/optest.c                    ok
 backend/optest_float.c              compiler: SIGABRT
@@ -37,7 +38,7 @@ backend/segfault.c                  ok
 backend/shift64.c                   ok
 backend/sparc_bitopcc.c             ok
 backend/sparc_immediates.c          ok
-backend/srettaken.c                 compiler: SIGABRT
+backend/srettaken.c                 ok
 backend/stackarray.c                ok
 backend/taken64.c                   ok
 backend/tls_ptr.c                   compiler: SIGABRT
@@ -109,16 +110,17 @@ opt/boolopts.c                      ok
 opt/boolsimplify.c                  ok
 opt/bttest.c                        ok
 opt/callref.c                       ok
-opt/calls.c                         ok
+opt/calls.c                         output mismatch
 opt/cfoptbug.c                      ok
 opt/cmp.c                           ok
 opt/cmp2.c                          ok
 opt/cmp_cse.c                       ok
+opt/combo2.c                        compiler: SIGABRT
 opt/combo_comm.c                    ok
 opt/combo_paper.c                   ok
 opt/comboattrs.c                    ok
 opt/compilerhang2.c                 compiler: SIGABRT
-opt/compilerhang3.c                 compiler: SIGABRT
+opt/compilerhang3.c                 compiler: SIGSEGV
 opt/compilerhang4.c                 ok
 opt/compilerhang5.c                 ok
 opt/cond.c                          ok
@@ -213,7 +215,7 @@ opt/fehler063.c                     ok
 opt/fehler064.c                     ok
 opt/fehler065.c                     compiler: SIGABRT
 opt/fehler066.c                     compiler: SIGABRT
-opt/fehler067.c                     output mismatch
+opt/fehler067.c                     compiler: SIGABRT
 opt/fehler068.c                     compiler: SIGABRT
 opt/fehler069.c                     ok
 opt/fehler070.c                     ok
@@ -240,7 +242,7 @@ opt/fehler090.c                     ok
 opt/fehler091.c                     ok
 opt/fehler092.c                     ok
 opt/fehler093.c                     ok
-opt/fehler094.c                     compiler: SIGABRT
+opt/fehler094.c                     ok
 opt/fehler095.c                     ok
 opt/fehler096.c                     ok
 opt/fehler097.c                     ok
@@ -255,7 +257,7 @@ opt/fehler106.c                     compiler: SIGABRT
 opt/fehler107.c                     compiler: SIGABRT
 opt/fehler108.c                     ok
 opt/fehler109.c                     ok
-opt/fehler110.c                     compiler: SIGABRT
+opt/fehler110.c                     ok
 opt/fehler112.c                     ok
 opt/fehler113.c                     ok
 opt/fehler114.c                     ok
@@ -354,6 +356,7 @@ opt/iabs.c                          ok
 opt/if.c                            ok
 opt/implicit_call.c                 ok
 opt/inline.c                        compiler: SIGSEGV
+opt/inline2.c                       ok
 opt/inline_infinite_loop.c          ok
 opt/invsqrt.c                       ok
 opt/ioet.c                          ok
@@ -378,6 +381,7 @@ opt/loopana.c                       ok
 opt/loopspilling.c                  ok
 opt/lrot.c                          ok
 opt/max.c                           ok
+opt/mismatch.c                      ok
 opt/most_complex_conv.c             compiler: SIGABRT
 opt/mul.c                           ok
 opt/mul2n.c                         ok
@@ -463,9 +467,11 @@ C/array.c                           ok
 C/bitfield.c                        ok
 C/bitfield2.c                       ok
 C/bitfield3.c                       ok
-C/bitfield_conversion.c             output mismatch
+C/bitfield4.c                       output mismatch
+C/bitfield_conversion.c             ok
 C/bool.c                            ok
 C/bool2.c                           ok
+C/bool3.c                           ok
 C/compoundlit.c                     ok
 C/compoundlit2.c                    ok
 C/compoundlit3.c                    compiler: SIGABRT
@@ -494,7 +500,7 @@ C/cp_error018.c                     ok
 C/cp_error019.c                     ok
 C/cp_error020.c                     ok
 C/cp_error021.c                     ok
-C/cp_error022.c                     ok
+C/cp_error022.c                     Test return code not zero but 1
 C/cp_error023.c                     ok
 C/cp_error024.c                     ok
 C/cp_error026.c                     output mismatch
@@ -503,7 +509,7 @@ C/cp_error028.c                     ok
 C/cp_error029.c                     ok
 C/cp_error031.c                     ok
 C/cp_error032.c                     ok
-C/cp_error033.c                     compiler: SIGABRT
+C/cp_error033.c                     ok
 C/cp_error034.c                     ok
 C/cp_error035.c                     compiler: SIGABRT
 C/cp_error036.c                     ok
@@ -543,6 +549,7 @@ C/enum.c                            ok
 C/flexarray.c                       ok
 C/floatcmp.c                        compiler: SIGABRT
 C/floatvals.c                       ok
+C/folderror.c                       ok
 C/funcname.c                        ok
 C/function.c                        ok
 C/function_declarator.c             ok
@@ -747,13 +754,14 @@ C/should_warn/return_with_void.c    ok
 C/should_warn/scanf_formats.c       ok
 C/should_warn/scanf_width_c.c       ok
 C/should_warn/scanf_width_s.c       ok
-C/should_warn/struct_ret.c          compiler: SIGABRT
+C/should_warn/struct_ret.c          ok
 C/should_warn/stupid_formats.c      ok
 C/should_warn/switch_on_enum.c      ok
 C/should_warn/traditional.c         compiler: SIGABRT
 C/should_warn/unused_param.c        ok
 C/should_warn/write_only11.c        ok
 C/should_warn/write_only12.c        ok
+C/should_warn/write_only14.c        compiler missed warnings
 C/should_warn/write_only2.c         ok
 C/should_warn/write_only3.c         ok
 C/should_warn/write_only4.c         ok
@@ -771,12 +779,12 @@ C/nowarn/scanf_width_c.c            ok
 C/nowarn/scanf_width_s.c            ok
 C/nowarn/write_only1.c              ok
 C/nowarn/write_only10.c             ok
-C/nowarn/write_only11.c             ok
-C/nowarn/write_only12.c             compiler produced invalid warning
-C/nowarn/write_only13.c             compiler produced invalid warning
+C/nowarn/write_only11.c             1 compile errors
+C/nowarn/write_only12.c             ok
+C/nowarn/write_only13.c             ok
 C/nowarn/write_only5.c              ok
 C/nowarn/write_only7.c              ok
-C/nowarn/write_only9.c              ok
+C/nowarn/write_only9.c              2 compile errors
 C/gnu99/anonstruct.c                ok
 C/gnu99/anonstruct2.c               ok
 C/gnu99/anonstruct3.c               ok
@@ -810,6 +818,7 @@ C/gnu99/incomplete_enum.c           ok
 C/gnu99/inlineextern.c              ok
 C/gnu99/l1.c                        ok
 C/gnu99/local_label.c               ok
+C/gnu99/longlong_bf.c               ok
 C/gnu99/mode_attrib.c               ok
 C/gnu99/multichar.c                 ok
 C/gnu99/nested_function.c           ok
@@ -883,3 +892,4 @@ llvm/testtrace.c                    ok
 sparccode/bf_init.c                 compiler: SIGABRT
 sparccode/bf_localinit.c            compiler: SIGABRT
 sparccode/fehler104.c               ok
+sparccode/structlayout.c            ok

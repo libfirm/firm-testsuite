@@ -780,8 +780,8 @@ C/nowarn/scanf_width_s.c            ok
 C/nowarn/write_only1.c              ok
 C/nowarn/write_only10.c             ok
 C/nowarn/write_only11.c             ok
-C/nowarn/write_only12.c             compiler produced invalid warning
-C/nowarn/write_only13.c             compiler produced invalid warning
+C/nowarn/write_only12.c             ok
+C/nowarn/write_only13.c             ok
 C/nowarn/write_only5.c              ok
 C/nowarn/write_only7.c              ok
 C/nowarn/write_only9.c              ok
