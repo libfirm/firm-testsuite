@@ -11,6 +11,7 @@ backend/am_test_float2.c            ok
 backend/arm_cconv.c                 ok
 backend/arm_immediate.c             ok
 backend/builtin_clz.c               ok
+backend/builtin_clzll.c             compiler: SIGABRT
 backend/builtin_ctz.c               ok
 backend/builtin_ffs.c               ok
 backend/builtin_parity.c            ok
