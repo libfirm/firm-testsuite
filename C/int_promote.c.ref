@@ -1,0 +1,13 @@
++x: good
+-x: good
+~x: good
+x*x: good
+x/x: good
+x%x: good
+x+x: good
+x-x: good
+x<<x: good
+x>>x: good
+x&x: good
+x^x: good
+x|x: good
