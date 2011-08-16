@@ -560,6 +560,7 @@ C/hexfloat.c                        ok
 C/hugeval.c                         ok
 C/if.c                              ok
 C/implicit.c                        ok
+C/implicit2.c                       output mismatch
 C/incompleteextern.c                ok
 C/init1.c                           ok
 C/init2.c                           ok
