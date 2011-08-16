@@ -7,8 +7,11 @@
  * Seed:      1601771491
  */
 
+#include <stdio.h>
+
 int main (int argc, char* argv[])
 {
 	printf("%d\n", (int)(~((unsigned short)3)));
+	printf("%d\n", (int)(-((unsigned short)3)));
 	return 0;
 }
