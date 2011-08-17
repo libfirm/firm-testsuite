@@ -468,11 +468,12 @@ C/array.c                           ok
 C/bitfield.c                        ok
 C/bitfield2.c                       ok
 C/bitfield3.c                       ok
-C/bitfield4.c                       output mismatch
+C/bitfield4.c                       ok
 C/bitfield_conversion.c             ok
 C/bool.c                            ok
 C/bool2.c                           ok
 C/bool3.c                           ok
+C/bool4.c                           ok
 C/compoundlit.c                     ok
 C/compoundlit2.c                    ok
 C/compoundlit3.c                    compiler: SIGABRT
@@ -559,12 +560,14 @@ C/hexfloat.c                        compiler: SIGABRT
 C/hugeval.c                         compiler: SIGABRT
 C/if.c                              ok
 C/implicit.c                        ok
+C/implicit2.c                       ok
 C/incompleteextern.c                ok
 C/init1.c                           ok
 C/init2.c                           ok
 C/init6.c                           ok
 C/init7.c                           ok
 C/initializers.c                    ok
+C/int_promote.c                     ok
 C/kr.c                              compiler: SIGABRT
 C/kr2.c                             ok
 C/kr4.c                             ok
@@ -598,6 +601,7 @@ C/union_init.c                      ok
 C/universal_character.c             21 compile errors
 C/unkept_loop.c                     ok
 C/utf8input.c                       ok
+C/varargs.c                         output mismatch
 C/vla.c                             compiler: SIGABRT
 C/whiles.c                          ok
 C/pragmatic/conditional.c           ok
