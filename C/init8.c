@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 
-char g_2[3] = {0U, 0x38L, 0U};
+char g_2[3] = {0U, 0x37L, 0U};
 
 int main (void)
 {
