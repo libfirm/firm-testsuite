@@ -566,7 +566,7 @@ C/init1.c                           ok
 C/init2.c                           ok
 C/init6.c                           ok
 C/init7.c                           ok
-C/init8.c                           output mismatch
+C/init8.c                           ok
 C/initializers.c                    ok
 C/int_promote.c                     ok
 C/kr.c                              ok
