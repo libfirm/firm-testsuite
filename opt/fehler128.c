@@ -1,4 +1,4 @@
-/*$ -march=i686 $*/
+/*$ -bia32-arch=i686 -bia32-opt=i686$*/
 
 double __attribute__((__cdecl__)) atof (const char *__nptr);
 
