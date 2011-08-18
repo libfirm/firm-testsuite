@@ -603,7 +603,7 @@ C/union_init.c                      ok
 C/universal_character.c             21 compile errors
 C/unkept_loop.c                     ok
 C/utf8input.c                       ok
-C/varargs.c                         compiler: SIGABRT
+C/varargs.c                         ok
 C/vla.c                             ok
 C/whiles.c                          ok
 C/pragmatic/conditional.c           ok
