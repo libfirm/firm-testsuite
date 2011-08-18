@@ -338,6 +338,7 @@ opt/fehler192.c                     ok
 opt/fehler193.c                     Test return code not zero but 1
 opt/fehler194.c                     ok
 opt/fehler195.c                     ok
+opt/fehler196.c                     output mismatch
 opt/fehler_gt_0.c                   ok
 opt/fehler_no_equality_0.c          ok
 opt/fib.c                           ok
