@@ -340,6 +340,7 @@ opt/fehler194.c                     ok
 opt/fehler195.c                     ok
 opt/fehler196.c                     ok
 opt/fehler197.c                     ok
+opt/fehler198.c                     ok
 opt/fehler_gt_0.c                   ok
 opt/fehler_no_equality_0.c          ok
 opt/fib.c                           ok
