@@ -18,7 +18,7 @@ void printints(int len, ...)
 	va_list ap;
 	va_start(ap, len);
 	for (int i = 0; i < len; ++i) {
-		unsigned long long v = va_arg(ap, long long);
+		unsigned long long v = va_arg(ap, unsigned long long);
 		printf("%llX\n", v);
 	}
 }
