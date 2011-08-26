@@ -100,6 +100,7 @@ opt/apfel_readable.c                compiler: SIGABRT
 opt/arr_init.c                      ok
 opt/array_type.c                    ok
 opt/backendcallorder.c              compiler: SIGABRT
+opt/backendcallorder2.c             compiler: SIGABRT
 opt/bad.c                           ok
 opt/bf_constfold.c                  ok
 opt/biggest_prime.c                 ok
