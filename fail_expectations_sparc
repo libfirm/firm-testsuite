@@ -136,6 +136,7 @@ opt/csetest.c                       ok
 opt/d.c                             compiler: SIGABRT
 opt/dblstruct.c                     ok
 opt/deadstores.c                    ok
+opt/delayslot.c                     compiler: SIGABRT
 opt/distributive.c                  compiler: SIGABRT
 opt/divs.c                          compiler: SIGABRT
 opt/divtest.c                       ok

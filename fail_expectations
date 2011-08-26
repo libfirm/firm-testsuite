@@ -136,6 +136,7 @@ opt/csetest.c                       ok
 opt/d.c                             ok
 opt/dblstruct.c                     ok
 opt/deadstores.c                    ok
+opt/delayslot.c                     ok
 opt/distributive.c                  ok
 opt/divs.c                          ok
 opt/divtest.c                       ok
