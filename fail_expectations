@@ -99,6 +99,7 @@ opt/apfel.c                         ok
 opt/apfel_readable.c                ok
 opt/arr_init.c                      ok
 opt/array_type.c                    ok
+opt/backendcallorder.c              ok
 opt/bad.c                           ok
 opt/bf_constfold.c                  ok
 opt/biggest_prime.c                 ok
