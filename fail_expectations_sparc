@@ -389,6 +389,7 @@ opt/loopspilling.c                  ok
 opt/lrot.c                          ok
 opt/max.c                           ok
 opt/mismatch.c                      ok
+opt/mod10.c                         Test return code not zero but 1
 opt/most_complex_conv.c             compiler: SIGABRT
 opt/mul.c                           ok
 opt/mul2n.c                         ok
