@@ -143,6 +143,7 @@ opt/divtest.c                       ok
 opt/doms_segfault.c                 ok
 opt/dowhile.c                       ok
 opt/duffs.c                         ok
+opt/dwlower.c                       compiler: SIGABRT
 opt/endless_phi_cons.c              ok
 opt/enum.c                          ok
 opt/fabs.c                          compiler: SIGABRT
