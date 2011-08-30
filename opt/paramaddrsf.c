@@ -4,13 +4,11 @@
  * time, the store must not be of a floating point mode but of an integer mode.
  */
 
-void bar(float *p)
-{
-}
+float *p;
 
 void foo(float param)
 {
-	bar(&param);
+	p = &param;
 }
 
 int main()
