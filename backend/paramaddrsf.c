@@ -6,12 +6,21 @@
 
 float *p;
 
-void foo(float param)
+extern int printf(const char *str, ...);
+
+void __attribute__((noinline)) printit(void)
+{
+	printf("%f\n", *p);
+}
+
+void __attribute__((noinline)) foo(float param)
 {
 	p = &param;
+	printit();
 }
 
 int main()
 {
+	foo(42.5);
 	return 0;
 }
