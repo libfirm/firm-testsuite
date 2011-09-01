@@ -345,6 +345,7 @@ opt/fehler195.c                     ok
 opt/fehler196.c                     ok
 opt/fehler197.c                     ok
 opt/fehler198.c                     ok
+opt/fehler199.c                     ok
 opt/fehler_gt_0.c                   ok
 opt/fehler_no_equality_0.c          ok
 opt/fib.c                           ok
@@ -463,6 +464,7 @@ opt/unreachable_block.c             ok
 opt/use_uninit_ptr.c                ok
 opt/vadd_store.c                    ok
 opt/valist.c                        ok
+opt/valist2.c                       ok
 opt/vandrunen.c                     ok
 opt/vararray.c                      ok
 opt/variadic_longlong.c             ok

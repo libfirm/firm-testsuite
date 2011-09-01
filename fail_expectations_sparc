@@ -10,12 +10,12 @@ backend/am_test_float.c             compiler: SIGABRT
 backend/am_test_float2.c            compiler: SIGABRT
 backend/arm_cconv.c                 compiler: SIGABRT
 backend/arm_immediate.c             ok
-backend/builtin_clz.c               compiler: SIGABRT
-backend/builtin_clzll.c             compiler: SIGABRT
-backend/builtin_ctz.c               compiler: SIGABRT
-backend/builtin_ffs.c               compiler: SIGABRT
-backend/builtin_parity.c            compiler: SIGABRT
-backend/builtin_popcount.c          compiler: SIGABRT
+backend/builtin_clz.c               ok
+backend/builtin_clzll.c             ok
+backend/builtin_ctz.c               ok
+backend/builtin_ffs.c               ok
+backend/builtin_parity.c            ok
+backend/builtin_popcount.c          ok
 backend/cmovs.c                     ok
 backend/extern_sret.c               ok
 backend/fdiv.c                      compiler: SIGABRT
@@ -34,7 +34,7 @@ backend/optest_float.c              compiler: SIGABRT
 backend/optest_longlong.c           ok
 backend/paramaddr.c                 ok
 backend/pic_const.c                 compiler: SIGABRT
-backend/prefetch.c                  compiler: SIGABRT
+backend/prefetch.c                  ok
 backend/segfault.c                  ok
 backend/shift64.c                   ok
 backend/sparc_bitopcc.c             ok
@@ -95,8 +95,8 @@ opt/addn.c                          ok
 opt/addr_test.c                     ok
 opt/alloca.c                        compiler: SIGABRT
 opt/andtest.c                       ok
-opt/apfel.c                         compiler: SIGABRT
-opt/apfel_readable.c                compiler: SIGABRT
+opt/apfel.c                         output mismatch
+opt/apfel_readable.c                output mismatch
 opt/arr_init.c                      ok
 opt/array_type.c                    ok
 opt/backendcallorder.c              compiler: SIGABRT
@@ -181,7 +181,7 @@ opt/fehler024.c                     compiler: SIGABRT
 opt/fehler025.c                     ok
 opt/fehler026.c                     ok
 opt/fehler027.c                     ok
-opt/fehler028.c                     output mismatch
+opt/fehler028.c                     ok
 opt/fehler029.c                     ok
 opt/fehler030.c                     ok
 opt/fehler031.c                     ok
@@ -205,7 +205,7 @@ opt/fehler048.c                     ok
 opt/fehler049.c                     ok
 opt/fehler050.c                     ok
 opt/fehler051.c                     compiler: SIGABRT
-opt/fehler052.c                     execution: SIGSEGV
+opt/fehler052.c                     ok
 opt/fehler053.c                     ok
 opt/fehler054.c                     ok
 opt/fehler055.c                     ok
@@ -343,8 +343,9 @@ opt/fehler193.c                     Test return code not zero but 1
 opt/fehler194.c                     ok
 opt/fehler195.c                     ok
 opt/fehler196.c                     ok
-opt/fehler197.c                     Test return code not zero but 1
+opt/fehler197.c                     ok
 opt/fehler198.c                     ok
+opt/fehler199.c                     ok
 opt/fehler_gt_0.c                   ok
 opt/fehler_no_equality_0.c          ok
 opt/fib.c                           ok
@@ -419,7 +420,7 @@ opt/ptr_to_int.c                    ok
 opt/queens-handoptimized.c          ok
 opt/reassoc-amok.c                  ok
 opt/reassoc.c                       ok
-opt/rotate.c                        compiler: SIGABRT
+opt/rotate.c                        ok
 opt/rtsopt.c                        compiler: SIGABRT
 opt/setjump.c                       output mismatch
 opt/shiftamount.c                   ok
@@ -462,10 +463,11 @@ opt/unknown_combo2.c                ok
 opt/unreachable_block.c             ok
 opt/use_uninit_ptr.c                ok
 opt/vadd_store.c                    ok
-opt/valist.c                        output mismatch
+opt/valist.c                        ok
+opt/valist2.c                       ok
 opt/vandrunen.c                     ok
 opt/vararray.c                      compiler: SIGABRT
-opt/variadic_longlong.c             output mismatch
+opt/variadic_longlong.c             ok
 opt/vla.c                           compiler: SIGABRT
 opt/volatile.c                      ok
 opt/while-printf.c                  ok
@@ -515,7 +517,7 @@ C/cp_error021.c                     ok
 C/cp_error022.c                     Test return code not zero but 1
 C/cp_error023.c                     ok
 C/cp_error024.c                     ok
-C/cp_error026.c                     output mismatch
+C/cp_error026.c                     ok
 C/cp_error027.c                     ok
 C/cp_error028.c                     ok
 C/cp_error029.c                     ok
@@ -576,6 +578,7 @@ C/init1.c                           ok
 C/init2.c                           ok
 C/init6.c                           ok
 C/init7.c                           ok
+C/init8.c                           ok
 C/initializers.c                    ok
 C/int_promote.c                     ok
 C/kr.c                              compiler: SIGABRT
@@ -611,7 +614,7 @@ C/union_init.c                      ok
 C/universal_character.c             21 compile errors
 C/unkept_loop.c                     ok
 C/utf8input.c                       ok
-C/varargs.c                         output mismatch
+C/varargs.c                         ok
 C/vla.c                             compiler: SIGABRT
 C/whiles.c                          ok
 C/pragmatic/conditional.c           ok
@@ -891,7 +894,7 @@ llvm/2005-05-06-LongLongSignedShift.c ok
 llvm/ConstructorDestructorAttributes.c ok
 llvm/DuffsDevice.c                  ok
 llvm/PR491.c                        ok
-llvm/PR640.c                        Test return code not zero but 1
+llvm/PR640.c                        ok
 llvm/badidx.c                       ok
 llvm/bigstack.c                     compiler: SIGABRT
 llvm/callargs.c                     compiler: SIGABRT
