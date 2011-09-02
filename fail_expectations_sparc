@@ -262,7 +262,7 @@ opt/fehler106.c                     compiler: SIGABRT
 opt/fehler107.c                     compiler: SIGABRT
 opt/fehler108.c                     ok
 opt/fehler109.c                     ok
-opt/fehler110.c                     ok
+opt/fehler110.c                     execution: SIGSEGV
 opt/fehler112.c                     ok
 opt/fehler113.c                     ok
 opt/fehler114.c                     ok
@@ -299,9 +299,9 @@ opt/fehler148.c                     ok
 opt/fehler149.c                     ok
 opt/fehler150.c                     ok
 opt/fehler151.c                     Test return code not zero but 1
-opt/fehler152.c                     execution: SIGALRM
-opt/fehler153.c                     execution: SIGALRM
-opt/fehler154.c                     execution: SIGALRM
+opt/fehler152.c                     ok
+opt/fehler153.c                     ok
+opt/fehler154.c                     ok
 opt/fehler155.c                     ok
 opt/fehler157.c                     ok
 opt/fehler158.c                     ok
@@ -438,6 +438,7 @@ opt/store_bug.c                     ok
 opt/strenght_red.c                  ok
 opt/struct.c                        ok
 opt/structcall.c                    compiler: SIGSEGV
+opt/structcopy.c                    ok
 opt/structtest.c                    ok
 opt/switch.c                        ok
 opt/switch_test.c                   ok
@@ -473,7 +474,7 @@ opt/volatile.c                      ok
 opt/while-printf.c                  ok
 opt/wrong_cmp.c                     ok
 C/LongLong.c                        ok
-C/abi_null_mode_proj.c              ok
+C/abi_null_mode_proj.c              compiler: SIGSEGV
 C/abstract_declarator.c             ok
 C/anon_entity.c                     compiler: SIGABRT
 C/array.c                           ok
