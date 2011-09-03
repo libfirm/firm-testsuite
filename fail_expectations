@@ -939,3 +939,4 @@ x86code/fehler134.c                 ok
 x86code/incmem.c                    ok
 x86code/shift64.c                   ok
 x86code/shiftd.c                    ok
+x86code/struct.c                    output mismatch
