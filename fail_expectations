@@ -366,6 +366,7 @@ opt/gzip_error.c                    ok
 opt/iabs.c                          ok
 opt/if.c                            ok
 opt/implicit_call.c                 ok
+opt/init_unnamed_bitfield.c         ok
 opt/inline.c                        ok
 opt/inline2.c                       ok
 opt/inline_infinite_loop.c          ok
@@ -438,7 +439,6 @@ opt/stmt_expr.c                     ok
 opt/store_bug.c                     ok
 opt/strenght_red.c                  ok
 opt/struct.c                        ok
-opt/structalign.c                   output mismatch
 opt/structcall.c                    ok
 opt/structcopy.c                    ok
 opt/structtest.c                    ok
