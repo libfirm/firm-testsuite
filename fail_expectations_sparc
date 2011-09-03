@@ -438,6 +438,7 @@ opt/stmt_expr.c                     ok
 opt/store_bug.c                     ok
 opt/strenght_red.c                  ok
 opt/struct.c                        ok
+opt/structalign.c                   output mismatch
 opt/structcall.c                    compiler: SIGSEGV
 opt/structcopy.c                    ok
 opt/structtest.c                    ok
