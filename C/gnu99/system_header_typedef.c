@@ -2,7 +2,7 @@
  * (and the glibc/gcc headers appear to be broken enough to redfine size_t on
  *  my system here) */
 typedef unsigned long BLABLA;
-# 1 "XXX" 1 3 4
+# 1 "XXX" 3
 typedef unsigned long BLABLA;
 
 int main(void)
