@@ -33,6 +33,7 @@ backend/optest.c                    ok
 backend/optest_float.c              compiler: SIGABRT
 backend/optest_longlong.c           ok
 backend/paramaddr.c                 ok
+backend/paramaddrsf.c               compiler: SIGABRT
 backend/pic_const.c                 compiler: SIGABRT
 backend/prefetch.c                  ok
 backend/segfault.c                  ok
@@ -95,8 +96,6 @@ opt/addn.c                          ok
 opt/addr_test.c                     ok
 opt/alloca.c                        compiler: SIGABRT
 opt/andtest.c                       ok
-opt/apfel.c                         output mismatch
-opt/apfel_readable.c                output mismatch
 opt/arr_init.c                      ok
 opt/array_type.c                    ok
 opt/backendcallorder.c              compiler: SIGABRT
@@ -194,12 +193,8 @@ opt/fehler037.c                     ok
 opt/fehler038.c                     ok
 opt/fehler039.c                     ok
 opt/fehler040.c                     compiler: SIGABRT
-opt/fehler041.c                     compiler: SIGABRT
 opt/fehler042.c                     compiler: SIGABRT
-opt/fehler043.c                     compiler: SIGABRT
-opt/fehler044.c                     compiler: SIGABRT
 opt/fehler045.c                     ok
-opt/fehler046.c                     compiler: SIGABRT
 opt/fehler047.c                     ok
 opt/fehler048.c                     ok
 opt/fehler049.c                     ok
@@ -366,6 +361,7 @@ opt/gzip_error.c                    ok
 opt/iabs.c                          ok
 opt/if.c                            ok
 opt/implicit_call.c                 ok
+opt/init_unnamed_bitfield.c         ok
 opt/inline.c                        compiler: SIGSEGV
 opt/inline2.c                       ok
 opt/inline_infinite_loop.c          ok
@@ -408,7 +404,6 @@ opt/ns.c                            ok
 opt/nulladd.c                       ok
 opt/nullnode.c                      ok
 opt/pad_return.c                    ok
-opt/paramaddrsf.c                   ok
 opt/pbqpHeur.c                      ok
 opt/pbqpHeur2.c                     ok
 opt/pbqpHeur3.c                     ok
@@ -438,7 +433,6 @@ opt/stmt_expr.c                     ok
 opt/store_bug.c                     ok
 opt/strenght_red.c                  ok
 opt/struct.c                        ok
-opt/structalign.c                   output mismatch
 opt/structcall.c                    compiler: SIGSEGV
 opt/structcopy.c                    ok
 opt/structtest.c                    ok
@@ -665,6 +659,7 @@ C/should_fail/decl_in_switch.c      ok
 C/should_fail/decl_in_then.c        ok
 C/should_fail/decl_in_while.c       ok
 C/should_fail/decl_without_name.c   ok
+C/should_fail/double_typedef.c      ok
 C/should_fail/empty_char.c          ok
 C/should_fail/enum_forward.c        ok
 C/should_fail/error_directive.c     ok
@@ -771,6 +766,7 @@ C/should_warn/printf_int_for_short.c ok
 C/should_warn/printf_zero_precision.c ok
 C/should_warn/prototype.c           ok
 C/should_warn/prototype2.c          ok
+C/should_warn/redundant_decl.c      ok
 C/should_warn/ref_local.c           ok
 C/should_warn/return_with_void.c    ok
 C/should_warn/scanf_formats.c       ok
@@ -796,6 +792,7 @@ C/nowarn/main.c                     ok
 C/nowarn/printf.c                   ok
 C/nowarn/printf_unsigned_short.c    ok
 C/nowarn/redirect.c                 ok
+C/nowarn/redundant_decl.c           ok
 C/nowarn/scanf_suppress.c           ok
 C/nowarn/scanf_width_c.c            ok
 C/nowarn/scanf_width_s.c            ok
@@ -856,6 +853,7 @@ C/gnu99/redirect.c                  ok
 C/gnu99/redirect_nowarn.c           ok
 C/gnu99/sizeof_function.c           ok
 C/gnu99/strangeattr.c               ok
+C/gnu99/system_header_typedef.c     ok
 C/gnu99/tcctest.c                   1 compile errors
 C/gnu99/transparent_union.c         ok
 C/gnu99/transparent_union3.c        ok

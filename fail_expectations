@@ -33,6 +33,7 @@ backend/optest.c                    ok
 backend/optest_float.c              ok
 backend/optest_longlong.c           ok
 backend/paramaddr.c                 ok
+backend/paramaddrsf.c               ok
 backend/pic_const.c                 ok
 backend/prefetch.c                  ok
 backend/segfault.c                  ok
@@ -95,8 +96,6 @@ opt/addn.c                          ok
 opt/addr_test.c                     ok
 opt/alloca.c                        ok
 opt/andtest.c                       ok
-opt/apfel.c                         ok
-opt/apfel_readable.c                ok
 opt/arr_init.c                      ok
 opt/array_type.c                    ok
 opt/backendcallorder.c              ok
@@ -123,7 +122,7 @@ opt/combo_comm.c                    ok
 opt/combo_paper.c                   ok
 opt/comboattrs.c                    ok
 opt/compilerhang2.c                 ok
-opt/compilerhang3.c                 execution: SIGABRT
+opt/compilerhang3.c                 ok
 opt/compilerhang4.c                 ok
 opt/compilerhang5.c                 ok
 opt/cond.c                          ok
@@ -194,12 +193,8 @@ opt/fehler037.c                     ok
 opt/fehler038.c                     ok
 opt/fehler039.c                     ok
 opt/fehler040.c                     ok
-opt/fehler041.c                     ok
 opt/fehler042.c                     ok
-opt/fehler043.c                     ok
-opt/fehler044.c                     ok
 opt/fehler045.c                     ok
-opt/fehler046.c                     ok
 opt/fehler047.c                     ok
 opt/fehler048.c                     ok
 opt/fehler049.c                     ok
@@ -409,7 +404,6 @@ opt/ns.c                            ok
 opt/nulladd.c                       ok
 opt/nullnode.c                      ok
 opt/pad_return.c                    ok
-opt/paramaddrsf.c                   ok
 opt/pbqpHeur.c                      ok
 opt/pbqpHeur2.c                     ok
 opt/pbqpHeur3.c                     ok
@@ -665,6 +659,7 @@ C/should_fail/decl_in_switch.c      ok
 C/should_fail/decl_in_then.c        ok
 C/should_fail/decl_in_while.c       ok
 C/should_fail/decl_without_name.c   ok
+C/should_fail/double_typedef.c      ok
 C/should_fail/empty_char.c          ok
 C/should_fail/enum_forward.c        ok
 C/should_fail/error_directive.c     ok
@@ -771,6 +766,7 @@ C/should_warn/printf_int_for_short.c ok
 C/should_warn/printf_zero_precision.c ok
 C/should_warn/prototype.c           ok
 C/should_warn/prototype2.c          ok
+C/should_warn/redundant_decl.c      ok
 C/should_warn/ref_local.c           ok
 C/should_warn/return_with_void.c    ok
 C/should_warn/scanf_formats.c       ok
@@ -796,6 +792,7 @@ C/nowarn/main.c                     ok
 C/nowarn/printf.c                   ok
 C/nowarn/printf_unsigned_short.c    ok
 C/nowarn/redirect.c                 ok
+C/nowarn/redundant_decl.c           ok
 C/nowarn/scanf_suppress.c           ok
 C/nowarn/scanf_width_c.c            ok
 C/nowarn/scanf_width_s.c            ok
@@ -856,6 +853,7 @@ C/gnu99/redirect.c                  ok
 C/gnu99/redirect_nowarn.c           ok
 C/gnu99/sizeof_function.c           ok
 C/gnu99/strangeattr.c               ok
+C/gnu99/system_header_typedef.c     ok
 C/gnu99/tcctest.c                   1 compile errors
 C/gnu99/transparent_union.c         ok
 C/gnu99/transparent_union3.c        ok
@@ -911,6 +909,8 @@ llvm/sumarray2d.c                   ok
 llvm/sumarraymalloc.c               ok
 llvm/test_indvars.c                 ok
 llvm/testtrace.c                    ok
+x86code/apfel.c                     ok
+x86code/apfel_readable.c            ok
 x86code/asm_test.c                  ok
 x86code/asm_test10.c                compiler: SIGABRT
 x86code/asm_test11.c                ok
@@ -932,6 +932,10 @@ x86code/cp_error040.c               ok
 x86code/doz.c                       ok
 x86code/early_clobber.c             ok
 x86code/fehler020.c                 ok
+x86code/fehler041.c                 ok
+x86code/fehler043.c                 ok
+x86code/fehler044.c                 ok
+x86code/fehler046.c                 ok
 x86code/fehler104.c                 ok
 x86code/fehler111.c                 ok
 x86code/fehler132.c                 ok
