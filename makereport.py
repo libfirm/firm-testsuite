@@ -624,6 +624,12 @@ def make_test(environment, filename):
 
 	return testclass(filename, environment)
 
+_EXTENSIONS = "c cc java x10".split()
+def find_files(directory):
+	for ext in _EXTENSIONS:
+		for name in glob("%s/*.%s" % (directory, ext)):
+			yield name
+
 def makereport(config, tests):
 	init(config)
 	queue = list()
@@ -636,7 +642,7 @@ def makereport(config, tests):
 	# create test futures for parallel evaluation
 	for test in tests:
 		if os.path.isdir(test):
-			for fname in sorted(itertools.chain(glob("%s/*.c" % test), glob("%s/*.cc" % test), glob("%s/*.java" % test), glob("%s/*.x10" % test))):
+			for fname in sorted(find_files(test)):
 				t = make_test(config, fname)
 				queue.append(future(_do_test(t)))
 		else:
