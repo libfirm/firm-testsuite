@@ -27,6 +27,7 @@ _DEFAULT_DIRS = [
 	"C/should_warn",
 	"C/nowarn",
 	"C/gnu99",
+	"C++/should_fail",
 	"ack",
 	"langshootout",
 	"llvm" ]
@@ -635,7 +636,7 @@ def makereport(config, tests):
 	# create test futures for parallel evaluation
 	for test in tests:
 		if os.path.isdir(test):
-			for fname in sorted(itertools.chain(glob("%s/*.c" % test), glob("%s/*.java" % test), glob("%s/*.x10" % test))):
+			for fname in sorted(itertools.chain(glob("%s/*.c" % test), glob("%s/*.cc" % test), glob("%s/*.java" % test), glob("%s/*.x10" % test))):
 				t = make_test(config, fname)
 				queue.append(future(_do_test(t)))
 		else:
