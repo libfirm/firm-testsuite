@@ -609,11 +609,11 @@ def make_test(environment, filename):
 	elif filename.startswith("C/"):
 		environment.cflags += " -std=c99"
 
-	if "C/should_fail/" in filename:
+	if "/should_fail/" in filename:
 		testclass = TestShouldFail
-	elif "C/should_warn/" in filename:
+	elif "/should_warn/" in filename:
 		testclass = TestShouldWarn
-	elif "C/nowarn/" in filename:
+	elif "/nowarn/" in filename:
 		testclass = TestShouldNotWarn
 		environment.cflags += " -Wall -W"
 	elif "bytecode2firm/" in filename:
