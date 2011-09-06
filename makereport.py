@@ -100,7 +100,7 @@ _OPTS.add_option("", "--arm", action="callback", callback=setup_arm)
 
 def ensure_dir(name):
 	try:
-		os.mkdir(name)
+		os.makedirs(name)
 	except Exception:
 		pass
 	if not os.path.isdir(name):
