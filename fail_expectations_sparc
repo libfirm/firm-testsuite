@@ -43,9 +43,9 @@ backend/sparc_immediates.c          ok
 backend/srettaken.c                 ok
 backend/stackarray.c                ok
 backend/taken64.c                   ok
-backend/tls_ptr.c                   compiler: SIGABRT
+backend/tls_ptr.c                   ok
 backend/transform_loop.c            ok
-opt/20001212-1.c                    compiler: SIGSEGV
+opt/20001212-1.c                    compiler: SIGABRT
 opt/Args.c                          ok
 opt/Arrays.c                        ok
 opt/BinaryOpTest.c                  ok
@@ -94,7 +94,7 @@ opt/adam_putt.c                     ok
 opt/add64.c                         ok
 opt/addn.c                          ok
 opt/addr_test.c                     ok
-opt/alloca.c                        compiler: SIGABRT
+opt/alloca.c                        ok
 opt/andtest.c                       ok
 opt/arr_init.c                      ok
 opt/array_type.c                    ok
@@ -112,7 +112,7 @@ opt/boolopts.c                      ok
 opt/boolsimplify.c                  ok
 opt/bttest.c                        ok
 opt/callref.c                       ok
-opt/calls.c                         output mismatch
+opt/calls.c                         ok
 opt/cfoptbug.c                      ok
 opt/cmp.c                           ok
 opt/cmp2.c                          ok
@@ -122,7 +122,7 @@ opt/combo_comm.c                    ok
 opt/combo_paper.c                   ok
 opt/comboattrs.c                    ok
 opt/compilerhang2.c                 compiler: SIGABRT
-opt/compilerhang3.c                 compiler: SIGSEGV
+opt/compilerhang3.c                 compiler: SIGABRT
 opt/compilerhang4.c                 ok
 opt/compilerhang5.c                 ok
 opt/cond.c                          ok
@@ -137,14 +137,14 @@ opt/csetest.c                       ok
 opt/d.c                             compiler: SIGABRT
 opt/dblstruct.c                     ok
 opt/deadstores.c                    ok
-opt/delayslot.c                     compiler: SIGABRT
+opt/delayslot.c                     ok
 opt/distributive.c                  compiler: SIGABRT
 opt/divs.c                          compiler: SIGABRT
 opt/divtest.c                       ok
 opt/doms_segfault.c                 ok
 opt/dowhile.c                       ok
 opt/duffs.c                         ok
-opt/dwlower.c                       compiler: SIGABRT
+opt/dwlower.c                       ok
 opt/endless_phi_cons.c              ok
 opt/enum.c                          ok
 opt/fabs.c                          compiler: SIGABRT
@@ -185,7 +185,7 @@ opt/fehler029.c                     ok
 opt/fehler030.c                     ok
 opt/fehler031.c                     ok
 opt/fehler032.c                     ok
-opt/fehler033.c                     compiler: SIGSEGV
+opt/fehler033.c                     compiler: SIGABRT
 opt/fehler034.c                     ok
 opt/fehler035.c                     ok
 opt/fehler036.c                     ok
@@ -207,7 +207,7 @@ opt/fehler055.c                     ok
 opt/fehler056.c                     ok
 opt/fehler057.c                     ok
 opt/fehler058.c                     ok
-opt/fehler059.c                     compiler: SIGABRT
+opt/fehler059.c                     Test return code not zero but 1
 opt/fehler060.c                     ok
 opt/fehler061.c                     ok
 opt/fehler062.c                     ok
@@ -215,7 +215,7 @@ opt/fehler063.c                     ok
 opt/fehler064.c                     ok
 opt/fehler065.c                     compiler: SIGABRT
 opt/fehler066.c                     compiler: SIGABRT
-opt/fehler067.c                     compiler: SIGABRT
+opt/fehler067.c                     ok
 opt/fehler068.c                     compiler: SIGABRT
 opt/fehler069.c                     ok
 opt/fehler070.c                     ok
@@ -257,7 +257,7 @@ opt/fehler106.c                     compiler: SIGABRT
 opt/fehler107.c                     compiler: SIGABRT
 opt/fehler108.c                     ok
 opt/fehler109.c                     ok
-opt/fehler110.c                     execution: SIGSEGV
+opt/fehler110.c                     ok
 opt/fehler112.c                     ok
 opt/fehler113.c                     ok
 opt/fehler114.c                     ok
@@ -302,8 +302,8 @@ opt/fehler157.c                     ok
 opt/fehler158.c                     ok
 opt/fehler159.c                     ok
 opt/fehler160.c                     ok
-opt/fehler161.c                     compiler: SIGABRT
-opt/fehler162.c                     compiler: SIGSEGV
+opt/fehler161.c                     ok
+opt/fehler162.c                     compiler: SIGABRT
 opt/fehler163.c                     compiler: SIGABRT
 opt/fehler164.c                     ok
 opt/fehler165.c                     ok
@@ -334,14 +334,14 @@ opt/fehler189.c                     ok
 opt/fehler190.c                     ok
 opt/fehler191.c                     ok
 opt/fehler192.c                     ok
-opt/fehler193.c                     Test return code not zero but 1
+opt/fehler193.c                     ok
 opt/fehler194.c                     ok
 opt/fehler195.c                     ok
 opt/fehler196.c                     ok
 opt/fehler197.c                     ok
 opt/fehler198.c                     ok
 opt/fehler199.c                     ok
-opt/fehler200.c                     compiler: SIGSEGV
+opt/fehler200.c                     compiler: SIGABRT
 opt/fehler_gt_0.c                   ok
 opt/fehler_no_equality_0.c          ok
 opt/fib.c                           ok
@@ -362,7 +362,7 @@ opt/iabs.c                          ok
 opt/if.c                            ok
 opt/implicit_call.c                 ok
 opt/init_unnamed_bitfield.c         ok
-opt/inline.c                        compiler: SIGSEGV
+opt/inline.c                        compiler: SIGABRT
 opt/inline2.c                       ok
 opt/inline_infinite_loop.c          ok
 opt/invsqrt.c                       ok
@@ -389,7 +389,7 @@ opt/loopspilling.c                  ok
 opt/lrot.c                          ok
 opt/max.c                           ok
 opt/mismatch.c                      ok
-opt/mod10.c                         Test return code not zero but 1
+opt/mod10.c                         ok
 opt/most_complex_conv.c             compiler: SIGABRT
 opt/mul.c                           ok
 opt/mul2n.c                         ok
@@ -427,13 +427,13 @@ opt/simd1.c                         ok
 opt/simd2.c                         ok
 opt/simple.c                        ok
 opt/slow_memperm.c                  ok
-opt/sparam.c                        compiler: SIGSEGV
+opt/sparam.c                        compiler: SIGABRT
 opt/sret.c                          ok
 opt/stmt_expr.c                     ok
 opt/store_bug.c                     ok
 opt/strenght_red.c                  ok
 opt/struct.c                        ok
-opt/structcall.c                    compiler: SIGSEGV
+opt/structcall.c                    compiler: SIGABRT
 opt/structcopy.c                    ok
 opt/structtest.c                    ok
 opt/switch.c                        ok
@@ -442,7 +442,7 @@ opt/switch_test2.c                  ok
 opt/tailrec.c                       ok
 opt/tailrec2.c                      ok
 opt/test1.c                         ok
-opt/thread.c                        compiler: SIGABRT
+opt/thread.c                        ok
 opt/trivial_add.c                   ok
 opt/trivial_div.c                   ok
 opt/trivial_empty.c                 ok
@@ -463,14 +463,14 @@ opt/vadd_store.c                    ok
 opt/valist.c                        ok
 opt/valist2.c                       ok
 opt/vandrunen.c                     ok
-opt/vararray.c                      compiler: SIGABRT
+opt/vararray.c                      output mismatch
 opt/variadic_longlong.c             ok
-opt/vla.c                           compiler: SIGABRT
+opt/vla.c                           ok
 opt/volatile.c                      ok
 opt/while-printf.c                  ok
 opt/wrong_cmp.c                     ok
 C/LongLong.c                        ok
-C/abi_null_mode_proj.c              compiler: SIGSEGV
+C/abi_null_mode_proj.c              compiler: SIGABRT
 C/abstract_declarator.c             ok
 C/anon_entity.c                     compiler: SIGABRT
 C/array.c                           ok
@@ -522,7 +522,7 @@ C/cp_error031.c                     ok
 C/cp_error032.c                     ok
 C/cp_error033.c                     ok
 C/cp_error034.c                     ok
-C/cp_error035.c                     compiler: SIGABRT
+C/cp_error035.c                     ok
 C/cp_error036.c                     ok
 C/cp_error037.c                     ok
 C/cp_error041.c                     ok
@@ -613,7 +613,7 @@ C/universal_character.c             21 compile errors
 C/unkept_loop.c                     ok
 C/utf8input.c                       ok
 C/varargs.c                         ok
-C/vla.c                             compiler: SIGABRT
+C/vla.c                             ok
 C/whiles.c                          ok
 C/pragmatic/conditional.c           ok
 C/pragmatic/fewparams.c             ok
@@ -862,11 +862,12 @@ C/gnu99/typeprop_funcs.c            ok
 C/gnu99/union_cast.c                2 compile errors
 C/gnu99/unused_label.c              ok
 C/gnu99/void_pointer_arithmetic.c   ok
+C++/should_fail/bad_retypedef.cc    compiler missed error
 ack/ack_conv.c                      compiler: SIGABRT
 ack/decl.c                          ok
 ack/init.c                          compiler: SIGABRT
 ack/ops.c                           ok
-ack/str.c                           compiler: SIGSEGV
+ack/str.c                           compiler: SIGABRT
 ack/t7.c                            ok
 ack/test.c                          compiler: SIGABRT
 ack/test1.c                         compiler: SIGABRT
@@ -875,7 +876,7 @@ langshootout/bintree.c              ok
 langshootout/fannkuch.c             ok
 langshootout/fasta.c                compiler: SIGABRT
 langshootout/n-body.c               compiler: SIGABRT
-langshootout/nsieve-bits.c          compiler: SIGABRT
+langshootout/nsieve-bits.c          ok
 langshootout/nsieve.c               ok
 langshootout/partial-sums.c         compiler: SIGABRT
 langshootout/recursive.c            compiler: SIGABRT
@@ -885,13 +886,13 @@ llvm/2003-05-21-BitfieldHandling.c  ok
 llvm/2003-05-21-UnionBitfields.c    compiler: SIGABRT
 llvm/2003-05-21-UnionTest.c         compiler: SIGABRT
 llvm/2003-05-22-LocalTypeTest.c     ok
-llvm/2003-05-22-VarSizeArray.c      compiler: SIGABRT
+llvm/2003-05-22-VarSizeArray.c      ok
 llvm/2003-05-23-TransparentUnion.c  ok
 llvm/2003-06-16-InvalidInitializer.c ok
 llvm/2003-06-16-VolatileError.c     ok
 llvm/2003-10-12-GlobalVarInitializers.c compiler: SIGABRT
 llvm/2004-02-03-AggregateCopy.c     ok
-llvm/2004-08-12-InlinerAndAllocas.c compiler: SIGABRT
+llvm/2004-08-12-InlinerAndAllocas.c ok
 llvm/2005-05-06-LongLongSignedShift.c ok
 llvm/ConstructorDestructorAttributes.c ok
 llvm/DuffsDevice.c                  ok
