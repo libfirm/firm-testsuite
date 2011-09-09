@@ -1,34 +1,36 @@
 #include <stdio.h>
 #include <math.h>
-#include <endian.h>
+#ifdef __APPLE__
+#	include <machine/endian.h>
+#else
+#	include <endian.h>
+#endif
 #include <stdint.h>
+
+#ifndef BYTE_ORDER
+#error "can't determine endianess"
+#endif
 
 int target_isinf(double x) {
   union {
     double d;
     struct {
+#if BYTE_ORDER == LITTLE_ENDIAN
       uint32_t mantissa2;
       uint32_t mantissa1 : 20;
       uint32_t exponent  : 11;
       uint32_t sign      :  1;
-    } little_endian;
-    struct {
+#else
       uint32_t sign      :  1;
       uint32_t exponent  : 11;
       uint32_t mantissa1 : 20;
       uint32_t mantissa2;
-	} big_endian;
+#endif
+		} bits;
   } u;
 
   u.d = x;
-#ifndef __FLOAT_WORD_ORDER
-#error "can't determine endianess"
-#endif
-#if __FLOAT_WORD_ORDER == __LITTLE_ENDIAN
-  return (u.little_endian.exponent == 2047 && u.little_endian.mantissa1 == 0 && u.little_endian.mantissa2 == 0);
-#else
-  return (u.big_endian.exponent == 2047 && u.big_endian.mantissa1 == 0 && u.big_endian.mantissa2 == 0);
-#endif
+  return (u.bits.exponent == 2047 && u.bits.mantissa1 == 0 && u.bits.mantissa2 == 0);
 }
 
 int main()

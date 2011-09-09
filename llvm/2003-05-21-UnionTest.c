@@ -1,5 +1,9 @@
 #include <stdio.h>
-#include <endian.h>
+#ifdef __APPLE__
+#	include <machine/endian.h>
+#else
+#	include <endian.h>
+#endif
 
 /* Warning: This program contains undefined behaviour according to the C
  * standard. Still keeping it as you can find stuff like this in real world
@@ -10,10 +14,10 @@ int __signbit (double __x) {
 	  int __i[3];
   } __u = { __d: __x };
 
-#ifndef __FLOAT_WORD_ORDER
+#ifndef BYTE_ORDER
 #error "can't determine endianess"
 #endif
-#if __FLOAT_WORD_ORDER == __LITTLE_ENDIAN
+#if BYTE_ORDER == LITTLE_ENDIAN
   return __u.__i[1] < 0;
 #else
   return __u.__i[0] < 0;
