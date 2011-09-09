@@ -45,7 +45,7 @@ backend/stackarray.c                ok
 backend/taken64.c                   ok
 backend/tls_ptr.c                   ok
 backend/transform_loop.c            ok
-opt/20001212-1.c                    compiler: SIGABRT
+opt/20001212-1.c                    ok
 opt/Args.c                          ok
 opt/Arrays.c                        ok
 opt/BinaryOpTest.c                  ok
@@ -185,7 +185,7 @@ opt/fehler029.c                     ok
 opt/fehler030.c                     ok
 opt/fehler031.c                     ok
 opt/fehler032.c                     ok
-opt/fehler033.c                     compiler: SIGABRT
+opt/fehler033.c                     ok
 opt/fehler034.c                     ok
 opt/fehler035.c                     ok
 opt/fehler036.c                     ok
@@ -294,16 +294,16 @@ opt/fehler148.c                     ok
 opt/fehler149.c                     ok
 opt/fehler150.c                     ok
 opt/fehler151.c                     Test return code not zero but 1
-opt/fehler152.c                     ok
-opt/fehler153.c                     ok
-opt/fehler154.c                     ok
+opt/fehler152.c                     execution: SIGALRM
+opt/fehler153.c                     execution: SIGALRM
+opt/fehler154.c                     execution: SIGALRM
 opt/fehler155.c                     ok
 opt/fehler157.c                     ok
 opt/fehler158.c                     ok
 opt/fehler159.c                     ok
 opt/fehler160.c                     ok
 opt/fehler161.c                     ok
-opt/fehler162.c                     compiler: SIGABRT
+opt/fehler162.c                     ok
 opt/fehler163.c                     compiler: SIGABRT
 opt/fehler164.c                     ok
 opt/fehler165.c                     ok
@@ -341,7 +341,8 @@ opt/fehler196.c                     ok
 opt/fehler197.c                     ok
 opt/fehler198.c                     ok
 opt/fehler199.c                     ok
-opt/fehler200.c                     compiler: SIGABRT
+opt/fehler200.c                     ok
+opt/fehler201.c                     ok
 opt/fehler_gt_0.c                   ok
 opt/fehler_no_equality_0.c          ok
 opt/fib.c                           ok
@@ -362,7 +363,7 @@ opt/iabs.c                          ok
 opt/if.c                            ok
 opt/implicit_call.c                 ok
 opt/init_unnamed_bitfield.c         ok
-opt/inline.c                        compiler: SIGABRT
+opt/inline.c                        ok
 opt/inline2.c                       ok
 opt/inline_infinite_loop.c          ok
 opt/invsqrt.c                       ok
@@ -427,13 +428,13 @@ opt/simd1.c                         ok
 opt/simd2.c                         ok
 opt/simple.c                        ok
 opt/slow_memperm.c                  ok
-opt/sparam.c                        compiler: SIGABRT
+opt/sparam.c                        ok
 opt/sret.c                          ok
 opt/stmt_expr.c                     ok
 opt/store_bug.c                     ok
 opt/strenght_red.c                  ok
 opt/struct.c                        ok
-opt/structcall.c                    compiler: SIGABRT
+opt/structcall.c                    ok
 opt/structcopy.c                    ok
 opt/structtest.c                    ok
 opt/switch.c                        ok
@@ -470,7 +471,7 @@ opt/volatile.c                      ok
 opt/while-printf.c                  ok
 opt/wrong_cmp.c                     ok
 C/LongLong.c                        ok
-C/abi_null_mode_proj.c              compiler: SIGABRT
+C/abi_null_mode_proj.c              ok
 C/abstract_declarator.c             ok
 C/anon_entity.c                     compiler: SIGABRT
 C/array.c                           ok
@@ -511,7 +512,6 @@ C/cp_error018.c                     ok
 C/cp_error019.c                     ok
 C/cp_error020.c                     ok
 C/cp_error021.c                     ok
-C/cp_error022.c                     Test return code not zero but 1
 C/cp_error023.c                     ok
 C/cp_error024.c                     ok
 C/cp_error026.c                     ok
@@ -867,7 +867,7 @@ ack/ack_conv.c                      compiler: SIGABRT
 ack/decl.c                          ok
 ack/init.c                          compiler: SIGABRT
 ack/ops.c                           ok
-ack/str.c                           compiler: SIGABRT
+ack/str.c                           ok
 ack/t7.c                            ok
 ack/test.c                          compiler: SIGABRT
 ack/test1.c                         compiler: SIGABRT
