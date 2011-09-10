@@ -946,4 +946,4 @@ x86code/incmem.c                    ok
 x86code/shift64.c                   ok
 x86code/shiftd.c                    ok
 x86code/struct.c                    ok
-x86code/struct_alignment.c          output mismatch
+x86code/struct_alignment.c          ok
