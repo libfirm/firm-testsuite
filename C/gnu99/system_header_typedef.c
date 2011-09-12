@@ -5,6 +5,10 @@ typedef unsigned long BLABLA;
 # 1 "XXX" 3
 typedef unsigned long BLABLA;
 
+typedef unsigned foo;
+# 20 "back"
+typedef unsigned foo;
+
 int main(void)
 {
 }
