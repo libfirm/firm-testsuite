@@ -861,7 +861,7 @@ C/gnu99/typeprop_funcs.c            ok
 C/gnu99/union_cast.c                2 compile errors
 C/gnu99/unused_label.c              ok
 C/gnu99/void_pointer_arithmetic.c   ok
-C++/should_fail/bad_retypedef.cc    compiler missed error
+C++/should_fail/bad_retypedef.cc    ok
 ack/ack_conv.c                      ok
 ack/decl.c                          ok
 ack/init.c                          ok

@@ -138,7 +138,7 @@ opt/d.c                             compiler: SIGABRT
 opt/dblstruct.c                     ok
 opt/deadstores.c                    ok
 opt/delayslot.c                     ok
-opt/distributive.c                  compiler: SIGABRT
+opt/distributive.c                  ok
 opt/divs.c                          compiler: SIGABRT
 opt/divtest.c                       ok
 opt/doms_segfault.c                 ok
@@ -418,7 +418,7 @@ opt/reassoc-amok.c                  ok
 opt/reassoc.c                       ok
 opt/rotate.c                        ok
 opt/rtsopt.c                        compiler: SIGABRT
-opt/setjump.c                       output mismatch
+opt/setjump.c                       ok
 opt/shiftamount.c                   ok
 opt/shiftconst.c                    ok
 opt/should_be_same.c                ok
