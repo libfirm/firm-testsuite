@@ -339,7 +339,7 @@ opt/fehler195.c                     ok
 opt/fehler196.c                     ok
 opt/fehler197.c                     ok
 opt/fehler198.c                     ok
-opt/fehler199.c                     ok
+opt/fehler199.c                     Test return code not zero but 42
 opt/fehler200.c                     ok
 opt/fehler201.c                     ok
 opt/fehler202.c                     ok
