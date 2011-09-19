@@ -343,6 +343,7 @@ opt/fehler199.c                     Test return code not zero but 42
 opt/fehler200.c                     ok
 opt/fehler201.c                     ok
 opt/fehler202.c                     ok
+opt/fehler203.c                     Test return code not zero but 42
 opt/fehler_gt_0.c                   ok
 opt/fehler_no_equality_0.c          ok
 opt/fib.c                           ok
