@@ -90,24 +90,24 @@ _OPTS.add_option("-c", "--compile-times", dest="compile_times",
                  help="Display compile time of each program")
 _OPTS.add_option("-t", "--threads", dest="threads", type="int",
                  help="Number of threads to use")
-_OPTS.add_option("", "--cflags", dest="cflags",
+_OPTS.add_option("--cflags", dest="cflags",
                  help="Use CFLAGS to compile test programs", metavar="CFLAGS")
-_OPTS.add_option("", "--ldflags", dest="ldflags",
+_OPTS.add_option("--ldflags", dest="ldflags",
                  help="Use LDFLAGS to compile test programs", metavar="LDFLAGS")
-_OPTS.add_option("", "--compiler", dest="compiler",
+_OPTS.add_option("--compiler", dest="compiler",
                  help="Use COMPILER to compile test programs",
                  metavar="COMPILER")
-_OPTS.add_option("", "--x10compiler", dest="x10c",
+_OPTS.add_option("--x10compiler", dest="x10c",
                  help="Use X10COMPILER to compile X10 test programs",
                  metavar="X10COMPILER")
-_OPTS.add_option("", "--x10cflags", dest="x10cflags",
+_OPTS.add_option("--x10cflags", dest="x10cflags",
                  help="Use X10CFLAGS to compile X10 test programs",
                  metavar="X10CFLAGS")
-_OPTS.add_option("", "--show-disappeared", dest="show_disappeared",
+_OPTS.add_option("--show-disappeared", dest="show_disappeared",
                  action="store_true", help="show disappeared tests")
-_OPTS.add_option("", "--sparc", action="callback", callback=setup_sparc)
-_OPTS.add_option("", "--leon", action="callback", callback=setup_leon)
-_OPTS.add_option("", "--arm", action="callback", callback=setup_arm)
+_OPTS.add_option("--sparc", action="callback", callback=setup_sparc)
+_OPTS.add_option("--leon", action="callback", callback=setup_leon)
+_OPTS.add_option("--arm", action="callback", callback=setup_arm)
 
 def ensure_dir(name):
 	try:
