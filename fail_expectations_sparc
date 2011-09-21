@@ -294,9 +294,9 @@ opt/fehler148.c                     ok
 opt/fehler149.c                     ok
 opt/fehler150.c                     ok
 opt/fehler151.c                     Test return code not zero but 1
-opt/fehler152.c                     execution: SIGALRM
-opt/fehler153.c                     execution: SIGALRM
-opt/fehler154.c                     execution: SIGALRM
+opt/fehler152.c                     ok
+opt/fehler153.c                     ok
+opt/fehler154.c                     ok
 opt/fehler155.c                     ok
 opt/fehler157.c                     ok
 opt/fehler158.c                     ok
@@ -390,6 +390,7 @@ opt/loopana.c                       ok
 opt/loopspilling.c                  ok
 opt/lrot.c                          ok
 opt/max.c                           ok
+opt/memperm_stress.c                ok
 opt/mismatch.c                      ok
 opt/mod10.c                         ok
 opt/most_complex_conv.c             compiler: SIGABRT
