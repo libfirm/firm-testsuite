@@ -285,7 +285,7 @@ opt/fehler139.c                     ok
 opt/fehler140.c                     ok
 opt/fehler141.c                     ok
 opt/fehler142.c                     ok
-opt/fehler143.c                     Test return code not zero but 1
+opt/fehler143.c                     ok
 opt/fehler144.c                     ok
 opt/fehler145.c                     ok
 opt/fehler146.c                     ok
@@ -293,7 +293,7 @@ opt/fehler147.c                     ok
 opt/fehler148.c                     ok
 opt/fehler149.c                     ok
 opt/fehler150.c                     ok
-opt/fehler151.c                     Test return code not zero but 1
+opt/fehler151.c                     ok
 opt/fehler152.c                     ok
 opt/fehler153.c                     ok
 opt/fehler154.c                     ok
