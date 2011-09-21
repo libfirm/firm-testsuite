@@ -117,7 +117,7 @@ opt/cfoptbug.c                      ok
 opt/cmp.c                           ok
 opt/cmp2.c                          ok
 opt/cmp_cse.c                       ok
-opt/combo2.c                        compiler: SIGABRT
+opt/combo2.c                        ok
 opt/combo_comm.c                    ok
 opt/combo_paper.c                   ok
 opt/comboattrs.c                    ok
@@ -343,7 +343,7 @@ opt/fehler199.c                     Test return code not zero but 42
 opt/fehler200.c                     ok
 opt/fehler201.c                     ok
 opt/fehler202.c                     ok
-opt/fehler203.c                     Test return code not zero but 42
+opt/fehler203.c                     ok
 opt/fehler_gt_0.c                   ok
 opt/fehler_no_equality_0.c          ok
 opt/fib.c                           ok
