@@ -1,0 +1,4 @@
+Abstests: 1 1 2147483647 -2147483648 0 42 42
+singlebit0: 0 0 40 40 0
+singlebit1: 0 0 40 40 0
+singlebit2: 40 40 0 0 40
