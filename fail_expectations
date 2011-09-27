@@ -400,6 +400,7 @@ opt/mul32x32.c                      ok
 opt/mulconst.c                      ok
 opt/multidim-array.c                ok
 opt/mux.c                           ok
+opt/muxopts.c                       ok
 opt/nans.c                          ok
 opt/nested_loops.c                  ok
 opt/nested_loops2.c                 ok
@@ -414,6 +415,7 @@ opt/pbqp_RedN.c                     ok
 opt/phi_bad.c                       ok
 opt/place.c                         ok
 opt/postinc.c                       ok
+opt/pr37102.c                       Test return code not zero but 1
 opt/psi_test.c                      ok
 opt/ptr_to_int.c                    ok
 opt/queens-handoptimized.c          ok
@@ -431,6 +433,7 @@ opt/simd2.c                         ok
 opt/simple.c                        ok
 opt/slow_memperm.c                  ok
 opt/sparam.c                        ok
+opt/spills.c                        ok
 opt/sret.c                          ok
 opt/stmt_expr.c                     ok
 opt/store_bug.c                     ok
