@@ -7,25 +7,26 @@ static int __attribute__((noinline)) popcount(unsigned x)
 
 int main(void)
 {
-#define ASSERTPC(val, result) \
+#define ASSERTPOPCOUNT(val, result) \
 	assert(__builtin_popcount(val) == result); \
 	assert(popcount(val) == result);
 
-	ASSERTPC(0, 0);
-	ASSERTPC(1, 1);
-	ASSERTPC(2, 1);
-	ASSERTPC(3, 2);
-	ASSERTPC(4, 1);
-	ASSERTPC(5, 2);
-	ASSERTPC(6, 2);
-	ASSERTPC(7, 3);
-	ASSERTPC(8, 1);
-	ASSERTPC(9, 2);
-	ASSERTPC(10, 2);
-	ASSERTPC(16, 1);
-	ASSERTPC(512, 1);
-	ASSERTPC(6774, 8);
-	ASSERTPC(26348, 9);
-	ASSERTPC(10203, 10);
-	ASSERTPC((unsigned)-1, sizeof(unsigned)*8);
+	ASSERTPOPCOUNT(0x0000, 0);
+	ASSERTPOPCOUNT(0x0001, 1);
+	ASSERTPOPCOUNT(0x3000, 2);
+	ASSERTPOPCOUNT(0x0031, 3);
+	ASSERTPOPCOUNT(0x2222, 4);
+	ASSERTPOPCOUNT(0x1055, 5);
+	ASSERTPOPCOUNT(0x6116, 6);
+	ASSERTPOPCOUNT(0x7107, 7);
+	ASSERTPOPCOUNT(0x8778, 8);
+	ASSERTPOPCOUNT(0x7999, 9);
+	ASSERTPOPCOUNT(0xFFA0, 10);
+	ASSERTPOPCOUNT(0x7FCC, 11);
+	ASSERTPOPCOUNT(0xCFFC, 12);
+	ASSERTPOPCOUNT(0x7CFF, 13);
+	ASSERTPOPCOUNT(0x7FFE, 14);
+	ASSERTPOPCOUNT(0xF7FF, 15);
+	ASSERTPOPCOUNT(0xFFFF, 16);
+	ASSERTPOPCOUNT((unsigned)-1, sizeof(unsigned)*8);
 }

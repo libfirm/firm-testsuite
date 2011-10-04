@@ -7,26 +7,27 @@ static int __attribute__((noinline)) parity(unsigned x)
 
 int main(void)
 {
-#define ASSERTP(val, result) \
+#define ASSERTPARITY(val, result) \
 	assert(__builtin_parity(val) == result); \
 	assert(parity(val) == result);
 
-	ASSERTP(0, 0);
-	ASSERTP(1, 1);
-	ASSERTP(2, 1);
-	ASSERTP(3, 0);
-	ASSERTP(4, 1);
-	ASSERTP(5, 0);
-	ASSERTP(6, 0);
-	ASSERTP(7, 1);
-	ASSERTP(8, 1);
-	ASSERTP(9, 0);
-	ASSERTP(10, 0);
-	ASSERTP(16, 1);
-	ASSERTP(512, 1);
-	ASSERTP(6774, 0);
-	ASSERTP(26348, 1);
-	ASSERTP(10203, 0);
-	ASSERTP((unsigned)-1, 0);
-	ASSERTP((unsigned)-2, 1);
+	ASSERTPARITY(0x0000, 0);
+	ASSERTPARITY(0x0001, 1);
+	ASSERTPARITY(0x3000, 0);
+	ASSERTPARITY(0x0031, 1);
+	ASSERTPARITY(0x2222, 0);
+	ASSERTPARITY(0x1055, 1);
+	ASSERTPARITY(0x6116, 0);
+	ASSERTPARITY(0x7107, 1);
+	ASSERTPARITY(0x8778, 0);
+	ASSERTPARITY(0x7999, 1);
+	ASSERTPARITY(0xFFA0, 0);
+	ASSERTPARITY(0x7FCC, 1);
+	ASSERTPARITY(0xCFFC, 0);
+	ASSERTPARITY(0x7CFF, 1);
+	ASSERTPARITY(0x7FFE, 0);
+	ASSERTPARITY(0xF7FF, 1);
+	ASSERTPARITY(0xFFFF, 0);
+	ASSERTPARITY((unsigned)-1, 0);
+	ASSERTPARITY((unsigned)-2, 1);
 }
