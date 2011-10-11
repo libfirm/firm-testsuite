@@ -30,5 +30,5 @@ MAKEFLAGS=-j2
 
 # Cleanup builddir
 echo "Cleanup $BUILDDIR"
-rm -fr "$BUILDDIR"
+rm -fr "$BUILDDIR/*"
 mkdir -p "$BUILDDIR"
