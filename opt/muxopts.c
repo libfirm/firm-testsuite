@@ -17,7 +17,7 @@ unsigned mux_singlebit1(unsigned x, unsigned y)
 	return 0;
 }
 
-/* should be transformed to "return x & (1<<y)" */
+/* should be transformed to "return x & (1 << y) ^ (1 << y)" */
 unsigned mux_singlebit2(unsigned x, unsigned y)
 {
 	if (x & (1 << y))
