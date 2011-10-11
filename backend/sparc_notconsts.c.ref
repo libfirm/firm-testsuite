@@ -1,0 +1,3 @@
+Res: 0 3fffff 2a
+Res: 3fffff ffffffff 3fffff
+Res: 3fffff ffc00000 3fffd5
