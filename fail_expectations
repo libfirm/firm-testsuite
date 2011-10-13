@@ -12,19 +12,19 @@ backend/arm_cconv.c                 ok
 backend/arm_immediate.c             ok
 backend/builtin_clz.c               ok
 backend/builtin_clzl.c              ok
-backend/builtin_clzll.c             compiler: SIGABRT
+backend/builtin_clzll.c             ok
 backend/builtin_ctz.c               ok
 backend/builtin_ctzl.c              ok
-backend/builtin_ctzll.c             compiler: SIGABRT
+backend/builtin_ctzll.c             ok
 backend/builtin_ffs.c               ok
 backend/builtin_ffsl.c              ok
-backend/builtin_ffsll.c             compiler: SIGABRT
+backend/builtin_ffsll.c             ok
 backend/builtin_parity.c            ok
 backend/builtin_parityl.c           compiler: SIGABRT
 backend/builtin_parityll.c          compiler: SIGABRT
 backend/builtin_popcount.c          ok
 backend/builtin_popcountl.c         ok
-backend/builtin_popcountll.c        compiler: SIGABRT
+backend/builtin_popcountll.c        ok
 backend/cmovs.c                     ok
 backend/extern_sret.c               ok
 backend/fdiv.c                      ok
