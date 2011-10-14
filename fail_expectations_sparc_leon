@@ -564,7 +564,7 @@ C/cp_error064.c                     ok
 C/cp_error065.c                     ok
 C/cp_error066.c                     ok
 C/cp_error067.c                     ok
-C/cp_error068.c                     compiler: SIGABRT
+C/cp_error068.c                     ok
 C/cp_error069.c                     Test return code not zero but 1
 C/csmith1.c                         ok
 C/csmith2.c                         ok
