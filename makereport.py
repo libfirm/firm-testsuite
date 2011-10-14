@@ -558,7 +558,7 @@ def console_output(test, compile_times):
 			error_msg += " (expected %s)" % expected
 		else:
 			error_msg += " (new)"
-	print "%s%-35s %s%s%s" % (prefix, test.id, error_msg, _CONSOLE_NORMAL, timing)
+	print "%s%-40s %s%s%s" % (prefix, test.id, error_msg, _CONSOLE_NORMAL, timing)
 
 class Report:
 	def __init__(self):
@@ -588,7 +588,7 @@ class Report:
 		tree.write(fh)
 	def writeFaillog(self, fh, config):
 		for test in self.tests:
-			fh.write("%-35s %s\n" % (test.id, test.error_msg))
+			fh.write("%-40s %s\n" % (test.id, test.error_msg))
 	def _addTestXML(self, xml, test):
 		fail = not test.success
 		result = ET.SubElement(xml, "result")
@@ -672,7 +672,7 @@ def makereport(config, tests):
 		if config.show_disappeared:
 			for t in _EXPECTATIONS:
 				if t not in found:
-					print "%s%-35s %s%s" % (_CONSOLE_RED, t, "test disappeared", _CONSOLE_NORMAL)
+					print "%s%-40s %s%s" % (_CONSOLE_RED, t, "test disappeared", _CONSOLE_NORMAL)
 
 	except KeyboardInterrupt:
 		pass
