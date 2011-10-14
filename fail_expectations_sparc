@@ -49,6 +49,7 @@ backend/segfault.c                  ok
 backend/shift64.c                   ok
 backend/sparc_bitopcc.c             ok
 backend/sparc_immediates.c          ok
+backend/sparc_notconsts.c           ok
 backend/srettaken.c                 ok
 backend/stackarray.c                ok
 backend/taken64.c                   ok
