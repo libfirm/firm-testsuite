@@ -687,6 +687,7 @@ C/should_fail/float_xor.c                ok
 C/should_fail/forscope.c                 ok
 C/should_fail/funcassign.c               ok
 C/should_fail/function_return.c          ok
+C/should_fail/goto_identifier_scope.c    compiler missed error
 C/should_fail/incomplete_array.c         ok
 C/should_fail/incomplete_struct.c        ok
 C/should_fail/init1.c                    ok
