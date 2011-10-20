@@ -372,6 +372,7 @@ opt/gnu_def.c                            ok
 opt/gzip_error.c                         ok
 opt/iabs.c                               ok
 opt/if.c                                 ok
+opt/ifconv.c                             compiler: SIGABRT
 opt/implicit_call.c                      ok
 opt/init_unnamed_bitfield.c              ok
 opt/inline.c                             ok
