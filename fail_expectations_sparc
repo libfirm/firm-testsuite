@@ -45,6 +45,7 @@ backend/paramaddr.c                      ok
 backend/paramaddrsf.c                    compiler: SIGABRT
 backend/pic_const.c                      compiler: SIGABRT
 backend/prefetch.c                       ok
+backend/register_pressure.c              ok
 backend/segfault.c                       ok
 backend/shift64.c                        ok
 backend/sparc_bitopcc.c                  ok
