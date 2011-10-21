@@ -29,6 +29,7 @@ backend/cmovs.c                          ok
 backend/extern_sret.c                    ok
 backend/fdiv.c                           ok
 backend/fehler_mux_am.c                  ok
+backend/flags.c                          ok
 backend/float_ret_sse.c                  ok
 backend/floatset.c                       ok
 backend/inconsistent_outs.c              ok
@@ -45,12 +46,13 @@ backend/paramaddr.c                      ok
 backend/paramaddrsf.c                    ok
 backend/pic_const.c                      ok
 backend/prefetch.c                       ok
-backend/register_pressure.c              compiler: SIGABRT
+backend/register_pressure.c              ok
 backend/segfault.c                       ok
 backend/shift64.c                        ok
 backend/sparc_bitopcc.c                  ok
 backend/sparc_immediates.c               ok
 backend/sparc_notconsts.c                ok
+backend/sparc_restorepeepholes.c         ok
 backend/srettaken.c                      ok
 backend/stackarray.c                     ok
 backend/taken64.c                        ok
@@ -967,7 +969,6 @@ x86code/fehler132.c                      ok
 x86code/fehler133.c                      ok
 x86code/fehler134.c                      ok
 x86code/fehler135.c                      compiler: SIGABRT
-x86code/flags.c                          ok
 x86code/incmem.c                         ok
 x86code/shift64.c                        ok
 x86code/shiftd.c                         ok
