@@ -968,9 +968,9 @@ x86code/fehler111.c                      ok
 x86code/fehler132.c                      ok
 x86code/fehler133.c                      ok
 x86code/fehler134.c                      ok
-x86code/fehler135.c                      compiler: SIGABRT
+x86code/fehler135.c                      ok
 x86code/incmem.c                         ok
-x86code/relation_false.c                 compiler: SIGABRT
+x86code/relation_false.c                 ok
 x86code/shift64.c                        ok
 x86code/shiftd.c                         ok
 x86code/struct.c                         ok
