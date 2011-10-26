@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <pthread.h>
+#include <unistd.h>
 
 __thread int tls_var;
 
@@ -11,6 +12,7 @@ void *func1(void *ptr)
 	sleep(1);
 	printf("1: TLS-Var after sleep: %d\n", tls_var);
 	sleep(2);
+	return NULL;
 }
 
 void *func2(void *ptr)
@@ -21,6 +23,7 @@ void *func2(void *ptr)
 	sleep(2);
 	printf("2: TLS-Var after sleep: %d\n", tls_var);
 	sleep(1);
+	return NULL;
 }
 
 int main(void)
