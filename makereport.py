@@ -610,6 +610,11 @@ def _do_test(test):
 		return test
 	return f
 
+test_factories = [
+	( lambda name: "x10firm/"       in name, TestX10 ),
+	( lambda name: "bytecode2firm/" in name, TestJava ),
+]
+
 def make_test(environment, filename):
 	testclass = Test
 	environment = deepcopy(environment)
@@ -627,10 +632,11 @@ def make_test(environment, filename):
 	elif "/nowarn/" in filename:
 		testclass = TestShouldNotWarn
 		environment.cflags += " -Wall -W"
-	elif "bytecode2firm/" in filename:
-		testclass = TestJava
-	elif "x10firm/" in filename:
-		testclass = TestX10
+	else:
+		for (test,cls) in test_factories:
+			if test(filename):
+				testclass = cls
+				break
 
 	return testclass(filename, environment)
 
@@ -686,6 +692,11 @@ def init(config):
 
 if __name__ == "__main__":
 	os.putenv("LANG", "C") # need english error messages in gcc ;)
+	# Look for plugins
+	pluginlist = glob("*/reportplugin.py")
+	for plugin in pluginlist:
+		execfile(plugin)
+
 	options, args = _OPTS.parse_args()
 	_DEBUG         = options.debug
 	_VERBOSE       = options.verbose
