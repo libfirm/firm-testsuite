@@ -47,7 +47,6 @@ backend/paramaddrsf.c                    ok
 backend/pic_const.c                      ok
 backend/prefetch.c                       ok
 backend/register_pressure.c              ok
-backend/segfault.c                       ok
 backend/shift64.c                        ok
 backend/sparc_bitopcc.c                  ok
 backend/sparc_immediates.c               ok
@@ -393,6 +392,7 @@ opt/jumpthreading4.c                     ok
 opt/jumpthreading5.c                     compiler: SIGKILL
 opt/jumpthreading6.c                     ok
 opt/jumpthreading7.c                     ok
+opt/jumpthreading8.c                     compiler: SIGKILL
 opt/kahansum.c                           ok
 opt/labs.c                               ok
 opt/ldst.c                               ok
