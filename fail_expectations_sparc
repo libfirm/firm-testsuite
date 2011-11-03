@@ -47,7 +47,6 @@ backend/paramaddrsf.c                    compiler: SIGABRT
 backend/pic_const.c                      compiler: SIGABRT
 backend/prefetch.c                       ok
 backend/register_pressure.c              ok
-backend/segfault.c                       ok
 backend/shift64.c                        ok
 backend/sparc_bitopcc.c                  ok
 backend/sparc_immediates.c               ok
@@ -131,6 +130,7 @@ opt/cmp.c                                ok
 opt/cmp2.c                               ok
 opt/cmp_cse.c                            ok
 opt/combo2.c                             ok
+opt/combo3.c                             compiler: SIGABRT
 opt/combo_comm.c                         ok
 opt/combo_paper.c                        ok
 opt/comboattrs.c                         ok
@@ -357,6 +357,7 @@ opt/fehler200.c                          ok
 opt/fehler201.c                          ok
 opt/fehler202.c                          ok
 opt/fehler203.c                          ok
+opt/fehler204.c                          ok
 opt/fehler_gt_0.c                        ok
 opt/fehler_no_equality_0.c               ok
 opt/fib.c                                ok
@@ -364,6 +365,7 @@ opt/fib_iter.c                           ok
 opt/fisttp.c                             compiler: SIGABRT
 opt/float_if.c                           compiler: SIGABRT
 opt/func_arg.c                           ok
+opt/gap.c                                ok
 opt/gcd.c                                ok
 opt/gcd_bench.c                          ok
 opt/gcentities.c                         ok
@@ -387,9 +389,10 @@ opt/jumpthreading.c                      ok
 opt/jumpthreading2.c                     ok
 opt/jumpthreading3.c                     ok
 opt/jumpthreading4.c                     ok
-opt/jumpthreading5.c                     compiler: SIGKILL
+opt/jumpthreading5.c                     ok
 opt/jumpthreading6.c                     ok
 opt/jumpthreading7.c                     ok
+opt/jumpthreading8.c                     compiler: SIGKILL
 opt/kahansum.c                           compiler: SIGABRT
 opt/labs.c                               ok
 opt/ldst.c                               ok
@@ -483,7 +486,7 @@ opt/vadd_store.c                         ok
 opt/valist.c                             ok
 opt/valist2.c                            ok
 opt/vandrunen.c                          ok
-opt/vararray.c                           output mismatch
+opt/vararray.c                           ok
 opt/variadic_longlong.c                  ok
 opt/vla.c                                ok
 opt/volatile.c                           ok
