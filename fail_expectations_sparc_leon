@@ -117,6 +117,7 @@ opt/bf_constfold.c                       ok
 opt/biggest_prime.c                      ok
 opt/bitfield.c                           ok
 opt/bittest.c                            ok
+opt/bittest2.c                           ok
 opt/bitwise.c                            ok
 opt/blocks.c                             ok
 opt/boolopt.c                            ok
@@ -358,8 +359,9 @@ opt/fehler201.c                          ok
 opt/fehler202.c                          ok
 opt/fehler203.c                          ok
 opt/fehler204.c                          ok
-opt/fehler205.c                          compiler: SIGABRT
+opt/fehler205.c                          ok
 opt/fehler206.c                          compiler: SIGABRT
+opt/fehler207.c                          ok
 opt/fehler_gt_0.c                        ok
 opt/fehler_no_equality_0.c               ok
 opt/fib.c                                ok
@@ -419,6 +421,7 @@ opt/mul32x32.c                           ok
 opt/mulconst.c                           ok
 opt/multidim-array.c                     ok
 opt/mux.c                                ok
+opt/muxcmps.c                            ok
 opt/muxopts.c                            ok
 opt/nans.c                               ok
 opt/nested_loops.c                       ok
@@ -775,6 +778,8 @@ C/should_fail/voidarray.c                ok
 C/should_fail/weird_label.c              compiler: SIGABRT
 C/should_fail/wrongtype.c                ok
 C/should_warn/cast_qual.c                ok
+C/should_warn/compare.c                  compiler missed warnings
+C/should_warn/compare2.c                 compiler missed warnings
 C/should_warn/cp_error025.c              compiler missed warnings
 C/should_warn/div_by_zero.c              ok
 C/should_warn/implicit_int.c             ok
