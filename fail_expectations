@@ -360,7 +360,7 @@ opt/fehler202.c                          ok
 opt/fehler203.c                          ok
 opt/fehler204.c                          ok
 opt/fehler205.c                          ok
-opt/fehler206.c                          compiler: SIGABRT
+opt/fehler206.c                          ok
 opt/fehler207.c                          ok
 opt/fehler_gt_0.c                        ok
 opt/fehler_no_equality_0.c               ok
