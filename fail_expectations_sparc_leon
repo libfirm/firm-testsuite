@@ -1,4 +1,5 @@
 backend/RegallocBug.c                    ok
+backend/alloca.c                         Test return code not zero but 1
 backend/am_explode.c                     ok
 backend/am_possibilities.c               ok
 backend/am_test.c                        ok
