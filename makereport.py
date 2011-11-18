@@ -685,6 +685,7 @@ def init(config):
 	ensure_dir(config.builddir)
 
 if __name__ == "__main__":
+	os.putenv("LANG", "C") # need english error messages in gcc ;)
 	options, args = _OPTS.parse_args()
 	_DEBUG         = options.debug
 	_VERBOSE       = options.verbose
