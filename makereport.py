@@ -324,7 +324,7 @@ class Test:
 		self.compile_command = cmd
 		self.compiling = ""
 		try:
-			self.compile_out, self.compile_err, self.compile_retcode = my_execute(cmd, timeout=30)
+			self.compile_out, self.compile_err, self.compile_retcode = my_execute(cmd, timeout=60)
 		except SigKill, e:
 			self.error_msg = "compiler: %s" % (e.name)
 			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
