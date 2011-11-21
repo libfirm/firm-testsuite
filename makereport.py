@@ -381,7 +381,7 @@ class Test:
 		"""Run compiled test program and compare output to reference"""
 		environment = self.environment
 		try:
-			out, err, retcode = my_execute(environment.executable, timeout=30)
+			out, err, retcode = my_execute(environment.runexe + environment.executable, timeout=30)
 			if retcode != 0:
 				self.error_msg = "Test return code not zero but %d" % retcode
 				return False
