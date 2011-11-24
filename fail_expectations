@@ -580,6 +580,7 @@ C/cp_error066.c                          ok
 C/cp_error067.c                          ok
 C/cp_error068.c                          ok
 C/cp_error069.c                          ok
+C/cp_error070.c                          ok
 C/csmith1.c                              ok
 C/csmith2.c                              ok
 C/declarator_special.c                   ok
