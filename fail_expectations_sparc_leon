@@ -137,7 +137,7 @@ opt/combo_comm.c                         ok
 opt/combo_paper.c                        ok
 opt/comboattrs.c                         ok
 opt/compilerhang2.c                      ok
-opt/compilerhang3.c                      compiler: SIGABRT
+opt/compilerhang3.c                      execution: SIGABRT
 opt/compilerhang4.c                      ok
 opt/compilerhang5.c                      ok
 opt/cond.c                               ok
@@ -222,7 +222,7 @@ opt/fehler055.c                          ok
 opt/fehler056.c                          ok
 opt/fehler057.c                          ok
 opt/fehler058.c                          ok
-opt/fehler059.c                          Test return code not zero but 1
+opt/fehler059.c                          execution: SIGABRT
 opt/fehler060.c                          ok
 opt/fehler061.c                          ok
 opt/fehler062.c                          ok
@@ -394,10 +394,10 @@ opt/jumpthreading.c                      ok
 opt/jumpthreading2.c                     ok
 opt/jumpthreading3.c                     ok
 opt/jumpthreading4.c                     ok
-opt/jumpthreading5.c                     ok
+opt/jumpthreading5.c                     compiler: SIGKILL
 opt/jumpthreading6.c                     ok
 opt/jumpthreading7.c                     ok
-opt/jumpthreading8.c                     compiler: SIGKILL
+opt/jumpthreading8.c                     ok
 opt/kahansum.c                           ok
 opt/labs.c                               ok
 opt/ldst.c                               ok
@@ -849,7 +849,7 @@ C/gnu99/attribute_in_decl.c              2 compile errors
 C/gnu99/attributes.c                     linker error
 C/gnu99/attributes2.c                    ok
 C/gnu99/attributes3.c                    ok
-C/gnu99/attributes4.c                    Test return code not zero but 1
+C/gnu99/attributes4.c                    execution: SIGABRT
 C/gnu99/attributes5.c                    ok
 C/gnu99/basic_complex.c                  compiler: SIGABRT
 C/gnu99/builtin_expect.c                 ok
