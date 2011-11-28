@@ -284,7 +284,7 @@ opt/fehler119.c                          ok
 opt/fehler120.c                          ok
 opt/fehler121.c                          ok
 opt/fehler122.c                          ok
-opt/fehler123.c                          ok
+opt/fehler123.c                          compiler: SIGABRT
 opt/fehler124.c                          compiler: SIGABRT
 opt/fehler125.c                          ok
 opt/fehler126.c                          ok
@@ -394,10 +394,10 @@ opt/jumpthreading.c                      ok
 opt/jumpthreading2.c                     ok
 opt/jumpthreading3.c                     ok
 opt/jumpthreading4.c                     ok
-opt/jumpthreading5.c                     ok
+opt/jumpthreading5.c                     compiler: SIGKILL
 opt/jumpthreading6.c                     ok
 opt/jumpthreading7.c                     ok
-opt/jumpthreading8.c                     compiler: SIGKILL
+opt/jumpthreading8.c                     ok
 opt/kahansum.c                           compiler: SIGABRT
 opt/labs.c                               ok
 opt/ldst.c                               ok
@@ -897,8 +897,8 @@ C/gnu99/typeprop_funcs.c                 ok
 C/gnu99/union_cast.c                     2 compile errors
 C/gnu99/unused_label.c                   ok
 C/gnu99/void_pointer_arithmetic.c        ok
-C++/should_fail/bad_retypedef.cc         ok
-C++/should_fail/bad_retypedef_sys.cc     ok
+C++/should_fail/bad_retypedef.cc         compiler missed error
+C++/should_fail/bad_retypedef_sys.cc     compiler missed error
 ack/ack_conv.c                           compiler: SIGABRT
 ack/decl.c                               ok
 ack/init.c                               compiler: SIGABRT
