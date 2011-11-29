@@ -1,0 +1,31 @@
+--- Makefile.orig	2011-11-16 12:48:43.000000000 +0100
++++ Makefile	2011-11-16 12:48:59.000000000 +0100
+@@ -64,8 +64,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-MAY_NEED_GCC= gcc
++CC?= cc
++MAY_NEED_GCC?= $(CC)
+ 
+ 
+ # 2006 winners
+--- borsanyi/Makefile  2009-12-15 10:03:56.000000000 +0100
++++ borsanyi/Makefile    2011-11-29 14:03:13.000000000 +0100
+@@ -6,6 +6,8 @@
+ # notice are included in its entirety and remains unaltered.  All other
+ # uses must receive prior permission from the contest judges.
+
++LOCAL_FLAGS=-pthread
++
+ # data files for this entry
+ #
+ DATA=
+@@ -27,5 +29,5 @@
+
+
+ ${ENTRY}: ${ENTRY}.c ${DATA}
+-	${CC} ${CFLAGS} ${ENTRY}.c -o ${ENTRY}
++	${CC} ${CFLAGS} ${LOCAL_FLAGS} ${ENTRY}.c -o ${ENTRY}
+
