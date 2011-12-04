@@ -17,6 +17,7 @@ import itertools
 from futures import future, add_worker
 from shell import silent_shell, execute, SigKill
 from copy import deepcopy
+from urllib import urlopen
 
 _DEFAULT_DIRS = [
 	"backend",
@@ -46,7 +47,7 @@ def setup_sparc(option, opt_str, value, parser):
 	config.cflags += " -mtarget=sparc-linux-gnu"
 	config.ldflags += " -static"
 	config.runexe += "qemu-sparc32plus "
-	config.expect_file = "fail_expectations_sparc"
+	config.expect_url = "fail_expectations_sparc"
 
 def setup_leon(option, opt_str, value, parser):
 	global _ARCH_DIRS
@@ -55,7 +56,7 @@ def setup_leon(option, opt_str, value, parser):
 	config.cflags += " -mtarget=sparc-leon-linux-gnu -msoft-float"
 	config.ldflags += " -static -msoft-float"
 	config.runexe += "qemu-sparc "
-	config.expect_file = "fail_expectations_sparc_leon"
+	config.expect_url = "fail_expectations_sparc_leon"
 
 def setup_arm(option, opt_str, value, parser):
 	global _ARCH_DIRS
@@ -64,7 +65,7 @@ def setup_arm(option, opt_str, value, parser):
 	config.cflags += " -mtarget=arm-linux-gnu"
 	config.ldflags += " -static"
 	config.runexe += "qemu-arm "
-	config.expect_file = "fail_expectations_arm"
+	config.expect_url = "fail_expectations_arm"
 
 _OPTS = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
 _OPTS.set_defaults(
@@ -75,11 +76,12 @@ _OPTS.set_defaults(
 	compiler="cparser",
 	reportdir="reports/",
 	builddir="build/",
+	faillog_out=None,
 	cflags="-march=native -O3 -std=c99",
 	ldflags="-lm",
 	x10c="x10firm",
 	x10cflags="-nooutput",
-	expect_file="fail_expectations",
+	expect_url="fail_expectations",
 	runexe="")
 _OPTS.add_option("-d", "--debug", dest="debug", action="store_true",
                  help="Enable debug messages")
@@ -90,6 +92,10 @@ _OPTS.add_option("-c", "--compile-times", dest="compile_times",
                  help="Display compile time of each program")
 _OPTS.add_option("-t", "--threads", dest="threads", type="int",
                  help="Number of threads to use")
+_OPTS.add_option("--faillog", dest="faillog_out",
+                 help="Write faillog into file specified here")
+_OPTS.add_option("--expect", dest="expect_url",
+                 help="file/url with fail expectations")
 _OPTS.add_option("--cflags", dest="cflags",
                  help="Use CFLAGS to compile test programs", metavar="CFLAGS")
 _OPTS.add_option("--ldflags", dest="ldflags",
@@ -511,8 +517,9 @@ class TestX10(Test):
 		return False
 
 
-def load_expectations(filename):
-	for line in open(filename):
+def load_expectations(url):
+	input = urlopen(url)
+	for line in input:
 		try:
 			i = line.index(" ")
 		except ValueError:
@@ -652,9 +659,13 @@ def makereport(config, tests):
 	if not tests:
 		tests = _DEFAULT_DIRS + _ARCH_DIRS
 
-	if os.path.exists(config.expect_file):
-		global _EXPECTATIONS
-		_EXPECTATIONS = dict(load_expectations(config.expect_file))
+	global _EXPECTATIONS
+	try:
+		_EXPECTATIONS = dict(load_expectations(config.expect_url))
+	except Exception as e:
+		print "Couldn't load fail epxectations: %s" % e
+		_EXPECTATIONS = {}
+
 	# create test futures for parallel evaluation
 	for test in tests:
 		if os.path.isdir(test):
@@ -683,7 +694,10 @@ def makereport(config, tests):
 	except KeyboardInterrupt:
 		pass
 	r.writeXML(open(config.reportdir + "/" + _REPORT_NAME + ".xml", 'w'), config)
-	r.writeFaillog(open(config.reportdir + "/" + _REPORT_NAME + ".faillog", 'w'), config)
+	faillog_out = config.faillog_out
+	if faillog_out == None:
+		faillog_out = config.reportdir + "/" + _REPORT_NAME + ".faillog"
+	r.writeFaillog(open(faillog_out, 'w'), config)
 	r.printSummary()
 
 def init(config):
