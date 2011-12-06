@@ -519,6 +519,8 @@ class TestX10(Test):
 
 def load_expectations(url):
 	input = urlopen(url)
+	if input.getcode() != 200:
+		raise Exception("Couldn't download from '%s'" % url)
 	for line in input:
 		try:
 			i = line.index(" ")
@@ -543,6 +545,8 @@ _CONSOLE_GREEN = "\033[1;32m"
 _CONSOLE_YELLOW = "\033[1;33m"
 _CONSOLE_BOLD = "\033[1m"
 _CONSOLE_NORMAL = "\033[m"
+_RC = 0 # application return code
+
 def console_output(test, compile_times):
 	timing = ""
 	prefix = ""
@@ -560,6 +564,10 @@ def console_output(test, compile_times):
 			prefix = _CONSOLE_YELLOW
 		else:
 			prefix = _CONSOLE_RED
+
+		if not test.success:
+			global _RC
+			_RC = 1
 
 		if expected:
 			error_msg += " (expected %s)" % expected
@@ -704,7 +712,11 @@ def init(config):
 	ensure_dir(config.reportdir)
 	ensure_dir(config.builddir)
 
-if __name__ == "__main__":
+def main():
+	global _RC
+	global options
+	global _VERBOSE
+	global _DEBUG
 	os.putenv("LANG", "C") # need english error messages in gcc ;)
 	# Look for plugins
 	pluginlist = glob("*/reportplugin.py")
@@ -715,3 +727,7 @@ if __name__ == "__main__":
 	_DEBUG         = options.debug
 	_VERBOSE       = options.verbose
 	makereport(options, args)
+	return _RC
+
+if __name__ == "__main__":
+	sys.exit(main())
