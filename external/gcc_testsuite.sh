@@ -14,6 +14,9 @@ SKIP="20001226-1.c"
 
 # Check compile tests (should just compile without error/abort)
 cd gcc.c-torture/compile
+
+rm $SKIP
+
 for i in *.c; do
 	echo "$i"
 	if ! cparser -O3 -S -o/tmp/blup.s "$i" > /dev/null 2>&1; then
