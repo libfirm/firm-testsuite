@@ -519,7 +519,7 @@ class TestX10(Test):
 
 def load_expectations(url):
 	input = urlopen(url)
-	if input.getcode() != 200:
+	if input.getcode() != None and input.getcode() != 200:
 		raise Exception("Couldn't download from '%s'" % url)
 	for line in input:
 		try:
