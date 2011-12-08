@@ -26,7 +26,23 @@ grab() {
 	fi
 }
 
-MAKEFLAGS=-j2
+checkout() {
+	URL="$1"
+	REV="$2"
+	DIRNAME="$3"
+	DESTFILE="$PACKAGEDIR/$DIRNAME"
+
+	if ! [ -e "$DESTFILE" ]; then
+		cd "$PACKAGEDIR"
+		svn co -r "$REV" "$URL" "$DIRNAME"
+	else
+		echo "Already have $DESTFILE, updating"
+		cd "$PACKAGEDIR"
+		svn up -r "$REV"
+	fi
+}
+
+MAKEFLAGS=-j3
 
 # Cleanup builddir
 echo "Cleanup $BUILDDIR"

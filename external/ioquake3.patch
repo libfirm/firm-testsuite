@@ -1,0 +1,13 @@
+Index: code/qcommon/vm_x86.c
+===================================================================
+--- code/qcommon/vm_x86.c	(Revision 1522)
++++ code/qcommon/vm_x86.c	(Arbeitskopie)
+@@ -90,7 +90,7 @@
+ static void (*const asmCallPtr)(void) = AsmCall;
+ 
+ 
+-static	int		callMask = 0;
++static	int __attribute__((used)) callMask = 0;
+ 
+ static	int	instruction, pass;
+ static	int	lastConst = 0;
