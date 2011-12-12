@@ -1,0 +1,12 @@
+diff -ru ir/Makefile.am ir/Makefile.am
+--- ir/Makefile.am	2011-04-18 19:09:50.000000000 +0200
++++ ir/Makefile.am	2011-12-12 13:57:17.000000000 +0100
+@@ -23,7 +23,7 @@
+ 	-I$(top_srcdir)/ir/tr \
+ 	-I$(top_srcdir)/ir/tv
+ 
+-libfirm_la_LDFLAGS = -no-undefined -version-info $(LT_VERSION)
++libfirm_la_LDFLAGS = -no-undefined -version-info $(LT_VERSION) -lm
+ libfirm_la_SOURCES = \
+ 	adt/array.c \
+ 	adt/bipartite.c \
