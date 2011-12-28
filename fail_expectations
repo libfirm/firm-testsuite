@@ -49,6 +49,7 @@ backend/pic_const.c                      ok
 backend/prefetch.c                       ok
 backend/register_pressure.c              compiler: SIGABRT
 backend/shift64.c                        ok
+backend/sign_bit.c                       output mismatch
 backend/sparc_bitopcc.c                  ok
 backend/sparc_immediates.c               ok
 backend/sparc_notconsts.c                ok
