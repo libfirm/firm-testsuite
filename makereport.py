@@ -502,7 +502,7 @@ class TestX10(Test):
 		self.compile_command = cmd
 		self.compiling = ""
 		try:
-			self.compile_out, self.compile_err, self.compile_retcode = execute(cmd, timeout=30)
+			self.compile_out, self.compile_err, self.compile_retcode = execute(cmd, timeout=90)
 		except SigKill, e:
 			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
 			return False
