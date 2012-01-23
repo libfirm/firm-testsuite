@@ -11,10 +11,12 @@ class Promise:
 		self.done = False
 	def force(self):
 		self.lock.acquire()
-		if not self.done:
-			self.result = self.func()
-			self.done = True
-		self.lock.release()
+		try:
+			if not self.done:
+				self.result = self.func()
+				self.done = True
+		finally:
+			self.lock.release()
 		return self.result
 
 _PROMISES = list()
