@@ -71,6 +71,12 @@ def setup_x10(option, opt_str, value, parser):
 	config = parser.values
 	config.compiler = "x10firm"
 	config.expect_url = "fail_expectations_x10"
+configurations = {
+	"sparc": setup_sparc,
+	"leon": setup_leon,
+	"arm": setup_arm,
+	"x10": setup_x10
+}
 
 _OPTS = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
 _OPTS.set_defaults(
@@ -108,10 +114,6 @@ _OPTS.add_option("--compiler", dest="compiler",
                  metavar="COMPILER")
 _OPTS.add_option("--show-disappeared", dest="show_disappeared",
                  action="store_true", help="show disappeared tests")
-_OPTS.add_option("--sparc", action="callback", callback=setup_sparc)
-_OPTS.add_option("--leon", action="callback", callback=setup_leon)
-_OPTS.add_option("--arm", action="callback", callback=setup_arm)
-_OPTS.add_option("--x10", action="callback", callback=setup_x10)
 
 def ensure_dir(name):
 	try:
@@ -715,9 +717,15 @@ def main():
 	global _DEBUG
 	os.putenv("LANG", "C") # need english error messages in gcc ;)
 	# Look for plugins
-	pluginlist = glob("*/reportplugin.py")
+	pluginlist = list(glob("*/reportplugin.py"))
+	pluginlist += list(glob("*.config.py"))
 	for plugin in pluginlist:
 		execfile(plugin)
+
+	# Add new commandline options for all configurations
+	for (config,setupfunc) in configurations.iteritems():
+		_OPTS.add_option("--%s" % config, action="callback", callback=setupfunc,
+		                 help="activate %s configuration" % config)
 
 	options, args = _OPTS.parse_args()
 	_DEBUG         = options.debug
