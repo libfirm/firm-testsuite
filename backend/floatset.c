@@ -1,19 +1,19 @@
 #include <math.h>
 #include <stdio.h>
 
-#define test(type, name, op)                       \
-static void test_##type##_##name(type a, type b) { \
-	printf("%d\n", a op b);                        \
+#define test(type, name, op)                           \
+static void test_##type##_##name(type a, type b) {     \
+	printf("test " #type " " #op " res:%d\n", a op b); \
 }
 
-#define testu(type, op)                           \
-static void test_##type##_##op(type a, type b) {  \
-	printf("%d\n", op(a,b));                      \
+#define testu(type, op)                                 \
+static void test_##type##_##op(type a, type b) {        \
+	printf("test " #type " " #op " res:%d\n", op(a,b)); \
 }
 
-#define testnu(type, op)                              \
-static void test_##type##_not##op(type a, type b) {   \
-	printf("%d\n", !op(a,b));                         \
+#define testnu(type, op)                                     \
+static void test_##type##_not##op(type a, type b) {          \
+	printf("test not " #type " " #op " res:%d\n", !op(a,b)); \
 }
 
 test(float, l,  <)

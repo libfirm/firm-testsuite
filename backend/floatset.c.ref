@@ -1,66 +1,66 @@
-1
-1
-0
-0
-0
-1
-0
-0
-0
-0
-0
-1
-1
-0
-0
-1
-1
-1
-0
-0
-0
-0
-0
-0
-1
-1
-0
-1
-1
-1
-1
-1
-0
-1
-1
-0
-0
-0
-1
-0
-0
-0
-0
-0
-1
-1
-0
-0
-1
-1
-1
-0
-0
-0
-0
-0
-0
-1
-1
-0
-1
-1
-1
-1
-1
-0
+test float < res:1
+test float <= res:1
+test float == res:0
+test float >= res:0
+test float > res:0
+test float != res:1
+test float < res:0
+test float <= res:0
+test float == res:0
+test float >= res:0
+test float > res:0
+test float != res:1
+test float != res:1
+test float isgreater res:0
+test float isgreaterequal res:0
+test float isless res:1
+test float islessequal res:1
+test float islessgreater res:1
+test float isunordered res:0
+test float isgreater res:0
+test float isgreaterequal res:0
+test float isless res:0
+test float islessequal res:0
+test float islessgreater res:0
+test float isunordered res:1
+test float islessgreater res:1
+test float islessgreater res:0
+test not float isgreater res:1
+test not float isgreaterequal res:1
+test not float isless res:1
+test not float islessequal res:1
+test not float islessgreater res:1
+test not float isunordered res:0
+test double < res:1
+test double <= res:1
+test double == res:0
+test double >= res:0
+test double > res:0
+test double != res:1
+test double < res:0
+test double <= res:0
+test double == res:0
+test double >= res:0
+test double > res:0
+test double != res:1
+test double != res:1
+test double isgreater res:0
+test double isgreaterequal res:0
+test double isless res:1
+test double islessequal res:1
+test double islessgreater res:1
+test double isunordered res:0
+test double isgreater res:0
+test double isgreaterequal res:0
+test double isless res:0
+test double islessequal res:0
+test double islessgreater res:0
+test double isunordered res:1
+test double islessgreater res:1
+test double islessgreater res:0
+test not double isgreater res:1
+test not double isgreaterequal res:1
+test not double isless res:1
+test not double islessequal res:1
+test not double islessgreater res:1
+test not double isunordered res:0
