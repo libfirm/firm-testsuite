@@ -67,15 +67,10 @@ def setup_arm(option, opt_str, value, parser):
 	config.runexe += "qemu-arm "
 	config.expect_url = "fail_expectations_arm"
 
-def setup_x10(option, opt_str, value, parser):
-	config = parser.values
-	config.compiler = "x10firm"
-	config.expect_url = "fail_expectations_x10"
 configurations = {
 	"sparc": setup_sparc,
 	"leon": setup_leon,
 	"arm": setup_arm,
-	"x10": setup_x10
 }
 
 _OPTS = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
@@ -486,35 +481,6 @@ class TestJava(Test):
 		self.error_msg = "bytecode->asm not implemented yet"
 		return False
 
-class TestX10(Test):
-	def __init__(self, filename, environment):
-		Test.__init__(self, filename, environment)
-	def _init_flags(self):
-		Test._init_flags(self)
-		environment = self.environment
-		# Overwrite C compiler cflags
-		environment.cflags = " -nooutput -sourcepath %s " % os.path.dirname(environment.filename)
-	def compile(self):
-		environment = self.environment
-		cmd = "%(compiler)s %(cflags)s %(filename)s -o %(executable)s" % environment.__dict__
-		self.compile_command = cmd
-		self.compiling = ""
-		try:
-			self.compile_out, self.compile_err, self.compile_retcode = my_execute(cmd, timeout=90)
-		except SigKill, e:
-			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
-			return False
-		return True
-	def check_compiler_errors(self):
-		if self.compile_retcode != 0:
-			self.error_msg = "compilation not ok (returncode %d)" % self.compile_retcode
-			return False
-		return True
-	def _compile_asm(self):
-		self.error_msg = "x10->asm not implemented yet"
-		return False
-
-
 def load_expectations(url):
 	input = urlopen(url)
 	if input.getcode() != None and input.getcode() != 200:
@@ -624,7 +590,6 @@ def _do_test(test):
 	return f
 
 test_factories = [
-	( lambda name: "x10firm/"       in name, TestX10 ),
 	( lambda name: "bytecode2firm/" in name, TestJava ),
 ]
 
@@ -653,7 +618,7 @@ def make_test(environment, filename):
 
 	return testclass(filename, environment)
 
-_EXTENSIONS = "c cc java x10".split()
+_EXTENSIONS = ["c", "cc", "java"]
 def find_files(directory):
 	for ext in _EXTENSIONS:
 		for name in glob("%s/*.%s" % (directory, ext)):
