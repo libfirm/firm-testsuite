@@ -67,6 +67,11 @@ def setup_arm(option, opt_str, value, parser):
 	config.runexe += "qemu-arm "
 	config.expect_url = "fail_expectations_arm"
 
+def setup_x10(option, opt_str, value, parser):
+	config = parser.values
+	config.compiler = "x10firm"
+	config.expect_url = "fail_expectations_x10"
+
 _OPTS = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
 _OPTS.set_defaults(
 	debug=False,
@@ -79,8 +84,6 @@ _OPTS.set_defaults(
 	faillog_out=None,
 	cflags="-march=native -O3 -std=c99",
 	ldflags="-lm",
-	x10c="x10firm",
-	x10cflags="-nooutput",
 	expect_url="fail_expectations",
 	runexe="")
 _OPTS.add_option("-d", "--debug", dest="debug", action="store_true",
@@ -103,17 +106,12 @@ _OPTS.add_option("--ldflags", dest="ldflags",
 _OPTS.add_option("--compiler", dest="compiler",
                  help="Use COMPILER to compile test programs",
                  metavar="COMPILER")
-_OPTS.add_option("--x10compiler", dest="x10c",
-                 help="Use X10COMPILER to compile X10 test programs",
-                 metavar="X10COMPILER")
-_OPTS.add_option("--x10cflags", dest="x10cflags",
-                 help="Use X10CFLAGS to compile X10 test programs",
-                 metavar="X10CFLAGS")
 _OPTS.add_option("--show-disappeared", dest="show_disappeared",
                  action="store_true", help="show disappeared tests")
 _OPTS.add_option("--sparc", action="callback", callback=setup_sparc)
 _OPTS.add_option("--leon", action="callback", callback=setup_leon)
 _OPTS.add_option("--arm", action="callback", callback=setup_arm)
+_OPTS.add_option("--x10", action="callback", callback=setup_x10)
 
 def ensure_dir(name):
 	try:
@@ -492,13 +490,11 @@ class TestX10(Test):
 	def _init_flags(self):
 		Test._init_flags(self)
 		environment = self.environment
-		if not hasattr(environment, "x10c"):
-			environment.x10c = "x10firm"
-			environment.x10cflags = "-nooutput" # don't keep temp asm files
-		environment.x10cflags += " -sourcepath %s " % os.path.dirname(environment.filename)
+		# Overwrite C compiler cflags
+		environment.cflags = " -nooutput -sourcepath %s " % os.path.dirname(environment.filename)
 	def compile(self):
 		environment = self.environment
-		cmd = "%(x10c)s %(x10cflags)s %(filename)s -o %(executable)s" % environment.__dict__
+		cmd = "%(compiler)s %(cflags)s %(filename)s -o %(executable)s" % environment.__dict__
 		self.compile_command = cmd
 		self.compiling = ""
 		try:
