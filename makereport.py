@@ -46,7 +46,7 @@ def setup_sparc(option, opt_str, value, parser):
 	config = parser.values
 	config.cflags += " -mtarget=sparc-linux-gnu"
 	config.ldflags += " -static"
-	config.runexe += "qemu-sparc32plus "
+	config.runexe = "qemu-sparc32plus "
 	config.expect_url = "fail_expectations_sparc"
 
 def setup_leon(option, opt_str, value, parser):
@@ -55,7 +55,7 @@ def setup_leon(option, opt_str, value, parser):
 	config = parser.values
 	config.cflags += " -mtarget=sparc-leon-linux-gnu -msoft-float"
 	config.ldflags += " -static -msoft-float"
-	config.runexe += "qemu-sparc "
+	config.runexe = "qemu-sparc "
 	config.expect_url = "fail_expectations_sparc_leon"
 
 def setup_arm(option, opt_str, value, parser):
@@ -64,7 +64,7 @@ def setup_arm(option, opt_str, value, parser):
 	config = parser.values
 	config.cflags += " -mtarget=arm-linux-gnu"
 	config.ldflags += " -static"
-	config.runexe += "qemu-arm "
+	config.runexe = "qemu-arm "
 	config.expect_url = "fail_expectations_arm"
 
 configurations = {
