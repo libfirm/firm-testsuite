@@ -531,7 +531,7 @@ def console_output(test, compile_times):
 		else:
 			prefix = _CONSOLE_RED
 
-		if not test.success:
+		if expected and not test.success:
 			global _RC
 			_RC = 1
 
