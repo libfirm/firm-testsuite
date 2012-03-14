@@ -40,39 +40,7 @@ _REPORT_NAME = "stats-" +  datetime.now().strftime("%Y.%m.%d")
 _EMBEDDED_CMD = re.compile("/\\*\\$ (.+) \\$\\*/")
 _CMD = re.compile("(!?check(\[[0-9]+\])?|shell|cflags|ldflags)(.*)")
 
-def setup_sparc(option, opt_str, value, parser):
-	global _ARCH_DIRS
-	_ARCH_DIRS = [ "sparccode" ]
-	config = parser.values
-	config.cflags += " -mtarget=sparc-linux-gnu"
-	config.ldflags += " -static"
-	config.runexe = "qemu-sparc32plus "
-	config.expect_url = "fail_expectations_sparc"
-
-def setup_leon(option, opt_str, value, parser):
-	global _ARCH_DIRS
-	_ARCH_DIRS = [ "sparccode" ]
-	config = parser.values
-	config.cflags += " -mtarget=sparc-leon-linux-gnu -msoft-float"
-	config.ldflags += " -static -msoft-float"
-	config.runexe = "qemu-sparc "
-	config.expect_url = "fail_expectations_sparc_leon"
-
-def setup_arm(option, opt_str, value, parser):
-	global _ARCH_DIRS
-	_ARCH_DIRS = [ "armcode" ]
-	config = parser.values
-	config.cflags += " -mtarget=arm-linux-gnu"
-	config.ldflags += " -static"
-	config.runexe = "qemu-arm "
-	config.expect_url = "fail_expectations_arm"
-
-configurations = {
-	"sparc": setup_sparc,
-	"leon": setup_leon,
-	"arm": setup_arm,
-}
-
+configurations = dict()
 out=sys.stdout
 
 _OPTS = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
@@ -688,7 +656,7 @@ def main():
 	os.putenv("LANG", "C") # need english error messages in gcc ;)
 	# Look for plugins
 	pluginlist = list(glob("*/reportplugin.py"))
-	pluginlist += list(glob("*.config.py"))
+	pluginlist += list(glob("configs/*.py"))
 	for plugin in pluginlist:
 		execfile(plugin)
 
