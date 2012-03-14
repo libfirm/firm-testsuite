@@ -73,6 +73,8 @@ configurations = {
 	"arm": setup_arm,
 }
 
+out=sys.stdout
+
 _OPTS = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
 _OPTS.set_defaults(
 	debug=False,
@@ -121,7 +123,7 @@ def ensure_dir(name):
 
 def my_execute(cmd, env=None, timeout=0):
 	if _DEBUG:
-		print(cmd)
+		out.write(cmd + "\n")
 	return execute(cmd,env,timeout)
 
 class Test:
@@ -158,15 +160,15 @@ class Test:
 			if flag:
 				c = int(count_arg[1:-1])
 			else:
-				print "!check cannot be used with an argument"
+				out.write("!check cannot be used with an argument\n")
 		if _DEBUG:
 			if flag:
 				if c > 0:
-					print "Adding to checks: check[%d] %s" % (c, regex)
+					out.write("Adding to checks: check[%d] %s\n" % (c, regex))
 				else:
-					print "Adding to checks: check %s" % regex
+					out.write("Adding to checks: check %s\n" % regex)
 			else:
-				print "Adding to checks: !check %s" % regex
+				out.write("Adding to checks: !check %s\n" % regex)
 		self.checks.append((re.compile(regex), flag, c, regex))
 		if not hasattr(self.environment, 'asm_file'):
 			self.environment.asm_file = self.environment.builddir + "/" + self.environment.filename + ".s"
@@ -174,7 +176,7 @@ class Test:
 	def _add_shell_cmd(self, cmd):
 		"""execute the given command."""
 		if _DEBUG:
-			print "Adding to shell commands: '%s'" % cmd
+			out.write("Adding to shell commands: '%s'\n" % cmd)
 		self.shell_cmds.append(cmd)
 		if not hasattr(self.environment, 'asm_file'):
 			self.environment.asm_file = self.environment.builddir + "/" + self.environment.filename + ".s"
@@ -182,13 +184,13 @@ class Test:
 	def _add_cflags(self, flags):
 		"""Add to cflags"""
 		if _DEBUG:
-			print "Adding to cflags: '%s'" % flags
+			out.write("Adding to cflags: '%s'\n" % flags)
 		self.environment.cflags += " " + flags
 
 	def _add_ldflags(self, flags):
 		"""Add to ldflags"""
 		if _DEBUG:
-			print "Adding to ldflags: '%s'" % flags
+			out.write("Adding to ldflags: '%s'\n" % flags)
 		self.environment.ldflags += " " + flags
 
 	def _parse_embedded_command(self, cmd):
@@ -209,7 +211,7 @@ class Test:
 			elif base == "ldflags":
 				self._add_ldflags(m.group(3).strip())
 			else:
-				print "Error: unsupported command", base
+				out.write("Error: unsupported command %s\n" % (base))
 		else:
 			# threat as an cflag option
 			self._add_cflags(cmd.strip())
@@ -220,7 +222,7 @@ class Test:
 			m = _EMBEDDED_CMD.match(line)
 			if m:
 				if _DEBUG:
-					print "Processing embedded cmd:", m.group(1)
+					out.write("Processing embedded cmd: %s\n" % (m.group(1)))
 				self._parse_embedded_command(m.group(1))
 
 	def _prepare(self):
@@ -272,7 +274,7 @@ class Test:
 				prefix = "checking !"
 				if flag: prefix = "checking"
 				if c > 0: prefix += " %d *" % c
-				print "%s '%s'" % (prefix, txt)
+				out.write("%s '%s'\n" % (prefix, txt))
 			s = self._grep_asm(asm_name, regex, c)
 			if flag != s:
 				prefix = "!check"
@@ -291,7 +293,7 @@ class Test:
 		for txt in self.shell_cmds:
 			cmd = txt % self.environment.__dict__
 			if _DEBUG:
-				print "shell", txt
+				out.write("shell %s\n" % (txt))
 			ret = silent_shell(cmd)
 			if ret != 0:
 				self.error_msg = "shell '%s' failed" % cmd
@@ -465,7 +467,7 @@ class TestJava(Test):
 		cmd = "%(bytecodec)s %(bytecodecflags)s %(mainclass)s -o %(executable)s" % environment.__dict__
 		self.compile_command = cmd
 		self.compiling = ""
-		print cmd
+		out.write(cmd + "\n")
 		try:
 			self.compile_out, self.compile_err, self.compile_retcode = my_execute(cmd, timeout=30)
 		except SigKill, e:
@@ -537,7 +539,8 @@ def console_output(test, compile_times):
 			error_msg += " (expected %s)" % expected
 		else:
 			error_msg += " (new)"
-	print "%s%-40s %s%s%s" % (prefix, test.id, error_msg, _CONSOLE_NORMAL, timing)
+	out.write("%s%-40s %s%s%s\n" % (prefix, test.id, error_msg, _CONSOLE_NORMAL, timing))
+	out.flush()
 
 class Report:
 	def __init__(self):
@@ -547,9 +550,10 @@ class Report:
 	def addTest(self, test):
 		self.tests.append(test)
 	def printSummary(self):
-		print "---------------------------"
-		print "Ran %d tests, of which %s%d failed%s." %\
-			(self.summary[0], _CONSOLE_BOLD, self.summary[1], _CONSOLE_NORMAL)
+		out.write("---------------------------\n")
+		out.write("Ran %d tests, of which %s%d failed%s.\n" %\
+			(self.summary[0], _CONSOLE_BOLD, self.summary[1], _CONSOLE_NORMAL))
+		out.flush()
 	def writeXML(self, fh, config):
 		xml = ET.Element("results")
 		ET.SubElement(xml, "datetime").text = str(datetime.now())
@@ -634,7 +638,7 @@ def makereport(config, tests):
 	try:
 		_EXPECTATIONS = dict(load_expectations(config.expect_url))
 	except Exception as e:
-		print "Couldn't load fail epxectations: %s" % e
+		out.write("Couldn't load fail epxectations: %s\n" % e)
 		_EXPECTATIONS = {}
 
 	# create test futures for parallel evaluation
@@ -660,7 +664,8 @@ def makereport(config, tests):
 		if config.show_disappeared:
 			for t in _EXPECTATIONS:
 				if t not in found:
-					print "%s%-40s %s%s" % (_CONSOLE_RED, t, "test disappeared", _CONSOLE_NORMAL)
+					out.write("%s%-40s %s%s\n" % (_CONSOLE_RED, t, "test disappeared", _CONSOLE_NORMAL))
+					out.flush()
 
 	except KeyboardInterrupt:
 		pass
