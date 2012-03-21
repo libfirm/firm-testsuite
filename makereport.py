@@ -657,11 +657,6 @@ def main():
 	global _VERBOSE
 	global _DEBUG
 	os.putenv("LANG", "C") # need english error messages in gcc ;)
-	# Look for plugins
-	pluginlist = list(glob("*/reportplugin.py"))
-	pluginlist += list(glob("configs/*.py"))
-	for plugin in pluginlist:
-		execfile(plugin)
 
 	# Add new commandline options for all configurations
 	for (config,setupfunc) in configurations.iteritems():
@@ -673,6 +668,12 @@ def main():
 	_VERBOSE       = config.verbose
 	makereport(config, args)
 	return _RC
+
+# Look for plugins
+pluginlist = list(glob("*/reportplugin.py"))
+pluginlist += list(glob("configs/*.py"))
+for plugin in pluginlist:
+	execfile(plugin)
 
 if __name__ == "__main__":
 	sys.exit(main())
