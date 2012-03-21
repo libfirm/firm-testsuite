@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+import sys
+sys.path.append("./makereport/")
+
 from glob import iglob as glob
 from threading import Thread
 import os
@@ -13,8 +16,8 @@ from time import time
 import re
 import multiprocessing
 import itertools
+from concurrent.futures import ProcessPoolExecutor
 
-from futures import future, add_worker
 from shell import silent_shell, execute, SigKill
 from copy import deepcopy
 from urllib import urlopen
@@ -555,12 +558,6 @@ class Report:
 		result.tail = "\n" # pretty print
 		self.summary = (self.summary[0]+1, self.summary[1]+int(fail))
 
-def _do_test(test):
-	def f():
-		test.run()
-		return test
-	return f
-
 test_factories = [
 	( lambda name: "bytecode2firm/" in name, TestJava ),
 ]
@@ -596,7 +593,13 @@ def find_files(directory):
 		for name in glob("%s/*.%s" % (directory, ext)):
 			yield name
 
+def run_test(config, fname):
+	test = make_test(config, fname)
+	test.run()
+	return test
+
 def makereport(config, tests):
+	global EXECUTOR
 	init(config)
 	queue = list()
 	if not tests:
@@ -610,24 +613,21 @@ def makereport(config, tests):
 		_EXPECTATIONS = {}
 
 	# create test futures for parallel evaluation
+	EXECUTOR = ProcessPoolExecutor(max_workers = config.threads)
 	for test in tests:
 		if os.path.isdir(test):
 			for fname in sorted(find_files(test)):
-				t = make_test(config, fname)
-				queue.append(future(_do_test(t)))
+				queue.append(EXECUTOR.submit(run_test, config, fname))
 		else:
-			t = make_test(config, test)
-			queue.append(future(_do_test(t)))
-	# start actual work
-	add_worker(config.threads)
+			queue.append(EXECUTOR.submit(run_test, config, test))
 	# collect report
 	r = Report()
 	try:
 		found = {}
 		for promise in queue:
-			test = promise.force()
+			test = promise.result()
 			found[test.id] = True
-			console_output(test, options.compile_times)
+			console_output(test, config.compile_times)
 			r.addTest(test)
 		if config.show_disappeared:
 			for t in _EXPECTATIONS:
@@ -636,6 +636,10 @@ def makereport(config, tests):
 					out.flush()
 
 	except KeyboardInterrupt:
+		out.write("Received interrupt signal, shutting down\n")
+		for promise in queue:
+			promise.cancel()
+		EXECUTOR.shutdown(wait=False)
 		pass
 	r.writeXML(open(config.reportdir + "/" + _REPORT_NAME + ".xml", 'w'), config)
 	faillog_out = config.faillog_out
@@ -650,7 +654,6 @@ def init(config):
 
 def main():
 	global _RC
-	global options
 	global _VERBOSE
 	global _DEBUG
 	os.putenv("LANG", "C") # need english error messages in gcc ;)
@@ -665,10 +668,10 @@ def main():
 		_OPTS.add_option("--%s" % config, action="callback", callback=setupfunc,
 		                 help="activate %s configuration" % config)
 
-	options, args = _OPTS.parse_args()
-	_DEBUG         = options.debug
-	_VERBOSE       = options.verbose
-	makereport(options, args)
+	config, args = _OPTS.parse_args()
+	_DEBUG         = config.debug
+	_VERBOSE       = config.verbose
+	makereport(config, args)
 	return _RC
 
 if __name__ == "__main__":
