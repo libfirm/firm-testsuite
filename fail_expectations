@@ -592,6 +592,7 @@ C/empty.c                                ok
 C/enum.c                                 ok
 C/flexarray.c                            ok
 C/floatcmp.c                             ok
+C/floatcmp_implicit.c                    ok
 C/floatvals.c                            ok
 C/folderror.c                            ok
 C/funcname.c                             ok
