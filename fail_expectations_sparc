@@ -516,6 +516,7 @@ C/bool4.c                                ok
 C/compoundlit.c                          ok
 C/compoundlit2.c                         ok
 C/compoundlit3.c                         compiler: SIGABRT
+C/compoundlit_lhs.c                      execution: SIGSEGV
 C/constarraytd.c                         ok
 C/constexpr.c                            ok
 C/constexpr2.c                           ok
