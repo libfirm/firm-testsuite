@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-import sys
-sys.path.append("./util/")
-
 from glob import iglob as glob
 from threading import Thread
 import os
@@ -16,9 +13,10 @@ from time import time
 import re
 import multiprocessing
 import itertools
-from concurrent.futures import ProcessPoolExecutor
 
-from shell import silent_shell, execute, SigKill
+from util.concurrent.futures import ProcessPoolExecutor
+from util.shell import silent_shell, execute, SigKill
+
 from copy import deepcopy
 from urllib import urlopen
 
