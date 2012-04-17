@@ -11,6 +11,8 @@ backend/am_test_float.c                  ok
 backend/am_test_float2.c                 ok
 backend/arm_cconv.c                      ok
 backend/arm_immediate.c                  ok
+backend/builtin_bswap32.c                ok
+backend/builtin_bswap64.c                ok
 backend/builtin_clz.c                    ok
 backend/builtin_clzl.c                   ok
 backend/builtin_clzll.c                  ok
@@ -27,6 +29,7 @@ backend/builtin_popcount.c               ok
 backend/builtin_popcountl.c              ok
 backend/builtin_popcountll.c             ok
 backend/cmovs.c                          ok
+backend/conv_float_unsigned.c            ok
 backend/extern_sret.c                    ok
 backend/fdiv.c                           ok
 backend/fehler_mux_am.c                  ok
@@ -518,6 +521,7 @@ C/compoundlit2.c                         ok
 C/compoundlit3.c                         ok
 C/compoundlit4.c                         ok
 C/compoundlit_lhs.c                      execution: SIGSEGV
+C/const2.c                               ok
 C/constarraytd.c                         ok
 C/constexpr.c                            ok
 C/constexpr2.c                           ok
@@ -583,6 +587,7 @@ C/cp_error066.c                          ok
 C/cp_error067.c                          ok
 C/cp_error068.c                          ok
 C/cp_error069.c                          ok
+C/cp_error070.c                          ok
 C/csmith1.c                              ok
 C/csmith2.c                              ok
 C/declarator_special.c                   ok
@@ -704,7 +709,7 @@ C/should_fail/float_xor.c                ok
 C/should_fail/forscope.c                 ok
 C/should_fail/funcassign.c               ok
 C/should_fail/function_return.c          ok
-C/should_fail/goto_identifier_scope.c    verify warning
+C/should_fail/goto_identifier_scope.c    compiler missed error
 C/should_fail/incomplete_array.c         ok
 C/should_fail/incomplete_struct.c        ok
 C/should_fail/init1.c                    ok
@@ -827,6 +832,7 @@ C/should_warn/write_strings.c            ok
 C/nowarn/fooredirect.c                   ok
 C/nowarn/init_self.c                     ok
 C/nowarn/main.c                          ok
+C/nowarn/noreturn.c                      ok
 C/nowarn/printf.c                        ok
 C/nowarn/printf_unsigned_short.c         ok
 C/nowarn/redirect.c                      ok
