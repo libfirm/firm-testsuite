@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import sys
-sys.path.append("./makereport/")
+sys.path.append("./util/")
 
 from glob import iglob as glob
 from threading import Thread
