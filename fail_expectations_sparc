@@ -648,6 +648,7 @@ C/unkept_loop.c                          ok
 C/utf8input.c                            ok
 C/varargs.c                              ok
 C/vla.c                                  ok
+C/void_cast.c                            ok
 C/whiles.c                               ok
 C/pragmatic/conditional.c                ok
 C/pragmatic/fewparams.c                  ok
