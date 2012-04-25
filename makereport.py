@@ -1,3 +1,3 @@
 #/bin/sh
-echo "Deprecated! use makereport without '.py'!
+echo "Deprecated! use makereport without '.py'!"
 ./makereport
