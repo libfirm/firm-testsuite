@@ -2,7 +2,7 @@ all: report
 
 report:
 	@echo "===> REPORT"
-	@./makereport.py
+	@./makereport
 
 clean:
 	@echo "===> CLEAN"
