@@ -473,6 +473,9 @@ def expectation_match(error, expectation):
 	if error == "compiler: SIGXCPU" and expectation == "compiler: SIGKILL":
 		# BSD on timeout signals SIGXCPU and Linux SIGKILL
 		return True
+	if error == "execution: SIGBUS" and expectation == "execution: SIGSEGV":
+		# OS X often signals SIGBUS where others signal SIGSEGV
+		return True
 	return error == expectation
 
 _CONSOLE_RED = "\033[1;31m"
