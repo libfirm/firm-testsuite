@@ -30,6 +30,12 @@ def execute(cmd, env=None, timeout=0):
 							preexec_fn = preexec_fn,
 							env=env)
 	out, err = proc.communicate(input="")
+	# Usually python can recognize application terminations triggered by
+	# signals, but somehow it doesn't do this for java (I suspect, that java
+	# catches the signals itself but then shuts down more 'cleanly' than it
+	# should. Calculate to python convention returncode
+	if proc.returncode > 127:
+		proc.returncode = 128 - proc.returncode
 	if proc.returncode in _EXIT_CODES:
 		raise SigKill(proc.returncode, _EXIT_CODES[proc.returncode])
 	return (out, err, proc.returncode)
