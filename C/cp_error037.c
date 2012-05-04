@@ -6,8 +6,8 @@ extern __inline__ unsigned int xntohl(unsigned int a) { return 1; }
 __inline__ unsigned int xntohl2(unsigned int a) { return 2; }
 static __inline__ unsigned int xntohl3(unsigned int a) { return 3; }
 
-// only xntohl2 should be globally visible
-// the others should not even exist in the object file
+// only xntohl should be globally visible
+// all others should get removed by the garbage collection optimisation
 
 int main(void)
 {
