@@ -748,19 +748,19 @@ C/should_fail/pointerarith3.c            ok
 C/should_fail/pointerarith4.c            ok
 C/should_fail/pointerarith5.c            ok
 C/should_fail/randprog1.c                ok
-C/should_fail/scope_do_while_body.c      compiler missed error
+C/should_fail/scope_do_while_body.c      ok
 C/should_fail/scope_do_while_body_cond.c compiler missed error
 C/should_fail/scope_do_while_cond.c      compiler: SIGABRT
 C/should_fail/scope_for_body.c           ok
 C/should_fail/scope_for_cond.c           ok
-C/should_fail/scope_if_cond.c            compiler missed error
-C/should_fail/scope_if_else.c            compiler missed error
-C/should_fail/scope_if_then.c            compiler missed error
+C/should_fail/scope_if_cond.c            ok
+C/should_fail/scope_if_else.c            ok
+C/should_fail/scope_if_then.c            ok
 C/should_fail/scope_if_then_else.c       compiler missed error
-C/should_fail/scope_switch_body.c        compiler missed error
-C/should_fail/scope_switch_cond.c        compiler missed error
-C/should_fail/scope_while_body.c         compiler missed error
-C/should_fail/scope_while_cond.c         compiler missed error
+C/should_fail/scope_switch_body.c        ok
+C/should_fail/scope_switch_cond.c        ok
+C/should_fail/scope_while_body.c         ok
+C/should_fail/scope_while_cond.c         ok
 C/should_fail/segfault1.c                ok
 C/should_fail/segfault2.c                ok
 C/should_fail/segfault4.c                ok
