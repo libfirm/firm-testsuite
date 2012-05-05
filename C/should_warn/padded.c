@@ -10,6 +10,6 @@ struct T {
 	char c;
 };
 
-int main(int argc, char *argv[]) {
+int main(void) {
 	return 0;
 }
