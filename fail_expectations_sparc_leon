@@ -864,6 +864,7 @@ C/gnu99/attributes4.c                    execution: SIGABRT
 C/gnu99/attributes5.c                    ok
 C/gnu99/basic_complex.c                  compiler: SIGABRT
 C/gnu99/builtin_expect.c                 ok
+C/gnu99/binary_const.c                   ok
 C/gnu99/builtins_libc.c                  ok
 C/gnu99/cdecl.c                          ok
 C/gnu99/combo_load_mode.c                compiler: SIGABRT
