@@ -95,7 +95,7 @@ def my_execute(cmd, env=None, timeout=0):
 		out.write(cmd + "\n")
 	return execute(cmd,env,timeout)
 
-class Test:
+class Test(object):
 	def __init__(self, filename, environment):
 		environment = deepcopy(environment)
 		self.environment = environment
@@ -452,6 +452,10 @@ class TestJava(Test):
 		self.error_msg = "bytecode->asm not implemented yet"
 		return False
 
+class DummyTest:
+	def run(self):
+		self.success = True
+
 def load_expectations(url):
 	input = urlopen(url)
 	if input.getcode() != None and input.getcode() != 200:
@@ -559,13 +563,21 @@ class Report:
 		result.tail = "\n" # pretty print
 		self.summary = (self.summary[0]+1, self.summary[1]+int(fail))
 
+def is_c_file(name):
+	return name.endswith(".c") or name.endswith(".cc")
+
 test_factories = [
-	( lambda name: "bytecode2firm/" in name, TestJava ),
+	( lambda name: is_c_file(name) and "should_fail/" in name, TestShouldFail ),
+	( lambda name: is_c_file(name) and "should_warn/" in name, TestShouldWarn ),
+	( lambda name: is_c_file(name) and "nowarn/" in name, TestShouldNotWarn),
+	( lambda name: is_c_file(name), Test ),
+	( lambda name: name.endswith(".class"), TestJava ),
 ]
+_EXTENSIONS = ["c", "cc", "class"]
 
 def make_test(environment, filename):
-	testclass = Test
 	environment = deepcopy(environment)
+	# Set environment properties based on directory
 	if filename.startswith("C/gnu99"):
 		environment.cflags += " -std=gnu99"
 	elif filename.startswith("C/MS"):
@@ -573,22 +585,18 @@ def make_test(environment, filename):
 	elif filename.startswith("C/"):
 		environment.cflags += " -std=c99"
 
-	if "/should_fail/" in filename:
-		testclass = TestShouldFail
-	elif "/should_warn/" in filename:
-		testclass = TestShouldWarn
-	elif "/nowarn/" in filename:
-		testclass = TestShouldNotWarn
-		environment.cflags += " -Wall -W"
-	else:
-		for (test,cls) in test_factories:
-			if test(filename):
-				testclass = cls
-				break
+	# Determine Tester to be used
+	testclass = None
+	for (test,cls) in test_factories:
+		if test(filename):
+			testclass = cls
+			break
+	if testclass == None:
+		sys.stderr.write("Couldn't determine tester for '%s'" % filename)
+		testclass = DummyTest
 
 	return testclass(filename, environment)
 
-_EXTENSIONS = ["c", "cc", "java"]
 def find_files(directory):
 	for ext in _EXTENSIONS:
 		for name in glob("%s/*.%s" % (directory, ext)):
