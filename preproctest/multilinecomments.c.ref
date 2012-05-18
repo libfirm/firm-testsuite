@@ -1,0 +1,14 @@
+# 1 "preproctest/multilinecomments.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/multilinecomments.c"
+a b
+a b
+a
+  b
+a
+
+  b
+a
+
+  b

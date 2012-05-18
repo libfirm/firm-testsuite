@@ -1,0 +1,9 @@
+# 1 "preproctest/simpleinclude.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/simpleinclude.c"
+bla
+# 1 "preproctest/simpleinc.h" 1
+foo
+# 3 "preproctest/simpleinclude.c" 2
+blup

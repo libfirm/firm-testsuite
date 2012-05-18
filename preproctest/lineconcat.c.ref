@@ -1,0 +1,9 @@
+# 1 "preproctest/lineconcat.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/lineconcat.c"
+foobar
+
+bar
+
+4.11e-99288

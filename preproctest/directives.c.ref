@@ -1,0 +1,35 @@
+# 1 "preproctest/directives.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/directives.c"
+# 11 "preproctest/directives.c"
+define FOO8 bar
+
+define FOO9 bar
+
+
+
+bar
+bar
+bar
+bar
+bar
+bar
+bar
+FOO8
+FOO9
+FOO10
+
+
+
+# 1 "preproctest/simpleinc.h" 1
+foo1
+# 31 "preproctest/directives.c" 2
+
+
+# 1 "./preproctest/simpleinc.h" 1
+foo2
+# 34 "preproctest/directives.c" 2
+# 1 "preproctest/preproctest/simpleinc.h" 1
+subinclude
+# 35 "preproctest/directives.c" 2

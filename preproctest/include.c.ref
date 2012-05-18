@@ -1,0 +1,68 @@
+# 1 "preproctest/include.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/include.c"
+# 1 "preproctest/t8.c" 1
+# 11 "preproctest/t8.c"
+ a
+
+
+
+
+
+b
+# 26 "preproctest/t8.c"
+c
+
+
+
+
+d
+
+
+
+
+
+e
+
+
+
+
+
+
+f
+
+
+
+
+
+
+
+g
+# 61 "preproctest/t8.c"
+h
+# 71 "preproctest/t8.c"
+i
+# 2 "preproctest/include.c" 2
+
+
+
+
+
+# 1 "preproctest/t3.c" 1
+
+
+bar
+bar
+bar
+
+
+
+
+
+(fool)
+(fool
+)
+# 8 "preproctest/include.c" 2
+
+end
