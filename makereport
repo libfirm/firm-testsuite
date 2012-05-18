@@ -668,7 +668,7 @@ def main():
 	global _RC
 	global _VERBOSE
 	global _DEBUG
-	os.putenv("LANG", "C") # need english error messages in gcc ;)
+	os.putenv("LC_ALL", "C") # need english error messages in gcc ;)
 
 	# Add new commandline options for all configurations
 	for (config,setupfunc) in configurations.iteritems():
