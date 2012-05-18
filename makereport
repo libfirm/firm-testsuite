@@ -585,6 +585,9 @@ def make_test(environment, filename):
 	elif filename.startswith("C/"):
 		environment.cflags += " -std=c99"
 
+	if "nowarn" in filename:
+		environment.cflags += " -Wall -W"
+
 	# Determine Tester to be used
 	testclass = None
 	for (test,cls) in test_factories:
