@@ -1,0 +1,1 @@
+C/should_warn/write_only8.c:3:6: warning: 'variable c' is never read [-Wunused-variable]

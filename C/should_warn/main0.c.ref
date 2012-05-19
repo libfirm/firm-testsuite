@@ -1,0 +1,1 @@
+C/should_warn/main0.c:1:5: warning: 'main' takes only zero, two or three arguments [-Wmain]

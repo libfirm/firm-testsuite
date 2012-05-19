@@ -1,0 +1,1 @@
+C/should_warn/cast_qual.c:3:12: warning: cast discards qualifiers 'const' in pointer target type of 'const char*' [-Wcast-qual]

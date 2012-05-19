@@ -1,0 +1,1 @@
+C/should_warn/scanf_width_s.c:6:8: warning: target buffer 'char[10]' is too small for 10 characters and \0 at format 1 [-Wformat]

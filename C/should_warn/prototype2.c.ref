@@ -1,0 +1,1 @@
+C/should_warn/prototype2.c:1:5: warning: function declaration 'int main(int, char**)' is not a prototype [-Wstrict-prototypes]

@@ -1,0 +1,1 @@
+C/should_warn/ref_local.c:4:2: warning: function returns address of local variable [-Wother]

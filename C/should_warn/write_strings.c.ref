@@ -1,0 +1,2 @@
+C/should_warn/write_strings.c:8:12: warning: destination type 'char*' in initializer from type 'const char*' lacks qualifiers 'const' in pointer target type [-Wother]
+C/should_warn/write_strings.c:9:15: warning: destination type 'wchar_t*' in initializer from type 'const int*' lacks qualifiers 'const' in pointer target type [-Wother]

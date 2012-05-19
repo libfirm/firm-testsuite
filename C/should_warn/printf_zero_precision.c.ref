@@ -1,0 +1,1 @@
+C/should_warn/printf_zero_precision.c:5:9: warning: '0' flag ignored with precision in conversion specification 1 [-Wformat]

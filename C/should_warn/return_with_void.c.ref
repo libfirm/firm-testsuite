@@ -1,0 +1,2 @@
+C/should_warn/return_with_void.c:4:3: warning: 'return' with a value, in function returning 'void' [-Wother]
+C/should_warn/return_with_void.c:5:2: warning: 'return' with a value, in function returning 'void' [-Wother]

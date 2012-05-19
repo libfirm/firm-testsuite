@@ -1,0 +1,1 @@
+C/should_warn/printf2.c:5:9: warning: too few arguments for format string [-Wformat]

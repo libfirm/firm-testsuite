@@ -1,0 +1,1 @@
+C/should_warn/write_only12.c:3:6: warning: 'variable j' is never read [-Wunused-variable]

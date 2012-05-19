@@ -1,0 +1,2 @@
+C/should_warn/write_only3.c:6:3: warning: statement has no effect [-Wunused-value]
+C/should_warn/write_only3.c:5:10: warning: 'variable z' is never read [-Wunused-variable]

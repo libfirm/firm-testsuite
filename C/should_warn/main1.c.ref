@@ -1,0 +1,2 @@
+C/should_warn/main1.c:1:5: warning: first argument of 'main' should be 'int', but is 'char**' [-Wmain]
+C/should_warn/main1.c:1:5: warning: second argument of 'main' should be 'char**', but is 'int' [-Wmain]

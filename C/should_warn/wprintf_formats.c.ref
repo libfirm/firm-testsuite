@@ -1,0 +1,1 @@
+C/should_warn/wprintf_formats.c:7:17: warning: conversion '%x' at position 1 specifies type 'unsigned int' but the argument has type 'int' [-Wformat]

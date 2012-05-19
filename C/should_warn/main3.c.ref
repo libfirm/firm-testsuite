@@ -1,0 +1,1 @@
+C/should_warn/main3.c:1:5: warning: third argument of 'main' should be 'char**', but is 'float' [-Wmain]

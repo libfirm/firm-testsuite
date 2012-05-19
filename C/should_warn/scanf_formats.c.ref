@@ -1,0 +1,4 @@
+C/should_warn/scanf_formats.c:10:27: warning: conversion '%f' at position 1 specifies type 'float*' but the argument has type 'double*' [-Wformat]
+C/should_warn/scanf_formats.c:11:28: warning: conversion '%lf' at position 1 specifies type 'double*' but the argument has type 'float*' [-Wformat]
+C/should_warn/scanf_formats.c:12:21: warning: format string contains '\0' [-Wformat]
+C/should_warn/scanf_formats.c:12:21: warning: 1 argument but only 0 format specifiers [-Wformat]

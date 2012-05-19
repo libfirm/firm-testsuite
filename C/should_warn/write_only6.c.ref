@@ -1,0 +1,1 @@
+C/should_warn/write_only6.c:7:17: warning: 'variable px' is never read [-Wunused-variable]

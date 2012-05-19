@@ -1,0 +1,1 @@
+C/should_warn/prototype.c:1:5: warning: function declaration 'int foo()' is not a prototype [-Wstrict-prototypes]
