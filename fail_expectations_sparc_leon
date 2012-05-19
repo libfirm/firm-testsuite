@@ -748,6 +748,7 @@ C/should_fail/pointerarith3.c            ok
 C/should_fail/pointerarith4.c            ok
 C/should_fail/pointerarith5.c            ok
 C/should_fail/randprog1.c                ok
+C/should_fail/recursive_struct.c         ok
 C/should_fail/scope_do_while_body.c      ok
 C/should_fail/scope_do_while_body_cond.c compiler missed error
 C/should_fail/scope_do_while_cond.c      compiler: SIGABRT

@@ -50,7 +50,7 @@ backend/paramaddr.c                      ok
 backend/paramaddrsf.c                    ok
 backend/pic_const.c                      ok
 backend/prefetch.c                       ok
-backend/register_pressure.c              compiler: SIGABRT
+backend/register_pressure.c              ok
 backend/shift64.c                        ok
 backend/sign_bit.c                       output mismatch
 backend/sparc_bitopcc.c                  ok
@@ -748,6 +748,7 @@ C/should_fail/pointerarith3.c            ok
 C/should_fail/pointerarith4.c            ok
 C/should_fail/pointerarith5.c            ok
 C/should_fail/randprog1.c                ok
+C/should_fail/recursive_struct.c         ok
 C/should_fail/scope_do_while_body.c      ok
 C/should_fail/scope_do_while_body_cond.c compiler missed error
 C/should_fail/scope_do_while_cond.c      ok
