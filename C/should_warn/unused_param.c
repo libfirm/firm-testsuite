@@ -1,4 +1,4 @@
-void f(int k)
+static void f(int k)
 {
 }
 

@@ -3,21 +3,23 @@
 struct S { int a, b; };
 union U { int a, b; };
 
-struct S testS(void) {
+static struct S testS(void) {
 	struct S ret = { 1, 2 };
 
 	return ret;
 }
 
-union U testU(void) {
+static union U testU(void) {
 	union U ret = { 2 };
 
 	return ret;
 }
 
 int main(int argc, char *argv[]) {
+	(void)argc, (void)argv;
 	struct S x = testS();
 	union U y = testU();
+	(void)x, (void)y;
 
 	return 0;
 }

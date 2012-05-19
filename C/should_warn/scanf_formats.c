@@ -1,6 +1,6 @@
 extern int __attribute__((format(scanf, 2, 3))) sscanf(const char *input, const char *format, ...);
 
-char somestring[] = "123Hello123";
+static char somestring[] = "123Hello123";
 
 int main(void)
 {

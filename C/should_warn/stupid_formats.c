@@ -3,7 +3,7 @@
 
 extern int __attribute__((format(printf, 3, 4))) snprintf(char *buffer, size_t len, const char *str, ...);
 
-char buffer[128];
+static char buffer[128];
 
 int main(void)
 {
