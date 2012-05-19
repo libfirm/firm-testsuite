@@ -356,6 +356,24 @@ class Test(object):
 		cmd = "%(compiler)s -S %(filename)s %(cflags)s %(ldflags)s -o %(asm_file)s" % environment.__dict__
 		silent_shell(cmd) # assumed to succeed, because compile to exe did
 
+	def check_reference_output(self, out):
+		if not hasattr(self.environment, 'reference_output'):
+			self.error_msg = "no reference output"
+			if out:
+				out = "Output was:\n" + out
+			else:
+				out = "Empty Output."
+			self.long_error_msg = "Add .ref file for this test case! " + out
+			return False
+		ref = self.environment.reference_output.splitlines()
+		diff = "\n".join(difflib.unified_diff(out.splitlines(), ref))
+		if diff == "":
+			return True
+		else:
+			self.error_msg      = "output mismatch"
+			self.long_error_msg = diff
+			return False
+
 	def check_execution(self):
 		"""Run compiled test program and compare output to reference"""
 		environment = self.environment
@@ -372,22 +390,7 @@ class Test(object):
 			return False
 
 		# Program run succeeded. Now compare output with reference.
-		if not hasattr(environment, 'reference_output'):
-			self.error_msg = "no reference output"
-			if out:
-				out = "Output was:\n"+out
-			else:
-				out = "Empty Output."
-			self.long_error_msg = "Add .ref file for this test case! "+out
-			return False
-		ref = environment.reference_output.splitlines()
-		diff = "\n".join(difflib.unified_diff(out.splitlines(), ref))
-		if diff == "":
-			return True
-		else:
-			self.error_msg = "output mismatch"
-			self.long_error_msg = diff
-			return False
+		return self.check_reference_output(out)
 
 class TestShouldFail(Test):
 	def __init__(self, filename, environment):
@@ -409,10 +412,22 @@ class TestShouldWarn(Test):
 		Test.__init__(self, filename, environment)
 
 	def check_compiler_errors(self):
-		if len(self.warnings) == 0:
-			self.error_msg = "compiler missed warnings"
+		if not Test.check_compiler_errors(self):
 			return False
-		return Test.check_compiler_errors(self)
+		if not Test.check_reference_output(self, "\n".join(self.warnings)):
+			n_warn_out = len(self.warnings)
+			if n_warn_out == 0:
+				self.error_msg = "compiler missed warnings"
+			elif not hasattr(self.environment, 'reference_output'):
+				self.error_msg = "compiler reported %d warnings (%s)" % (n_warn_out, self.error_msg)
+			else:
+				n_warn_ref = len(self.environment.reference_output.splitlines())
+				if n_warn_out == n_warn_ref:
+					self.error_msg = "compiler reported different warnings"
+				else:
+					self.error_msg = "compiler reported %d warnings, expected %d"% (n_warn_out, n_warn_ref)
+			return False
+		return True
 
 	def check_execution(self):
 		return True # only check compilation
