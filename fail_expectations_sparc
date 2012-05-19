@@ -799,6 +799,7 @@ C/should_warn/nested_comment.c           compiler missed warnings
 C/should_warn/never_read1.c              ok
 C/should_warn/padded.c                   compiler missed warnings
 C/should_warn/paramscope.c               compiler missed warnings
+C/should_warn/wprintf_formats.c          ok
 C/should_warn/printf2.c                  ok
 C/should_warn/printf_formats.c           ok
 C/should_warn/printf_int_for_short.c     ok
