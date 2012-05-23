@@ -1,0 +1,13 @@
+# 1 "preproctest/spec1.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/spec1.c"
+# 10 "preproctest/spec1.c"
+printf("x" "1" "= %d, x" "2" "= %s", x1, x2);
+fputs("strncmp(\"abc\\0d\", \"abc\", '\\4') == 0" ": @\n", s);
+
+# 1 "preproctest/vers2.h" 1
+This is version 2
+# 14 "preproctest/spec1.c" 2
+"hello";
+"hello" ", world"

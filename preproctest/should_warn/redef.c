@@ -1,2 +1,2 @@
-#define foo(x) bla: x
-#define foo(y) bla: y
+#define foo bar
+#define foo() baz
