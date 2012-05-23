@@ -643,7 +643,7 @@ C/suffixes.c                             ok
 C/switch.c                               ok
 C/tarval_sign_error.c                    ok
 C/union_init.c                           ok
-C/universal_character.c                  21 compile errors
+C/universal_character.c                  ok
 C/unkept_loop.c                          ok
 C/utf8input.c                            ok
 C/varargs.c                              ok
