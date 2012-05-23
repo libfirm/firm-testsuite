@@ -3,6 +3,8 @@ class TestPreprocessor(Test):
 		Test.__init__(self, filename, environment)
 		environment = self.environment
 		environment.preprocessed = environment.builddir + "/" + environment.filename + ".i"
+		if not hasattr(environment, "ppflags"):
+			environment.ppflags = "-I ."
 
 	def _init_flags(self):
 		Test._init_flags(self)
@@ -21,6 +23,11 @@ class TestPreprocessor(Test):
 			self.error_msg = "compiler: %s" % (e.name)
 			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
 			return False
+		except OSError, e:
+			self.error_msg = "compilation failed (%s)" % (e.strerror)
+			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
+			return False
+
 		c = self.parse_compiler_output()
 		if not c: return c
 		return True
