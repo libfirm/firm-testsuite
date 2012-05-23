@@ -1,0 +1,7 @@
+# 1 "preproctest/no_expansion.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/no_expansion.c"
+
+
+call (bar)

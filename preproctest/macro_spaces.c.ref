@@ -1,0 +1,26 @@
+# 1 "preproctest/macro_spaces.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/macro_spaces.c"
+
+
+called: 1
+called: 1
+called: 1
+called: 1
+ called: 1
+ called: 1
+ called: 1
+ called: 1
+  called: 1
+  called: 1
+  called: 1
+  called: 1
+=called: 1
+=called: 1
+=called: 1
+=called: 1
+= called: 1
+= called: 1
+= called: 1
+= called: 1

@@ -64,14 +64,14 @@ class TestPreprocessor(Test):
 		self.error_msg = "x10->asm not implemented yet"
 		return False
 
-test_factories.insert(0, (lambda name: is_c_file(name) and "preproctest/" in name, TestPreprocessor))
+test_factories.insert(0, (lambda name: is_c_file(name) and "preproctest/" in name and "should_fail/" not in name, TestPreprocessor))
 
 # Configurations
 def setup_pp(option, opt_str, value, parser):
 	global _ARCH_DIRS
 	_ARCH_DIRS = []
 	global _DEFAULT_DIRS
-	_DEFAULT_DIRS = [ "preproctest" ]
+	_DEFAULT_DIRS = [ "preproctest", "preproctest/should_fail" ]
 	config = parser.values
 	config.compiler = "pptest"
 	config.ppflags = "-I ."

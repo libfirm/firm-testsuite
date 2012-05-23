@@ -24,8 +24,8 @@ FOO7
 FOO8
 FOO9
 FOO10
-
-#define foo foo1
+# define foo foo1
+FOO10 # define foo foo1
 #/*inc*/include/* haha
 */ "simpleinc.h"
 #undef foo

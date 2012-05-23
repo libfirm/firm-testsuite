@@ -1,0 +1,21 @@
+# 1 "preproctest/defines2.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/defines2.c"
+
+y x
+x y
+second first
+first second
+
+changed_x y
+
+
+a b
+first second
+
+
+
+foo(42,13)
+bar(3,4)
+bar(changed_x,changed_x)

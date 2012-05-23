@@ -4,5 +4,19 @@
 # 1 "preproctest/digraph_fun.c"
 
 
-<:
-"<:"
+<: "<:"
+[ "["
+:> ":>"
+] "]"
+<% "<%"
+{ "{"
+%> "%>"
+} "}"
+
+no_directive %: "%:"
+no_directive # "#"
+%:%: "%:%:"
+## ##
+
+
+hello

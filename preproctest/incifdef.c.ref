@@ -9,4 +9,4 @@
 int in_the_header;
 # 2 "preproctest/incifdef.c" 2
 # 1 "preproctest/header.h" 1
-# 3 "preproctest/incifdef.c" 2
+# 2 "preproctest/incifdef.c" 2
