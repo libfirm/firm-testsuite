@@ -1,0 +1,10 @@
+# 1 "preproctest/simplestringify.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/simplestringify.c"
+
+"42"
+"\"Hello\""
+"'H'"
+"L\"Wide Hello\""
+"+"
