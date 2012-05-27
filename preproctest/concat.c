@@ -1,0 +1,96 @@
+#define concat(x,y) x ## y
+concat(he,llo)
+concat(1,2)
+concat(5,.42)
+concat(a,)
+concat(5,)
+concat("a",)
+concat(L"ä",)
+concat('a',)
+concat(L'ä',)
+concat(#,)
+concat(ä,)
+concat(,a)
+concat(,5)
+concat(,"a")
+concat(,L"ä")
+concat(,'a')
+concat(,L'ä')
+concat(,#)
+concat(,ä)
+concat(,)
+concat(4., .4)
+concat(!,=)
+concat(#,#)
+concat(%,:)
+concat(%,=)
+concat(%,>)
+concat(%:,%:)
+concat(&,&)
+concat(&,=)
+concat(*,=)
+concat(+,+)
+concat(+,=)
+concat(-,-)
+concat(-,=)
+concat(-,>)
+concat(/,=)
+concat(:,>)
+concat(<,%)
+concat(<,:)
+concat(<,<)
+concat(<,<=)
+concat(<,=)
+concat(<<,=)
+concat(=,=)
+concat(>,=)
+concat(>,>)
+concat(>,>=)
+concat(>>,=)
+concat(^,=)
+concat(|,=)
+concat(|,|)
+concat(vo,id)
+concat(i,nt)
+concat(whi,le)
+concat(def,ine)
+
+concat(4,hello)
+concat(2,p5)
+concat(2,.)
+concat(3,...)
+concat(.,4)
+concat(hello,5)
+concat(hello,2e5)
+concat(L, 'ä')
+concat(L, "äöü")
+concat(%,:%:)
+
+#define multiconcat(a,b,c,d,e) a ## b ## c ## d ## e
+multiconcat(h,e,l,l,o)
+
+#define dconcat(x,y,z) x ## ## y z
+dconcat(,1,2)
+dconcat(,,)
+
+#define noconcat(x,y,z) x y z
+noconcat(he,##,llo)
+
+#define hashash   # ## #
+#define nonconcat2(x,y) x hashash y
+nonconcat2(he,llo)
+
+#define tconcat(x,y) x ## ## ## y
+tconcat(,)
+
+#define x changed_x
+concat(he,x)
+concat(x,)
+concat(x,_)
+
+#define foobar(x)  expanded_foobar: x
+concat(foo, bar(42))
+concat(x foo,bar(42) x)
+concat(x hash, ash x)
+
+concat(a##b,c##d)

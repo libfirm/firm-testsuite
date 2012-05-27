@@ -1,0 +1,13 @@
+# 1 "preproctest/gccbug2.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/gccbug2.c"
+
+1e+
+2E+
+3p+
+4P+
+1.yipee-
+2.YIPEE-
+3.yip-
+4.YIP-

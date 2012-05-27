@@ -1,0 +1,100 @@
+# 1 "preproctest/concat.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/concat.c"
+
+hello
+12
+5.42
+a
+5
+"a"
+L"ä"
+'a'
+L'ä'
+ #
+ä
+a
+5
+"a"
+L"ä"
+'a'
+L'ä'
+ #
+ä
+
+4..4
+!=
+##
+ %:
+%=
+%>
+%:%:
+&&
+&=
+*=
+++
++=
+--
+-=
+->
+/=
+:>
+<%
+<:
+<<
+<<=
+<=
+<<=
+==
+>=
+>>
+>>=
+>>=
+^=
+|=
+||
+void
+int
+while
+define
+
+4hello
+2p5
+2.
+3...
+.4
+hello5
+hello2e5
+L'ä'
+L"äöü"
+ %: %:
+
+
+hello
+
+
+## 1 2
+##
+
+
+he ## llo
+
+
+
+he ## llo
+
+
+##
+
+
+hex
+changed_x
+x_
+
+
+expanded_foobar: 42
+changed_x expanded_foobar: 42 changed_x
+changed_x ## changed_x
+
+a##bc##d
