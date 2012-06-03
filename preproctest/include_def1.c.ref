@@ -1,0 +1,14 @@
+# 1 "preproctest/include_def1.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/include_def1.c"
+
+
+# 1 "./preproctest/simpleinc.h" 1
+foo
+# 4 "preproctest/include_def1.c" 2
+
+
+# 1 "./preproctest/file with spaces.h" 1
+I was here
+# 6 "preproctest/include_def1.c" 2
