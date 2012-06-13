@@ -28,6 +28,7 @@ _DEFAULT_DIRS = [
 	"C/should_fail",
 	"C/should_warn",
 	"C/nowarn",
+	"C/gnu90",
 	"C/gnu99",
 	"C++/should_fail",
 	"ack",
@@ -612,7 +613,9 @@ _EXTENSIONS = ["c", "cc", "class"]
 def make_test(environment, filename):
 	environment = deepcopy(environment)
 	# Set environment properties based on directory
-	if filename.startswith("C/gnu99"):
+	if filename.startswith("C/gnu90"):
+		environment.cflags += " -std=gnu90"
+	elif filename.startswith("C/gnu99"):
 		environment.cflags += " -std=gnu99"
 	elif filename.startswith("C/MS"):
 		environment.cflags += " --ms"
