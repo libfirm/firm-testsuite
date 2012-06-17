@@ -10,5 +10,7 @@ C/should_warn/traditional.c:14:9: warning: 'long' switch expression not converte
 C/should_warn/traditional.c:19:12: warning: traditional C rejects ISO C style definition of 'function sw2' [-Wtraditional]
 C/should_warn/traditional.c:26:13: warning: traditional C rejects string constant concatenation [-Wtraditional]
 C/should_warn/traditional.c:32:15: warning: traditional C rejects the 'U' suffix [-Wtraditional]
+C/should_warn/traditional.c:33:12: warning: traditional C rejects the 'F' suffix [-Wtraditional]
+C/should_warn/traditional.c:34:13: warning: traditional C rejects the 'L' suffix [-Wtraditional]
 C/should_warn/traditional.c:35:27: warning: traditional C rejects the 'ULL' suffix [-Wtraditional]
 C/should_warn/traditional.c:40:5: warning: traditional C rejects ISO C style definition of 'function main' [-Wtraditional]
