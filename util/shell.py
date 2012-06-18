@@ -17,11 +17,24 @@ del _EXIT_CODES[0]
 
 def execute(cmd, env=None, timeout=0):
 	"""Execute a command and return stderr and stdout data"""
-	preexec_fn = None
-	if timeout > 0.0:
-		def set_timeout():
-			 resource.setrlimit(resource.RLIMIT_CPU, (timeout, timeout))
-		preexec_fn = set_timeout
+
+	def lower_rlimit(res, limit):
+		(soft, hard) = resource.getrlimit(res)
+		if soft > limit:
+			soft = limit
+		if hard > limit:
+			hard = limit
+		resource.setrlimit(res, (soft, hard))
+
+	def set_rlimit():
+		if timeout > 0.0:
+			lower_rlimit(resource.RLIMIT_CPU, timeout)
+		MB = 1024 * 1024
+		lower_rlimit(resource.RLIMIT_CORE,   128 * MB)
+		lower_rlimit(resource.RLIMIT_DATA,  1024 * MB)
+		lower_rlimit(resource.RLIMIT_STACK, 1024 * MB)
+
+	preexec_fn = set_rlimit
 	cmd = filter(lambda x: x, cmd.split(' '))
 	proc = subprocess.Popen(cmd,
 							stdin =subprocess.PIPE,
