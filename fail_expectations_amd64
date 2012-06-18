@@ -1,0 +1,968 @@
+backend/RegallocBug.c                    compiler: SIGBUS
+backend/alloca.c                         compiler: SIGBUS
+backend/am_explode.c                     compiler: SIGBUS
+backend/am_possibilities.c               compiler: SIGBUS
+backend/am_test.c                        compiler: SIGABRT
+backend/am_test2.c                       compiler: SIGBUS
+backend/am_test3.c                       compiler: SIGBUS
+backend/am_test4.c                       compiler: SIGABRT
+backend/am_test5.c                       compiler: SIGBUS
+backend/am_test_float.c                  compiler: SIGBUS
+backend/am_test_float2.c                 compiler: SIGABRT
+backend/arm_cconv.c                      compiler: SIGABRT
+backend/arm_immediate.c                  compiler: SIGBUS
+backend/builtin_bswap32.c                compiler: SIGABRT
+backend/builtin_bswap64.c                compiler: SIGABRT
+backend/builtin_clz.c                    compiler: SIGABRT
+backend/builtin_clzl.c                   compiler: SIGABRT
+backend/builtin_clzll.c                  compiler: SIGABRT
+backend/builtin_ctz.c                    compiler: SIGABRT
+backend/builtin_ctzl.c                   compiler: SIGABRT
+backend/builtin_ctzll.c                  compiler: SIGABRT
+backend/builtin_ffs.c                    compiler: SIGABRT
+backend/builtin_ffsl.c                   compiler: SIGABRT
+backend/builtin_ffsll.c                  compiler: SIGABRT
+backend/builtin_parity.c                 compiler: SIGABRT
+backend/builtin_parityl.c                compiler: SIGABRT
+backend/builtin_parityll.c               compiler: SIGABRT
+backend/builtin_popcount.c               compiler: SIGABRT
+backend/builtin_popcountl.c              compiler: SIGABRT
+backend/builtin_popcountll.c             compiler: SIGABRT
+backend/cmovs.c                          compiler: SIGBUS
+backend/conv_float_unsigned.c            compiler: SIGABRT
+backend/extern_sret.c                    compiler: SIGBUS
+backend/fdiv.c                           compiler: SIGABRT
+backend/fehler_mux_am.c                  compiler: SIGBUS
+backend/flags.c                          compiler: SIGBUS
+backend/float_ret_sse.c                  compiler: SIGABRT
+backend/floatset.c                       compiler: SIGBUS
+backend/inconsistent_outs.c              compiler: SIGABRT
+backend/initializer_bug.c                compiler: SIGBUS
+backend/longfunc.c                       compiler: SIGBUS
+backend/longlongptr.c                    compiler: SIGBUS
+backend/lower_call.c                     compiler: SIGBUS
+backend/lower_call2.c                    compiler: SIGBUS
+backend/lower_call3.c                    verify warning
+backend/optest.c                         compiler: SIGABRT
+backend/optest_float.c                   compiler: SIGABRT
+backend/optest_longlong.c                compiler: SIGABRT
+backend/paramaddr.c                      compiler: SIGBUS
+backend/paramaddrsf.c                    compiler: SIGBUS
+backend/pic_const.c                      compiler: SIGBUS
+backend/prefetch.c                       compiler: SIGBUS
+backend/register_pressure.c              compiler: SIGBUS
+backend/shift64.c                        compiler: SIGABRT
+backend/sign_bit.c                       compiler: SIGBUS
+backend/sparc_bitopcc.c                  compiler: SIGBUS
+backend/sparc_immediates.c               compiler: SIGBUS
+backend/sparc_notconsts.c                compiler: SIGABRT
+backend/sparc_restorepeepholes.c         compiler: SIGBUS
+backend/srettaken.c                      compiler: SIGBUS
+backend/stackarray.c                     compiler: SIGBUS
+backend/taken64.c                        compiler: SIGBUS
+backend/tls_ptr.c                        compiler: SIGBUS
+backend/transform_loop.c                 compiler: SIGBUS
+opt/20001212-1.c                         ok
+opt/Args.c                               compiler: SIGBUS
+opt/Arrays.c                             compiler: SIGBUS
+opt/BinaryOpTest.c                       compiler: SIGBUS
+opt/BreakTest.c                          compiler: SIGBUS
+opt/Bucmp.c                              compiler: SIGBUS
+opt/ByteTest.c                           compiler: SIGBUS
+opt/CallingTest.c                        compiler: SIGABRT
+opt/CondExpr.c                           compiler: SIGBUS
+opt/ContinueTest.c                       compiler: SIGBUS
+opt/DeclTest.c                           compiler: SIGBUS
+opt/DivBug.c                             compiler: SIGBUS
+opt/Do.c                                 compiler: SIGBUS
+opt/Doit.c                               compiler: SIGBUS
+opt/Empty.c                              ok
+opt/EmptyFor.c                           compiler: SIGBUS
+opt/Field.c                              compiler: SIGBUS
+opt/Float.c                              compiler: SIGBUS
+opt/ForTest.c                            compiler: SIGBUS
+opt/GlobalCseTest.c                      compiler: SIGBUS
+opt/Hanoi.c                              compiler: SIGBUS
+opt/HeapSort.c                           compiler: SIGBUS
+opt/HelloWorld.c                         compiler: SIGBUS
+opt/IfExpr.c                             compiler: SIGBUS
+opt/Int.c                                compiler: SIGBUS
+opt/Label.c                              compiler: SIGBUS
+opt/Local.c                              compiler: SIGABRT
+opt/LuIs.c                               compiler: SIGBUS
+opt/MergeSort.c                          compiler: SIGABRT
+opt/Or.c                                 ok
+opt/Pdg.c                                compiler: SIGBUS
+opt/Queens.c                             compiler: SIGBUS
+opt/QuickSort.c                          compiler: SIGBUS
+opt/Return.c                             compiler: SIGBUS
+opt/Sieve.c                              compiler: SIGBUS
+opt/SieveBits.c                          compiler: SIGBUS
+opt/SimpleExpr.c                         ok
+opt/Strings.c                            compiler: SIGBUS
+opt/Swap.c                               compiler: SIGBUS
+opt/Switcher.c                           compiler: SIGBUS
+opt/Test.c                               compiler: SIGBUS
+opt/Thilo.c                              compiler: SIGBUS
+opt/While.c                              compiler: SIGBUS
+opt/XXEndless.c                          compiler: SIGBUS
+opt/abs.c                                compiler: SIGBUS
+opt/adam_putt.c                          compiler: SIGBUS
+opt/add64.c                              compiler: SIGBUS
+opt/addn.c                               compiler: SIGBUS
+opt/addr_test.c                          compiler: SIGBUS
+opt/alloca.c                             compiler: SIGBUS
+opt/andtest.c                            compiler: SIGBUS
+opt/arr_init.c                           compiler: SIGBUS
+opt/array_type.c                         compiler: SIGBUS
+opt/backendcallorder.c                   compiler: SIGBUS
+opt/backendcallorder2.c                  compiler: SIGBUS
+opt/bad.c                                compiler: SIGBUS
+opt/bf_constfold.c                       compiler: SIGBUS
+opt/biggest_prime.c                      compiler: SIGABRT
+opt/bitfield.c                           compiler: SIGBUS
+opt/bittest.c                            compiler: SIGABRT
+opt/bittest2.c                           compiler: SIGBUS
+opt/bitwise.c                            compiler: SIGBUS
+opt/blocks.c                             compiler: SIGBUS
+opt/boolopt.c                            compiler: SIGBUS
+opt/boolopts.c                           compiler: SIGABRT
+opt/boolsimplify.c                       ok
+opt/bttest.c                             compiler: SIGABRT
+opt/callref.c                            compiler: SIGBUS
+opt/calls.c                              compiler: SIGABRT
+opt/cfoptbug.c                           compiler: SIGBUS
+opt/cmp.c                                compiler: SIGBUS
+opt/cmp2.c                               compiler: SIGBUS
+opt/cmp_cse.c                            ok
+opt/combo2.c                             verify warning
+opt/combo3.c                             compiler: SIGABRT
+opt/combo_comm.c                         ok
+opt/combo_paper.c                        compiler: SIGBUS
+opt/comboattrs.c                         ok
+opt/compilerhang2.c                      compiler: SIGBUS
+opt/compilerhang3.c                      compiler: SIGBUS
+opt/compilerhang4.c                      compiler: SIGBUS
+opt/compilerhang5.c                      ok
+opt/cond.c                               compiler: SIGABRT
+opt/confirm.c                            compiler: SIGBUS
+opt/const.c                              compiler: SIGBUS
+opt/const_load.c                         ok
+opt/conv.c                               compiler: SIGBUS
+opt/conv_orgie.c                         compiler: SIGABRT
+opt/convfloat.c                          compiler: SIGABRT
+opt/convtest.c                           compiler: SIGABRT
+opt/csetest.c                            compiler: SIGBUS
+opt/d.c                                  compiler: SIGABRT
+opt/dblstruct.c                          compiler: SIGBUS
+opt/deadstores.c                         compiler: SIGBUS
+opt/delayslot.c                          ok
+opt/distributive.c                       compiler: SIGBUS
+opt/divs.c                               compiler: SIGBUS
+opt/divtest.c                            compiler: SIGABRT
+opt/doms_segfault.c                      compiler: SIGBUS
+opt/dowhile.c                            compiler: SIGBUS
+opt/duffs.c                              compiler: SIGABRT
+opt/dwlower.c                            compiler: SIGBUS
+opt/endless_phi_cons.c                   ok
+opt/enum.c                               compiler: SIGBUS
+opt/fabs.c                               compiler: SIGABRT
+opt/fak.c                                compiler: SIGBUS
+opt/fastcall.c                           ok
+opt/fbench.c                             compiler: SIGBUS
+opt/fcall.c                              compiler: SIGBUS
+opt/fcmp.c                               compiler: SIGABRT
+opt/fe_bug.c                             compiler: SIGBUS
+opt/fehler001.c                          compiler: SIGBUS
+opt/fehler002.c                          compiler: SIGBUS
+opt/fehler003.c                          compiler: SIGBUS
+opt/fehler004.c                          compiler: SIGBUS
+opt/fehler005.c                          compiler: SIGBUS
+opt/fehler006.c                          compiler: SIGBUS
+opt/fehler007.c                          compiler: SIGBUS
+opt/fehler008.c                          compiler: SIGBUS
+opt/fehler009.c                          compiler: SIGBUS
+opt/fehler010.c                          compiler: SIGBUS
+opt/fehler011.c                          compiler: SIGBUS
+opt/fehler012.c                          compiler: SIGBUS
+opt/fehler013.c                          compiler: SIGBUS
+opt/fehler014.c                          compiler: SIGBUS
+opt/fehler015.c                          compiler: SIGBUS
+opt/fehler016.c                          compiler: SIGBUS
+opt/fehler017.c                          compiler: SIGBUS
+opt/fehler018.c                          compiler: SIGBUS
+opt/fehler019.c                          compiler: SIGABRT
+opt/fehler021.c                          compiler: SIGBUS
+opt/fehler022.c                          ok
+opt/fehler023.c                          compiler: SIGBUS
+opt/fehler024.c                          compiler: SIGABRT
+opt/fehler025.c                          ok
+opt/fehler026.c                          compiler: SIGBUS
+opt/fehler027.c                          ok
+opt/fehler028.c                          compiler: SIGBUS
+opt/fehler029.c                          compiler: SIGABRT
+opt/fehler030.c                          compiler: SIGBUS
+opt/fehler031.c                          compiler: SIGBUS
+opt/fehler032.c                          compiler: SIGBUS
+opt/fehler033.c                          assembler error
+opt/fehler034.c                          compiler: SIGBUS
+opt/fehler035.c                          compiler: SIGBUS
+opt/fehler036.c                          compiler: SIGABRT
+opt/fehler037.c                          compiler: SIGBUS
+opt/fehler038.c                          compiler: SIGBUS
+opt/fehler039.c                          compiler: SIGBUS
+opt/fehler040.c                          compiler: SIGBUS
+opt/fehler042.c                          compiler: SIGBUS
+opt/fehler045.c                          compiler: SIGBUS
+opt/fehler047.c                          compiler: SIGBUS
+opt/fehler048.c                          ok
+opt/fehler049.c                          ok
+opt/fehler050.c                          compiler: SIGBUS
+opt/fehler051.c                          compiler: SIGBUS
+opt/fehler052.c                          compiler: SIGBUS
+opt/fehler053.c                          compiler: SIGBUS
+opt/fehler054.c                          compiler: SIGBUS
+opt/fehler055.c                          compiler: SIGBUS
+opt/fehler056.c                          compiler: SIGBUS
+opt/fehler057.c                          compiler: SIGABRT
+opt/fehler058.c                          compiler: SIGBUS
+opt/fehler059.c                          compiler: SIGBUS
+opt/fehler060.c                          compiler: SIGABRT
+opt/fehler061.c                          compiler: SIGBUS
+opt/fehler062.c                          compiler: SIGBUS
+opt/fehler063.c                          assembler error
+opt/fehler064.c                          ok
+opt/fehler065.c                          compiler: SIGBUS
+opt/fehler066.c                          compiler: SIGBUS
+opt/fehler067.c                          compiler: SIGBUS
+opt/fehler068.c                          compiler: SIGABRT
+opt/fehler069.c                          compiler: SIGBUS
+opt/fehler070.c                          compiler: SIGBUS
+opt/fehler071.c                          compiler: SIGBUS
+opt/fehler072.c                          compiler: SIGABRT
+opt/fehler073.c                          compiler: SIGABRT
+opt/fehler074.c                          compiler: SIGBUS
+opt/fehler075.c                          compiler: SIGBUS
+opt/fehler076.c                          compiler: SIGBUS
+opt/fehler077.c                          compiler: SIGBUS
+opt/fehler078.c                          compiler: SIGBUS
+opt/fehler079.c                          compiler: SIGBUS
+opt/fehler080.c                          compiler: SIGBUS
+opt/fehler081.c                          compiler: SIGBUS
+opt/fehler082.c                          compiler: SIGBUS
+opt/fehler083.c                          compiler: SIGBUS
+opt/fehler084.c                          ok
+opt/fehler085.c                          compiler: SIGBUS
+opt/fehler086.c                          compiler: SIGBUS
+opt/fehler087.c                          compiler: SIGBUS
+opt/fehler088.c                          compiler: SIGBUS
+opt/fehler089.c                          compiler: SIGBUS
+opt/fehler090.c                          compiler: SIGBUS
+opt/fehler091.c                          compiler: SIGBUS
+opt/fehler092.c                          compiler: SIGBUS
+opt/fehler093.c                          compiler: SIGBUS
+opt/fehler094.c                          compiler: SIGBUS
+opt/fehler095.c                          compiler: SIGBUS
+opt/fehler096.c                          compiler: SIGABRT
+opt/fehler097.c                          compiler: SIGBUS
+opt/fehler098.c                          compiler: SIGBUS
+opt/fehler099.c                          compiler: SIGABRT
+opt/fehler100.c                          ok
+opt/fehler101.c                          compiler: SIGBUS
+opt/fehler102.c                          compiler: SIGBUS
+opt/fehler103.c                          compiler: SIGABRT
+opt/fehler105.c                          ok
+opt/fehler106.c                          compiler: SIGBUS
+opt/fehler107.c                          compiler: SIGBUS
+opt/fehler108.c                          compiler: SIGBUS
+opt/fehler109.c                          compiler: SIGBUS
+opt/fehler110.c                          compiler: SIGBUS
+opt/fehler112.c                          compiler: SIGABRT
+opt/fehler113.c                          compiler: SIGABRT
+opt/fehler114.c                          compiler: SIGBUS
+opt/fehler115.c                          compiler: SIGABRT
+opt/fehler116.c                          compiler: SIGBUS
+opt/fehler117.c                          compiler: SIGBUS
+opt/fehler118.c                          2 compile errors
+opt/fehler119.c                          ok
+opt/fehler120.c                          compiler: SIGABRT
+opt/fehler121.c                          compiler: SIGABRT
+opt/fehler122.c                          compiler: SIGBUS
+opt/fehler123.c                          compiler: SIGBUS
+opt/fehler124.c                          compiler: SIGBUS
+opt/fehler125.c                          compiler: SIGBUS
+opt/fehler126.c                          ok
+opt/fehler127.c                          ok
+opt/fehler128.c                          compiler: SIGBUS
+opt/fehler129.c                          compiler: SIGBUS
+opt/fehler130.c                          compiler: SIGBUS
+opt/fehler135.c                          verify warning
+opt/fehler136.c                          ok
+opt/fehler137.c                          compiler: SIGBUS
+opt/fehler138.c                          compiler: SIGBUS
+opt/fehler139.c                          compiler: SIGBUS
+opt/fehler140.c                          compiler: SIGBUS
+opt/fehler141.c                          compiler: SIGBUS
+opt/fehler142.c                          compiler: SIGABRT
+opt/fehler143.c                          compiler: SIGBUS
+opt/fehler144.c                          compiler: SIGBUS
+opt/fehler145.c                          compiler: SIGBUS
+opt/fehler146.c                          compiler: SIGBUS
+opt/fehler147.c                          compiler: SIGBUS
+opt/fehler148.c                          compiler: SIGABRT
+opt/fehler149.c                          compiler: SIGBUS
+opt/fehler150.c                          compiler: SIGBUS
+opt/fehler151.c                          compiler: SIGBUS
+opt/fehler152.c                          compiler: SIGBUS
+opt/fehler153.c                          compiler: SIGBUS
+opt/fehler154.c                          compiler: SIGBUS
+opt/fehler155.c                          compiler: SIGBUS
+opt/fehler157.c                          compiler: SIGABRT
+opt/fehler158.c                          compiler: SIGBUS
+opt/fehler159.c                          compiler: SIGBUS
+opt/fehler160.c                          compiler: SIGABRT
+opt/fehler161.c                          compiler: SIGABRT
+opt/fehler162.c                          compiler: SIGBUS
+opt/fehler163.c                          compiler: SIGABRT
+opt/fehler164.c                          assembler error
+opt/fehler165.c                          compiler: SIGBUS
+opt/fehler166.c                          compiler: SIGBUS
+opt/fehler167.c                          compiler: SIGABRT
+opt/fehler168.c                          compiler: SIGBUS
+opt/fehler169.c                          compiler: SIGBUS
+opt/fehler170.c                          compiler: SIGBUS
+opt/fehler171.c                          compiler: SIGBUS
+opt/fehler172.c                          ok
+opt/fehler173.c                          compiler: SIGBUS
+opt/fehler174.c                          compiler: SIGBUS
+opt/fehler175.c                          compiler: SIGBUS
+opt/fehler176.c                          compiler: SIGBUS
+opt/fehler177.c                          compiler: SIGBUS
+opt/fehler178.c                          compiler: SIGBUS
+opt/fehler179.c                          ok
+opt/fehler180.c                          ok
+opt/fehler181.c                          compiler: SIGBUS
+opt/fehler182.c                          compiler: SIGBUS
+opt/fehler183.c                          compiler: SIGBUS
+opt/fehler184.c                          compiler: SIGBUS
+opt/fehler186.c                          compiler: SIGBUS
+opt/fehler187.c                          compiler: SIGBUS
+opt/fehler188.c                          compiler: SIGBUS
+opt/fehler189.c                          compiler: SIGBUS
+opt/fehler190.c                          compiler: SIGBUS
+opt/fehler191.c                          compiler: SIGBUS
+opt/fehler192.c                          compiler: SIGBUS
+opt/fehler193.c                          compiler: SIGBUS
+opt/fehler194.c                          compiler: SIGBUS
+opt/fehler195.c                          compiler: SIGBUS
+opt/fehler196.c                          compiler: SIGBUS
+opt/fehler197.c                          ok
+opt/fehler198.c                          compiler: SIGBUS
+opt/fehler199.c                          compiler: SIGBUS
+opt/fehler200.c                          compiler: SIGBUS
+opt/fehler201.c                          compiler: SIGBUS
+opt/fehler202.c                          compiler: SIGBUS
+opt/fehler203.c                          compiler: SIGBUS
+opt/fehler204.c                          compiler: SIGBUS
+opt/fehler205.c                          compiler: SIGBUS
+opt/fehler206.c                          compiler: SIGBUS
+opt/fehler207.c                          compiler: SIGABRT
+opt/fehler_gt_0.c                        compiler: SIGBUS
+opt/fehler_no_equality_0.c               compiler: SIGBUS
+opt/fib.c                                compiler: SIGBUS
+opt/fib_iter.c                           compiler: SIGBUS
+opt/fisttp.c                             compiler: SIGABRT
+opt/float_if.c                           compiler: SIGABRT
+opt/func_arg.c                           compiler: SIGBUS
+opt/gap.c                                ok
+opt/gcd.c                                compiler: SIGBUS
+opt/gcd_bench.c                          compiler: SIGBUS
+opt/gcentities.c                         compiler: SIGBUS
+opt/gcse_no_end.c                        compiler: SIGBUS
+opt/git_error.c                          compiler: SIGBUS
+opt/global_null_test.c                   compiler: SIGBUS
+opt/globalrefs.c                         compiler: SIGBUS
+opt/gnu_def.c                            compiler: SIGABRT
+opt/gzip_error.c                         compiler: SIGBUS
+opt/iabs.c                               compiler: SIGBUS
+opt/if.c                                 compiler: SIGBUS
+opt/ifconv.c                             verify warning
+opt/implicit_call.c                      compiler: SIGBUS
+opt/init_unnamed_bitfield.c              compiler: SIGBUS
+opt/inline.c                             ok
+opt/inline2.c                            ok
+opt/inline_infinite_loop.c               verify warning
+opt/invsqrt.c                            compiler: SIGABRT
+opt/ioet.c                               ok
+opt/jumpthreading.c                      compiler: SIGBUS
+opt/jumpthreading2.c                     ok
+opt/jumpthreading3.c                     compiler: SIGBUS
+opt/jumpthreading4.c                     compiler: SIGBUS
+opt/jumpthreading5.c                     compiler: SIGXCPU
+opt/jumpthreading6.c                     compiler: SIGBUS
+opt/jumpthreading7.c                     verify warning
+opt/jumpthreading8.c                     verify warning
+opt/kahansum.c                           compiler: SIGABRT
+opt/labs.c                               compiler: SIGBUS
+opt/ldst.c                               compiler: SIGBUS
+opt/ll.c                                 compiler: SIGABRT
+opt/ll_call.c                            compiler: SIGBUS
+opt/load_memout_necessary.c              compiler: SIGBUS
+opt/localopts.c                          compiler: SIGABRT
+opt/localopts2.c                         compiler: SIGBUS
+opt/longlong.c                           compiler: SIGBUS
+opt/loop_without_phi.c                   ok
+opt/loopana.c                            compiler: SIGBUS
+opt/loopspilling.c                       compiler: SIGBUS
+opt/lrot.c                               compiler: SIGABRT
+opt/max.c                                compiler: SIGBUS
+opt/memperm_stress.c                     compiler: SIGBUS
+opt/mismatch.c                           compiler: SIGBUS
+opt/mod10.c                              compiler: SIGABRT
+opt/most_complex_conv.c                  compiler: SIGBUS
+opt/mul.c                                compiler: SIGBUS
+opt/mul2n.c                              compiler: SIGBUS
+opt/mul32x32.c                           compiler: SIGBUS
+opt/mulconst.c                           compiler: SIGBUS
+opt/multidim-array.c                     assembler error
+opt/mux.c                                compiler: SIGBUS
+opt/muxcmps.c                            compiler: SIGBUS
+opt/muxopts.c                            compiler: SIGABRT
+opt/nans.c                               compiler: SIGBUS
+opt/nested_loops.c                       ok
+opt/nested_loops2.c                      ok
+opt/ns.c                                 compiler: SIGBUS
+opt/nulladd.c                            compiler: SIGBUS
+opt/nullnode.c                           ok
+opt/pad_return.c                         compiler: SIGBUS
+opt/pbqpHeur.c                           compiler: SIGBUS
+opt/pbqpHeur2.c                          compiler: SIGBUS
+opt/pbqpHeur3.c                          compiler: SIGBUS
+opt/pbqp_RedN.c                          compiler: SIGBUS
+opt/phi_bad.c                            compiler: SIGBUS
+opt/place.c                              compiler: SIGBUS
+opt/postinc.c                            compiler: SIGBUS
+opt/pr37102.c                            compiler: SIGBUS
+opt/psi_test.c                           compiler: SIGABRT
+opt/ptr_to_int.c                         compiler: SIGBUS
+opt/queens-handoptimized.c               compiler: SIGBUS
+opt/reassoc-amok.c                       compiler: SIGBUS
+opt/reassoc.c                            compiler: SIGBUS
+opt/rotate.c                             compiler: SIGABRT
+opt/rtsopt.c                             compiler: SIGABRT
+opt/setjump.c                            compiler: SIGBUS
+opt/shiftamount.c                        compiler: SIGBUS
+opt/shiftconst.c                         compiler: SIGABRT
+opt/should_be_same.c                     ok
+opt/simd1-i.c                            compiler: SIGBUS
+opt/simd1.c                              compiler: SIGBUS
+opt/simd2.c                              compiler: SIGBUS
+opt/simple.c                             ok
+opt/slow_memperm.c                       compiler: SIGBUS
+opt/sparam.c                             compiler: SIGBUS
+opt/spills.c                             compiler: SIGBUS
+opt/sret.c                               assembler error
+opt/stmt_expr.c                          compiler: SIGBUS
+opt/store_bug.c                          compiler: SIGBUS
+opt/strenght_red.c                       compiler: SIGBUS
+opt/struct.c                             compiler: SIGBUS
+opt/structcall.c                         compiler: SIGBUS
+opt/structcopy.c                         compiler: SIGBUS
+opt/structtest.c                         compiler: SIGBUS
+opt/switch.c                             compiler: SIGABRT
+opt/switch_test.c                        compiler: SIGABRT
+opt/switch_test2.c                       compiler: SIGABRT
+opt/tailrec.c                            compiler: SIGBUS
+opt/tailrec2.c                           compiler: SIGBUS
+opt/test1.c                              ok
+opt/thread.c                             compiler: SIGBUS
+opt/trivial_add.c                        compiler: SIGBUS
+opt/trivial_div.c                        compiler: SIGABRT
+opt/trivial_empty.c                      ok
+opt/trivial_extern_add.c                 compiler: SIGBUS
+opt/trivial_max.c                        compiler: SIGBUS
+opt/trivial_sum_upto.c                   compiler: SIGBUS
+opt/trivial_two_times.c                  compiler: SIGBUS
+opt/truth.c                              compiler: SIGABRT
+opt/types.c                              compiler: SIGBUS
+opt/types2.c                             compiler: SIGBUS
+opt/unary.c                              compiler: SIGBUS
+opt/union_init.c                         compiler: SIGBUS
+opt/unknown_combo.c                      ok
+opt/unknown_combo2.c                     compiler: SIGBUS
+opt/unreachable_block.c                  assembler error
+opt/use_uninit_ptr.c                     compiler: SIGBUS
+opt/vadd_store.c                         compiler: SIGBUS
+opt/valist.c                             compiler: SIGBUS
+opt/valist2.c                            compiler: SIGBUS
+opt/vandrunen.c                          compiler: SIGBUS
+opt/vararray.c                           compiler: SIGBUS
+opt/variadic_longlong.c                  compiler: SIGBUS
+opt/vla.c                                compiler: SIGBUS
+opt/volatile.c                           compiler: SIGBUS
+opt/while-printf.c                       compiler: SIGBUS
+opt/wrong_cmp.c                          compiler: SIGBUS
+C/LongLong.c                             compiler: SIGBUS
+C/abi_null_mode_proj.c                   assembler error
+C/abstract_declarator.c                  ok
+C/anon_entity.c                          compiler: SIGABRT
+C/array.c                                compiler: SIGBUS
+C/bitfield.c                             compiler: SIGBUS
+C/bitfield2.c                            compiler: SIGABRT
+C/bitfield3.c                            compiler: SIGBUS
+C/bitfield4.c                            compiler: SIGBUS
+C/bitfield_conversion.c                  compiler: SIGBUS
+C/bool.c                                 ok
+C/bool2.c                                compiler: SIGBUS
+C/bool3.c                                compiler: SIGBUS
+C/bool4.c                                ok
+C/compoundlit.c                          compiler: SIGBUS
+C/compoundlit2.c                         ok
+C/compoundlit3.c                         compiler: SIGBUS
+C/compoundlit4.c                         compiler: SIGBUS
+C/compoundlit_lhs.c                      compiler: SIGBUS
+C/const2.c                               compiler: SIGBUS
+C/constarraytd.c                         ok
+C/constexpr.c                            ok
+C/constexpr2.c                           ok
+C/constexpr3.c                           ok
+C/constexpr4.c                           1 compile errors
+C/constexpr5.c                           ok
+C/constexpr6.c                           ok
+C/cp_error001.c                          ok
+C/cp_error004.c                          compiler: SIGBUS
+C/cp_error005.c                          ok
+C/cp_error006.c                          compiler: SIGBUS
+C/cp_error007.c                          compiler: SIGBUS
+C/cp_error008.c                          compiler: SIGABRT
+C/cp_error009.c                          compiler: SIGBUS
+C/cp_error010.c                          ok
+C/cp_error011.c                          compiler: SIGBUS
+C/cp_error012.c                          ok
+C/cp_error014.c                          compiler: SIGBUS
+C/cp_error015.c                          ok
+C/cp_error016.c                          compiler: SIGABRT
+C/cp_error017.c                          ok
+C/cp_error018.c                          assembler error
+C/cp_error019.c                          ok
+C/cp_error020.c                          ok
+C/cp_error021.c                          compiler: SIGBUS
+C/cp_error023.c                          ok
+C/cp_error024.c                          ok
+C/cp_error026.c                          compiler: SIGBUS
+C/cp_error027.c                          ok
+C/cp_error028.c                          ok
+C/cp_error029.c                          compiler: SIGBUS
+C/cp_error031.c                          execution: SIGSEGV
+C/cp_error032.c                          compiler: SIGBUS
+C/cp_error033.c                          compiler: SIGBUS
+C/cp_error034.c                          compiler: SIGBUS
+C/cp_error035.c                          compiler: SIGBUS
+C/cp_error036.c                          compiler: SIGBUS
+C/cp_error037.c                          ok
+C/cp_error041.c                          ok
+C/cp_error042.c                          ok
+C/cp_error043.c                          compiler: SIGBUS
+C/cp_error044.c                          ok
+C/cp_error046.c                          ok
+C/cp_error047.c                          ok
+C/cp_error048.c                          ok
+C/cp_error049.c                          ok
+C/cp_error050.c                          ok
+C/cp_error051.c                          ok
+C/cp_error052.c                          ok
+C/cp_error053.c                          ok
+C/cp_error055.c                          compiler: SIGABRT
+C/cp_error056.c                          ok
+C/cp_error057.c                          execution: SIGSEGV
+C/cp_error058.c                          ok
+C/cp_error059.c                          compiler: SIGBUS
+C/cp_error060.c                          ok
+C/cp_error061.c                          ok
+C/cp_error062.c                          ok
+C/cp_error063.c                          2 compile errors
+C/cp_error064.c                          ok
+C/cp_error065.c                          ok
+C/cp_error066.c                          ok
+C/cp_error067.c                          ok
+C/cp_error068.c                          ok
+C/cp_error069.c                          compiler: SIGABRT
+C/cp_error070.c                          ok
+C/csmith1.c                              compiler: SIGBUS
+C/csmith2.c                              compiler: SIGBUS
+C/declarator_special.c                   compiler: SIGBUS
+C/designators.c                          compiler: SIGBUS
+C/designators2.c                         compiler: SIGBUS
+C/doublewide.c                           compiler: SIGBUS
+C/empty.c                                ok
+C/enum.c                                 ok
+C/flexarray.c                            ok
+C/floatcmp.c                             compiler: SIGBUS
+C/floatcmp_implicit.c                    compiler: SIGBUS
+C/floatvals.c                            ok
+C/folderror.c                            ok
+C/funcname.c                             compiler: SIGBUS
+C/function.c                             ok
+C/function_declarator.c                  ok
+C/gigo_return.c                          ok
+C/hexfloat.c                             compiler: SIGBUS
+C/hugeval.c                              compiler: SIGBUS
+C/if.c                                   ok
+C/implicit.c                             compiler: SIGBUS
+C/implicit2.c                            compiler: SIGBUS
+C/incompleteextern.c                     ok
+C/init1.c                                compiler: SIGBUS
+C/init2.c                                ok
+C/init6.c                                compiler: SIGBUS
+C/init7.c                                ok
+C/init8.c                                compiler: SIGBUS
+C/init_wide.c                            compiler: SIGBUS
+C/initializers.c                         ok
+C/int_promote.c                          compiler: SIGBUS
+C/kr.c                                   compiler: SIGBUS
+C/kr2.c                                  ok
+C/kr4.c                                  ok
+C/kr6.c                                  compiler: SIGBUS
+C/kr8.c                                  ok
+C/ldst_opt_id.c                          compiler: SIGBUS
+C/localfuncdecl.c                        compiler: SIGBUS
+C/long_double_int_conv.c                 compiler: SIGBUS
+C/mini_complex.c                         compiler: SIGABRT
+C/mod.c                                  compiler: SIGBUS
+C/noconst.c                              compiler: SIGBUS
+C/number2.c                              ok
+C/number3.c                              ok
+C/offsetof.c                             compiler: SIGBUS
+C/precedence.c                           compiler: SIGABRT
+C/scanf.c                                compiler: SIGBUS
+C/segfault4.c                            verify warning
+C/segfault5.c                            ok
+C/segfault6.c                            ok
+C/segfault7.c                            ok
+C/sideeffects.c                          compiler: SIGBUS
+C/statics.c                              compiler: SIGBUS
+C/struct_init.c                          compiler: SIGBUS
+C/structns1.c                            compiler: SIGBUS
+C/structs.c                              compiler: SIGBUS
+C/structs2.c                             ok
+C/suffixes.c                             ok
+C/switch.c                               ok
+C/tarval_sign_error.c                    compiler: SIGBUS
+C/union_init.c                           compiler: SIGBUS
+C/universal_character.c                  compiler: SIGBUS
+C/unkept_loop.c                          verify warning
+C/utf8input.c                            ok
+C/varargs.c                              compiler: SIGBUS
+C/vla.c                                  compiler: SIGBUS
+C/void_cast.c                            ok
+C/whiles.c                               compiler: SIGBUS
+C/pragmatic/conditional.c                ok
+C/pragmatic/fewparams.c                  ok
+C/pragmatic/kr2.c                        compiler: SIGBUS
+C/pragmatic/kr3.c                        ok
+C/pragmatic/shift.c                      compiler: SIGBUS
+C/pragmatic/toomuchparams.c              compiler: SIGABRT
+C/should_fail/adr_reg.c                  ok
+C/should_fail/anonunion.c                compiler missed error
+C/should_fail/arr_idx_float.c            ok
+C/should_fail/array0.c                   ok
+C/should_fail/array1.c                   ok
+C/should_fail/array2.c                   compiler missed error
+C/should_fail/array3.c                   ok
+C/should_fail/array4.c                   compiler missed error
+C/should_fail/array5.c                   compiler missed error
+C/should_fail/array6.c                   compiler missed error
+C/should_fail/array7.c                   compiler missed error
+C/should_fail/array8.c                   ok
+C/should_fail/badarraytype.c             ok
+C/should_fail/baderr0.c                  ok
+C/should_fail/badparam.c                 ok
+C/should_fail/bitfield.c                 ok
+C/should_fail/brace1.c                   ok
+C/should_fail/brace2.c                   ok
+C/should_fail/call1.c                    ok
+C/should_fail/call2.c                    ok
+C/should_fail/casts.c                    ok
+C/should_fail/conflicting_types.c        ok
+C/should_fail/const.c                    ok
+C/should_fail/const2.c                   ok
+C/should_fail/cp_error002.c              ok
+C/should_fail/cp_error003.c              ok
+C/should_fail/cp_error054.c              ok
+C/should_fail/cp_error066.c              ok
+C/should_fail/cp_error066a.c             ok
+C/should_fail/cpponly.c                  ok
+C/should_fail/decl_after_label.c         ok
+C/should_fail/decl_in_do_while.c         ok
+C/should_fail/decl_in_else.c             ok
+C/should_fail/decl_in_for.c              ok
+C/should_fail/decl_in_switch.c           ok
+C/should_fail/decl_in_then.c             ok
+C/should_fail/decl_in_while.c            ok
+C/should_fail/decl_without_name.c        ok
+C/should_fail/designator.c               ok
+C/should_fail/double_typedef.c           ok
+C/should_fail/empty_char.c               ok
+C/should_fail/enum_forward.c             ok
+C/should_fail/error_directive.c          ok
+C/should_fail/f.c                        ok
+C/should_fail/float_and.c                ok
+C/should_fail/float_or.c                 ok
+C/should_fail/float_xor.c                ok
+C/should_fail/forscope.c                 ok
+C/should_fail/funcassign.c               ok
+C/should_fail/function_return.c          ok
+C/should_fail/goto_identifier_scope.c    compiler missed error
+C/should_fail/incomplete_array.c         ok
+C/should_fail/incomplete_struct.c        ok
+C/should_fail/init1.c                    ok
+C/should_fail/init2.c                    ok
+C/should_fail/init3.c                    ok
+C/should_fail/init4.c                    ok
+C/should_fail/init5.c                    ok
+C/should_fail/init8.c                    ok
+C/should_fail/kr1.c                      ok
+C/should_fail/kr2.c                      ok
+C/should_fail/kr3.c                      ok
+C/should_fail/kr4.c                      ok
+C/should_fail/kr5.c                      ok
+C/should_fail/kr7.c                      ok
+C/should_fail/label.c                    ok
+C/should_fail/large_array.c              compiler: SIGBUS
+C/should_fail/lvalue.c                   ok
+C/should_fail/missing.c                  ok
+C/should_fail/missing_declarator.c       ok
+C/should_fail/multifield.c               ok
+C/should_fail/multiple_types.c           ok
+C/should_fail/multiple_types2.c          ok
+C/should_fail/multiple_types3.c          ok
+C/should_fail/noconst.c                  ok
+C/should_fail/nofloat.c                  ok
+C/should_fail/nofloat2.c                 ok
+C/should_fail/number.c                   ok
+C/should_fail/offsetof.c                 ok
+C/should_fail/osmesa.cpp.c               ok
+C/should_fail/paramerror.c               ok
+C/should_fail/paramredef.c               ok
+C/should_fail/paramstorageclass.c        ok
+C/should_fail/pointerarith.c             ok
+C/should_fail/pointerarith2.c            ok
+C/should_fail/pointerarith3.c            ok
+C/should_fail/pointerarith4.c            ok
+C/should_fail/pointerarith5.c            ok
+C/should_fail/randprog1.c                ok
+C/should_fail/recursive_struct.c         ok
+C/should_fail/scope_do_while_body.c      ok
+C/should_fail/scope_do_while_body_cond.c compiler missed error
+C/should_fail/scope_do_while_cond.c      ok
+C/should_fail/scope_for_body.c           ok
+C/should_fail/scope_for_cond.c           ok
+C/should_fail/scope_if_cond.c            ok
+C/should_fail/scope_if_else.c            ok
+C/should_fail/scope_if_then.c            ok
+C/should_fail/scope_if_then_else.c       compiler missed error
+C/should_fail/scope_switch_body.c        ok
+C/should_fail/scope_switch_cond.c        ok
+C/should_fail/scope_while_body.c         ok
+C/should_fail/scope_while_cond.c         ok
+C/should_fail/segfault1.c                ok
+C/should_fail/segfault2.c                ok
+C/should_fail/segfault4.c                ok
+C/should_fail/sizeof_function.c          ok
+C/should_fail/struct.c                   ok
+C/should_fail/struct2.c                  ok
+C/should_fail/struct_flexible_array.c    ok
+C/should_fail/struct_self.c              ok
+C/should_fail/structd.c                  ok
+C/should_fail/structns0.c                ok
+C/should_fail/suffix1.c                  ok
+C/should_fail/suffix2.c                  ok
+C/should_fail/suffix3.c                  ok
+C/should_fail/switches.c                 ok
+C/should_fail/t.c                        compiler: SIGBUS
+C/should_fail/transparent_union2.c       assembler error
+C/should_fail/typedef_enum.c             ok
+C/should_fail/typedef_in_expr.c          ok
+C/should_fail/typedef_init.c             ok
+C/should_fail/unclosed_string.c          ok
+C/should_fail/union.c                    ok
+C/should_fail/universal_character.c      ok
+C/should_fail/universal_character2.c     ok
+C/should_fail/unspec_params.c            ok
+C/should_fail/voidarray.c                ok
+C/should_fail/weird_label.c              compiler: SIGABRT
+C/should_fail/wrongtype.c                ok
+C/should_warn/cast_qual.c                ok
+C/should_warn/compare.c                  compiler: SIGBUS
+C/should_warn/compare2.c                 compiler: SIGBUS
+C/should_warn/cp_error025.c              compiler: SIGBUS
+C/should_warn/div_by_zero.c              compiler: SIGABRT
+C/should_warn/implicit_int.c             ok
+C/should_warn/init_self.c                ok
+C/should_warn/main0.c                    ok
+C/should_warn/main1.c                    ok
+C/should_warn/main2.c                    ok
+C/should_warn/main3.c                    ok
+C/should_warn/missing_return.c           ok
+C/should_warn/nested_comment.c           compiler missed warnings
+C/should_warn/never_read1.c              assembler error
+C/should_warn/padded.c                   compiler missed warnings
+C/should_warn/paramscope.c               compiler missed warnings
+C/should_warn/printf2.c                  compiler: SIGBUS
+C/should_warn/printf_formats.c           compiler: SIGBUS
+C/should_warn/printf_int_for_short.c     compiler: SIGBUS
+C/should_warn/printf_zero_precision.c    compiler: SIGBUS
+C/should_warn/prototype.c                ok
+C/should_warn/prototype2.c               ok
+C/should_warn/redundant_decl.c           assembler error
+C/should_warn/ref_local.c                ok
+C/should_warn/return_with_void.c         ok
+C/should_warn/scanf_formats.c            compiler: SIGBUS
+C/should_warn/scanf_width_c.c            compiler: SIGBUS
+C/should_warn/scanf_width_s.c            compiler: SIGBUS
+C/should_warn/string_init.c              compiler missed warnings
+C/should_warn/string_init_wide.c         compiler missed warnings
+C/should_warn/struct_ret.c               compiler: SIGBUS
+C/should_warn/stupid_formats.c           compiler: SIGBUS
+C/should_warn/switch_on_enum.c           compiler: SIGBUS
+C/should_warn/traditional.c              ok
+C/should_warn/unused_param.c             ok
+C/should_warn/wprintf_formats.c          compiler: SIGBUS
+C/should_warn/write_only11.c             ok
+C/should_warn/write_only12.c             assembler error
+C/should_warn/write_only14.c             compiler missed warnings
+C/should_warn/write_only2.c              ok
+C/should_warn/write_only3.c              compiler: SIGABRT
+C/should_warn/write_only4.c              ok
+C/should_warn/write_only6.c              compiler: SIGBUS
+C/should_warn/write_only8.c              ok
+C/should_warn/write_strings.c            ok
+C/nowarn/fooredirect.c                   ok
+C/nowarn/init_self.c                     assembler error
+C/nowarn/main.c                          ok
+C/nowarn/noreturn.c                      ok
+C/nowarn/printf.c                        compiler: SIGBUS
+C/nowarn/printf_unsigned_short.c         compiler: SIGBUS
+C/nowarn/redirect.c                      ok
+C/nowarn/redundant_decl.c                assembler error
+C/nowarn/scanf_suppress.c                compiler: SIGBUS
+C/nowarn/scanf_width_c.c                 compiler: SIGBUS
+C/nowarn/scanf_width_s.c                 compiler: SIGBUS
+C/nowarn/write_only1.c                   compiler: SIGBUS
+C/nowarn/write_only10.c                  ok
+C/nowarn/write_only11.c                  1 compile errors
+C/nowarn/write_only12.c                  compiler: SIGBUS
+C/nowarn/write_only13.c                  ok
+C/nowarn/write_only14.c                  compiler: SIGBUS
+C/nowarn/write_only5.c                   compiler: SIGBUS
+C/nowarn/write_only7.c                   ok
+C/nowarn/write_only9.c                   2 compile errors
+C/gnu90/noinline.c                       assembler error
+C/gnu99/anonstruct.c                     compiler: SIGBUS
+C/gnu99/anonstruct2.c                    compiler: SIGBUS
+C/gnu99/anonstruct3.c                    assembler error
+C/gnu99/asmname.c                        compiler: SIGBUS
+C/gnu99/attribute_after_bitfield.c       compiler: SIGABRT
+C/gnu99/attribute_empty.c                ok
+C/gnu99/attribute_in_decl.c              2 compile errors
+C/gnu99/attributes.c                     assembler error
+C/gnu99/attributes2.c                    ok
+C/gnu99/attributes3.c                    ok
+C/gnu99/attributes4.c                    compiler: SIGBUS
+C/gnu99/attributes5.c                    ok
+C/gnu99/basic_complex.c                  compiler: SIGABRT
+C/gnu99/binary_const.c                   ok
+C/gnu99/builtin_expect.c                 ok
+C/gnu99/builtins_libc.c                  compiler: SIGBUS
+C/gnu99/cdecl.c                          ok
+C/gnu99/combo_load_mode.c                compiler: SIGBUS
+C/gnu99/computed_goto.c                  compiler: SIGBUS
+C/gnu99/construct_destruct.c             compiler: SIGBUS
+C/gnu99/cp_error038.c                    ok
+C/gnu99/cp_error059.c                    compiler: SIGABRT
+C/gnu99/cp_error064.c                    ok
+C/gnu99/emptystruct.c                    ok
+C/gnu99/escape.c                         ok
+C/gnu99/extension_in_compound.c          ok
+C/gnu99/extension_in_for_init.c          compiler: SIGBUS
+C/gnu99/flex_array_init.c                compiler: SIGABRT
+C/gnu99/ijmp.c                           compiler: SIGBUS
+C/gnu99/incomplete_array.c               compiler: SIGBUS
+C/gnu99/incomplete_enum.c                ok
+C/gnu99/inlineextern.c                   compiler: SIGBUS
+C/gnu99/l1.c                             compiler: SIGBUS
+C/gnu99/local_label.c                    compiler: SIGBUS
+C/gnu99/longlong_bf.c                    compiler: SIGBUS
+C/gnu99/mode_attrib.c                    compiler: SIGBUS
+C/gnu99/multichar.c                      compiler: SIGBUS
+C/gnu99/nested_function.c                compiler: SIGBUS
+C/gnu99/nested_function_goto.c           compiler: SIGABRT
+C/gnu99/nullarray.c                      compiler: SIGABRT
+C/gnu99/omitted_cond.c                   compiler: SIGBUS
+C/gnu99/packed.c                         ok
+C/gnu99/packed_bf.c                      ok
+C/gnu99/pointerarith.c                   ok
+C/gnu99/pretty_function.c                compiler: SIGBUS
+C/gnu99/printfm.c                        compiler: SIGBUS
+C/gnu99/redirect.c                       compiler: SIGBUS
+C/gnu99/redirect_nowarn.c                ok
+C/gnu99/sizeof_function.c                ok
+C/gnu99/strangeattr.c                    compiler: SIGBUS
+C/gnu99/system_header_typedef.c          ok
+C/gnu99/tcctest.c                        1 compile errors
+C/gnu99/transparent_union.c              assembler error
+C/gnu99/transparent_union3.c             assembler error
+C/gnu99/typeof.c                         compiler: SIGBUS
+C/gnu99/typeprop_funcs.c                 ok
+C/gnu99/union_cast.c                     2 compile errors
+C/gnu99/unused_label.c                   ok
+C/gnu99/void_pointer_arithmetic.c        compiler: SIGBUS
+C++/should_fail/bad_retypedef.cc         ok
+C++/should_fail/bad_retypedef_sys.cc     ok
+ack/ack_conv.c                           compiler: SIGBUS
+ack/decl.c                               compiler: SIGABRT
+ack/init.c                               compiler: SIGBUS
+ack/ops.c                                compiler: SIGBUS
+ack/str.c                                compiler: SIGBUS
+ack/t7.c                                 compiler: SIGABRT
+ack/test.c                               compiler: SIGBUS
+ack/test1.c                              compiler: SIGABRT
+ack/test2.c                              compiler: SIGBUS
+langshootout/bintree.c                   compiler: SIGBUS
+langshootout/fannkuch.c                  compiler: SIGBUS
+langshootout/fasta.c                     compiler: SIGBUS
+langshootout/n-body.c                    compiler: SIGABRT
+langshootout/nsieve-bits.c               compiler: SIGABRT
+langshootout/nsieve.c                    compiler: SIGBUS
+langshootout/partial-sums.c              compiler: SIGBUS
+langshootout/recursive.c                 compiler: SIGABRT
+langshootout/spectral-norm.c             compiler: SIGABRT
+llvm/2003-05-14-initialize-string.c      compiler: SIGBUS
+llvm/2003-05-21-BitfieldHandling.c       ok
+llvm/2003-05-21-UnionBitfields.c         compiler: SIGABRT
+llvm/2003-05-21-UnionTest.c              compiler: SIGABRT
+llvm/2003-05-22-LocalTypeTest.c          compiler: SIGBUS
+llvm/2003-05-22-VarSizeArray.c           compiler: SIGABRT
+llvm/2003-05-23-TransparentUnion.c       compiler: SIGABRT
+llvm/2003-06-16-InvalidInitializer.c     ok
+llvm/2003-06-16-VolatileError.c          ok
+llvm/2003-10-12-GlobalVarInitializers.c  compiler: SIGBUS
+llvm/2004-02-03-AggregateCopy.c          compiler: SIGBUS
+llvm/2004-08-12-InlinerAndAllocas.c      compiler: SIGBUS
+llvm/2005-05-06-LongLongSignedShift.c    compiler: SIGBUS
+llvm/ConstructorDestructorAttributes.c   compiler: SIGBUS
+llvm/DuffsDevice.c                       compiler: SIGABRT
+llvm/PR491.c                             ok
+llvm/PR640.c                             compiler: SIGABRT
+llvm/badidx.c                            compiler: SIGBUS
+llvm/bigstack.c                          compiler: SIGABRT
+llvm/callargs.c                          compiler: SIGBUS
+llvm/casts.c                             compiler: SIGBUS
+llvm/globalrefs.c                        compiler: SIGBUS
+llvm/matrixTranspose.c                   compiler: SIGABRT
+llvm/pointer_arithmetic.c                ok
+llvm/sumarray.c                          compiler: SIGBUS
+llvm/sumarray2d.c                        compiler: SIGBUS
+llvm/sumarraymalloc.c                    compiler: SIGBUS
+llvm/test_indvars.c                      compiler: SIGBUS
+llvm/testtrace.c                         compiler: SIGBUS
