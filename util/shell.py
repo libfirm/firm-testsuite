@@ -30,7 +30,7 @@ def execute(cmd, env=None, timeout=0):
 		if timeout > 0.0:
 			lower_rlimit(resource.RLIMIT_CPU, timeout)
 		MB = 1024 * 1024
-		lower_rlimit(resource.RLIMIT_CORE,   128 * MB)
+		lower_rlimit(resource.RLIMIT_CORE,  0)
 		lower_rlimit(resource.RLIMIT_DATA,  1024 * MB)
 		lower_rlimit(resource.RLIMIT_STACK, 1024 * MB)
 
