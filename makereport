@@ -8,6 +8,7 @@ import time
 import xml.etree.ElementTree as ET
 import difflib
 import optparse
+import codecs
 from datetime import datetime
 from time import time
 import re
@@ -108,7 +109,7 @@ class Test(object):
 
 		environment.filename = filename
 		if os.path.isfile(filename+".ref"):
-			environment.reference_output = open(filename+".ref").read()
+			environment.reference_output = codecs.open(filename+".ref", "r", encoding="utf-8").read()
 		if os.path.isfile(filename+".check"):
 			self._add_shell_cmd(filename+".check %(asm_file)s")
 		environment.executable = environment.builddir + "/" + environment.filename + ".exe"
@@ -577,7 +578,7 @@ class Report:
 		ET.SubElement(summary, "total").text = str(self.summary[0])
 		ET.SubElement(summary, "failed").text = str(self.summary[1])
 		tree = ET.ElementTree(xml)
-		tree.write(fh)
+		tree.write(fh, encoding="utf-8")
 
 	def writeFaillog(self, fh, config):
 		for test in self.tests:

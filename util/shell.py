@@ -43,6 +43,8 @@ def execute(cmd, env=None, timeout=0):
 							preexec_fn = preexec_fn,
 							env=env)
 	out, err = proc.communicate(input="")
+	out = out.decode("utf-8")
+	err = err.decode("utf-8")
 	# Usually python can recognize application terminations triggered by
 	# signals, but somehow it doesn't do this for java (I suspect, that java
 	# catches the signals itself but then shuts down more 'cleanly' than it
