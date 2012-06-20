@@ -729,7 +729,7 @@ def main():
 pluginlist = list(glob("*/reportplugin.py"))
 pluginlist += list(glob("configs/*.py"))
 for plugin in pluginlist:
-	execfile(plugin)
+	exec(compile(open(plugin).read(), plugin, 'exec'))
 
 if __name__ == "__main__":
 	sys.exit(main())
