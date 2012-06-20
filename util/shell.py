@@ -58,7 +58,7 @@ def execute(cmd, env=None, timeout=0):
 def silent_shell(cmd, env=None, debug=False):
 	"""Execute a shell command"""
 	if debug:
-		print "silent_shell", cmd
+		sys.stderr.write("silent_shell: %s\n" % cmd)
 		stdout = None
 		stderr = None
 	else:
@@ -67,7 +67,7 @@ def silent_shell(cmd, env=None, debug=False):
 	try:
 	    return subprocess.call(cmd, shell=True, stdout=stdout, stderr=stderr, env=env)
 	except OSError as e:
-	    print >>sys.stderr, "Execution failed:", e
+	    sys.stderr.write("Execution failed: %s\n" % e)
 
 def write_file(filename, content):
 	fh = open(filename, 'w')
@@ -76,4 +76,4 @@ def write_file(filename, content):
 
 if __name__ == "__main__":
 	out,err,retcode = execute("hostname")
-	print out
+	print (out)
