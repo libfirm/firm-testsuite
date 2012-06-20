@@ -651,12 +651,19 @@ def find_files(directory):
 			yield name
 
 def run_test(config, fname):
-	test = make_test(config, fname)
 	try:
-		test.run()
+		test = make_test(config, fname)
+		try:
+			test.run()
+		except Exception as e: # Exception in test run
+			sys.stderr.write("Exception in %s: %s\n" % (fname, e))
+			raise e
+		return test
 	except Exception as e: # Exception in test run
-		sys.stderr.write("Exception in %s: %s\n" % (fname, e))
-	return test
+		import traceback
+		traceback.print_exc(file=sys.stderr)
+		sys.stderr.write("Exception in preparing %s: %s\n" % (fname, e))
+		raise e
 
 def makereport(config, tests):
 	global EXECUTOR
