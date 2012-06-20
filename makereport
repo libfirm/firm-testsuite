@@ -569,7 +569,7 @@ class Report:
 		ET.SubElement(xml, "datetime").text = str(datetime.now())
 		ET.SubElement(xml, "reportname").text = _REPORT_NAME
 		env = ET.SubElement(xml, "environment")
-		for (key,value) in config.__dict__.iteritems():
+		for (key,value) in config.__dict__.items():
 			ET.SubElement(env, key).text = str(value)
 		env.tail = "\n" # pretty print
 		for test in self.tests:
@@ -712,7 +712,7 @@ def main():
 	os.putenv("LC_ALL", "C") # need english error messages in gcc ;)
 
 	# Add new commandline options for all configurations
-	for (config,setupfunc) in configurations.iteritems():
+	for (config,setupfunc) in configurations.items():
 		_OPTS.add_option("--%s" % config, action="callback", callback=setupfunc,
 		                 help="activate %s configuration" % config)
 

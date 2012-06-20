@@ -12,7 +12,7 @@ class SigKill(Exception):
 		self.retcode = retcode
 		self.name = name
 
-_EXIT_CODES = dict((-k, v) for v, k in signal.__dict__.iteritems() if v.startswith('SIG'))
+_EXIT_CODES = dict((-k, v) for v, k in signal.__dict__.items() if v.startswith('SIG'))
 del _EXIT_CODES[0]
 
 def execute(cmd, env=None, timeout=0):
