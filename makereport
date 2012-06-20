@@ -192,7 +192,7 @@ class Test(object):
 
 	def _parse_embedded_commands(self, filename):
 		"""check input for /*$ $*/ embedded command and parse them."""
-		for line in open(filename):
+		for line in codecs.open(filename, encoding="utf-8"):
 			m = _EMBEDDED_CMD.match(line)
 			if m:
 				if _DEBUG:
@@ -495,6 +495,7 @@ def load_expectations(url):
 	if input.getcode() != None and input.getcode() != 200:
 		raise Exception("Couldn't download from '%s'" % url)
 	for line in input:
+		line = line.decode("utf-8")
 		try:
 			i = line.index(" ")
 		except ValueError:
