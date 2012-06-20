@@ -1,4 +1,4 @@
-#include <alloca.h>
+#include "../common/alloca.h"
 
 extern void puts(const char *text);
 

@@ -1,5 +1,4 @@
-#include <alloca.h>
-#include <assert.h>
+#include "../common/alloca.h"
 
 char *p1;
 char *p2;

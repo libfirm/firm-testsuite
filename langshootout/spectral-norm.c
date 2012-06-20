@@ -9,14 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-/* Includes for alloca() */
-#if defined(__FreeBSD__)
-#include <stdlib.h>
-#elif defined(_WIN32)
-#include <malloc.h>
-#else
-#include <alloca.h>
-#endif
+#include "../common/alloca.h"
 
 double eval_A(int i, int j) { return 1.0/((i+j)*(i+j+1)/2+i+1); }
 

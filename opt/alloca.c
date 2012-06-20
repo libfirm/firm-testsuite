@@ -1,10 +1,5 @@
-#ifdef _WIN32
-#include <malloc.h>
-#else
-#include <alloca.h>
-#endif
-
 #include <stdio.h>
+#include "../common/alloca.h"
 
 struct x {
 	int a, b;
