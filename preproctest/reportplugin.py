@@ -73,7 +73,8 @@ def setup_pp(option, opt_str, value, parser):
 	global _DEFAULT_DIRS
 	_DEFAULT_DIRS = [ "preproctest", "preproctest/should_fail" ]
 	config = parser.values
-	config.compiler = "pptest"
-	config.ppflags = "-I ."
+	config.compiler   = "pptest"
+	config.expect_url = "fail_expectations_pp"
+	config.ppflags    = "-I ."
 
 configurations["pp"] = setup_pp

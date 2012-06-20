@@ -1,0 +1,72 @@
+preproctest/concat.c                     output mismatch
+preproctest/define_in_call.c             output mismatch
+preproctest/defines.c                    output mismatch
+preproctest/defines2.c                   output mismatch
+preproctest/defines3.c                   output mismatch
+preproctest/defines4.c                   output mismatch
+preproctest/digraph_fun.c                output mismatch
+preproctest/directives.c                 output mismatch
+preproctest/doubleif.c                   ok
+preproctest/edgbug.c                     ok
+preproctest/edgbug2.c                    ok
+preproctest/empty.c                      ok
+preproctest/gccbug.c                     ok
+preproctest/gccbug2.c                    output mismatch
+preproctest/hashdefine.c                 output mismatch
+preproctest/ifdef.c                      ok
+preproctest/ifdef2.c                     ok
+preproctest/incifdef.c                   output mismatch
+preproctest/include.c                    ok
+preproctest/include_def.c                compiler: SIGABRT
+preproctest/include_def1.c               compiler: SIGABRT
+preproctest/include_def2.c               compiler: SIGABRT
+preproctest/include_in_call.c            output mismatch
+preproctest/linecomments.c               ok
+preproctest/lineconcat.c                 ok
+preproctest/macro_spaces.c               output mismatch
+preproctest/multilinecomment.c           ok
+preproctest/multilinecomments.c          ok
+preproctest/multilinecomments2.c         ok
+preproctest/no_expansion.c               output mismatch
+preproctest/no_keywords.c                1 compile errors
+preproctest/recursive_defs.c             ok
+preproctest/simple.c                     ok
+preproctest/simpleconcat.c               output mismatch
+preproctest/simpledef.c                  ok
+preproctest/simpleifdef.c                ok
+preproctest/simpleinclude.c              ok
+preproctest/simpleinclude2.c             output mismatch
+preproctest/simplemacro.c                output mismatch
+preproctest/simplestringify.c            output mismatch
+preproctest/spaces.c                     ok
+preproctest/spec0.c                      output mismatch
+preproctest/spec1.c                      compiler: SIGABRT
+preproctest/stringify.c                  output mismatch
+preproctest/stringify2.c                 output mismatch
+preproctest/t2.c                         ok
+preproctest/t3.c                         ok
+preproctest/t8.c                         ok
+preproctest/t9.c                         ok
+preproctest/should_fail/bad_concat.c     compiler missed error
+preproctest/should_fail/bad_concat10.c   compiler missed error
+preproctest/should_fail/bad_concat11.c   compiler missed error
+preproctest/should_fail/bad_concat2.c    compiler missed error
+preproctest/should_fail/bad_concat3.c    compiler missed error
+preproctest/should_fail/bad_concat4.c    compiler missed error
+preproctest/should_fail/bad_concat5.c    compiler missed error
+preproctest/should_fail/bad_concat6.c    compiler missed error
+preproctest/should_fail/bad_concat7.c    compiler missed error
+preproctest/should_fail/bad_concat8.c    compiler missed error
+preproctest/should_fail/bad_concat9.c    compiler missed error
+preproctest/should_fail/double_define_arg.c compiler missed error
+preproctest/should_fail/halfcall.c       compiler missed error
+preproctest/should_fail/halfcall2.c      compiler missed error
+preproctest/should_fail/include_def3.c   compiler: SIGABRT
+preproctest/should_fail/no_concat.c      ok
+preproctest/should_fail/no_hash_param.c  compiler missed error
+preproctest/should_fail/no_hash_param1.c compiler missed error
+preproctest/should_fail/toomanyargs.c    compiler missed error
+preproctest/should_fail/unbalanced.c     ok
+preproctest/should_fail/unbalanced2.c    ok
+preproctest/should_fail/unbalanced3.c    ok
+preproctest/should_fail/unbalanced4.c    ok
