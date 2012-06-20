@@ -19,10 +19,13 @@ from util.concurrent.futures import ProcessPoolExecutor
 from util.shell import silent_shell, execute, SigKill
 
 from copy import deepcopy
+_XML_ENCODING="utf-8"
 try:
 	from urllib import urlopen
-except ImportError:
-	from urllib.request import urlopen # Python3
+except ImportError: # Python3
+	from urllib.request import urlopen
+	# use the control flow for more python3 stuff ;)
+	_XML_ENCODING="unicode"
 
 _DEFAULT_DIRS = [
 	"backend",
@@ -582,7 +585,7 @@ class Report:
 		ET.SubElement(summary, "total").text = str(self.summary[0])
 		ET.SubElement(summary, "failed").text = str(self.summary[1])
 		tree = ET.ElementTree(xml)
-		tree.write(fh, encoding="utf-8")
+		tree.write(fh, encoding=_XML_ENCODING)
 
 	def writeFaillog(self, fh, config):
 		for test in self.tests:
