@@ -19,7 +19,10 @@ from util.concurrent.futures import ProcessPoolExecutor
 from util.shell import silent_shell, execute, SigKill
 
 from copy import deepcopy
-from urllib import urlopen
+try:
+	from urllib import urlopen
+except ImportError:
+	from urllib.request import urlopen # Python3
 
 _DEFAULT_DIRS = [
 	"backend",
