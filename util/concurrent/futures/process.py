@@ -50,7 +50,7 @@ import threading
 import weakref
 import sys
 
-import _base
+from util.concurrent.futures import base
 
 try:
     import queue
@@ -252,7 +252,7 @@ def _queue_manangement_worker(executor_reference,
             else:
                 work_item.future.set_result(result_item.result)
 
-class ProcessPoolExecutor(_base.Executor):
+class ProcessPoolExecutor(base.Executor):
     def __init__(self, max_workers=None):
         """Initializes a new ProcessPoolExecutor instance.
 
@@ -315,7 +315,7 @@ class ProcessPoolExecutor(_base.Executor):
             if self._shutdown_thread:
                 raise RuntimeError('cannot schedule new futures after shutdown')
 
-            f = _base.Future()
+            f = base.Future()
             w = _WorkItem(f, fn, args, kwargs)
 
             self._pending_work_items[self._queue_count] = w
@@ -325,7 +325,7 @@ class ProcessPoolExecutor(_base.Executor):
             self._start_queue_management_thread()
             self._adjust_process_count()
             return f
-    submit.__doc__ = _base.Executor.submit.__doc__
+    submit.__doc__ = base.Executor.submit.__doc__
 
     def shutdown(self, wait=True):
         with self._shutdown_lock:
@@ -340,6 +340,6 @@ class ProcessPoolExecutor(_base.Executor):
         self._result_queue = None
         self._shutdown_process_event = None
         self._processes = None
-    shutdown.__doc__ = _base.Executor.shutdown.__doc__
+    shutdown.__doc__ = base.Executor.shutdown.__doc__
 
 atexit.register(_python_exit)
