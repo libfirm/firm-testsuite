@@ -20,7 +20,7 @@
 /**
  * Heapsort-Algorithmus laut Vorlesung.
  */
-/** Größe des Heaps */
+/** GrÃ¶ÃŸe des Heaps */
 static int N;
 
 /**
@@ -34,7 +34,7 @@ static void exchange(int *a, int i, int j) {
 }
 
 /**
- * Läßt a[k] im Feld aufsteigen.
+ * LÃ¤ÃŸt a[k] im Feld aufsteigen.
  */
 static void upheap(int *a, int k) {
 	while ((k > 0) && (a[k] < a[k / 2])) {
@@ -44,8 +44,8 @@ static void upheap(int *a, int k) {
 }
 
 /**
- * Fügt das neue Element v in den Heap der Größe N
- * ein und erhöht N um 1
+ * FÃ¼gt das neue Element v in den Heap der GrÃ¶ÃŸe N
+ * ein und erhÃ¶ht N um 1
  */
 static void insert(int *a, int v) {
 	a[N] = v;
@@ -54,7 +54,7 @@ static void insert(int *a, int v) {
 }
 
 /**
- * Läßt a[k] im Feld versickern.
+ * LÃ¤ÃŸt a[k] im Feld versickern.
  */
 static void downheap(int *a, int k) {
 	int j = 2 * k;
@@ -106,14 +106,14 @@ static void heapaufbau2(int *a, int *b, int len) {
 
 /**
  * Sortiert das gegebene Feld b mit den oben angegebenen
- * Heap-Methoden und gibt das sortierte Feld zurück.
+ * Heap-Methoden und gibt das sortierte Feld zurÃ¼ck.
  */
 static int *heapsort_(int *b, int len) {
 	int k;
 	int *c;
 	int *a;
 
-	// Globale Variablen für die Heap-Methoden setzen
+	// Globale Variablen fÃ¼r die Heap-Methoden setzen
 	a = malloc(sizeof(a[0]) * len);
 	heapaufbau2(a, b, len);
 
@@ -138,7 +138,7 @@ static int verify(int* fld, int count) {
 }
 
 /**
- * Ein einfaches Beispielprogramm. Alle Argumente des Programms müssen
+ * Ein einfaches Beispielprogramm. Alle Argumente des Programms mÃ¼ssen
  * Zahlen sein.
  * Bsp:<pre>
  * java Heapsort 6 13 17 42 9 3 5
