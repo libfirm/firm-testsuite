@@ -645,7 +645,10 @@ def find_files(directory):
 
 def run_test(config, fname):
 	test = make_test(config, fname)
-	test.run()
+	try:
+		test.run()
+	except Exception as e: # Exception in test run
+		sys.stderr.write("Exception in %s: %s\n" % (fname, e))
 	return test
 
 def makereport(config, tests):
