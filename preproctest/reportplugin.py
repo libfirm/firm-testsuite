@@ -1,3 +1,5 @@
+import codecs
+
 class TestPreprocessor(Test):
 	def __init__(self, filename, environment):
 		Test.__init__(self, filename, environment)
@@ -35,7 +37,7 @@ class TestPreprocessor(Test):
 	def check_execution(self):
 		"""Compare preprocessor output against reference"""
 		environment = self.environment
-		out = open(environment.preprocessed, "r").read()
+		out = codecs.open(environment.preprocessed, "r", encoding="utf8").read()
 		if not hasattr(environment, 'reference_output'):
 			self.error_msg = "no reference output"
 			if out:
