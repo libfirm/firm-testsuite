@@ -21,11 +21,11 @@ class TestPreprocessor(Test):
 		self.compiling = ""
 		try:
 			self.compile_out, self.compile_err, self.compile_retcode = my_execute(cmd, timeout=15)
-		except SigKill, e:
+		except SigKill as e:
 			self.error_msg = "compiler: %s" % (e.name)
 			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
 			return False
-		except OSError, e:
+		except OSError as e:
 			self.error_msg = "compilation failed (%s)" % (e.strerror)
 			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
 			return False

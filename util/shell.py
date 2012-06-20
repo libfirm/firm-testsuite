@@ -66,7 +66,7 @@ def silent_shell(cmd, env=None, debug=False):
 		stderr = subprocess.STDOUT
 	try:
 	    return subprocess.call(cmd, shell=True, stdout=stdout, stderr=stderr, env=env)
-	except OSError, e:
+	except OSError as e:
 	    print >>sys.stderr, "Execution failed:", e
 
 def write_file(filename, content):
