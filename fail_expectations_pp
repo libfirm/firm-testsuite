@@ -1,4 +1,5 @@
 preproctest/concat.c                     output mismatch
+preproctest/define_else.c                1 compile errors
 preproctest/define_in_call.c             output mismatch
 preproctest/defines.c                    output mismatch
 preproctest/defines2.c                   output mismatch
