@@ -20,9 +20,9 @@ def execute(cmd, env=None, timeout=0):
 
 	def lower_rlimit(res, limit):
 		(soft, hard) = resource.getrlimit(res)
-		if soft > limit:
+		if soft > limit or soft == resource.RLIM_INFINITY:
 			soft = limit
-		if hard > limit:
+		if hard > limit or hard == resource.RLIM_INFINITY:
 			hard = limit
 		resource.setrlimit(res, (soft, hard))
 
