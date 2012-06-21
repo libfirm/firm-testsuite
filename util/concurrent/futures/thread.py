@@ -9,7 +9,7 @@ import threading
 import weakref
 import sys
 
-import _base
+from util.concurrent.futures import base
 
 try:
     import queue
@@ -93,9 +93,9 @@ def _worker(executor_reference, work_queue):
             else:
                 work_item.run()
     except BaseException:
-        _base.LOGGER.critical('Exception in worker', exc_info=True)
+        base.LOGGER.critical('Exception in worker', exc_info=True)
 
-class ThreadPoolExecutor(_base.Executor):
+class ThreadPoolExecutor(base.Executor):
     def __init__(self, max_workers):
         """Initializes a new ThreadPoolExecutor instance.
 
@@ -116,13 +116,13 @@ class ThreadPoolExecutor(_base.Executor):
             if self._shutdown:
                 raise RuntimeError('cannot schedule new futures after shutdown')
 
-            f = _base.Future()
+            f = base.Future()
             w = _WorkItem(f, fn, args, kwargs)
 
             self._work_queue.put(w)
             self._adjust_thread_count()
             return f
-    submit.__doc__ = _base.Executor.submit.__doc__
+    submit.__doc__ = base.Executor.submit.__doc__
 
     def _adjust_thread_count(self):
         # TODO(bquinlan): Should avoid creating new threads if there are more
@@ -141,4 +141,4 @@ class ThreadPoolExecutor(_base.Executor):
         if wait:
             for t in self._threads:
                 t.join()
-    shutdown.__doc__ = _base.Executor.shutdown.__doc__
+    shutdown.__doc__ = base.Executor.shutdown.__doc__

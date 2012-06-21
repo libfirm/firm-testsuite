@@ -10,7 +10,7 @@ import time
 try:
     from collections import namedtuple
 except ImportError:
-    from concurrent.futures._compat import namedtuple
+    from concurrent.futures.compat import namedtuple
 
 __author__ = 'Brian Quinlan (brian@sweetapp.com)'
 

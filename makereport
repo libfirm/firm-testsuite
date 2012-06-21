@@ -19,7 +19,13 @@ from util.concurrent.futures import ProcessPoolExecutor
 from util.shell import silent_shell, execute, SigKill
 
 from copy import deepcopy
-from urllib import urlopen
+_XML_ENCODING="utf-8"
+try:
+	from urllib import urlopen
+except ImportError: # Python3
+	from urllib.request import urlopen
+	# use the control flow for more python3 stuff ;)
+	_XML_ENCODING="unicode"
 
 _DEFAULT_DIRS = [
 	"backend",
@@ -189,7 +195,7 @@ class Test(object):
 
 	def _parse_embedded_commands(self, filename):
 		"""check input for /*$ $*/ embedded command and parse them."""
-		for line in open(filename):
+		for line in codecs.open(filename, encoding="utf-8"):
 			m = _EMBEDDED_CMD.match(line)
 			if m:
 				if _DEBUG:
@@ -303,11 +309,11 @@ class Test(object):
 		self.compiling = ""
 		try:
 			self.compile_out, self.compile_err, self.compile_retcode = my_execute(cmd, timeout=60)
-		except SigKill, e:
+		except SigKill as e:
 			self.error_msg = "compiler: %s" % (e.name)
 			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
 			return False
-		except OSError, e:
+		except OSError as e:
 			self.error_msg = "compilation failed (%s)" % (e.strerror)
 			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
 			return False
@@ -384,10 +390,10 @@ class Test(object):
 			if retcode != 0:
 				self.error_msg = "Test return code not zero but %d" % retcode
 				return False
-		except SigKill, e:
+		except SigKill as e:
 			self.error_msg = "execution: %s" % (e.name)
 			return False
-		except OSError, e:
+		except OSError as e:
 			self.error_msg = "OSError on execution"
 			return False
 
@@ -468,7 +474,7 @@ class TestJava(Test):
 		out.write(cmd + "\n")
 		try:
 			self.compile_out, self.compile_err, self.compile_retcode = my_execute(cmd, timeout=30)
-		except SigKill, e:
+		except SigKill as e:
 			self.error_msg = "compiler %s (SIG %d)" % (e.name, -e.retcode)
 			return False
 		return True
@@ -492,6 +498,7 @@ def load_expectations(url):
 	if input.getcode() != None and input.getcode() != 200:
 		raise Exception("Couldn't download from '%s'" % url)
 	for line in input:
+		line = line.decode("utf-8")
 		try:
 			i = line.index(" ")
 		except ValueError:
@@ -569,7 +576,7 @@ class Report:
 		ET.SubElement(xml, "datetime").text = str(datetime.now())
 		ET.SubElement(xml, "reportname").text = _REPORT_NAME
 		env = ET.SubElement(xml, "environment")
-		for (key,value) in config.__dict__.iteritems():
+		for (key,value) in config.__dict__.items():
 			ET.SubElement(env, key).text = str(value)
 		env.tail = "\n" # pretty print
 		for test in self.tests:
@@ -578,7 +585,7 @@ class Report:
 		ET.SubElement(summary, "total").text = str(self.summary[0])
 		ET.SubElement(summary, "failed").text = str(self.summary[1])
 		tree = ET.ElementTree(xml)
-		tree.write(fh, encoding="utf-8")
+		tree.write(fh, encoding=_XML_ENCODING)
 
 	def writeFaillog(self, fh, config):
 		for test in self.tests:
@@ -644,12 +651,19 @@ def find_files(directory):
 			yield name
 
 def run_test(config, fname):
-	test = make_test(config, fname)
 	try:
-		test.run()
+		test = make_test(config, fname)
+		try:
+			test.run()
+		except Exception as e: # Exception in test run
+			sys.stderr.write("Exception in %s: %s\n" % (fname, e))
+			raise e
+		return test
 	except Exception as e: # Exception in test run
-		sys.stderr.write("Exception in %s: %s\n" % (fname, e))
-	return test
+		import traceback
+		traceback.print_exc(file=sys.stderr)
+		sys.stderr.write("Exception in preparing %s: %s\n" % (fname, e))
+		raise e
 
 def makereport(config, tests):
 	global EXECUTOR
@@ -712,7 +726,7 @@ def main():
 	os.putenv("LC_ALL", "C") # need english error messages in gcc ;)
 
 	# Add new commandline options for all configurations
-	for (config,setupfunc) in configurations.iteritems():
+	for (config,setupfunc) in configurations.items():
 		_OPTS.add_option("--%s" % config, action="callback", callback=setupfunc,
 		                 help="activate %s configuration" % config)
 
@@ -726,7 +740,7 @@ def main():
 pluginlist = list(glob("*/reportplugin.py"))
 pluginlist += list(glob("configs/*.py"))
 for plugin in pluginlist:
-	execfile(plugin)
+	exec(compile(open(plugin).read(), plugin, 'exec'))
 
 if __name__ == "__main__":
 	sys.exit(main())

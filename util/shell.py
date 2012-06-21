@@ -12,7 +12,7 @@ class SigKill(Exception):
 		self.retcode = retcode
 		self.name = name
 
-_EXIT_CODES = dict((-k, v) for v, k in signal.__dict__.iteritems() if v.startswith('SIG'))
+_EXIT_CODES = dict((-k, v) for v, k in signal.__dict__.items() if v.startswith('SIG'))
 del _EXIT_CODES[0]
 
 def execute(cmd, env=None, timeout=0):
@@ -58,7 +58,7 @@ def execute(cmd, env=None, timeout=0):
 def silent_shell(cmd, env=None, debug=False):
 	"""Execute a shell command"""
 	if debug:
-		print "silent_shell", cmd
+		sys.stderr.write("silent_shell: %s\n" % cmd)
 		stdout = None
 		stderr = None
 	else:
@@ -66,8 +66,8 @@ def silent_shell(cmd, env=None, debug=False):
 		stderr = subprocess.STDOUT
 	try:
 	    return subprocess.call(cmd, shell=True, stdout=stdout, stderr=stderr, env=env)
-	except OSError, e:
-	    print >>sys.stderr, "Execution failed:", e
+	except OSError as e:
+	    sys.stderr.write("Execution failed: %s\n" % e)
 
 def write_file(filename, content):
 	fh = open(filename, 'w')
@@ -76,4 +76,4 @@ def write_file(filename, content):
 
 if __name__ == "__main__":
 	out,err,retcode = execute("hostname")
-	print out
+	print (out)
