@@ -10,3 +10,8 @@ BAD
 #if F((Y))
 BAD
 #endif
+
+#define G defined Y
+#if !G
+BAD
+#endif
