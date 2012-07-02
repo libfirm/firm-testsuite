@@ -5,4 +5,8 @@
 
 
 
-called: before bla after
+called: macro
+called: called: macro
+called: called: called: macro
+
+called: before macro after
