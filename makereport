@@ -313,6 +313,10 @@ class Test(object):
 			self.error_msg = "compiler: %s" % (e.name)
 			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
 			return False
+		except MemoryError as e:
+			self.error_msg = "compiler: out of memory"
+			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
+			return False
 		except OSError as e:
 			self.error_msg = "compilation failed (%s)" % (e.strerror)
 			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
