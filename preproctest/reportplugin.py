@@ -5,8 +5,8 @@ class TestPreprocessor(Test):
 		Test.__init__(self, filename, environment)
 		environment = self.environment
 		environment.preprocessed = environment.builddir + "/" + environment.filename + ".i"
-		if not hasattr(environment, "ppflags"):
-			environment.ppflags = "-I ."
+		if not hasattr(environment, "cflags"):
+			environment.cflags = "-I ."
 
 	def _init_flags(self):
 		Test._init_flags(self)
@@ -16,7 +16,7 @@ class TestPreprocessor(Test):
 		environment = self.environment
 		ensure_dir(os.path.dirname(environment.preprocessed))
 
-		cmd = "%(compiler)s -E %(ppflags)s %(filename)s -o %(preprocessed)s" % environment.__dict__
+		cmd = "%(compiler)s -E %(cflags)s %(filename)s -o %(preprocessed)s" % environment.__dict__
 		self.compile_command = cmd
 		self.compiling = ""
 		try:
@@ -75,8 +75,7 @@ def setup_pp(option, opt_str, value, parser):
 	global _DEFAULT_DIRS
 	_DEFAULT_DIRS = [ "preproctest", "preproctest/should_fail" ]
 	config = parser.values
-	config.compiler   = "pptest"
+	config.cflags     = "--no-external-pp -I ."
 	config.expect_url = "fail_expectations_pp"
-	config.ppflags    = "-I ."
 
 configurations["pp"] = setup_pp
