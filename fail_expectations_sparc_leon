@@ -927,12 +927,12 @@ ack/test2.c                              ok
 langshootout/bintree.c                   ok
 langshootout/fannkuch.c                  ok
 langshootout/fasta.c                     ok
-langshootout/n-body.c                    execution: SIGKILL
+langshootout/n-body.c                    ok
 langshootout/nsieve-bits.c               ok
 langshootout/nsieve.c                    ok
-langshootout/partial-sums.c              execution: SIGKILL
-langshootout/recursive.c                 execution: SIGKILL
-langshootout/spectral-norm.c             execution: SIGSEGV
+langshootout/partial-sums.c              ok
+langshootout/recursive.c                 ok
+langshootout/spectral-norm.c             ok
 llvm/2003-05-14-initialize-string.c      ok
 llvm/2003-05-21-BitfieldHandling.c       ok
 llvm/2003-05-21-UnionBitfields.c         ok

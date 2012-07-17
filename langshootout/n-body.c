@@ -129,7 +129,7 @@ struct planet bodies[NBODIES] = {
 
 int main(int argc, char ** argv)
 {
-  int n = 1000000;
+  int n = 2000;
   int i;
 
   if(argc > 1)

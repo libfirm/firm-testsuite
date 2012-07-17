@@ -17,7 +17,7 @@
 int main(int argc, char **argv)
 {
   int k;
-  int n = 100000;
+  int n = 10000;
   double sum, a;
 
   if(argc > 1)

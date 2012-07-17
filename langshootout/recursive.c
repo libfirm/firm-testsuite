@@ -38,7 +38,7 @@ double TakFP(double x, double y, double z) {
 }
 
 int main(int argc, char **argv) {
-	int n = 7;
+	int n = 3;
 
 	if(argc > 1)
 		n = atoi(argv[1]) - 1;

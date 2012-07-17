@@ -43,7 +43,7 @@ void eval_AtA_times_u(int N, const double u[], double AtAu[])
 int main(int argc, char *argv[])
 {
 	int i;
-	int N = ((argc == 2) ? atoi(argv[1]) : 2000);
+	int N = ((argc == 2) ? atoi(argv[1]) : 100);
 
 	double *u = alloca(sizeof(u[0]) * N);
 	double *v = alloca(sizeof(v[0]) * N);
