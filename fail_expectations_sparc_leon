@@ -753,7 +753,7 @@ C/should_fail/randprog1.c                ok
 C/should_fail/recursive_struct.c         ok
 C/should_fail/scope_do_while_body.c      ok
 C/should_fail/scope_do_while_body_cond.c compiler missed error
-C/should_fail/scope_do_while_cond.c      compiler: SIGABRT
+C/should_fail/scope_do_while_cond.c      ok
 C/should_fail/scope_for_body.c           ok
 C/should_fail/scope_for_cond.c           ok
 C/should_fail/scope_if_cond.c            ok
@@ -854,6 +854,7 @@ C/nowarn/write_only14.c                  compiler produced invalid warning
 C/nowarn/write_only5.c                   ok
 C/nowarn/write_only7.c                   ok
 C/nowarn/write_only9.c                   2 compile errors
+C/gnu90/noinline.c                       linker error
 C/gnu99/anonstruct.c                     ok
 C/gnu99/anonstruct2.c                    ok
 C/gnu99/anonstruct3.c                    ok
