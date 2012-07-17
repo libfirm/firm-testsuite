@@ -1,5 +1,6 @@
 backend/RegallocBug.c                    ok
-backend/alloca.c                         Test return code not zero but 1
+backend/alloca.c                         ok
+backend/allocacall.c                     ok
 backend/am_explode.c                     ok
 backend/am_possibilities.c               ok
 backend/am_test.c                        ok
@@ -223,7 +224,7 @@ opt/fehler055.c                          ok
 opt/fehler056.c                          ok
 opt/fehler057.c                          ok
 opt/fehler058.c                          ok
-opt/fehler059.c                          execution: SIGABRT
+opt/fehler059.c                          ok
 opt/fehler060.c                          ok
 opt/fehler061.c                          ok
 opt/fehler062.c                          ok

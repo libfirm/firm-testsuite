@@ -1,5 +1,6 @@
 backend/RegallocBug.c                    ok
 backend/alloca.c                         ok
+backend/allocacall.c                     ok
 backend/am_explode.c                     ok
 backend/am_possibilities.c               ok
 backend/am_test.c                        ok
