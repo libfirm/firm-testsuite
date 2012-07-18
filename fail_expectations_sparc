@@ -41,6 +41,7 @@ backend/longlongptr.c                    ok
 backend/lower_call.c                     ok
 backend/lower_call2.c                    ok
 backend/lower_call3.c                    ok
+backend/memperm.c                        compiler: SIGABRT
 backend/optest.c                         ok
 backend/optest_float.c                   compiler: SIGABRT
 backend/optest_longlong.c                ok

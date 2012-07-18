@@ -43,6 +43,7 @@ backend/longlongptr.c                    compiler: SIGBUS
 backend/lower_call.c                     compiler: SIGBUS
 backend/lower_call2.c                    compiler: SIGBUS
 backend/lower_call3.c                    verify warning
+backend/memperm.c                        execution: SIGSEGV
 backend/optest.c                         compiler: SIGABRT
 backend/optest_float.c                   compiler: SIGABRT
 backend/optest_longlong.c                compiler: SIGABRT

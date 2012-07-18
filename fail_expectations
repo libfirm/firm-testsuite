@@ -44,6 +44,7 @@ backend/longlongptr.c                    ok
 backend/lower_call.c                     ok
 backend/lower_call2.c                    ok
 backend/lower_call3.c                    ok
+backend/memperm.c                        ok
 backend/optest.c                         ok
 backend/optest_float.c                   ok
 backend/optest_longlong.c                ok
