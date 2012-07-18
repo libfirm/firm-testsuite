@@ -37,24 +37,8 @@ class TestPreprocessor(Test):
 	def check_execution(self):
 		"""Compare preprocessor output against reference"""
 		environment = self.environment
-		out = codecs.open(environment.preprocessed, "r", encoding="utf8").read()
-		if not hasattr(environment, 'reference_output'):
-			self.error_msg = "no reference output"
-			if out:
-				out = "Output was:\n"+out
-			else:
-				out = "Empty Output."
-			self.long_error_msg = "Add .ref file for this test case! "+out
-			return False
-		ref = environment.reference_output.splitlines()
-		out = out.splitlines()
-		diff = "\n".join(difflib.unified_diff(out, ref))
-		if diff == "":
-			return True
-		else:
-			self.error_msg = "output mismatch"
-			self.long_error_msg = diff
-			return False
+		out = codecs.open(environment.preprocessed, "r").read()
+		return self.check_reference_output(out)
 
 	def check_compiler_errors(self):
 		if len(self.warnings) > 0:

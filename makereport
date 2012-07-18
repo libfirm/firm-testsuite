@@ -115,7 +115,7 @@ class Test(object):
 
 		environment.filename = filename
 		if os.path.isfile(filename+".ref"):
-			environment.reference_output = codecs.open(filename+".ref", "r", encoding="utf-8").read()
+			environment.reference_output = codecs.open(filename+".ref", "r").read()
 		if os.path.isfile(filename+".check"):
 			self._add_shell_cmd(filename+".check %(asm_file)s")
 		environment.executable = environment.builddir + "/" + environment.filename + ".exe"
@@ -377,14 +377,21 @@ class Test(object):
 				out = "Empty Output."
 			self.long_error_msg = "Add .ref file for this test case! " + out
 			return False
-		ref = self.environment.reference_output.splitlines()
-		diff = "\n".join(difflib.unified_diff(out.splitlines(), ref))
-		if diff == "":
+		ref = self.environment.reference_output
+		if out == ref:
 			return True
-		else:
-			self.error_msg      = "output mismatch"
+
+		self.error_msg = "output mismatch"
+		# Try to create a diff
+		try:
+			ref  = self.environment.reference_output.decode("utf-8").splitlines()
+			diff = "\n".join(difflib.unified_diff(out.decode("utf-8").splitlines(), ref))
 			self.long_error_msg = diff
-			return False
+		except:
+			print "DIFFLIB EXCEPTION"
+			# We might end up here when utf-8 decoding failed
+			pass
+		return False
 
 	def check_execution(self):
 		"""Run compiled test program and compare output to reference"""
@@ -426,7 +433,8 @@ class TestShouldWarn(Test):
 	def check_compiler_errors(self):
 		if not Test.check_compiler_errors(self):
 			return False
-		if not Test.check_reference_output(self, "\n".join(self.warnings)):
+		warnings = "\n".join(self.warnings) + "\n"
+		if not Test.check_reference_output(self, warnings):
 			n_warn_out = len(self.warnings)
 			if n_warn_out == 0:
 				self.error_msg = "compiler missed warnings"
