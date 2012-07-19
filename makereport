@@ -45,6 +45,7 @@ _ARCH_DIRS = [
 	"x86code" ]
 _DEBUG = None
 _VERBOSE = None
+TESTS = []
 _REPORT_NAME = "stats-" +  datetime.now().strftime("%Y.%m.%d")
 _EMBEDDED_CMD = re.compile("/\\*\\$ (.+) \\$\\*/")
 _CMD = re.compile("(!?check(\[[0-9]+\])?|shell|cflags|ldflags)(.*)")
@@ -113,6 +114,8 @@ class Test(object):
 		self.checks = []
 		self.shell_cmds = []
 
+		environment.executionargs = ""
+
 		environment.filename = filename
 		if os.path.isfile(filename+".ref"):
 			environment.reference_output = codecs.open(filename+".ref", "r").read()
@@ -125,10 +128,6 @@ class Test(object):
 	def _init_flags(self):
 		environment = self.environment
 		environment.cflags += " -I%s " % os.path.dirname(environment.filename)
-		if not "-O" in environment.cflags:
-			environment.cflags += " -O3 "
-		if not "-march" in environment.cflags:
-			environment.cflags += " -march=native "
 
 	def _add_check(self, regex, count_arg, flag):
 		"""add a check for regex."""
@@ -397,8 +396,8 @@ class Test(object):
 		"""Run compiled test program and compare output to reference"""
 		environment = self.environment
 		try:
-			out, err, retcode = my_execute(environment.runexe + environment.executable, timeout=30)
-			if retcode != 0:
+			self.exec_out, self.exec_err, self.exec_retcode = my_execute(environment.runexe + environment.executable + environment.executionargs, timeout=30)
+			if self.exec_retcode != 0:
 				self.error_msg = "Test return code not zero but %d" % retcode
 				return False
 		except SigKill as e:
@@ -409,7 +408,7 @@ class Test(object):
 			return False
 
 		# Program run succeeded. Now compare output with reference.
-		return self.check_reference_output(out)
+		return self.check_reference_output(self.exec_out)
 
 class TestShouldFail(Test):
 	def __init__(self, filename, environment):
@@ -662,27 +661,30 @@ def find_files(directory):
 		for name in glob("%s/*.%s" % (directory, ext)):
 			yield name
 
-def run_test(config, fname):
+def run_test(test):
 	try:
-		test = make_test(config, fname)
-		try:
-			test.run()
-		except Exception as e: # Exception in test run
-			sys.stderr.write("Exception in %s: %s\n" % (fname, e))
-			raise e
-		return test
+		test.run()
 	except Exception as e: # Exception in test run
-		import traceback
-		traceback.print_exc(file=sys.stderr)
-		sys.stderr.write("Exception in preparing %s: %s\n" % (fname, e))
+		sys.stderr.write("Exception in %s: %s\n" % (fname, e))
 		raise e
+	return test
 
-def makereport(config, tests):
-	global EXECUTOR
+def default_create_testset(config, args):
+	global TESTS
+	if not args:
+		args = _DEFAULT_DIRS + _ARCH_DIRS
+
+	for test in args:
+		if os.path.isdir(test):
+			for fname in sorted(find_files(test)):
+				TESTS.append(make_test(config, fname))
+		else:
+			TESTS.append(make_test(config, test))
+
+CREATE_TESTSET = default_create_testset
+
+def makereport(config, args):
 	init(config)
-	queue = list()
-	if not tests:
-		tests = _DEFAULT_DIRS + _ARCH_DIRS
 
 	global _EXPECTATIONS
 	try:
@@ -691,14 +693,17 @@ def makereport(config, tests):
 		out.write("Couldn't load fail epxectations: %s\n" % e)
 		_EXPECTATIONS = {}
 
+	global CREATE_TESTSET
+	CREATE_TESTSET(config, args)
+
 	# create test futures for parallel evaluation
+	global TESTS
+	global EXECUTOR
+	queue = list()
 	EXECUTOR = ProcessPoolExecutor(max_workers = config.threads)
-	for test in tests:
-		if os.path.isdir(test):
-			for fname in sorted(find_files(test)):
-				queue.append(EXECUTOR.submit(run_test, config, fname))
-		else:
-			queue.append(EXECUTOR.submit(run_test, config, test))
+	for test in TESTS:
+		queue.append(EXECUTOR.submit(run_test, test))
+
 	# collect report
 	r = Report()
 	try:

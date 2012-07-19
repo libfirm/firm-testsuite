@@ -8,10 +8,6 @@ class TestPreprocessor(Test):
 		if not hasattr(environment, "cflags"):
 			environment.cflags = "-I ."
 
-	def _init_flags(self):
-		Test._init_flags(self)
-		environment = self.environment
-
 	def compile(self):
 		environment = self.environment
 		ensure_dir(os.path.dirname(environment.preprocessed))
