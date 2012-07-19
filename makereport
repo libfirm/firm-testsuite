@@ -398,7 +398,7 @@ class Test(object):
 		try:
 			self.exec_out, self.exec_err, self.exec_retcode = my_execute(environment.runexe + environment.executable + environment.executionargs, timeout=30)
 			if self.exec_retcode != 0:
-				self.error_msg = "Test return code not zero but %d" % retcode
+				self.error_msg = "Test return code not zero but %d" % self.exec_retcode
 				return False
 		except SigKill as e:
 			self.error_msg = "execution: %s" % (e.name)
@@ -665,7 +665,7 @@ def run_test(test):
 	try:
 		test.run()
 	except Exception as e: # Exception in test run
-		sys.stderr.write("Exception in %s: %s\n" % (fname, e))
+		sys.stderr.write("Exception in %s: %s\n" % (test.id, e))
 		raise e
 	return test
 
