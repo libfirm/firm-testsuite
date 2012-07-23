@@ -6,8 +6,9 @@ extern int printf(const char *str, ...);
 #define THREE(X) X X X
 #define TWENTY(X) X X X X X X X X X X X X X X X X X X X X
 
-int main(int x)
+int main(int x, char **y)
 {
+	(void)y;
 	x += printf("Hello: %d\n", x);
 
 	THREE(

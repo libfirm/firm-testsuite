@@ -60,17 +60,17 @@ int main(int argc, char *argv[]) {
 
   a2o[0].a[5] = 4711;
 
-  printf("length(a2o[0].a) = %d\n", length(a2o[0].a));
+  printf("length(a2o[0].a) = %d\n", (int)length(a2o[0].a));
   for(i = 0; i < length(a2o[0].a); i++) {
     printf("%d\n", a2o[0].a[i]);
   }
 
-  printf("length(a2o[1].a) = %d\n", length(a2o[1].a));
+  printf("length(a2o[1].a) = %d\n", (int)length(a2o[1].a));
   for(i = 0; i < length(a2o[1].a); i++) {
     printf("%d\n", a2o[1].a[i]);
   }
 
-  printf("length(a2o[0].b) = %d\n", length(a2o[0].b));
+  printf("length(a2o[0].b) = %d\n", (int)length(a2o[0].b));
   for(i = 0; i < length(a2o[0].b); i++) {
     memcpy(&a2, &a2o[0], sizeof(a2));
     bi = a2.b[i];

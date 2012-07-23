@@ -1,3 +1,5 @@
+extern int printf(const char *str, ...);
+
 int x = 1;
 
 int main() {

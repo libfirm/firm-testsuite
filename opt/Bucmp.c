@@ -1,3 +1,5 @@
+extern int printf(const char *str, ...);
+
 char glob = -1;
 
 int main(void) {

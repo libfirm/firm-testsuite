@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+int add(int i, int j, int k, int l)
+{
+	return i + j + k +l;
+}
+
 int hallo()
 {
 	int i = 0;
@@ -8,11 +13,6 @@ int hallo()
 	i = add(i, j, i, j);
 
 	return i;
-}
-
-int add(int i, int j, int k, int l)
-{
-	return i + j + k +l;
 }
 
 int main() {

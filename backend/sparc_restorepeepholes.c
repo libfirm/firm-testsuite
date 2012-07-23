@@ -3,7 +3,7 @@
 
 int g;
 
-extern int rand(); /* libc rand, just here so the compiler has a call it can't optimize away */
+extern int rand(void); /* libc rand, just here so the compiler has a call it can't optimize away */
 
 unsigned __attribute__((noinline)) fold_const(void)
 {

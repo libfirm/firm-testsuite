@@ -1,4 +1,5 @@
 /*$ check[1] set[a-zA-Z]+\s+flag $*/
+extern int printf(const char *str, ...);
 char flag;
 
 void __attribute__((noinline)) blup(int d)

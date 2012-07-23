@@ -1,3 +1,5 @@
+extern int printf(const char *str, ...);
+
 char flag;
 
 void __attribute__((noinline)) blup(int d)

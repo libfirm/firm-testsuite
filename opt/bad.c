@@ -31,7 +31,7 @@ int main ()
 	for (i = 0; i <= 10; i++)
 	{
 		if ((int) f2 (-i) != i) {
-			printf("f2(%d) -> %d\n", -i, f2(-i));
+			printf("f2(%d) -> %u\n", -i, f2(-i));
 			abort ();
 		}
 	}

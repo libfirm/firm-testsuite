@@ -1,6 +1,8 @@
 /*$ check[2] shldl $*/
 /*$ check[4] shrdl $*/
 
+extern int puts(const char *str);
+
 unsigned long long __attribute__((noinline)) shr_imm(unsigned long long x)
 {
 	return x >> 4;

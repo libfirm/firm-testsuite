@@ -1,3 +1,5 @@
+extern int printf(const char *str, ...);
+
 /* use -marach=k6-2, athlon, pentium4 to see instructions :-) */
 int main(int argc, char *argv[]) {
 	printf("0 0\n");

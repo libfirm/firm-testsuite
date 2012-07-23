@@ -1,6 +1,6 @@
-//#include <stdio.h>
-
 /* Demonstrates a bug where constant folding ignores width of bitfields */
+
+extern int printf(const char *str, ...);
 
 #ifdef __GNUC__
 #define PACKED  __attribute__((packed))
