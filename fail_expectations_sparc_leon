@@ -53,6 +53,7 @@ backend/paramaddrsf.c                    ok
 backend/pic_const.c                      ok
 backend/prefetch.c                       ok
 backend/register_pressure.c              ok
+backend/setjmp.c                         output mismatch
 backend/shift64.c                        ok
 backend/sign_bit.c                       ok
 backend/sparc_bitopcc.c                  ok
