@@ -17,4 +17,5 @@ int main(void)
 {
 	FILE *file = 0;
 	sgf_putc('(', file);
+	return 0;
 }

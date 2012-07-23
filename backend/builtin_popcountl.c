@@ -45,4 +45,5 @@ int main(void)
 	ASSERTPOPCOUNTL(0xF7FFFFFFUL, 31);
 	ASSERTPOPCOUNTL(0xFFFFFFFFUL, 32);
 	ASSERTPOPCOUNTL((unsigned long)-1, sizeof(unsigned long)*8);
+	return 0;
 }

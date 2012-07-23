@@ -1,5 +1,4 @@
-/*$ -fcombo -fno-inline $*/
-int test(int a, int b) {
+int __attribute__((noinline)) test(int a, int b) {
 	int c, d;
 
 	c = a + b;

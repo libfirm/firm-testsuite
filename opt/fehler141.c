@@ -1,4 +1,3 @@
-/*$ -fgvn-pre $*/
 int bl_count[256];
 
 int test(int max_length, int overflow) {

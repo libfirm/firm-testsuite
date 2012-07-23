@@ -13,4 +13,5 @@ int main(int argc, char **argv) {
 	if(argc>1)
 		val = atoi(argv[1]);
 	printf("%d\n", factorial(val));
+	return 0;
 }

@@ -17,4 +17,5 @@ int main(void)
 	b[128].a = 23;
 	b[128].b = 42;
 	f(128);
+	return 0;
 }

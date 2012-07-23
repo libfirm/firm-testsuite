@@ -29,4 +29,5 @@ int main(void)
 	ASSERTFFS(0x4000U, 15);
 	ASSERTFFS(0x8000U, 16);
 	ASSERTFFS((unsigned)-1, 1);
+	return 0;
 }

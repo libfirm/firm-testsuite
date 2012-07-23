@@ -1,4 +1,3 @@
-/*$ -fno-if-conversion $*/
 #include<stdio.h>
 
 int main(void)

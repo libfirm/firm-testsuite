@@ -80,4 +80,5 @@ int main(void)
 	ASSERTPARITYLL(0xFFFFFFFFFFFFFFFFULL, 0);
 	ASSERTPARITYLL((unsigned long long)-1LL, 0);
 	ASSERTPARITYLL((unsigned long long)-2LL, 1);
+	return 0;
 }

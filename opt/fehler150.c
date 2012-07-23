@@ -1,5 +1,3 @@
-/*$ -fgvn-pre $*/
-
 #define MAX_SPEC_FD 3
 struct spec_fd_t {
     int limit;

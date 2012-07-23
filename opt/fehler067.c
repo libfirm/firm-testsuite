@@ -37,6 +37,7 @@ main()
 	min_diff = sad(0, 0, &best_block_x, &best_block_y, iterations);
 
 	printf("MinDiff: %u\nBest X: %d\nBest Y: %d\n", min_diff, best_block_x, best_block_y);
+	return 0;
 }
 
 unsigned int sad(int test_blockx, int test_blocky, int *best_block_x, int *best_block_y, int iterations)

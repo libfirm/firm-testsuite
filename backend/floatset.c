@@ -138,4 +138,5 @@ int main() {
   test(double, notislessequal, dA, dNan);
   test(double, notislessgreater, dA, dNan);
   test(double, notisunordered, dA, dNan);
+  return 0;
 }

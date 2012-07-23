@@ -77,4 +77,5 @@ int main(void)
 	ASSERTPOPCOUNTLL(0xFFFFF7FFFFFFFFFFULL, 63);
 	ASSERTPOPCOUNTLL(0xFFFFFFFFFFFFFFFFULL, 64);
 	ASSERTPOPCOUNTLL((unsigned long long)-1, sizeof(unsigned long long)*8);
+	return 0;
 }

@@ -30,4 +30,5 @@ int main(void)
 	ASSERTPARITY(0xFFFF, 0);
 	ASSERTPARITY((unsigned)-1, 0);
 	ASSERTPARITY((unsigned)-2, 1);
+	return 0;
 }

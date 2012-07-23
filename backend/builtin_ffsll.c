@@ -77,4 +77,5 @@ int main(void)
 	ASSERTFFSLL(0x4000000000000000ULL, 63);
 	ASSERTFFSLL(0x8000000000000000ULL, 64);
 	ASSERTFFSLL((unsigned long long)-1LL, 1);
+	return 0;
 }

@@ -1,5 +1,3 @@
-/*$ -fcombo $*/
-
 int test() {
 	int i, j;
 

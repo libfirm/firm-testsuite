@@ -45,4 +45,5 @@ int main(void)
 	ASSERTFFSL(0x0000000040000000UL, 31);
 	ASSERTFFSL(0x0000000080000000UL, 32);
 	ASSERTFFSL((unsigned long)-1L, 1);
+	return 0;
 }

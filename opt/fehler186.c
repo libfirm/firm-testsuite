@@ -1,5 +1,3 @@
-/*$ -fno-opt-tail-rec $*/
-
 extern int printf(const char *str, ...);
 
 int __attribute__((noinline)) sum(int k)

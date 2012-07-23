@@ -24,4 +24,5 @@ int main(void)
 	bittest(~ 0x8);
 	bittest(~ 0x10);
 	bittest(~ 0x12345678);
+	return 0;
 }

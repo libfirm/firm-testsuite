@@ -41,5 +41,5 @@ int main(void)
 	for (r = 0; r < n; ++r) {
 		printf("%X\n", not_imm[r]);
 	}
-
+	return 0;
 }

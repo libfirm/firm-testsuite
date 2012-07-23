@@ -10,7 +10,7 @@ extern int func1(int version, const char *path, unsigned long long *ptr)
 	return 42;
 }
 
-extern inline int func2(const char *path, unsigned long long dev)
+int func2(const char *path, unsigned long long dev)
 {
 	return func1(1, path, &dev);
 }

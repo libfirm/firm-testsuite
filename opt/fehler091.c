@@ -1,4 +1,3 @@
-/*$ -fdeconv $*/
 /* frontend sometimes produces 16bit operations which the backend can't handle
  * correctly (yet)
  */
@@ -19,4 +18,5 @@ int main(void)
 		printf("bad\n");
 		return 1;
 	}
+	return 0;
 }

@@ -46,4 +46,5 @@ int main(void)
 	ASSERTPARITYL(0xFFFFFFFFUL, 0);
 	ASSERTPARITYL((unsigned long)-1L, 0);
 	ASSERTPARITYL((unsigned long)-2L, 1);
+	return 0;
 }

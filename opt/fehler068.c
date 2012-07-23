@@ -48,6 +48,7 @@ main()
 	res = scalar_product(aa, ab, max_elements);
 
 	printf("\nResult: %g\n", res);
+	return 0;
 }
 
 

@@ -1,7 +1,7 @@
 long long x;
 
 /* Prevent inlining. */
-long long foo() __attribute__((noinline))
+long long __attribute__((noinline)) foo()
 {
 	return x;
 }

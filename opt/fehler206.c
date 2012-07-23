@@ -2,13 +2,14 @@ static int * volatile global;
 
 int main(void)
 {
-	for (int i = 0; i <= 0; i++)
+	int a,b,c,d;
+	for (a = 0; a <= 0; a++)
 	{
-		for (int i = 0; i <= 0; i++)
+		for (b = 0; b <= 0; b++)
 		{
-			for (int i = 0; i <= 0; i++)
+			for (c = 0; c <= 0; c++)
 			{
-				for (int i = 0; i <= 0; i++)
+				for (d = 0; d <= 0; d++)
 				{
 					unsigned counter = 0;
 					global = 0;

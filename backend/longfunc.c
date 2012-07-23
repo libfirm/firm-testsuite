@@ -20,4 +20,5 @@ int main(int x, char **y)
 	)
 
 	printf("HelloRes: %d\n", x);
+	return 0;
 }

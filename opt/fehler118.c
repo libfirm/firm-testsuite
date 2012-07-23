@@ -1,4 +1,3 @@
-/*$ -fcombo $*/
 #include <stdlib.h>
 
 char *test(char *name) {

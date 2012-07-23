@@ -13,4 +13,5 @@ void __attribute__((noinline)) foobar(int square, BITBOARD val0)
 int main(void)
 {
 	foobar(59, 0x1AC74128043CE719ull);
+	return 0;
 }

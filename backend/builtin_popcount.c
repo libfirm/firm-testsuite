@@ -29,4 +29,5 @@ int main(void)
 	ASSERTPOPCOUNT(0xF7FF, 15);
 	ASSERTPOPCOUNT(0xFFFF, 16);
 	ASSERTPOPCOUNT((unsigned)-1, sizeof(unsigned)*8);
+	return 0;
 }

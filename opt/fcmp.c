@@ -25,4 +25,5 @@ int main(void)
 	printf("dcmp2(%f, %f) = %f\n", -fa, -fb, dcmp2(-fa, -fb));
 	printf("dcmp1(%f, %f) = %f\n", fa, fb, dcmp1(fa, fb));
 	printf("dcmp2(%f, %f) = %f\n", fa, fb, dcmp2(fa, fb));
+	return 0;
 }
