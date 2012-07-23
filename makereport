@@ -63,7 +63,7 @@ _OPTS.set_defaults(
 	reportdir="reports/",
 	builddir="build/",
 	faillog_out=None,
-	cflags="-march=native -O3 -std=c99",
+	cflags="-march=native -O3 -m32",
 	ldflags="-lm",
 	expect_url="fail_expectations",
 	runexe="")
@@ -387,7 +387,7 @@ class Test(object):
 			diff = "\n".join(difflib.unified_diff(out.decode("utf-8").splitlines(), ref))
 			self.long_error_msg = diff
 		except:
-			print "DIFFLIB EXCEPTION"
+			self.long_error_msg = "unable to compare output/reference"
 			# We might end up here when utf-8 decoding failed
 			pass
 		return False
