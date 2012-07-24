@@ -119,8 +119,6 @@ class Test(object):
 		environment.filename = filename
 		if os.path.isfile(filename+".ref"):
 			environment.reference_output = codecs.open(filename+".ref", "r").read()
-		if os.path.isfile(filename+".check"):
-			self._add_shell_cmd(filename+".check %(asm_file)s")
 		environment.executable = environment.builddir + "/" + environment.filename + ".exe"
 		self._init_flags()
 		self._parse_embedded_commands(filename)

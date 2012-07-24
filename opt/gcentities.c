@@ -1,3 +1,17 @@
+/*$ !check remove_1 $*/
+/*$ !check remove_2 $*/
+/*$ !check remove_3 $*/
+/*$ !check remove_4 $*/
+/*$ !check remove_5 $*/
+/*$ !check unused_var $*/
+/*$ !check global_var3 $*/
+/*$ check remove_not_1 $*/
+/*$ check remove_not_2 $*/
+/*$ check remove_not_3 $*/
+/*$ check global_var1 $*/
+/*$ check global_var2 $*/
+/*$ check main $*/
+
 extern int puts(const char *str);
 
 static void remove_not_1(void)
