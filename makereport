@@ -65,7 +65,7 @@ _OPTS.set_defaults(
 	faillog_out=None,
 	cflags="-march=native -O3 -m32",
 	ldflags="-lm",
-	expect_url="fail_expectations",
+	expect_url="http://pp.info.uni-karlsruhe.de/cgi-bin/cgit.cgi/firm-testresults/plain/fail_expectations-i686-linux-gnu",
 	runexe="")
 _OPTS.add_option("-d", "--debug", dest="debug", action="store_true",
                  help="Enable debug messages")
@@ -484,10 +484,21 @@ class DummyTest:
 	def run(self):
 		self.success = True
 
-def load_expectations(url):
-	input = urlopen(url)
-	if input.getcode() != None and input.getcode() != 200:
-		raise Exception("Couldn't download from '%s'" % url)
+def load_expectations(url, environment):
+	try:
+		fetched = True
+		input = urlopen(url)
+		if input.getcode() != None and input.getcode() != 200:
+			fetched = False
+	except:
+		fetched = False
+
+	cachefile = environment.builddir + "/" + os.path.basename(url)
+	if not fetched:
+		out.write("Warning: Couldn't download from '%s', using cache file\n" % url)
+		input = open(cachefile)
+
+	result = dict()
 	for line in input:
 		line = line.decode("utf-8")
 		try:
@@ -496,7 +507,14 @@ def load_expectations(url):
 			continue
 		test_id = line[:i]
 		error_msg = line[i:].strip()
-		yield test_id, error_msg
+		result[test_id] = error_msg
+
+	cache = open(cachefile, "w")
+	for (test_id, error_msg) in result.iteritems():
+		cache.write("%-40s %s\n" % (test_id, error_msg))
+	cache.close()
+
+	return result
 _EXPECTATIONS = {}
 
 def expectation_match(error, expectation):
@@ -665,9 +683,9 @@ def makereport(config, args):
 
 	global _EXPECTATIONS
 	try:
-		_EXPECTATIONS = dict(load_expectations(config.expect_url))
+		_EXPECTATIONS = load_expectations(config.expect_url, config)
 	except Exception as e:
-		out.write("Couldn't load fail epxectations: %s\n" % e)
+		out.write("Couldn't load fail expectations: %s\n" % e)
 		_EXPECTATIONS = {}
 
 	global CREATE_TESTSET
