@@ -1,12 +1,10 @@
 import codecs
 
-class TestPreprocessor(Test):
+class TestPreprocessor(CTest):
 	def __init__(self, filename, environment):
-		Test.__init__(self, filename, environment)
-		environment = self.environment
+		super(TestPreprocessor, self).__init__(filename, environment)
 		environment.preprocessed = environment.builddir + "/" + environment.filename + ".i"
-		if not hasattr(environment, "cflags"):
-			environment.cflags = "-I ."
+		environment.cflags += " -I ."
 
 	def compile(self):
 		environment = self.environment
