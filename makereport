@@ -40,7 +40,8 @@ _DEFAULT_DIRS = [
 	"C++/should_fail",
 	"ack",
 	"langshootout",
-	"llvm" ]
+	"llvm",
+	"gcc" ]
 _ARCH_DIRS = [
 	"x86code" ]
 _DEBUG = None
