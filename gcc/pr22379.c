@@ -1,6 +1,5 @@
-void __add_entropy_words(void);
-void __wake_up(void);
-void SHATransform(void);
+void __add_entropy_words(void){}
+void __wake_up(void){}
 static inline __attribute__((always_inline)) void add_entropy_words(void){}
 void extract_entropy(void);
 static inline __attribute__((always_inline)) void xfer_secondary_pool(void)
