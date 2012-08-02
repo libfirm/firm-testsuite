@@ -1,7 +1,6 @@
-class PerformanceTest(Test):
+class PerformanceTest(CTest):
 	def __init__(self, filename, size, environment):
-		Test.__init__(self, filename, environment)
-		environment = self.environment
+		super(PerformanceTest,self).__init__(filename, environment)
 		if size != 0:
 			environment.executionargs = " %s" % size
 
@@ -22,6 +21,7 @@ sizes = {
 	"opt/QuickSort.c":            100000,
 	"opt/MergeSort.c":            100000,
 	"opt/HeapSort.c":             100000,
+	"opt/fib.c":                  30,
 }
 
 def create_performance_testset(config, args):
@@ -37,7 +37,8 @@ def create_performance_testset(config, args):
 		else:
 			size = sizes[name]
 
-		test = PerformanceTest(name, size, config)
+		environment = deepcopy(config)
+		test = PerformanceTest(name, size, environment)
 		TESTS.append(test)
 
 def setup_valgrind(option, opt_str, value, parser):
