@@ -1,6 +1,6 @@
-/*$ check[1] set[a-zA-Z]+\s+flag $*/
+/*$ check[1] set[a-zA-Z]+\s+_?flag $*/
 extern int printf(const char *str, ...);
-char flag;
+static char flag;
 
 void __attribute__((noinline)) blup(int d)
 {
