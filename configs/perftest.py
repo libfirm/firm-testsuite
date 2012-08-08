@@ -22,6 +22,9 @@ sizes = {
 	"opt/MergeSort.c":            100000,
 	"opt/HeapSort.c":             100000,
 	"opt/fib.c":                  30,
+	"perf/crafty.c":              100000,
+	"perf/serpent.c":             600,
+	"perf/vpr0.c":                3000,
 }
 
 def create_performance_testset(config, args):
@@ -58,6 +61,7 @@ def setup_leonperf(option, opt_str, value, parser):
 		config.cflags += " -mtarget=sparc-leon-linux-gnu"
 	config.ldflags += " -static -msoft-float"
 	config.runexe = "qemu-count -r 2.6.40 "
+	sizes["perf/vpr0.c"] = 100
 
 configurations["valgrind"] = setup_valgrind
 configurations["leonperf"] = setup_leonperf
