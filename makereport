@@ -344,7 +344,7 @@ class Test(object):
 		environment = self.environment
 		ensure_dir(os.path.dirname(environment.asm_file))
 		cmd = "%(compiler)s -S %(filename)s %(cflags)s %(ldflags)s -o %(asm_file)s" % environment.__dict__
-		silent_shell(cmd) # assumed to succeed, because compile to exe did
+		my_execute(cmd) # assumed to succeed, because compile to exe did
 
 	def check_reference_output(self, out):
 		if not hasattr(self.environment, 'reference_output'):
