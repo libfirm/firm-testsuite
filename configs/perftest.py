@@ -14,18 +14,30 @@ class PerformanceTest(CTest):
 		return True
 
 sizes = {
-	"opt/queens-handoptimized.c": 11,
-	"opt/Hanoi.c":                20,
-	"opt/Sieve.c":                150,
-	"opt/SieveBits.c":            20000,
-	"opt/QuickSort.c":            100000,
-	"opt/MergeSort.c":            100000,
-	"opt/HeapSort.c":             100000,
-	"opt/fib.c":                  30,
-	"perf/crafty.c":              100000,
-	"perf/serpent.c":             600,
-	"perf/vpr0.c":                3000,
+	"opt/queens-handoptimized.c":   11,
+	"opt/Hanoi.c":                  20,
+	"opt/Sieve.c":                  150,
+	"opt/SieveBits.c":              20000,
+	"opt/QuickSort.c":              100000,
+	"opt/MergeSort.c":              100000,
+	"opt/HeapSort.c":               100000,
+	"opt/fib.c":                    30,
+	"perf/crafty.c":                100000,
+	"perf/serpent.c":               600,
+	"perf/vpr0.c":                  3000,
+	"langshootout/fannkuch.c":      9,
+	"langshootout/bintree.c":       11,
+	"langshootout/n-body.c":        2000,
+	"langshootout/spectral-norm.c": 300,
+	"langshootout/partial-sums.c":  30000,
+	"langshootout/fasta.c":         10000,
 }
+floatheavy = set([
+	"perf/vpr0.c",
+	"langshootout/n-body.c",
+	"langshootout/spectral-norm.c",
+	"langshootout/partial-sums.c"
+])
 
 def create_performance_testset(config, args):
 	global TESTS
@@ -61,7 +73,8 @@ def setup_leonperf(option, opt_str, value, parser):
 		config.cflags += " -mtarget=sparc-leon-linux-gnu"
 	config.ldflags += " -static -msoft-float"
 	config.runexe = "qemu-count -r 2.6.40 "
-	sizes["perf/vpr0.c"] = 100
+	for b in floatheavy:
+		sizes[b] /= 30
 
 configurations["valgrind"] = setup_valgrind
 configurations["leonperf"] = setup_leonperf
