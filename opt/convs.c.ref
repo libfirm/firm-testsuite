@@ -1,0 +1,210 @@
+int -> short -> schar
+	0:   0
+	-1:  -1
+	max: -1
+	min: 0
+int -> schar -> short
+	0:   0
+	-1:  -1
+	max: -1
+	min: 0
+short -> int -> schar
+	0:   0
+	-1:  -1
+	max: -1
+	min: 0
+short -> schar -> int
+	0:   0
+	-1:  -1
+	max: -1
+	min: 0
+schar -> int -> short
+	0:   0
+	-1:  -1
+	max: 127
+	min: -128
+schar -> short -> int
+	0:   0
+	-1:  -1
+	max: 127
+	min: -128
+uint -> ushort -> uchar
+	0:   0
+	-1:  255
+	max: 255
+	min: 0
+uint -> uchar -> ushort
+	0:   0
+	-1:  255
+	max: 255
+	min: 0
+ushort -> uint -> uchar
+	0:   0
+	-1:  255
+	max: 255
+	min: 0
+ushort -> uchar -> uint
+	0:   0
+	-1:  255
+	max: 255
+	min: 0
+uchar -> uint -> ushort
+	0:   0
+	-1:  255
+	max: 255
+	min: 0
+uchar -> ushort -> uint
+	0:   0
+	-1:  255
+	max: 255
+	min: 0
+uint -> int -> uint
+	0:   0
+	-1:  4294967295
+	max: 4294967295
+	min: 0
+uint -> uint -> int
+	0:   0
+	-1:  -1
+	max: -1
+	min: 0
+int -> uint -> uint
+	0:   0
+	-1:  4294967295
+	max: 2147483647
+	min: 2147483648
+int -> uint -> uint
+	0:   0
+	-1:  4294967295
+	max: 2147483647
+	min: 2147483648
+uint -> uint -> int
+	0:   0
+	-1:  -1
+	max: -1
+	min: 0
+uint -> int -> uint
+	0:   0
+	-1:  4294967295
+	max: 4294967295
+	min: 0
+int -> ushort -> schar
+	0:   0
+	-1:  -1
+	max: -1
+	min: 0
+int -> schar -> ushort
+	0:   0
+	-1:  65535
+	max: 65535
+	min: 0
+ushort -> int -> schar
+	0:   0
+	-1:  -1
+	max: -1
+	min: 0
+ushort -> schar -> int
+	0:   0
+	-1:  -1
+	max: -1
+	min: 0
+schar -> int -> ushort
+	0:   0
+	-1:  65535
+	max: 127
+	min: 65408
+schar -> ushort -> int
+	0:   0
+	-1:  65535
+	max: 127
+	min: 65408
+uint -> short -> uchar
+	0:   0
+	-1:  255
+	max: 255
+	min: 0
+uint -> uchar -> short
+	0:   0
+	-1:  255
+	max: 255
+	min: 0
+short -> uint -> uchar
+	0:   0
+	-1:  255
+	max: 255
+	min: 0
+short -> uchar -> uint
+	0:   0
+	-1:  255
+	max: 255
+	min: 0
+uchar -> uint -> short
+	0:   0
+	-1:  255
+	max: 255
+	min: 0
+uchar -> short -> uint
+	0:   0
+	-1:  255
+	max: 255
+	min: 0
+float -> double -> double
+	0:   0.000000
+	-1:  -1.000000
+	max: 340282346638528859811704183484516925440.000000
+	min: -340282346638528859811704183484516925440.000000
+float -> double -> double
+	0:   0.000000
+	-1:  -1.000000
+	max: 340282346638528859811704183484516925440.000000
+	min: -340282346638528859811704183484516925440.000000
+double -> float -> double
+	0:   0.000000
+	-1:  -1.000000
+	max: inf
+	min: -inf
+double -> double -> float
+	0:   0.000000
+	-1:  -1.000000
+	max: inf
+	min: -inf
+double -> float -> double
+	0:   0.000000
+	-1:  -1.000000
+	max: inf
+	min: -inf
+double -> double -> float
+	0:   0.000000
+	-1:  -1.000000
+	max: inf
+	min: -inf
+double -> float -> float
+	0:   0.000000
+	-1:  -1.000000
+	max: inf
+	min: -inf
+double -> float -> float
+	0:   0.000000
+	-1:  -1.000000
+	max: inf
+	min: -inf
+float -> double -> float
+	0:   0.000000
+	-1:  -1.000000
+	max: 340282346638528859811704183484516925440.000000
+	min: -340282346638528859811704183484516925440.000000
+float -> float -> double
+	0:   0.000000
+	-1:  -1.000000
+	max: 340282346638528859811704183484516925440.000000
+	min: -340282346638528859811704183484516925440.000000
+float -> double -> float
+	0:   0.000000
+	-1:  -1.000000
+	max: 340282346638528859811704183484516925440.000000
+	min: -340282346638528859811704183484516925440.000000
+float -> float -> double
+	0:   0.000000
+	-1:  -1.000000
+	max: 340282346638528859811704183484516925440.000000
+	min: -340282346638528859811704183484516925440.000000
