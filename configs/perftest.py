@@ -14,6 +14,7 @@ class PerformanceTest(CTest):
 		return True
 
 sizes = {
+	"opt/simple.c":                 0, # this is here to get a baseline of glibc initialisation code
 	"opt/queens-handoptimized.c":   11,
 	"opt/Hanoi.c":                  20,
 	"opt/Sieve.c":                  150,
