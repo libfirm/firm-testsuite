@@ -1,0 +1,103 @@
+# gvn_pre Phi
+modes {
+	float_mode "F" x86_extended_float 8 23
+	float_mode "D" x86_extended_float 11 52
+	float_mode "Q" x86_extended_float 15 112
+	int_mode "Bs" twos_complement 8 1 32
+	int_mode "Bu" twos_complement 8 0 32
+	int_mode "Hs" twos_complement 16 1 32
+	int_mode "Hu" twos_complement 16 0 32
+	int_mode "Is" twos_complement 32 1 32
+	int_mode "Iu" twos_complement 32 0 32
+	int_mode "Ls" twos_complement 64 1 64
+	int_mode "Lu" twos_complement 64 0 64
+	int_mode "LLs" twos_complement 128 1 128
+	int_mode "LLu" twos_complement 128 0 128
+	reference_mode "P" twos_complement 32 32 "Is" "Iu" 0
+	int_mode "Fpcw" twos_complement 16 0 0
+	float_mode "E" x86_extended_float 15 63
+	reference_mode "p32" twos_complement 32 0 "Is" "Iu" 1
+}
+
+typegraph {
+	type 0 primitive 0 0 layout_fixed 2 "BB" none
+	type 1 primitive 0 0 layout_fixed 2 "X" none
+	type 2 primitive 0 0 layout_fixed 2 "M" none
+	type 3 primitive 0 0 layout_fixed 2 "T" none
+	type 4 primitive 0 0 layout_fixed 2 "ANY" none
+	type 5 primitive 0 0 layout_fixed 2 "BAD" none
+	type 6 primitive 0 0 layout_fixed 2 "b" none
+	type 7 primitive 4 4 layout_fixed 2 "F" none
+	type 8 primitive 8 8 layout_fixed 2 "D" none
+	type 9 primitive 16 16 layout_fixed 2 "Q" none
+	type 10 primitive 1 1 layout_fixed 2 "Bs" none
+	type 11 primitive 1 1 layout_fixed 2 "Bu" none
+	type 12 primitive 2 2 layout_fixed 2 "Hs" none
+	type 13 primitive 2 2 layout_fixed 2 "Hu" none
+	type 14 primitive 4 4 layout_fixed 2 "Is" none
+	type 15 primitive 4 4 layout_fixed 2 "Iu" none
+	type 16 primitive 8 8 layout_fixed 2 "Ls" none
+	type 17 primitive 8 8 layout_fixed 2 "Lu" none
+	type 18 primitive 16 16 layout_fixed 2 "LLs" none
+	type 19 primitive 16 16 layout_fixed 2 "LLu" none
+	type 20 primitive 4 4 layout_fixed 2 "P" none
+	type 21 class 0 4 layout_undefined 24 "GlobalType"
+	type 46 primitive 4 4 layout_fixed 2 "Is" none
+	type 47 method 4 4 layout_fixed 2 0 0 2 1 46 46 46 0
+	method 48 "pre" "pre" external [constant ] 47 21 0 volatility_non_volatile
+	type 22 struct 0 0 layout_undefined 40 "ThreadLocal"
+	type 23 class 0 0 layout_undefined 72 "Constructors"
+	type 24 class 0 0 layout_undefined 136 "Destructors"
+	type 38 primitive 2 2 layout_fixed 2 "Fpcw" none
+	type 39 primitive 10 10 layout_fixed 2 "E" none
+	type 40 primitive 12 16 layout_fixed 2 "E" none
+	type 41 primitive 8 8 layout_fixed 2 "Ls" none
+	type 42 primitive 8 8 layout_fixed 2 "Lu" none
+	type 43 primitive 4 4 layout_fixed 2 "p32" none
+	type 44 primitive 1 1 layout_fixed 2 "Bs" none
+	type 45 primitive 1 1 layout_fixed 2 "Bs" none
+	type 50 class 0 4 layout_undefined 4 "<frame_type>"
+}
+
+irg 48 50 {
+	Anchor 51 [52 54 53 56 57 58 60 59 55 ]
+	Block 52 [83 ]
+	Block 54 []
+	Start 56
+	Proj 60 56 "M" 1
+	End 53 [60 ]
+	Proj 57 56 "X" 0
+	Proj 58 56 "p32" 2
+	Proj 59 56 "T" 3
+	NoMem 55
+	Block 76 [74 75 ]
+	Proj 63 59 "Is" 0
+	Proj 64 59 "Is" 1
+	Add 79 76 63 64 "Is"
+	Phi 80 76 "Is" [72 73 ]
+	Add 81 76 79 80 "Is"
+	Return 83 76 60 [81 ]
+	Block 66 [70 ]
+	Jmp 74 66
+	Block 67 [71 ]
+	Jmp 75 67
+	Add 72 66 63 64 "Is"
+	Const 73 "Is" 0x7
+	Block 62 [57 ]
+	Cmp 68 62 63 64 2
+	Cond 69 62 68 COND_JMP_PRED_NONE
+	Proj 70 69 "X" 1
+	Proj 71 69 "X" 0
+}
+
+constirg 33 {
+	SymConst 49 "p32" 48
+	SymConst 49 "p32" 48
+}
+
+program {
+	segment_type global 21
+	segment_type thread_local 22
+	segment_type constructors 23
+	segment_type destructors 24
+}
