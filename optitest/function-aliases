@@ -1,0 +1,7 @@
+cse                      do_gcse
+gvn_pre                  do_gvn_pre
+inline                   inline_f
+invert_loops             do_loop_inversion
+local                    optimize_graph_df
+strength_reduction       stred
+unroll_loops             do_loop_unrolling

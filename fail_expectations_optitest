@@ -1,0 +1,9 @@
+optitest/add_consts_variable.ir          ok
+optitest/cse.ir                          ok
+optitest/inline.ir                       ok
+optitest/inversion.ir                    ok
+optitest/loop-unrolling.ir               ok
+optitest/pre.ir                          ok
+optitest/regr_vln_depth.ir               ok
+optitest/stredfoo.ir                     ok
+optitest/strength-reduction.ir           ok
