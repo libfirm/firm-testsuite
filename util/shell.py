@@ -6,6 +6,7 @@ import subprocess
 import resource
 import sys
 import signal
+import time
 
 class SigKill(Exception):
 	def __init__(self, retcode, name):
@@ -14,6 +15,8 @@ class SigKill(Exception):
 
 _EXIT_CODES = dict((-k, v) for v, k in signal.__dict__.items() if v.startswith('SIG'))
 del _EXIT_CODES[0]
+
+_CHECK_INTERVAL = 0.001
 
 def execute(cmd, env=None, timeout=0):
 	"""Execute a command and return stderr and stdout data"""
@@ -34,15 +37,20 @@ def execute(cmd, env=None, timeout=0):
 		lower_rlimit(resource.RLIMIT_DATA,  1024 * MB)
 		lower_rlimit(resource.RLIMIT_STACK, 1024 * MB)
 
-	preexec_fn = set_rlimit
 	cmd = filter(lambda x: x, cmd.split(' '))
 	proc = subprocess.Popen(cmd,
-							stdin =subprocess.PIPE,
 							stdout=subprocess.PIPE,
 							stderr=subprocess.PIPE,
-							preexec_fn = preexec_fn,
+							preexec_fn = set_rlimit,
 							env=env)
-	out, err = proc.communicate(input="")
+	if timeout > 0: # repeatedly check for timeout
+		while proc.poll() is None: # i.e. not terminated yet
+			if timeout <= 0.0: # timeout
+				proc.kill()
+				break
+			time.sleep(_CHECK_INTERVAL)
+			timeout -= _CHECK_INTERVAL
+	out, err = proc.communicate()
 	# Usually python can recognize application terminations triggered by
 	# signals, but somehow it doesn't do this for java (I suspect, that java
 	# catches the signals itself but then shuts down more 'cleanly' than it
