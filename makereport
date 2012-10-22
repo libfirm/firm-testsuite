@@ -66,7 +66,7 @@ _OPTS.set_defaults(
 	faillog_out=None,
 	cflags="-march=native -O3 -m32",
 	ldflags="-lm",
-	expect_url="http://pp.info.uni-karlsruhe.de/cgi-bin/cgit.cgi/firm-testresults/plain/fail_expectations-i686-linux-gnu",
+	expect_url="http://pp.info.uni-karlsruhe.de/git/firm-testresults/plain/fail_expectations-i686-linux-gnu",
 	runexe="")
 _OPTS.add_option("-d", "--debug", dest="debug", action="store_true",
                  help="Enable debug messages")
