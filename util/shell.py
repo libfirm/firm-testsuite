@@ -36,6 +36,7 @@ def execute(cmd, env=None, timeout=0):
 		lower_rlimit(resource.RLIMIT_CORE,  0)
 		lower_rlimit(resource.RLIMIT_DATA,  1024 * MB)
 		lower_rlimit(resource.RLIMIT_STACK, 1024 * MB)
+		lower_rlimit(resource.RLIMIT_FSIZE,   32 * MB)
 
 	cmd = filter(lambda x: x, cmd.split(' '))
 	proc = subprocess.Popen(cmd,
