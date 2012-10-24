@@ -23,6 +23,7 @@ sizes = {
 	"opt/MergeSort.c":              100000,
 	"opt/HeapSort.c":               100000,
 	"opt/fib.c":                    30,
+	"opt/fbench.c":                 5000,
 	"perf/crafty.c":                100000,
 	"perf/serpent.c":               600,
 	"perf/vpr0.c":                  3000,
@@ -34,6 +35,7 @@ sizes = {
 	"langshootout/fasta.c":         10000,
 }
 floatheavy = set([
+	"opt/fbench.c",
 	"perf/vpr0.c",
 	"langshootout/n-body.c",
 	"langshootout/spectral-norm.c",
