@@ -14,6 +14,11 @@ unknown (7)
 unknown (8)
 unknown (9)
 unknown (4294967297)
+unknown (-9223372036854775808)
+unknown (9223372036854775807)
+zero
+minus one
+unknown (1)
 zero
 unknown (0x1)
 two
@@ -27,3 +32,25 @@ unknown (0x9)
 huge 0x100000001
 unknown (0x100000002)
 64bit max
+unknown (-4294967312)
+unknown (-4294967311)
+unknown (-4294967310)
+unknown (-4294967309)
+unknown (-4294967308)
+unknown (-4294967307)
+unknown (-4294967306)
+unknown (-4294967305)
+huge -0x100000008
+huge -0x100000007
+huge -0x100000006
+huge -0x100000005
+huge -0x100000004
+huge -0x100000003
+huge -0x100000002
+huge -0x100000001
+unknown (-4294967296)
+unknown (-9223372036854775808)
+unknown (9223372036854775807)
+unknown (0)
+unknown (-1)
+unknown (1)
