@@ -44,13 +44,6 @@ def execute(cmd, env=None, timeout=0):
 							stderr=subprocess.PIPE,
 							preexec_fn = set_rlimit,
 							env=env)
-	if timeout > 0: # repeatedly check for timeout
-		while proc.poll() is None: # i.e. not terminated yet
-			if timeout <= 0.0: # timeout
-				proc.kill()
-				break
-			time.sleep(_CHECK_INTERVAL)
-			timeout -= _CHECK_INTERVAL
 	out, err = proc.communicate()
 	# Usually python can recognize application terminations triggered by
 	# signals, but somehow it doesn't do this for java (I suspect, that java
