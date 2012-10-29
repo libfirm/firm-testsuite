@@ -6,7 +6,6 @@ import subprocess
 import resource
 import sys
 import signal
-import time
 
 class SigKill(Exception):
 	def __init__(self, retcode, name):
@@ -15,8 +14,6 @@ class SigKill(Exception):
 
 _EXIT_CODES = dict((-k, v) for v, k in signal.__dict__.items() if v.startswith('SIG'))
 del _EXIT_CODES[0]
-
-_CHECK_INTERVAL = 0.001
 
 def execute(cmd, env=None, timeout=0):
 	"""Execute a command and return stderr and stdout data"""
