@@ -9,5 +9,5 @@ cd "$BUILDDIR"
 echo "Extracting..."
 tar -xf "$PACKAGEDIR/httpd-$APACHEVERSION.tar.bz2"
 cd "httpd-$APACHEVERSION"
-CC=cparser ./configure --prefix=/tmp/apachetest
+CC=cparser ./configure --with-included-apr --prefix=/tmp/apachetest
 make $MAKEFLAGS

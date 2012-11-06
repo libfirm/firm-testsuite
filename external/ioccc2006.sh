@@ -1,6 +1,4 @@
 #!/bin/sh
-#
-# Test mibench
 set -e
 
 . "$(dirname "$0")/utils.sh"
