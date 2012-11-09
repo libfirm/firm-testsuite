@@ -79,5 +79,17 @@ def setup_leonperf(option, opt_str, value, parser):
 	for b in floatheavy:
 		sizes[b] /= 30
 
+def setup_leonperf_hwfloat(option, opt_str, value, parser):
+	setup_valgrind(option, opt_str, value, parser)
+	config = parser.values
+	config.cflags = "-O3 -std=c99"
+	if "cparser" in config.compiler:
+		config.cflags += " -bregalloc=pref -mtarget=sparc-leon-linux-gnu"
+	config.ldflags += " -static -lm"
+	config.runexe = "qemu-count -r 2.6.40 "
+	for b in floatheavy:
+		sizes[b] /= 30
+
 configurations["valgrind"] = setup_valgrind
+configurations["leonperf_hwfloat"] = setup_leonperf_hwfloat
 configurations["leonperf"] = setup_leonperf
