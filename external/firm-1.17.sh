@@ -15,6 +15,8 @@ tar -xf "$PACKAGEDIR/libfirm-$FIRMVERSION.tar.bz2"
 tar -xf "$PACKAGEDIR/cparser-$CPARSERVERSION.tar.bz2"
 cd "libfirm-$FIRMVERSION"
 CC=cparser ./configure --prefix=/tmp/firmtest
+# patch out -Werror
+sed -e 's/-Werror//g' -i Makefile
 make $MAKEFLAGS
 make install
 cd "../cparser-$CPARSERVERSION"
