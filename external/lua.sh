@@ -13,7 +13,7 @@ grab "http://www.inf.puc-rio.br/~roberto/lua/$TESTS"
 cd "$BUILDDIR"
 tar -xf "$PACKAGEDIR/lua-$LUAVERSION.tar.gz"
 cd "lua-$LUAVERSION"
-sed -e 's/gcc/cparser/g' -i src/Makefile
+sed -e 's/gcc/cparser -m32/g' -i src/Makefile
 make $MAKEFLAGS linux
 
 tar -xf "$PACKAGEDIR/$TESTS"

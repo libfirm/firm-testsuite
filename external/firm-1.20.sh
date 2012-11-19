@@ -16,10 +16,11 @@ tar -xf "$PACKAGEDIR/cparser-$CPARSERVERSION.tar.bz2"
 cd "libfirm-$FIRMVERSION"
 TEMPINSTALLPATH="/tmp/firmtest"
 rm -rf "$TEMPINSTALLPATH"
-CC=cparser ./configure "--prefix=$TEMPINSTALLPATH"
+CC=cparser LFLAGS="-m32" CFLAGS="-O2 -m32" ./configure "--prefix=$TEMPINSTALLPATH"
 make $MAKEFLAGS
 make install
 cd "../cparser-$CPARSERVERSION"
+sed -e 's/-O0/-O1/g' -i Makefile # cparser fails on -O0 :-(
 export PKG_CONFIG_PATH="$TEMPINSTALLPATH/lib/pkgconfig"
 export LD_LIBRARY_PATH="$TEMPINSTALLPATH/lib:$LD_LIBRARY_PATH"
-make $MAKEFLAGS bootstrap2
+CC=cparser CPPFLAGS="-m32" LFLAGS="-m32" CFLAGS="-O2 -m32" make $MAKEFLAGS bootstrap2
