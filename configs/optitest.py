@@ -51,4 +51,6 @@ def setup_optitest(option, opt_str, value, parser):
 
 	parser.values.expect_url = "fail_expectations_optitest"
 
+	ensure_dir("build/optitest")
+
 configurations['optitest'] = setup_optitest
