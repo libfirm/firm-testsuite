@@ -2,22 +2,22 @@ int a;
 
 int f(int b, int c)
 {
-    int d    = 0;
-    int notb = !b;
+	int d    = 0;
+	int notb = !b;
 
-    if (notb) {
-	if (c) {
-	    d = a;
+	if (notb) {
+		if (c) {
+			d = a;
+		}
+
+		a = 0;
 	}
 
-	a = 0;
-    }
+	if (!notb && !c) {
+		d = a;
+	}
 
-    if (!notb && !c) {
-	    d = a;
-    }
-
-    return a && d;
+	return a && d;
 }
 
 int main(void)
