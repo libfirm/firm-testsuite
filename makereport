@@ -64,7 +64,7 @@ _OPTS.set_defaults(
 	reportdir="reports/",
 	builddir="build/",
 	faillog_out=None,
-	cflags="-march=native -O3 -m32",
+	cflags="",
 	ldflags="-lm",
 	expect_url="http://pp.info.uni-karlsruhe.de/git/firm-testresults/plain/fail_expectations-i686-linux-gnu",
 	runexe="")
@@ -744,6 +744,10 @@ def main():
 		                 help="activate %s configuration" % config)
 
 	config, args = _OPTS.parse_args()
+	# If no plugin has set custom cflags, use default
+	if config.cflags == "":
+		config.cflags = "-march=native -m32"
+	config.cflags += " -O3" # Always optimize
 	_DEBUG         = config.debug
 	_VERBOSE       = config.verbose
 	makereport(config, args)
