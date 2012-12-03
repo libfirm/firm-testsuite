@@ -1,0 +1,4 @@
+no side effect 1, 42
+no side effect 2, 11
+no side effect 3, 3.1415
+returned 4, 5, 6.7
