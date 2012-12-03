@@ -1,0 +1,245 @@
+<html>
+	<head>
+		<script src="d3.v2.min.js" type="text/javascript"></script>
+		<script src="data.js" type="text/javascript"></script>
+		<style type="text/css">
+.benchmark {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+.benchmark:hover {
+	background: #EEE;
+}
+#benchmarkname {
+	font-size: x-large;
+	font-weight: bold;
+}
+.focus {
+	stroke: #aaaaff;
+	strike-width: 1;
+	shape-rendering: crispEdges;
+}
+.axis path,
+.axis line {
+	fill: none;
+	stroke: black;
+	shape-rendering: crispEdges;
+}
+.plot {
+	stroke: red;
+	stroke-width: 2;
+	fill: none;
+}
+.derivation {
+	stroke: #0A2A0A;
+	stroke-width: 2;
+	fill: none;
+}
+		</style>
+	</head>
+	<body>
+		<h1>Benchmarks</h1>
+
+		<input type="checkbox" onclick="toggle_derivation()">Show Derivation</input>
+
+		<script type="text/javascript">
+			var body = d3.select("body");
+
+			var width  = data.length;
+			var height = 200;
+			var x_axis_height = 30;
+			var y_axis_width  = 50;
+			var margin_top    = 50;
+			var margin_right  = 50;
+
+			var benchmarks = Object.keys(data[0]).filter(function(d) { return d != "rev"; });
+			function getdata(benchmark) {
+				var result = new Array();
+				var value = -1;
+				for (var i = 0; i < data.length; ++i) {
+					var row = data[i];
+					if (benchmark in row) {
+						value = row[benchmark];
+					}
+					result.push(value);
+				}
+				return result;
+			}
+			var yscales;
+			function prepare_y_scales(min_is_zero) {
+				yscales = new Array();
+				for (var b = 0; b < benchmarks.length; ++b) {
+					var bench  = benchmarks[b];
+					var pdata  = getdata(bench);
+					var max    = d3.max(pdata);
+					var min    = min_is_zero ? 0 : d3.min(pdata);
+					var yscale = d3.scale.linear().range([height, 0])
+						.domain([min, max])
+						.nice();
+					yscales[bench] = yscale;
+				}
+			}
+
+			// Calculate derivations and scales
+			var derivations = new Array();
+			var derivation_scales = new Array();
+			for (var b = 0; b < benchmarks.length; ++b) {
+				var bench      = benchmarks[b];
+				var bdata      = getdata(bench);
+				var derivation = new Array();
+				var last       = bdata[0];
+				for (var i = 0; i < bdata.length; ++i) {
+					var value       = bdata[i];
+					var deriv_value = last-value;
+					if (Math.abs(deriv_value) < 10) {
+						deriv_value = 0;
+					}
+					derivation.push(deriv_value);
+					last = value;
+				}
+				var scale = d3.scale.linear().range([height, 0])
+					.domain(d3.extent(derivation))
+					.nice();
+				derivations[bench]       = derivation;
+				derivation_scales[bench] = scale;
+			}
+
+			var min_at_zero = false
+			prepare_y_scales(min_at_zero);
+			var numberformat = d3.format(",d");
+			var xscale = d3.scale.linear()
+				.domain([0, data.length])
+				.range([0, width]);
+			
+			var ps = body.selectAll("p").data(benchmarks).enter().append("p").attr("class", "benchmark");
+			ps.append("div").attr("id", "benchmarkname").text(function(bench) { return bench; });
+			var svgs = ps.append("svg")
+				.attr("width", width + y_axis_width + margin_right)
+				.attr("height", height + x_axis_height + margin_top)
+				.attr("id", function(d) { return d; });
+			var x_axis = d3.svg.axis()
+				.scale(xscale)
+				.orient("bottom")
+				.tickValues([])
+				.tickFormat(function(d) { return data[d].rev.substr(0,7) + "/" + data[d].rev.substr(41,7); });
+			var x_axis_g = svgs.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(" + y_axis_width + ", " + (height+margin_top) + ")")
+				.call(x_axis);
+			var y_axis_g = svgs.append("g")
+				.attr("class", "axis y")
+				.attr("transform", "translate(" + y_axis_width + ", " + margin_top + ")")
+				.each(function(bench) {
+					var yscale = yscales[bench];
+					var y_axis = d3.svg.axis()
+						.scale(yscale)
+						.orient("left")
+						.ticks(5)
+						.tickFormat(d3.format(".2s"));
+					y_axis(d3.select(this));
+				});
+			svgs.append("path")
+				.attr("class", "plot")
+				.attr("transform", "translate(" + y_axis_width + "," + margin_top + ")")
+				.attr("d", function(bench) {
+					var bdata  = getdata(bench);
+					var yscale = yscales[bench];
+					var line   = d3.svg.line()
+						.x(function(d,i) { return xscale(i); })
+						.y(yscale);
+					return line(bdata);
+			});
+			/* derivation graph and axis */
+			svgs.append("path")
+				.attr("class", "derivation")
+				.attr("transform", "translate(" + y_axis_width + "," + margin_top + ")")
+				.attr("d", function(bench) {
+					var ddata  = derivations[bench];
+					var yscale = derivation_scales[bench];
+					var line   = d3.svg.line()
+						.x(function(d,i) { return xscale(i); })
+						.y(yscale);
+					return line(ddata);
+				});
+			var y_axis_g = svgs.append("g")
+				.attr("class", "axis der")
+				.attr("transform", "translate(" + (y_axis_width + width) + ", " + margin_top + ")")
+				.each(function(bench) {
+					var yscale = derivation_scales[bench];
+					var y_axis = d3.svg.axis()
+						.scale(yscale)
+						.orient("right")
+						.ticks(5)
+						.tickFormat(d3.format("+.2s"));
+					y_axis(d3.select(this));
+			});
+
+			/* interactive stuff */
+			var valuetext = svgs.append("text")
+				.attr("class", "valuetext")
+				.attr("fill", "none")
+				.attr("text-anchor", "middle");
+			var focus = svgs.append("line")
+				.attr("class", "focus")
+				.attr("y1", 0)
+				.attr("y2", height+margin_top);
+			var focustext = svgs.append("text")
+				.attr("class", "focus");
+			svgs.on("mousemove", function() {
+				var p = d3.mouse(this);
+				focus.attr("transform", "translate(" + p[0] + ",0)");
+				var idx = Math.round(xscale.invert(p[0] - y_axis_width));
+				if (idx >= 0 && idx < data.length) {
+					x_axis.tickValues([idx]);
+					x_axis_g.call(x_axis);
+					var bench  = this.attributes.id.nodeValue;
+					var pvalue = data[idx][bench];
+					var ypos   = (yscales[bench])(pvalue) + margin_top;
+					svg = d3.select(this).select(".valuetext")
+						.attr("fill", "black")
+						.attr("transform", "translate(" + p[0] + ", " + (ypos-5) + ")")
+						.text(numberformat(pvalue));
+				}
+			});
+			svgs.on("mouseout", function() {
+				d3.select(this).select(".valuetext").attr("fill", "none");
+			});
+			svgs.on("click", function() {
+				min_at_zero = !min_at_zero;
+				prepare_y_scales(min_at_zero);
+				d3.selectAll(".plot").transition()
+					.attr("d", function(bench) {
+						var bdata  = getdata(bench);
+						var yscale = yscales[bench];
+						var line   = d3.svg.line()
+							.x(function(d,i) { return xscale(i); })
+							.y(yscale);
+						return line(bdata);
+					}).duration(1000);
+
+				d3.selectAll(".axis.y")
+					.each(function(bench) {
+						var yscale = yscales[bench];
+						var y_axis = d3.svg.axis()
+							.scale(yscale)
+							.orient("left")
+							.ticks(5)
+							.tickFormat(d3.format(".2s"));
+						y_axis(d3.select(this));
+					});
+			});
+
+			var derivation_visible = true;
+			function toggle_derivation() {
+				derivation_visible = !derivation_visible;
+				d3.selectAll(".derivation").transition()
+					.attr("opacity", derivation_visible ? 1 : 0)
+					.duration(1000);
+				d3.selectAll(".axis.der").transition()
+					.attr("opacity", derivation_visible ? 1 : 0)
+					.duration(1000);
+			}
+			toggle_derivation();
+		</script>
+	</body>
+</html>

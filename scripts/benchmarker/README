@@ -1,0 +1,8 @@
+A bunch of scripts to test series of cparser/libfirm commits. This is totally
+unsupported and probably won't work out of the box. Some informations:
+
+doall.sh     Perform all steps necessary to measure latest commits
+revs.sh      creates a list of libfirm/cparser revision pairs, put output into revs.txt
+go.py        benchmarks revisions in revs.txt
+extract2.py  Scans the result directory and produces json data. Put into data.js
+cparser_benchmarks.html  d3js based visualisation of the results in data.js
