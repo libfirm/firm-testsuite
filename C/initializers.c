@@ -14,7 +14,7 @@ char str2[5] = "Hello";
 char str3[10] = "Hello";
 signed char str4[] = "Hello";
 unsigned char str5[] = "Hello";
-/* char str4[4] = "Hello"; unclear wether this should be an error or warning
+/* char str4[4] = "Hello"; unclear whether this should be an error or warning
  * gcc produces a warning, icc an error */
 
 struct foo {
