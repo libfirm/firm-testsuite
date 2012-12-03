@@ -1,0 +1,11 @@
+--- Makefile.old	2012-10-30 11:29:58.044894117 +0100
++++ Makefile	2012-10-30 11:30:06.645026703 +0100
+@@ -104,7 +104,7 @@
+ 
+ $(GOAL): $(FIRM_HOME)/$(LIBFIRM_FILE) $(OBJECTS)
+ 	@echo "===> LD $@"
+-	$(Q)$(CC) $(OBJECTS) $(LFLAGS) $(FIRM_HOME)/$(LIBFIRM_FILE) -o $(GOAL)
++	$(Q)$(CC) $(OBJECTS) $(FIRM_HOME)/$(LIBFIRM_FILE) $(LFLAGS) -o $(GOAL)
+ 
+ splint: $(SPLINTS)
+ 
