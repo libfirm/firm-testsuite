@@ -9,3 +9,5 @@
 a.out
 /external/packages
 /external/build
+/x10firm
+/bytecode2firm
