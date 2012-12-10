@@ -11,6 +11,9 @@ int main(void)
 {
 	printf("%d\n", get_some() ? : 42);
 	printf("%d\n", get_some() ? : 42);
+	printf("%d\n", get_some() && get_some() ? : 42);
+	printf("%d\n", get_some() || get_some() ? : 42);
+	printf("%d\n", !get_some() ? : 42);
 	printf("%d\n", get_some() ? get_some() : 42);
 
 	return 0;
