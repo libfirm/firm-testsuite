@@ -20,9 +20,6 @@
 
 #endif
 
-/* deprecated and no longer supported in gcc 3.3 */
-//#define ACCEPT_CR_IN_STRINGS
-
 /* __VA_ARGS__ and __func__ support */
 #define C99_MACROS
 
@@ -1841,18 +1838,6 @@ void whitespace_test(void)
     pri\
 \
 ntf("min=%d\n", 4);
-
-#ifdef ACCEPT_CR_IN_STRINGS
-    printf("len1=%d\n", strlen("
-"));
-#ifdef CORRECT_CR_HANDLING
-    str = "
-";
-    printf("len1=%d str[0]=%d\n", strlen(str), str[0]);
-#endif
-    printf("len1=%d\n", strlen("a
-"));
-#endif /* ACCEPT_CR_IN_STRINGS */
 }
 
 int reltab[3] = { 1, 2, 3 };
