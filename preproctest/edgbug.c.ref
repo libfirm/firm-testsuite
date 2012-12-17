@@ -3,5 +3,4 @@
 # 1 "<command-line>"
 # 1 "preproctest/edgbug.c"
 
-(foo
-  )
+(foo )
