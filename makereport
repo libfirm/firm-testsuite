@@ -522,10 +522,12 @@ def expectation_match(error, expectation):
 	if error.endswith(" compile errors") and expectation.endswith(" compile errors"):
 		# exact number of compile errors does not matter
 		return True
-	if error == "compiler: SIGXCPU" and expectation == "compiler: SIGKILL":
+	if error ==  "compiler: SIGXCPU" and expectation ==  "compiler: SIGKILL" or \
+	   error == "execution: SIGXCPU" and expectation == "execution: SIGKILL":
 		# BSD on timeout signals SIGXCPU and Linux SIGKILL
 		return True
-	if error == "execution: SIGBUS" and expectation == "execution: SIGSEGV":
+	if error ==  "compiler: SIGBUS" and expectation ==  "compiler: SIGSEGV" or \
+	   error == "execution: SIGBUS" and expectation == "execution: SIGSEGV":
 		# OS X often signals SIGBUS where others signal SIGSEGV
 		return True
 	return error == expectation
