@@ -63,7 +63,7 @@ def setup_valgrind(option, opt_str, value, parser):
 	global _DEFAULT_DIRS
 	_DEFAULT_DIRS = []
 	config = parser.values
-	config.runexe = "/usr/bin/valgrind --tool=callgrind "
+	config.runexe = "valgrind --tool=callgrind "
 
 	global CREATE_TESTSET
 	CREATE_TESTSET = create_performance_testset
