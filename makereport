@@ -530,11 +530,12 @@ def expectation_match(error, expectation):
 		return True
 	return error == expectation
 
-_CONSOLE_RED = "\033[1;31m"
-_CONSOLE_GREEN = "\033[1;32m"
+_CONSOLE_RED    = "\033[1;31m"
+_CONSOLE_GREEN  = "\033[1;32m"
 _CONSOLE_YELLOW = "\033[1;33m"
-_CONSOLE_BOLD = "\033[1m"
+_CONSOLE_BOLD   = "\033[1m"
 _CONSOLE_NORMAL = "\033[m"
+_CONSOLE_CLEAR  = "\r\033[K"
 _RC = 0 # application return code
 
 def console_output(test, compile_times):
@@ -546,6 +547,8 @@ def console_output(test, compile_times):
 	expected  = _EXPECTATIONS.get(test.id)
 	if expected and expectation_match(error_msg, expected):
 		if test.success and not _VERBOSE:
+			out.write("%s%s..." % (_CONSOLE_CLEAR, test.id))
+			out.flush()
 			return
 	else:
 		if test.success:
@@ -563,7 +566,7 @@ def console_output(test, compile_times):
 			error_msg += " (expected %s)" % expected
 		else:
 			error_msg += " (new)"
-	out.write("%s%-40s %s%s%s\n" % (prefix, test.id, error_msg, _CONSOLE_NORMAL, timing))
+	out.write("%s%s%-40s %s%s%s\n" % (_CONSOLE_CLEAR, prefix, test.id, error_msg, _CONSOLE_NORMAL, timing))
 	out.flush()
 
 class Report:
@@ -576,7 +579,7 @@ class Report:
 		self.tests.append(test)
 
 	def printSummary(self):
-		out.write("---------------------------\n")
+		out.write("%s---------------------------\n" % (_CONSOLE_CLEAR))
 		out.write("Ran %d tests, of which %s%d failed%s.\n" %\
 			(self.summary[0], _CONSOLE_BOLD, self.summary[1], _CONSOLE_NORMAL))
 		out.flush()
