@@ -1,0 +1,9 @@
+  struct X: size: 4 align: 4
+         x: size: 4 align: 4
+  struct Y: size: 8 align: 8
+  struct Z: size: 4 align: 1
+  struct W: size: 8 align: 8
+       w.i: size: 4 align: 8
+       s.b: size: 4 align: 1
+       s.c: size: 4 align: 1
+  struct T: size: 4 align: 4
