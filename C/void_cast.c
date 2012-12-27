@@ -1,5 +1,7 @@
 int main(void) {
-	(void const)0;
-	(void volatile)0;
-	return 0;
+	int x = 3;
+	(void)--x;
+	(void const)x--;
+	(void volatile)(x -= 1);
+	return x;
 }
