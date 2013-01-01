@@ -1,1 +1,1 @@
-C/should_warn/implicit_int.c:1:1: warning: no type specifiers in declaration, using 'int' [-Wimplicit-int]
+C/should_warn/implicit_int.c:1:1: warning: type specifier missing; assuming 'int' [-Wimplicit-int]
