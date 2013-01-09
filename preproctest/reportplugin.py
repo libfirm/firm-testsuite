@@ -53,7 +53,7 @@ def setup_pp(option, opt_str, value, parser):
 	global _DEFAULT_DIRS
 	_DEFAULT_DIRS = [ "preproctest", "preproctest/should_fail" ]
 	config = parser.values
-	config.cflags     = "--no-external-pp -I ."
+	config.arch_cflags = "--no-external-pp -I ."
 	config.expect_url = "fail_expectations_pp"
 
 configurations["pp"] = setup_pp

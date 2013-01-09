@@ -71,10 +71,10 @@ def setup_valgrind(option, opt_str, value, parser):
 def setup_leonperf(option, opt_str, value, parser):
 	setup_valgrind(option, opt_str, value, parser)
 	config = parser.values
-	config.cflags = "-O3 -std=c99 -msoft-float"
+	config.arch_cflags = "-msoft-float"
 	if "cparser" in config.compiler:
-		config.cflags += " -mtarget=sparc-leon-linux-gnu"
-	config.ldflags += " -static -msoft-float"
+		config.arch_cflags += " -mtarget=sparc-leon-linux-gnu"
+	config.arch_ldflags += "-static -msoft-float"
 	config.runexe = "qemu-count -r 2.6.40 "
 	for b in floatheavy:
 		sizes[b] /= 30
@@ -82,10 +82,10 @@ def setup_leonperf(option, opt_str, value, parser):
 def setup_leonperf_hwfloat(option, opt_str, value, parser):
 	setup_valgrind(option, opt_str, value, parser)
 	config = parser.values
-	config.cflags = "-O3 -std=c99"
+	config.arch_cflags = "-msoft-float"
 	if "cparser" in config.compiler:
-		config.cflags += " -bregalloc=pref -mtarget=sparc-leon-linux-gnu"
-	config.ldflags += " -static -lm"
+		config.arch_cflags += " -mtarget=sparc-leon-linux-gnu"
+	config.arch_ldflags += "-static -msoft-float"
 	config.runexe = "qemu-count -r 2.6.40 "
 	for b in floatheavy:
 		sizes[b] /= 30
