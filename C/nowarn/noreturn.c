@@ -1,8 +1,8 @@
-void __attribute__((noreturn)) panic(const char *msg);
+void __attribute__((noreturn)) exit(int status);
 
 static int bla(void)
 {
-	panic("joho");
+	exit(1);
 	/* there should be no warning here as the panic above won't return
 	 * so no problem with missing return value */
 }
