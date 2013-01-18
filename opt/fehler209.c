@@ -1,4 +1,5 @@
 /*$ -O2 $*/
+/* cparser/libfirm used to produce invalid execution frequency for this */
 typedef long long int int64_t;
 typedef unsigned int uint32_t;
 
@@ -26,6 +27,8 @@ static void func_7(int64_t p_10, uint32_t p_11)
 
 int main (int argc, char* argv[])
 {
-	func_7(0xCE6C1CC4L, 0xCE6C1CC4L);
+	if (argc > 10) {
+		func_7(0xCE6C1CC4L, 0xCE6C1CC4L);
+	}
 	return 0;
 }
