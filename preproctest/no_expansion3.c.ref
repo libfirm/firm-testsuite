@@ -1,0 +1,6 @@
+# 1 "preproctest/no_expansion3.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/no_expansion3.c"
+
+42 t(5) t(1)
