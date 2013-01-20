@@ -193,7 +193,7 @@ class Test(object):
 
 	def _parse_embedded_commands(self, filename):
 		"""check input for /*$ $*/ embedded command and parse them."""
-		for line in codecs.open(filename, encoding="utf-8"):
+		for line in open(filename, "rb"):
 			m = _EMBEDDED_CMD.match(line)
 			if m:
 				if _DEBUG:
