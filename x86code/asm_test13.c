@@ -1,3 +1,4 @@
+/*$ -fno-inline $*/
 /* as seen in musl libc */
 static inline int a_swap(volatile int *x, int v)
 {
