@@ -3,4 +3,4 @@
 # 1 "<command-line>"
 # 1 "preproctest/simpleinclude2.c"
 # 1 "preproctest/empty.h" 1
-# 1 "preproctest/simpleinclude2.c" 2
+# 2 "preproctest/simpleinclude2.c" 2

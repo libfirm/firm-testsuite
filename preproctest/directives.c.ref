@@ -32,4 +32,4 @@ foo2
 # 34 "preproctest/directives.c" 2
 # 1 "preproctest/preproctest/simpleinc.h" 1
 subinclude
-# 34 "preproctest/directives.c" 2
+# 35 "preproctest/directives.c" 2
