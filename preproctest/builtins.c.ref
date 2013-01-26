@@ -1,0 +1,25 @@
+# 1 "preproctest/builtins.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/builtins.c"
+File: "preproctest/builtins.c"
+Line: 2
+Counter: 0
+IncludeLevel: 0
+Basefile: "preproctest/builtins.c"
+
+
+go down
+# 1 "preproctest/builtins.h" 1
+File: "preproctest/builtins.h"
+Line: 2
+Counter: 1
+IncludeLevel: 1
+Basefile: "preproctest/builtins.c"
+# 10 "preproctest/builtins.c" 2
+back up
+File: "preproctest/builtins.c"
+Line: 12
+Counter: 2
+IncludeLevel: 0
+Basefile: "preproctest/builtins.c"
