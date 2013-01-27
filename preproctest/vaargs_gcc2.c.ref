@@ -1,0 +1,13 @@
+# 1 "preproctest/vaargs_gcc2.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/vaargs_gcc2.c"
+
+fprintf(stderr, "Hello");
+fprintf(stderr, "Blup: %d\n" , 42);
+fprintf(stderr, "Bla: %d %s %u\n" , 13, "test", 87u);
+
+
+fprintf(stderr, "Hello");
+fprintf(stderr, "Blup: %d\n" , 42);
+fprintf(stderr, "Bla: %d %s %u\n" , 13, "test", 87u);
