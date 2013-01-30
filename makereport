@@ -16,7 +16,7 @@ import multiprocessing
 import itertools
 
 from util.concurrent.futures import ProcessPoolExecutor
-from util.shell import silent_shell, execute, SigKill
+from util.shell import execute, SigKill
 
 from copy import deepcopy
 _XML_ENCODING="utf-8"
@@ -118,7 +118,6 @@ class Test(object):
 		self.compile_seconds = -1
 		self.run_seconds = -1
 		self.checks = []
-		self.shell_cmds = []
 
 		environment.executionargs = ""
 
@@ -148,14 +147,6 @@ class Test(object):
 		if not hasattr(self.environment, 'asm_file'):
 			self.environment.asm_file = self.environment.builddir + "/" + self.environment.filename + ".s"
 
-	def _add_shell_cmd(self, cmd):
-		"""execute the given command."""
-		if _DEBUG:
-			out.write("Adding to shell commands: '%s'\n" % cmd)
-		self.shell_cmds.append(cmd)
-		if not hasattr(self.environment, 'asm_file'):
-			self.environment.asm_file = self.environment.builddir + "/" + self.environment.filename + ".s"
-
 	def _add_cflags(self, flags):
 		"""Add to cflags"""
 		if _DEBUG:
@@ -179,8 +170,6 @@ class Test(object):
 				self._add_check(m.group(3).strip(), m.group(2), True)
 			elif base == "!check":
 				self._add_check(m.group(3).strip(), m.group(2), False)
-			elif base == "shell":
-				self._add_shell_cmd(m.group(3).strip())
 			elif base == "cflags":
 				self._add_cflags(m.group(3).strip())
 			elif base == "ldflags":
@@ -208,8 +197,6 @@ class Test(object):
 		c = self.check_compiler_errors()
 		if not c: return
 		c = self._test_reference_output()
-		if not c: return
-		c = self._test_shell_commands()
 		if not c: return
 		c = self._test_check_commands()
 		if not c: return
@@ -251,22 +238,6 @@ class Test(object):
 				if flag: prefix = "check"
 				if c > 0: prefix += "[%d]" % c
 				self.error_msg = "%s '%s' failed" % (prefix, txt)
-				return False
-		return True
-
-	def _test_shell_commands(self):
-		"""Execute all embedded shell commands"""
-		if len(self.shell_cmds) == 0:
-			return True
-
-		self._compile_asm()
-		for txt in self.shell_cmds:
-			cmd = txt % self.environment.__dict__
-			if _DEBUG:
-				out.write("shell %s\n" % (txt))
-			ret = silent_shell(cmd)
-			if ret != 0:
-				self.error_msg = "shell '%s' failed" % cmd
 				return False
 		return True
 
