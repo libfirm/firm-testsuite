@@ -1,59 +1,66 @@
-import codecs
+from plugins.c   import setup_c_environment
+from test.test   import Test
+from test.steps  import execute
+from test.checks import check_retcode_zero, check_no_errors, create_check_reference_output, create_check_warnings_reference, check_missing_errors
 
-class TestPreprocessor(CTest):
-	def __init__(self, filename, environment):
-		super(TestPreprocessor, self).__init__(filename, environment)
-		environment.preprocessed = environment.builddir + "/" + environment.filename + ".i"
-		environment.cflags += " -I ."
 
-	def compile(self):
-		environment = self.environment
-		ensure_dir(os.path.dirname(environment.preprocessed))
+def step_preprocess(environment):
+    """Preprocess c source code (to stdout)"""
+    cmd = "%(cc)s %(filename)s %(cflags)s -E -o-" % environment.__dict__
+    return execute(environment, cmd, timeout=20)
 
-		cmd = "%(compiler)s -E %(cflags)s %(filename)s -o %(preprocessed)s" % environment.__dict__
-		self.compile_command = cmd
-		self.compiling = ""
-		try:
-			self.compile_out, self.compile_err, self.compile_retcode = my_execute(cmd, timeout=15)
-		except SigKill as e:
-			self.error_msg = "compiler: %s" % (e.name)
-			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
-			return False
-		except OSError as e:
-			self.error_msg = "compilation failed (%s)" % (e.strerror)
-			self.long_error_msg = "\n".join((self.compile_command, self.compiling))
-			return False
 
-		c = self.parse_compiler_output()
-		if not c: return c
-		return True
+def setup_preprocess_environment(environment, filename):
+    environment.filename = filename
+    environment.cflags  += " %s -I." % environment.arch_cflags
+    environment.ldflags += " %s" % environment.arch_ldflags
 
-	def check_execution(self):
-		"""Compare preprocessor output against reference"""
-		environment = self.environment
-		out = codecs.open(environment.preprocessed, "r").read()
-		return self.check_reference_output(out)
 
-	def check_compiler_errors(self):
-		if len(self.warnings) > 0:
-			self.error_msg = "compiler produced invalid warning"
-			return False
-		return Test.check_compiler_errors(self)
+def make_preprocessor_test(environment, filename):
+    setup_preprocess_environment(environment, filename)
 
-	def _compile_asm(self):
-		self.error_msg = "x10->asm not implemented yet"
-		return False
+    test = Test(environment, filename)
+    preprocess = test.add_step("preprocess", step_preprocess)
+    preprocess.add_check(check_no_errors)
+    preprocess.add_check(check_retcode_zero)
+    preprocess.add_check(create_check_reference_output(environment))
+    return test
 
-test_factories.insert(0, (lambda name: is_c_file(name) and "preproctest/" in name and "should_fail/" not in name, TestPreprocessor))
+
+def make_preprocessor_should_warn(environment, filename):
+    setup_preprocess_environment(environment, filename)
+
+    test = Test(environment, filename)
+    preprocess = test.add_step("preprocess", step_preprocess)
+    preprocess.add_check(check_no_errors)
+    preprocess.add_check(check_retcode_zero)
+    preprocess.add_check(create_check_warnings_reference(environment))
+    return test
+
+
+def make_preprocessor_should_fail(environment, filename):
+    setup_preprocess_environment(environment, filename)
+
+    test = Test(environment, filename)
+    preprocess = test.add_step("preprocess", step_preprocess)
+    preprocess.add_check(check_missing_errors)
+    return test
+
+test_factories = [
+    (lambda name: name.endswith(".c") and "preproctest/should_fail/" in name, make_preprocessor_should_fail),
+    (lambda name: name.endswith(".c") and "preproctest/should_warn/" in name, make_preprocessor_should_warn),
+    (lambda name: name.endswith(".c") and "preproctest/" in name,             make_preprocessor_test),
+]
+
 
 # Configurations
 def setup_pp(option, opt_str, value, parser):
-	global _ARCH_DIRS
-	_ARCH_DIRS = []
-	global _DEFAULT_DIRS
-	_DEFAULT_DIRS = [ "preproctest", "preproctest/should_fail" ]
-	config = parser.values
-	config.arch_cflags = "--no-external-pp -I ."
-	config.expect_url = "fail_expectations_pp"
+    config = parser.values
+    config.default_dirs = ["preproctest", "preproctest/should_fail", "preproctest/should_warn"]
+    config.arch_dirs    = []
+    config.arch_cflags  = "--no-external-pp"
+    config.expect_url   = "fail_expectations_pp"
 
-configurations["pp"] = setup_pp
+configurations = {
+    "pp": setup_pp
+}
