@@ -277,11 +277,12 @@ def makereport(config, args):
     ensure_dir(config.reportdir)
     ensure_dir(config.builddir)
 
-    try:
-        expectations = load_expectations(config.expect_url, config)
-    except Exception as e:
-        _out.write("Couldn't load fail expectations: %s\n" % e)
-        expectations = {}
+    expectations = {}
+    if config.expect_url:
+        try:
+            expectations = load_expectations(config.expect_url, config)
+        except Exception as e:
+            _out.write("Couldn't load fail expectations: %s\n" % e)
 
     tests = config.create_testset(config, args)
     # Avoid problems when pickling this function in multiprocessing...
