@@ -12,9 +12,10 @@ def step_preprocess(environment):
 
 def setup_preprocess_environment(environment, filename):
     environment.filename = filename
+    if "cparser" in environment.cc:
+        environment.cflags += " --no-external-pp"
     environment.cflags  += " %s -I." % environment.arch_cflags
     environment.ldflags += " %s" % environment.arch_ldflags
-
 
 def make_preprocessor_test(environment, filename):
     setup_preprocess_environment(environment, filename)
@@ -58,8 +59,8 @@ def setup_pp(option, opt_str, value, parser):
     config = parser.values
     config.default_dirs = ["preproctest", "preproctest/should_fail", "preproctest/should_warn"]
     config.arch_dirs    = []
-    config.arch_cflags  = "--no-external-pp"
-    config.expect_url   = "fail_expectations_pp"
+    config.arch_cflags  = ""
+    config.expect_url   = ""
 
 configurations = {
     "pp": setup_pp
