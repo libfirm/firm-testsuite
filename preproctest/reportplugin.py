@@ -1,7 +1,7 @@
 from plugins.c   import setup_c_environment
 from test.test   import Test
 from test.steps  import execute
-from test.checks import check_retcode_zero, check_no_errors, create_check_reference_output, create_check_warnings_reference, check_missing_errors
+from test.checks import check_retcode_zero, check_no_errors, check_no_warnings, create_check_reference_output, create_check_warnings_reference, check_missing_errors
 
 
 def step_preprocess(environment):
@@ -14,8 +14,9 @@ def setup_preprocess_environment(environment, filename):
     environment.filename = filename
     if "cparser" in environment.cc:
         environment.cflags += " --no-external-pp"
-    environment.cflags  += " %s -I." % environment.arch_cflags
+    environment.cflags  += " %s" % environment.arch_cflags
     environment.ldflags += " %s" % environment.arch_ldflags
+    environment.cflags  += " -I. -Wall -W"
 
 def make_preprocessor_test(environment, filename):
     setup_preprocess_environment(environment, filename)
@@ -23,6 +24,7 @@ def make_preprocessor_test(environment, filename):
     test = Test(environment, filename)
     preprocess = test.add_step("preprocess", step_preprocess)
     preprocess.add_check(check_no_errors)
+    preprocess.add_check(check_no_warnings)
     preprocess.add_check(check_retcode_zero)
     preprocess.add_check(create_check_reference_output(environment))
     return test
@@ -57,7 +59,7 @@ test_factories = [
 # Configurations
 def setup_pp(option, opt_str, value, parser):
     config = parser.values
-    config.default_dirs = ["preproctest", "preproctest/should_fail", "preproctest/should_warn"]
+    config.default_dirs = ["preproctest", "preproctest/should_fail", "preproctest/should_warn", "preproctest/nowarn" ]
     config.arch_dirs    = []
     config.arch_cflags  = ""
     config.expect_url   = ""
