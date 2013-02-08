@@ -1,1 +1,1 @@
-C/should_warn/main2.c:1:5: warning: first argument of 'main' should be 'int', but is 'unsigned short' [-Wmain]
+C/should_warn/main2.c:1:5: warning: first argument of 'main' should be 'int', but is 'short unsigned int' [-Wmain]

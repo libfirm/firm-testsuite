@@ -1,1 +1,1 @@
-C/should_warn/printf_int_for_short.c:6:18: warning: conversion '%hd' at position 1 specifies type 'short' but the argument has type 'int' [-Wformat]
+C/should_warn/printf_int_for_short.c:6:18: warning: conversion '%hd' at position 1 specifies type 'short int' but the argument has type 'int' [-Wformat]

@@ -6,7 +6,7 @@ C/should_warn/traditional.c:10:12: warning: passing call argument 1 as 'int' rat
 C/should_warn/traditional.c:10:22: warning: passing call argument 1 as 'double' rather than 'int' due to prototype [-Wtraditional]
 C/should_warn/traditional.c:10:30: warning: passing call argument 1 as 'char' rather than 'int' due to prototype [-Wtraditional]
 C/should_warn/traditional.c:13:12: warning: traditional C rejects ISO C style definition of 'function sw1' [-Wtraditional]
-C/should_warn/traditional.c:14:9: warning: 'long' switch expression not converted to 'int' in ISO C [-Wtraditional]
+C/should_warn/traditional.c:14:9: warning: 'long int' switch expression not converted to 'int' in ISO C [-Wtraditional]
 C/should_warn/traditional.c:19:12: warning: traditional C rejects ISO C style definition of 'function sw2' [-Wtraditional]
 C/should_warn/traditional.c:26:13: warning: traditional C rejects string constant concatenation [-Wtraditional]
 C/should_warn/traditional.c:32:15: warning: traditional C rejects the 'U' suffix [-Wtraditional]
