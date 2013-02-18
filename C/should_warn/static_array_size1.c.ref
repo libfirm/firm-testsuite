@@ -1,0 +1,1 @@
+C/should_warn/static_array_size1.c:9:2: warning: null passed to a callee which requires a non-null argument [-Wnonnull]

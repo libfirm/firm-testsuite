@@ -1,0 +1,1 @@
+C/should_warn/static_array_size2.c:8:2: warning: array argument is too small; contains 9 elements, callee requires at least 10 [-Warray-bounds]
