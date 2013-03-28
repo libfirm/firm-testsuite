@@ -98,9 +98,9 @@ def make_c_should_not_warn(environment, filename):
 
     test = Test(environment, filename)
     compile = test.add_step("compile", step_compile_c_syntax_only)
-    compile.add_check(check_retcode_zero)
     compile.add_check(check_no_errors)
     compile.add_check(check_no_warnings)
+    compile.add_check(check_retcode_zero)
     return test
 
 def is_c_file(name):
