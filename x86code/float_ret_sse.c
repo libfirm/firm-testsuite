@@ -1,4 +1,4 @@
-/*$ -bia32-arch=core2 -bia32-opt=core2 -bia32-fpunit=sse2 $*/
+/*$ -march=core2 -mfpmath=sse $*/
 
 /* test SSE to x87 transfer */
 #include <stdio.h>
