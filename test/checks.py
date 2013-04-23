@@ -113,7 +113,7 @@ def _help_check_warnings_reference(result, reference):
     n_expected   = len(reference.splitlines())
     warning_text = "\n".join(result.warnings) + "\n"
     if n_warnings != n_expected:
-        result.error = "reported %s warnings, expected %s" % (n_warnings, n_expected)
+        result.error = "reported %s warnings instead of %s" % (n_warnings, n_expected)
     elif warning_text != reference:
         result.error = "reported different warnings"
 
