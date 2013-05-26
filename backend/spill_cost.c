@@ -1,8 +1,5 @@
 int b;
-
-static void fn1(void)
-{
-}
+int c;
 
 static void fn2(void)
 {
@@ -18,7 +15,7 @@ void fn3()
 	}
 
 	for (;;) {
-		for (; fn1;) {
+		while (c) {
 			int a[45] = { };
 
 			fn2();
