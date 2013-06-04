@@ -5,6 +5,7 @@ complex double c0 = 4 - 7*I;
 complex double c1 = -4.3 + 84.1*I;
 complex double cnull = 0;
 complex double cone = 1.;
+complex double *ptr = &c1;
 
 static void print_complex(complex double c)
 {
@@ -43,6 +44,8 @@ int main(void)
 	print_complex(0 ? c1 : c0);
 	printf("%d\n", ((complex double)5, 0));
 	print_complex( (printf("a number: "), c1) );
+
+	print_complex(*ptr);
 
 	print_complex(F.c0);
 	complex double l = F.c1;
