@@ -1,7 +1,7 @@
 /* During optimization, we replace the mod operation by cheaper operations.
  * However, the backend must be careful not to generate an unsigned op if
  * the signed version is needed (or vice versa). */
-long mod10(long a) __attribute__((noinline))
+long __attribute__((noinline)) mod10(long a)
 {
 	return a % 10;
 }
