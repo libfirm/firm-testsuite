@@ -37,6 +37,8 @@ def execute(environment, cmd, timeout):
         result.stdout, result.stderr, result.retcode = shell.execute(cmd, timeout=timeout)
         result.time = time() - begin
     except shell.SigKill as e:
+        result.stdout = e.stdout
+        result.stderr = e.stderr
         result.error = e.name
     except MemoryError as e:
         result.error = "out of memory"

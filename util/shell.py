@@ -12,9 +12,11 @@ del _EXIT_CODES[0]
 
 
 class SigKill(Exception):
-    def __init__(self, retcode, name):
+    def __init__(self, retcode, name, stdout, stderr):
         self.retcode = retcode
         self.name = name
+        self.stdout = stdout
+        self.stderr = stderr
 
 
 def execute(cmd, env=None, timeout=0):
@@ -52,7 +54,7 @@ def execute(cmd, env=None, timeout=0):
     if returncode > 127:
         returncode = 128 - returncode
     if returncode in _EXIT_CODES:
-        raise SigKill(returncode, _EXIT_CODES[returncode])
+        raise SigKill(returncode, _EXIT_CODES[returncode], out, err)
     return (out, err, returncode)
 
 
