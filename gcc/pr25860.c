@@ -9,7 +9,11 @@ struct f
 {
   struct g i;
 };
-int GSM_RingNoteGetFullDuration(struct g)__attribute__((const));
+int __attribute__((const, noinline)) GSM_RingNoteGetFullDuration(struct g g)
+{
+	(void)g;
+	return 0;
+}
 void savewav(struct f *gg)
 {
   struct g *Note;
