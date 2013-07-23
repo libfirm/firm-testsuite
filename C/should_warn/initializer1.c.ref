@@ -1,0 +1,1 @@
+C/should_warn/initializer1.c:3:11: warning: extra curly braces around scalar initializer [-Wother]
