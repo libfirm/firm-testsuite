@@ -32,6 +32,7 @@ _opts.set_defaults(
     arch_ldflags="-m32",
     expect_url="http://pp.info.uni-karlsruhe.de/git/firm-testresults/plain/fail_expectations-i686-linux-gnu",
     default_dirs=[
+        "preproctest",
         "backend",
         "opt",
         "C",
