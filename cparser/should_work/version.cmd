@@ -1,1 +1,1 @@
-cparser --version
+%(cc)s --version

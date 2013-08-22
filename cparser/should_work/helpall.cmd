@@ -1,1 +1,1 @@
-cparser --help-all
+%(cc)s --help-all
