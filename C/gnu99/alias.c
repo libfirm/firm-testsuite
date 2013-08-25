@@ -3,7 +3,7 @@ extern int puts(const char *str);
 int __attribute__((alias("puts"))) PutString(const char *str);
 
 int var = 42;
-int __attribute__((alias("var"))) value;
+extern int __attribute__((alias("var"))) value;
 
 int main(void)
 {
