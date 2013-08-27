@@ -1,3 +1,5 @@
+.PHONY: all clean report
+
 all: report
 
 report:
