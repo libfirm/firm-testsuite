@@ -1,1 +1,2 @@
-C/should_warn/redundant_decl.c:2:6: warning: redundant declaration for 'function exit' (declared at line 1:6) [-Wredundant-decls]
+C/should_warn/redundant_decl.c:2:6: warning: redundant declaration for 'function exit' [-Wredundant-decls]
+C/should_warn/redundant_decl.c:1:6: note: previous declaration of 'function exit' was here

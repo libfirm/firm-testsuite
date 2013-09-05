@@ -39,11 +39,22 @@ def search_warnings_errors(result):
         return
     result.warnings = []
     result.errors   = []
+    last_message    = None
     for line in result.stderr.splitlines() + result.stdout.splitlines():
         if ": warning: " in line:  # frontend warnings
+            last_message = "warning"
             result.warnings.append(line)
         elif " error: " in line:  # frontend errors
+            last_message = "error"
             result.errors.append(line)
+        # Catch notes for the last problem, but not notes reporting in
+        # which function the next problem occurs
+        elif " note: " in line and not " note: in " in line:
+            if last_message == "warning":
+                result.warnings.append(line)
+            elif last_message == "error":
+                result.errors.append(line)
+            last_message = None
 
 
 def check_no_errors(result):
