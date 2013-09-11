@@ -1,0 +1,3 @@
+#ifdef +
+bad
+#endif
