@@ -1,0 +1,2 @@
+#define defined bad
+defined
