@@ -1,1 +1,1 @@
-%(cc)s -Wdoesnotexist cparser/simple.c
+%(cc)s -S -Wdoesnotexist cparser/simple.c

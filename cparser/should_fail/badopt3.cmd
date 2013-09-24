@@ -1,1 +1,1 @@
-%(cc)s -fno-foobaz cparser/simple.c
+%(cc)s -S -fno-foobaz cparser/simple.c
