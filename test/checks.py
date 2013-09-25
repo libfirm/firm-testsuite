@@ -41,10 +41,10 @@ def search_warnings_errors(result):
     result.errors   = []
     last_message    = None
     for line in result.stderr.splitlines() + result.stdout.splitlines():
-        if ": warning: " in line:  # frontend warnings
+        if "warning: " in line:  # frontend warnings
             last_message = "warning"
             result.warnings.append(line)
-        elif " error: " in line:  # frontend errors
+        elif "error: " in line:  # frontend errors
             last_message = "error"
             result.errors.append(line)
         # Catch notes for the last problem, but not notes reporting in
