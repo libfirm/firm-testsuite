@@ -1,5 +1,3 @@
-/*$ -march=i386 $*/
-
 int f(float *i, float *e)
 {
 	int s = 0;
