@@ -1,0 +1,1 @@
+C/should_warn/notabinassign0.c:4:4: warning: use of unary operator that may be intended as compound assignment (=+1) [-Wnot-compound-assign]
