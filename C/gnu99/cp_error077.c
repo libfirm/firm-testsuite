@@ -1,7 +1,7 @@
 typedef struct {int n;} S;
 
 S s;
-extern int rand();
+extern int rand(void);
 extern int putchar(int x);
 
 int main()
