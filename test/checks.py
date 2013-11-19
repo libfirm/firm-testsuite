@@ -139,3 +139,15 @@ def create_check_warnings_reference(environment):
     else:
         reference = open(warnings_file, "rb").read()
         return partial(_help_check_warnings_reference, reference=reference)
+
+def check_memcheck_output(result):
+    """Check output of step command for valgrind memcheck errors"""
+    for line in result.stderr.splitlines():
+        if not "== ERROR SUMMARY:" in line:
+            continue
+        i = line.index(":")
+        line = line[i+2:]
+        i = line.index(" ")
+        errorcount = int(line[:i])
+        if errorcount > 0:
+          result.error = "memcheck errors: %d"%errorcount

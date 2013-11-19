@@ -1,23 +1,37 @@
 import os
 from test.test   import Test, ensure_dir
 from test.steps  import execute, step_execute
-from test.checks import check_retcode_zero, check_missing_errors, check_no_errors, check_no_warnings, check_firm_problems, check_cparser_problems, create_check_reference_output, create_check_warnings_reference
+from test.checks import check_retcode_zero, check_missing_errors, check_no_errors, check_no_warnings, check_firm_problems, check_cparser_problems, create_check_reference_output, create_check_warnings_reference, check_memcheck_output
 from test.embedded_cmds import parse_embedded_commands
 from functools import partial
+
+_VALGRIND_MEMCHECK_FACTOR = 20
 
 def step_compile_c(environment):
     """Compile c source code to executable"""
     cmd = "%(cc)s %(filename)s %(cflags)s %(ldflags)s -o %(executable)s" % environment.__dict__
-    return execute(environment, cmd, timeout=60)
+    timeout=60
+    if environment.memcheck:
+      cmd = "valgrind --tool=memcheck "+cmd
+      timeout *= _VALGRIND_MEMCHECK_FACTOR
+    return execute(environment, cmd, timeout=timeout)
 
 def step_compile_c_syntax_only(environment):
     cmd = "%(cc)s %(filename)s %(cflags)s -fsyntax-only" % environment.__dict__
-    return execute(environment, cmd, timeout=20)
+    timeout=20
+    if environment.memcheck:
+      cmd = "valgrind --tool=memcheck "+cmd
+      timeout *= _VALGRIND_MEMCHECK_FACTOR
+    return execute(environment, cmd, timeout=timeout)
 
 def step_compile_c_asm(environment):
     """Compile c source code to assembler"""
     cmd = "%(cc)s %(filename)s %(cflags)s -S -o %(asmfile)s" % environment.__dict__
-    result = execute(environment, cmd, timeout=60)
+    timeout=60
+    if environment.memcheck:
+      cmd = "valgrind --tool=memcheck "+cmd
+      timeout *= _VALGRIND_MEMCHECK_FACTOR
+    result = execute(environment, cmd, timeout=timeout)
     if result.fail():
         return result
 
@@ -45,6 +59,7 @@ def make_c_test(environment, filename):
     compile.add_check(check_no_errors)
     compile.add_check(check_firm_problems)
     compile.add_check(check_retcode_zero)
+    compile.add_check(check_memcheck_output)
 
     asmchecks = parse_embedded_commands(environment, environment.filename)
     if asmchecks:
@@ -134,6 +149,8 @@ def register_options(opts):
                     metavar="ARCHLDFLAGS")
     opts.add_option("--cc", dest="cc",
                     help="Use CC to compile c programs", metavar="CC")
+    opts.add_option("--memcheck", dest="memcheck", action="store_true",
+                    help="Use valgrind memcheck on C compiler")
     opts.set_defaults(
         cc="cparser",
         cflags="-O3",
