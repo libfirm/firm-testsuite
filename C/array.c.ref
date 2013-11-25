@@ -1,1 +1,0 @@
-Res: 4 16 16 16 (should be 4, 16, 16, 16 if sizeof(int)==4)
