@@ -68,6 +68,8 @@ def make_c_test(environment, filename):
         asm = test.add_step("asm", step_compile_c_asm)
         asm.add_checks(asmchecks)
 
+    if environment.memcheck:
+        return test # no execute necessary
     execute = test.add_step("execute", step_execute)
     execute.add_check(check_retcode_zero)
     execute.add_check(create_check_reference_output(environment))
