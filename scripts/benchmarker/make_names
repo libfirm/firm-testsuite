@@ -1,0 +1,14 @@
+#! /bin/sh
+set -eu
+
+for i in result/*; do
+	echo "$i $i"
+done | sed -e 's#^result/##' -e 's#_# #' | while read -r CPARSER_REV LIBFIRM_REV KEY; do
+	OUTFILE="$KEY/info.txt"
+	if [ ! -e "$OUTFILE" ]; then
+		(
+			git --no-pager --git-dir="cparser/.git"         log -1 --format='%h %s' "$CPARSER_REV"
+			git --no-pager --git-dir="cparser/libfirm/.git" log -1 --format='%h %s' "$LIBFIRM_REV"
+		) > "$OUTFILE"
+	fi
+done

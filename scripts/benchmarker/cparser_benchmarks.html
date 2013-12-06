@@ -52,7 +52,7 @@
 			var margin_top    = 50;
 			var margin_right  = 50;
 
-			var benchmarks = Object.keys(data[0]).filter(function(d) { return d != "rev"; });
+			var benchmarks = Object.keys(data[0]).filter(function(d) { return d != "rev" && d != "info"; });
 			function getdata(benchmark) {
 				var result = new Array();
 				var value = -1;
@@ -114,14 +114,14 @@
 			var ps = body.selectAll("p").data(benchmarks).enter().append("p").attr("class", "benchmark");
 			ps.append("div").attr("id", "benchmarkname").text(function(bench) { return bench; });
 			var svgs = ps.append("svg")
-				.attr("width", width + y_axis_width + margin_right)
+				.attr("width", width + y_axis_width + margin_right + 600)
 				.attr("height", height + x_axis_height + margin_top)
 				.attr("id", function(d) { return d; });
 			var x_axis = d3.svg.axis()
 				.scale(xscale)
 				.orient("bottom")
 				.tickValues([])
-				.tickFormat(function(d) { return data[d].rev.substr(0,7) + "/" + data[d].rev.substr(41,7); });
+				.tickFormat(function(d) { return data[d].info; });
 			var x_axis_g = svgs.append("g")
 				.attr("class", "axis")
 				.attr("transform", "translate(" + y_axis_width + ", " + (height+margin_top) + ")")
@@ -200,6 +200,13 @@
 						.attr("transform", "translate(" + p[0] + ", " + (ypos-5) + ")")
 						.text(numberformat(pvalue));
 				}
+
+				var insertLinebreaks = function (d) {
+				    var el = d3.select(this);
+				    el.html(el.text());
+				};
+
+				svg.selectAll('//*g[@class="axis"]/g/text').each(insertLinebreaks);
 			});
 			svgs.on("mouseout", function() {
 				d3.select(this).select(".valuetext").attr("fill", "none");

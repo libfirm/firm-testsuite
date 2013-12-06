@@ -2,7 +2,8 @@
 import sys
 import re
 
-def read_rev(rev):
+def read_rev(cparser_rev, libfirm_rev):
+	rev = "%s_%s" % (cparser_rev, libfirm_rev)
 	try:
 		inp = open("result/%s/msgs.txt" % rev)
 	except:
@@ -25,9 +26,10 @@ def read_rev(rev):
 		value = value.replace(",", "")
 		values[name] = value
 	print "\t{ "
-	print "\"rev\": \"%s\", " % rev
+	print '"rev": "%s", ' % rev
+	print '"info": "%s", ' % open("result/%s/info.txt" % rev).read().replace('\\', '\\\\').replace('"', '\\"').replace('\n', '<br/>')
 	for (key,value) in values.iteritems():
-		print "\"%s\": %s, " % (key,value),
+		print '"%s": %s, ' % (key,value),
 	print " },\n"
 
 revs = open("revs.txt")
@@ -37,7 +39,6 @@ for line in revs:
 	if line == "":
 		continue
 	(cparser_rev, libfirm_rev) = line.split()
-	rev = "%s_%s" % (cparser_rev, libfirm_rev)
-	read_rev(rev)
+	read_rev(cparser_rev, libfirm_rev)
 print "]\n"
 
