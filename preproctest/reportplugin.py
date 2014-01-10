@@ -13,7 +13,7 @@ def step_preprocess(environment):
 def setup_preprocess_environment(environment, filename):
     environment.filename = filename
     if "cparser" in environment.cc:
-        environment.cflags += " --no-external-pp"
+        environment.cflags += " -integrated-cpp"
     environment.cflags  += " %s" % environment.arch_cflags
     environment.ldflags += " %s" % environment.arch_ldflags
     environment.cflags  += " -I. -Wall -W"
