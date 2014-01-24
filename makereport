@@ -35,6 +35,8 @@ _opts.set_defaults(
         "cparser/should_work",
         "cparser/should_fail",
         "preproctest",
+        "preproctest/should_warn",
+        "preproctest/should_fail",
         "backend",
         "opt",
         "C",
