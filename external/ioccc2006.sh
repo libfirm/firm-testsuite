@@ -4,7 +4,7 @@ set -e
 . "$(dirname "$0")/utils.sh"
 
 TOPDIR="$(pwd)"
-grab "http://www.ioccc.org/2006/2006.tar.gz"
+grab "http://www.ioccc.org/2006/2006.tar.gz" 1f51afe784afa8a4e1d5d8e8daf091c6
 
 cd "$BUILDDIR"
 rm -rf ioccc2006
