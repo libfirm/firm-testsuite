@@ -1,11 +1,12 @@
 struct {
-	int f0 : 1;
-	char f1;
+	unsigned int f0 : 1;
+	unsigned char f1;
 } a = { 1 };
 
-int main() {
+int main(void)
+{
 	a.f1 = a.f0;
 	a.f0 = 0;
 
-	return (int)a.f1 + 1;
+	return (int)a.f1 - 1;
 }
