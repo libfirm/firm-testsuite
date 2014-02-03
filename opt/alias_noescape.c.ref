@@ -1,0 +1,6 @@
+0 should be 0: may_alias(ptr, &global) = 0
+1 should be 0: may_alias(ptr, &thread_local_var) = 0
+2 should be 0: may_alias(ptr, &param0) = 0
+3 should be 0: may_alias(ptr, &local) = 0
+4 should be 0: may_alias(ptr, null) = 0
+5 must not be 0: may_alias(ptr, &ptr) = 1

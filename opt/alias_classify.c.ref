@@ -1,0 +1,13 @@
+0 should be 0: may_alias(&global, &local) = 0
+1 should be 0: may_alias(&global, &param0) = 0
+2 should be 0: may_alias(&global, malloced) = 0
+3 should be 0: may_alias(&global, null) = 0
+4 should be 0: may_alias(&global, &thread_local_var) = 0
+5 should be 0: may_alias(&local, &param0) = 0
+6 should be 0: may_alias(&local, malloced) = 0
+7 should be 0: may_alias(&local, null) = 0
+8 should be 0: may_alias(&local, &thread_local_var) = 0
+9 should be 0: may_alias(&param0, malloced) = 0
+10 should be 0: may_alias(&param0, null) = 0
+11 should be 0: may_alias(&param0, &thread_local_var) = 0
+12 should be 0: may_alias(malloced, null) = 0
