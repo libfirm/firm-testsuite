@@ -21,6 +21,7 @@ def read_cmds(environment, filename):
     environment.cmd = cmd
     environment.filename = filename
     environment.basename = os.path.basename(filename)
+    environment.basedir = os.path.dirname(filename)
 
 def make_cmd_should_fail(environment, filename):
     read_cmds(environment, filename)
