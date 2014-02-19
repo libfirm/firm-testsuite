@@ -6,6 +6,7 @@
  */
 
 #include <stdio.h>
+#include <assert.h>
 
 #define __STDC_LIMIT_MACROS 1
 #include <inttypes.h>
@@ -26,10 +27,10 @@ long*        Aptr         = &Test1.A;
 unsigned*    Yptr         = &Test1.S.Y;
 struct test** NextPtr     = &Test1.next;
 
-void
-printdiff(void* p1, void* p2)
+unsigned long
+diff(void* p1, void* p2)
 {
-  printf(" %d", (int)((unsigned long) p1 - (unsigned long) p2));
+  return (unsigned long) p1 - (unsigned long) p2;
 }
 
 int
@@ -37,28 +38,16 @@ main(int argc, char** argv)
 {
   unsigned long diff1, diff2, diff3, diff4;
 
-  printf("sizeof(struct Test) = %d\n\n", (int)sizeof(struct test));
+  assert(sizeof(struct test) == (sizeof(long) + sizeof(unsigned) * 2
+                                + sizeof(struct test*)));
 
-  printdiff(&TestArray[3], TestArray);
-  printdiff(&Test1.S.Y, &Test1.A);
-  printdiff(&Test1.next, &Test1.S.Y);
-  printf("\n");
+  assert(diff(&TestArray[3], TestArray) == sizeof(struct test) * 3);
+  assert(diff(&Test1.S.Y, &Test1.A) == sizeof(long) + sizeof(unsigned));
+  assert(diff(&Test1.next, &Test1.S.Y) == sizeof(unsigned));
 
-  diff1 = (unsigned long) &TestArray[3] - (unsigned long) TestArray;
-  diff3 = (unsigned long) &Test1.S.Y - (unsigned long) &Test1.A;
-  diff4 = (unsigned long) &Test1.next - (unsigned long) &Test1.S.Y;
-
-  printf("&TestArray[3] - TestArray = 0x%lx\n", diff1);
-  printf("Xptr - Aptr          = 0x%lx\n", diff3);
-  printf("NextPtr - Xptr       = 0x%lx\n\n", diff4);
-
-  diff1 = (unsigned long) TestArrayPtr - (unsigned long) TestArray;
-  diff3 = (unsigned long) Yptr - (unsigned long) Aptr;
-  diff4 = (unsigned long) NextPtr - (unsigned long) Yptr;
-
-  printf("&TestArray[3] - TestArray = 0x%lx\n", diff1);
-  printf("Xptr - Aptr          = 0x%lx\n", diff3);
-  printf("NextPtr - Xptr       = 0x%lx\n", diff4);
+  assert(diff(TestArrayPtr, TestArray) == sizeof(struct test) * 3);
+  assert(diff(Yptr, Aptr) == (sizeof(long) + sizeof(unsigned)));
+  assert(diff(NextPtr, Yptr) == sizeof(unsigned));
 
   return 0;
 }
