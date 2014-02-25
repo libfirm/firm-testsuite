@@ -1,0 +1,1 @@
+C/should_warn/invalid_bytesequence.c:3:20: warning: invalid byte sequence in input [-Winvalid-byte-sequence]
