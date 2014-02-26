@@ -4,6 +4,12 @@
 *.s
 *.vcg
 *.exe
+*.d
+/*.i
+/*.c
+/*.ir
+/*.s
+/*.o
 /build
 /reports
 a.out
