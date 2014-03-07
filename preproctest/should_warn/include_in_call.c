@@ -1,5 +1,5 @@
 #define id(x)  id: x
 
 id(
-#include "simpleinc.h"
+#include "../simpleinc.h"
 )
