@@ -1,0 +1,8 @@
+C/should_warn/sign_compare.c:14:12: warning: comparison between signed and unsigned [-Wsign-compare]
+C/should_warn/sign_compare.c:15:12: warning: comparison between signed and unsigned [-Wsign-compare]
+C/should_warn/sign_compare.c:16:12: warning: comparison between signed and unsigned [-Wsign-compare]
+C/should_warn/sign_compare.c:17:12: warning: comparison between signed and unsigned [-Wsign-compare]
+C/should_warn/sign_compare.c:18:12: warning: comparison between signed and unsigned [-Wsign-compare]
+C/should_warn/sign_compare.c:19:12: warning: comparison between signed and unsigned [-Wsign-compare]
+C/should_warn/sign_compare.c:20:12: warning: comparison between signed and unsigned [-Wsign-compare]
+C/should_warn/sign_compare.c:21:13: warning: comparison between signed and unsigned [-Wsign-compare]
