@@ -1,0 +1,4 @@
+C/should_warn/compare3.c:9:12: warning: comparison of distinct pointer types: 'struct A*' and 'struct B*' [-Wdistinct-pointer-types]
+C/should_warn/compare3.c:10:12: warning: comparison between pointer and integer: 'struct A*' and 'int' [-Wother]
+C/should_warn/compare3.c:11:12: warning: comparison of distinct pointer types: 'struct A*' and 'char*' [-Wdistinct-pointer-types]
+C/should_warn/compare3.c:12:12: warning: comparison between pointer and integer: 'struct A*' and 'int' [-Wother]
