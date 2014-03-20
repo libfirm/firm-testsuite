@@ -1,0 +1,1 @@
+C/should_warn/composite0.c:12:7: warning: destination type 'void (*)(int)' in call argument 2 is incompatible with 'oops' of type 'void (*)(const struct S)' [-Wother]
