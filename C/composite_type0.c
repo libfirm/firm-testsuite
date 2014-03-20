@@ -8,7 +8,7 @@ enum E x;
 int    x;
 
 enum E* y;
-int*    y;
+int*    y = &x;
 
 int main(void)
 {
