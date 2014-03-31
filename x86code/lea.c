@@ -1,4 +1,4 @@
-/*$ check leal\s+arr\+12\(,%.*,4\), %eax $*/
+/*$ check leal\s+_?arr.*\+12\(.*,%.*,4\), %eax $*/
 static int arr[20];
 
 int *foo(unsigned x)
