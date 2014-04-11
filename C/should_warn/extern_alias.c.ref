@@ -1,0 +1,2 @@
+C/should_warn/extern_alias.c:7:22: warning: extern storage class ignored for alias 'function blup' [-Wother]
+C/should_warn/extern_alias.c:8:12: warning: extern storage class ignored for alias 'variable aa' [-Wother]
