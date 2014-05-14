@@ -1,0 +1,237 @@
+diff -ru ../2013/birken/Makefile ./birken/Makefile
+--- ../2013/birken/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./birken/Makefile	2014-05-14 14:11:15.072502747 +0200
+@@ -88,9 +88,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC ?= cc
++MAY_NEED_GCC ?= $(CC)
+ 
+ 
+ ##############################
+diff -ru ../2013/cable1/Makefile ./cable1/Makefile
+--- ../2013/cable1/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./cable1/Makefile	2014-05-14 14:11:28.288185809 +0200
+@@ -88,9 +88,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC ?= cc
++MAY_NEED_GCC ?= $(CC)
+ 
+ 
+ ##############################
+diff -ru ../2013/cable2/Makefile ./cable2/Makefile
+--- ../2013/cable2/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./cable2/Makefile	2014-05-14 14:11:44.111806511 +0200
+@@ -91,9 +91,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC?= cc
++MAY_NEED_GCC?= $(CC)
+ 
+ 
+ ##############################
+diff -ru ../2013/cable3/Makefile ./cable3/Makefile
+--- ../2013/cable3/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./cable3/Makefile	2014-05-14 14:11:56.687504734 +0200
+@@ -94,9 +94,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC?= cc
++MAY_NEED_GCC?= $(CC)
+ 
+ 
+ ##############################
+diff -ru ../2013/dlowe/Makefile ./dlowe/Makefile
+--- ../2013/dlowe/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./dlowe/Makefile	2014-05-14 14:12:07.959234524 +0200
+@@ -89,9 +89,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC?= cc
++MAY_NEED_GCC?= $(CC)
+ 
+ 
+ ##############################
+diff -ru ../2013/endoh1/Makefile ./endoh1/Makefile
+--- ../2013/endoh1/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./endoh1/Makefile	2014-05-14 14:12:21.630906474 +0200
+@@ -88,9 +88,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC?= cc
++MAY_NEED_GCC?= $(CC)
+ 
+ 
+ ##############################
+diff -ru ../2013/endoh2/Makefile ./endoh2/Makefile
+--- ../2013/endoh2/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./endoh2/Makefile	2014-05-14 14:12:37.274530968 +0200
+@@ -88,9 +88,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC?= cc
++MAY_NEED_GCC?= $(CC)
+ 
+ 
+ ##############################
+diff -ru ../2013/endoh3/Makefile ./endoh3/Makefile
+--- ../2013/endoh3/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./endoh3/Makefile	2014-05-14 14:12:47.146294389 +0200
+@@ -88,9 +88,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC?= cc
++MAY_NEED_GCC?= $(CC)
+ 
+ 
+ ##############################
+diff -ru ../2013/endoh4/Makefile ./endoh4/Makefile
+--- ../2013/endoh4/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./endoh4/Makefile	2014-05-14 14:12:57.130054382 +0200
+@@ -88,9 +88,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC?= cc
++MAY_NEED_GCC?= $(CC)
+ 
+ 
+ ##############################
+diff -ru ../2013/hou/Makefile ./hou/Makefile
+--- ../2013/hou/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./hou/Makefile	2014-05-14 14:13:07.521805497 +0200
+@@ -88,9 +88,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC?= cc
++MAY_NEED_GCC?= $(CC)
+ 
+ 
+ ##############################
+diff -ru ../2013/Makefile ./Makefile
+--- ../2013/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./Makefile	2014-05-14 14:08:18.048743156 +0200
+@@ -37,7 +37,7 @@
+ #
+ # Set CC to the name of your ANSI compiler.
+ #
+-CC= cc
++CC ?= cc
+ 
+ 
+ ###############
+diff -ru ../2013/mills/Makefile ./mills/Makefile
+--- ../2013/mills/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./mills/Makefile	2014-05-14 14:13:19.249523736 +0200
+@@ -88,9 +88,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC?= cc
++MAY_NEED_GCC?= $(CC)
+ 
+ 
+ ##############################
+diff -ru ../2013/misaka/Makefile ./misaka/Makefile
+--- ../2013/misaka/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./misaka/Makefile	2014-05-14 14:13:29.377280726 +0200
+@@ -89,9 +89,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC?= cc
++MAY_NEED_GCC?= $(CC)
+ 
+ 
+ ##############################
+diff -ru ../2013/morgan1/Makefile ./morgan1/Makefile
+--- ../2013/morgan1/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./morgan1/Makefile	2014-05-14 14:13:40.377016474 +0200
+@@ -89,9 +89,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC?= cc
++MAY_NEED_GCC?= $(CC)
+ 
+ 
+ ##############################
+diff -ru ../2013/morgan2/Makefile ./morgan2/Makefile
+--- ../2013/morgan2/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./morgan2/Makefile	2014-05-14 14:13:51.288755128 +0200
+@@ -89,9 +89,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC?= cc
++MAY_NEED_GCC?= $(CC)
+ 
+ 
+ ##############################
+diff -ru ../2013/robison/Makefile ./robison/Makefile
+--- ../2013/robison/Makefile	2014-01-03 21:58:14.000000001 +0100
++++ ./robison/Makefile	2014-05-14 14:14:02.620482467 +0200
+@@ -88,9 +88,8 @@
+ # set MAY_NEED_GCC to either ${CC} (and hope for the best) or to just :
+ # to disable such programs.
+ #
+-CC= cc
+-#CC=clang
+-MAY_NEED_GCC= gcc
++CC?= cc
++MAY_NEED_GCC?= $(CC)
+ 
+ 
+ ##############################
