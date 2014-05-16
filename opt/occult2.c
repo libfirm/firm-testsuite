@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
+unsigned char w = 28;
 unsigned char x = 0xFC;
 unsigned char y = 0xFC;
 unsigned char z = 0;
@@ -24,7 +25,7 @@ void __attribute__((noinline)) mul(void) {
 }
 
 void __attribute__((noinline)) shl(void) {
-	unsigned sub8 = (x << y) >> 8;
+	unsigned sub8 = (x << w) >> 8;
 
 	printf("shl = %u\n", sub8);
 }
