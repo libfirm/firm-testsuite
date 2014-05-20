@@ -10,8 +10,8 @@ int main(void)
 	fn1(a == 0);
 
 	if (&c[1]) {
-		int  *d;
-		int **e = &d;
+		int  d;
+		int *e = &d;
 		*e = b != 0;
 		c[1];
 	}
