@@ -91,7 +91,13 @@ _console_bold   = "\033[1m"
 _console_normal = "\033[m"
 _console_clear  = "\r\033[K"
 _rc             = 0  # application return code
-
+if not sys.stdout.isatty():
+    _console_red    = ""
+    _console_green  = ""
+    _console_yellow = ""
+    _console_bold   = ""
+    _console_normal = ""
+    _console_clear  = ""
 
 def load_expectations(url, environment):
     try:
@@ -163,7 +169,8 @@ def console_output(config, test, expected):
     result = test.result
     if expected and expectation_match(result, expected, config):
         if test.success and not config.verbose:
-            _out.write("%s%s..." % (_console_clear, test.id))
+            newline = "\n" if _console_clear == "" else ""
+            _out.write("%s%s...%s" % (_console_clear, test.id, newline))
             _out.flush()
             return
     else:
