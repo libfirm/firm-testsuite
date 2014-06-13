@@ -1,9 +1,9 @@
-/*$ check leal\s+_?arr.*\+12\(%.*,%.*,4\), %eax $*/
-static char arr[20];
+/*$ check leaq\s+_?arr.*\+12\(.*,%.*,4\), %rax $*/
+static int arr[20];
 
-char *foo(unsigned long x, unsigned long y)
+int *foo(unsigned long x)
 {
-	return &arr[(x*4)+y+12];
+	return &arr[x+3];
 }
 
 int main(void)
