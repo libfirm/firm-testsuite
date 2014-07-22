@@ -1,0 +1,15 @@
+0 should be 0: may_alias(&a_ptr->a, &a_ptr1->b) = 0
+1 must not be 0: may_alias(&a_ptr->a, &a_ptr1->a) = 1
+2 must not be 0: may_alias(&u_ptr->a, &u_ptr1->b) = 1
+3 should be 0: may_alias(&a_ptr->a, &b_ptr->c) = 0
+4 should be 0: may_alias(&a_ptr->a, &b_ptr->sub_a.b) = 0
+5 must not be 0: may_alias(&a_ptr->a, &b_ptr->sub_a.a) = 1
+6 should be 0: may_alias(&c_ptr->sub_a1.a, &c_ptr1->sub_a2.a) = 0
+7 should be 0: may_alias(&j_ptr->a, &k_ptr->a) = 0
+8 should be 0: may_alias(&j_ptr->b, &l_ptr->b) = 0
+9 must not be 0: may_alias(&k_ptr->a, &l_ptr->a) = 1
+10 must not be 0: may_alias(&kl_ptr->a, &k_ptr->a) = 1
+11 must not be 0: may_alias(&kl_ptr->a, &l_ptr->a) = 1
+12 should be 0: may_alias(&kl_ptr->a, &j_ptr->a) = 0
+13 should be 0: may_alias(&kl_ptr->a, &k_ptr->b) = 0
+14 should be 0: may_alias(&k_ptr->a, &l_ptr->b) = 0
