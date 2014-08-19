@@ -17,7 +17,7 @@ float a2[20],xf,yf,zf;
 double a3[20],xd,yd,zd;
 #endif
 
-char alstr[3000] ;
+char alstr[4000] ;
 char *alptr = alstr ;
 
 struct tp2
