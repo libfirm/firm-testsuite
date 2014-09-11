@@ -1,7 +1,7 @@
 int f(int a) {
 	int v = a + a;
 
-	int g(int k) {
+	__attribute__((noinline)) int g(int k) {
 		return k + a + v;
 	}
 

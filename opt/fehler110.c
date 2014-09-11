@@ -4,7 +4,7 @@ struct A {
 
 struct A globa = { 1, 2, 3 };
 
-struct A funk(void) {
+__attribute__((noinline)) struct A funk(void) {
 	struct A res;
 
 	res.a = globa.c + 20;
@@ -14,7 +14,7 @@ struct A funk(void) {
 	return res;
 }
 
-struct A funk2(void) {
+__attribute__((noinline)) struct A funk2(void) {
 	struct A res;
 
 	memcpy(&res, &globa, sizeof(res));
