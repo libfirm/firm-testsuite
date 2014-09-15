@@ -148,6 +148,8 @@ t2()
 
 	l2 = (unsigned short) l1;
 	printf("(unsigned short) 0x1f010L = 0x%lx\n", l2);
-	l2 = (short) l1;
-	printf("(short) 0x1f010L = 0x%lx\n", l2);
+
+	/* Incorrect for 64-bit */
+	//l2 = (short) l1;
+	//printf("(short) 0x1f010L = 0x%lx\n", l2);
 }
