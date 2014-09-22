@@ -14,8 +14,8 @@ echo "Extracting..."
 tar -xf "$PACKAGEDIR/libfirm-$FIRMVERSION.tar.bz2"
 tar -xf "$PACKAGEDIR/cparser-$CPARSERVERSION.tar.bz2"
 cd "libfirm-$FIRMVERSION"
-patch -p0 < "$TOPDIR/libfirm-1.19.1.patch"
-autoreconf
+patch -p1 < "$TOPDIR/libfirm-1.19.1.patch"
+autoreconf -i
 CC=cparser CFLAGS="-O2 -m32" LFLAGS="-m32" ./configure --prefix=/tmp/firmtest
 make $MAKEFLAGS
 make install

@@ -1,6 +1,18 @@
-diff -ru ir/Makefile.am ir/Makefile.am
---- ir/Makefile.am	2011-04-18 19:09:50.000000000 +0200
-+++ ir/Makefile.am	2011-12-12 13:57:17.000000000 +0100
+diff -ru libfirm-1.19.1/configure.ac libfirm-1.19.1.patched/configure.ac
+--- libfirm-1.19.1/configure.ac	2011-05-17 19:15:53.000000000 +0200
++++ libfirm-1.19.1.patched/configure.ac	2014-09-19 13:57:41.088694963 +0200
+@@ -30,7 +30,7 @@
+ 
+ AC_INIT([libfirm], [firm_version], [firm@ipd.info.uni-karlsruhe.de])
+ AC_CONFIG_SRCDIR([ir/common/firm.c])
+-AM_INIT_AUTOMAKE([foreign dist-bzip2 silent-rules 1.11])
++AM_INIT_AUTOMAKE([foreign dist-bzip2 silent-rules subdir-objects 1.11])
+ 
+ AM_SILENT_RULES([yes])
+ 
+diff -ru libfirm-1.19.1/ir/Makefile.am libfirm-1.19.1.patched/ir/Makefile.am
+--- libfirm-1.19.1/ir/Makefile.am	2011-04-18 19:09:50.000000000 +0200
++++ libfirm-1.19.1.patched/ir/Makefile.am	2014-09-19 13:53:43.210312391 +0200
 @@ -23,7 +23,7 @@
  	-I$(top_srcdir)/ir/tr \
  	-I$(top_srcdir)/ir/tv
