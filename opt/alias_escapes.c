@@ -74,7 +74,7 @@ int get_n2(void)
 	return n2;
 }
 
-int set_n3(struct foobar f)
+void set_n3(struct foobar f)
 {
 	n3 = f;
 }
