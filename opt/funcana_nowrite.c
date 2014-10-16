@@ -23,7 +23,7 @@ static int __attribute__((noinline)) nowrite2(int x)
 int g = 13;
 
 /* the t2-t should be optimized away because load-after-load should merge them */
-/*$ !check sub $*/
+/*$ !check BAD $*/
 int main(void)
 {
 	printf("result: ");
@@ -32,6 +32,8 @@ int main(void)
 	int res2 = nowrite2(4);
 	int t2 = g;
 	int main_res = t2 - t;
+	if (main_res)
+		printf("BAD");
 	printf("%d %d\n", res, res2);
 	return main_res;
 }
