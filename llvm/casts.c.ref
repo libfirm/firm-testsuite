@@ -13,15 +13,15 @@ char to ulong  ul1 = 100		(0x64)
 SHORT            S = -769		(0xfffffcff)
 short to byte    c1 = -1		(0xffffffff)
 short to int     i1 = -769		(0xfffffcff)
-short to long    l1 = -769		(0xfffffcff)
+short to long    l1 = -769
 
 short to ubyte  uc1 = 255		(0xff)
 short to ushort us1 = 64767		(0xfcff)
 short to uint   ui1 = 4294966527		(0xfffffcff)
-short to ulong  ul1 = 4294966527		(0xfffffcff)
+short to ulong  ul1 = 4294966527
 
 
-LONG            L = -1549556829		(0xa3a3a3a3)
+LONG            L = -1549556829
 long to byte    c1 = -93		(0xffffffa3)
 long to short   s1 = -23645		(0xffffa3a3)
 long to int     i1 = -1549556829		(0xa3a3a3a3)
@@ -29,7 +29,6 @@ long to int     i1 = -1549556829		(0xa3a3a3a3)
 long to ubyte  uc1 = 163		(0xa3)
 long to ushort us1 = 41891		(0xa3a3)
 long to uint   ui1 = 2745410467		(0xa3a3a3a3)
-long to ulong  ul1 = 2745410467		(0xa3a3a3a3)
 
 
 FLOAT            F = 1.000000

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 
 #ifndef __STDC_LIMIT_MACROS
 #define __STDC_LIMIT_MACROS 1
@@ -66,12 +67,12 @@ main(int argc, char** argv)
   printf("\n\nSHORT            S = %d\t\t(0x%x)\n", S, S);
   printf("short to byte    c1 = %d\t\t(0x%x)\n", c1, c1);
   printf("short to int     i1 = %d\t\t(0x%x)\n", i1, i1);
-  printf("short to long    l1 = %ld\t\t(0x%lx)\n", l1, l1);
+  printf("short to long    l1 = %ld\n", l1);
 
   printf("\nshort to ubyte  uc1 = %u\t\t(0x%x)\n", uc1, uc1);
   printf("short to ushort us1 = %u\t\t(0x%x)\n", us1, us1);
   printf("short to uint   ui1 = %u\t\t(0x%x)\n", ui1, ui1);
-  printf("short to ulong  ul1 = %lu\t\t(0x%lx)\n", ul1, ul1);
+  printf("short to ulong  ul1 = %lu\n", ul1);
 
   uc1 = (unsigned char) L;                      /* */
   c1  = (int8_t) L;                             /* */
@@ -81,7 +82,7 @@ main(int argc, char** argv)
   ui1 = (unsigned int) L;                       /* */
   ul1 = (unsigned long) L;                       /* */
 
-  printf("\n\nLONG            L = %ld\t\t(0x%lx)\n", L, L);
+  printf("\n\nLONG            L = %ld\n", L);
   printf("long to byte    c1 = %d\t\t(0x%x)\n", c1, c1);
   printf("long to short   s1 = %d\t\t(0x%x)\n", s1, s1);
   printf("long to int     i1 = %d\t\t(0x%x)\n", i1, i1);
@@ -89,7 +90,14 @@ main(int argc, char** argv)
   printf("\nlong to ubyte  uc1 = %u\t\t(0x%x)\n", uc1, uc1);
   printf("long to ushort us1 = %u\t\t(0x%x)\n", us1, us1);
   printf("long to uint   ui1 = %u\t\t(0x%x)\n", ui1, ui1);
-  printf("long to ulong  ul1 = %lu\t\t(0x%lx)\n", ul1, ul1);
+  //printf("long to ulong  ul1 = %lu\t\t(0x%lx)\n", ul1, ul1);
+  if (sizeof(long) == 4) {
+	  assert(sizeof(unsigned long) == 4);
+	  assert(ul1 == 2745410467ul);
+  } else if (sizeof(long) == 8) {
+	  assert(sizeof(unsigned long) == 8);
+	  assert(ul1 == 179923220407203ul);
+  }
 
   /* Test floating-point to integer conversions */
   F = (float)  (argc >= 4)? atof(argv[3]) : 1.0;
