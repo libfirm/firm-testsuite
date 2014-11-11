@@ -96,5 +96,7 @@ int main()
 	inc(&k);
 	printf("mov(inc(41)): %d\n", mov_noeax(k));
 
+	sincostest(3.14159265358979323846);
+
 	return mov_noeax(0);
 }
