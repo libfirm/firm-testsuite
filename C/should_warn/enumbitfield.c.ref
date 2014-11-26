@@ -1,0 +1,5 @@
+C/should_warn/enumbitfield.c:6:50: warning: bitfield 'm0' is too small for enum 'enum e0' [-Wbitfield-size]
+C/should_warn/enumbitfield.c:7:50: warning: bitfield 'm1' is too small for enum 'enum e1' [-Wbitfield-size]
+C/should_warn/enumbitfield.c:8:50: warning: bitfield 'm2' is too small for enum 'enum e2' [-Wbitfield-size]
+C/should_warn/enumbitfield.c:11:50: warning: bitfield 'm5' is too small for enum 'enum e5' [-Wbitfield-size]
+C/should_warn/enumbitfield.c:13:50: warning: bitfield 'm7' is too small for enum 'enum e7' [-Wbitfield-size]
