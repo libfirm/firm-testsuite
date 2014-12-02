@@ -1,58 +1,66 @@
 
-CHAR             C = 'd' (100)		(0x64)
-char to short   s1 = 100		(0x64)
-char to int     i1 = 100		(0x64)
-char to long    l1 = 100		(0x64)
+INT8             C = 'd' (100)		(0x64)
+int8 to int16   s1 = 100		(0x64)
+int8 to int32   i1 = 100		(0x64)
+int8 to int64   l1 = 100		(0x64)
 
-char to ubyte  uc1 = 100		(0x64)
-char to ushort us1 = 100		(0x64)
-char to uint   ui1 = 100		(0x64)
-char to ulong  ul1 = 100		(0x64)
-
-
-SHORT            S = -769		(0xfffffcff)
-short to byte    c1 = -1		(0xffffffff)
-short to int     i1 = -769		(0xfffffcff)
-short to long    l1 = -769
-
-short to ubyte  uc1 = 255		(0xff)
-short to ushort us1 = 64767		(0xfcff)
-short to uint   ui1 = 4294966527		(0xfffffcff)
-short to ulong  ul1 = 4294966527
+int8 to uint8  uc1 = 100		(0x64)
+int8 to uint16 us1 = 100		(0x64)
+int8 to uint32 ui1 = 100		(0x64)
+int8 to uint64 ul1 = 100		(0x64)
 
 
-LONG            L = -1549556829
-long to byte    c1 = -93		(0xffffffa3)
-long to short   s1 = -23645		(0xffffa3a3)
-long to int     i1 = -1549556829		(0xa3a3a3a3)
+INT16             S = -769		(0xfffffcff)
+int16 to int8    c1 = -1		(0xffffffff)
+int16 to int32   i1 = -769		(0xfffffcff)
+int16 to int64   l1 = -769		(0xfffffffffffffcff)
 
-long to ubyte  uc1 = 163		(0xa3)
-long to ushort us1 = 41891		(0xa3a3)
-long to uint   ui1 = 2745410467		(0xa3a3a3a3)
-
-
-FLOAT            F = 1.000000
-float to short   s1 = 1		(0x1)
-float to int     i1 = 1		(0x1)
-float to ushort us1 = 1		(0x1)
-float to uint   ui1 = 1		(0x1)
-float to ulong  ul1 = 1		(0x1)
+int16 to uint8  uc1 = 255		(0xff)
+int16 to uint16 us1 = 64767		(0xfcff)
+int16 to uint32 ui1 = 4294966527		(0xfffffcff)
+int16 to uint64 ul1 = 18446744073709550847		(0xfffffffffffffcff)
 
 
-DOUBLE            D = 2.000000
-double to short   s1 = 2		(0x2)
-double to int     i1 = 2		(0x2)
-double to long    l1 = 2		(0x2)
-double to ushort us1 = 2		(0x2)
-double to uint   ui1 = 2		(0x2)
-double to ulong  ul1 = 2		(0x2)
-double <- long long 123 = 123.000000
-double <- unsigned long long 123 = 123.000000
-double <- long long -1 = -1.000000
-double <- unsigned long long 18446744073709551615 = 18446744073709551616.000000
-double <- long long -14 = -14.000000
-double <- unsigned long long 18446744073709551602 = 18446744073709551616.000000
-double <- long long 14 = 14.000000
-double <- unsigned long long 14 = 14.000000
-double <- long long -9223372036854775808 = -9223372036854775808.000000
-double <- unsigned long long 9223372036854775808 = 9223372036854775808.000000
+UINT64             L = 179923220407203
+uint64 to int8    c1 = -93		(0xffffffa3)
+uint64 to int16   s1 = -23645		(0xffffa3a3)
+uint64 to int32   i1 = -1549556829		(0xa3a3a3a3)
+
+uint64 to uint8  uc1 = 163		(0xa3)
+uint64 to uint16 us1 = 41891		(0xa3a3)
+uint64 to uint32 ui1 = 41891		(0xa3a3)
+uint64 to uint64 ul1 = 179923220407203		(0xa3a3a3a3a3a3)
+
+
+FLOAT             F = 1.000000
+float to int8    c1 = 1		(0x1)
+float to int16   s1 = 1		(0x1)
+float to int32   i1 = 1		(0x1)
+float to int64   l1 = 1		(0x1)
+
+float to uint8  uc1 = 1		(0x1)
+float to uint16 us1 = 1		(0x1)
+float to uint32 ui1 = 1		(0x1)
+float to uint64 ul1 = 1		(0x1)
+
+
+DOUBLE             D = 2.000000
+double to int8    c1 = 2		(0x2)
+double to int16   s1 = 2		(0x2)
+double to int32   i1 = 2		(0x2)
+double to int64   l1 = 2		(0x2)
+
+double to uint8  uc1 = 2		(0x2)
+double to uint16 us1 = 2		(0x2)
+double to uint32 ui1 = 2		(0x2)
+double to uint64 ul1 = 2		(0x2)
+double <- int64 123 = 123.000000
+double <- uint64 123 = 123.000000
+double <- int64 -1 = -1.000000
+double <- uint64 18446744073709551615 = 18446744073709551616.000000
+double <- int64 -14 = -14.000000
+double <- uint64 18446744073709551602 = 18446744073709551616.000000
+double <- int64 14 = 14.000000
+double <- uint64 14 = 14.000000
+double <- int64 -9223372036854775808 = -9223372036854775808.000000
+double <- uint64 9223372036854775808 = 9223372036854775808.000000
