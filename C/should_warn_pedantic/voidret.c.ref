@@ -1,0 +1,1 @@
+C/should_warn_pedantic/voidret.c:6:2: warning: void function should not return void expression [-Wpedantic]
