@@ -96,9 +96,9 @@ def parse_embedded_commands_no_check(environment):
     if checks:
         raise Exception("embedded checks not allowed")
 
-def make_c_should_warn(environment, filename):
+def make_c_should_warn(environment, filename, cflags=" -Wall -W"):
     setup_c_environment(environment, filename)
-    environment.cflags += " -Wall -W"
+    environment.cflags += cflags
     parse_embedded_commands_no_check(environment)
 
     test = Test(environment, filename)
@@ -107,6 +107,9 @@ def make_c_should_warn(environment, filename):
     compile.add_check(check_no_errors)
     compile.add_check(create_check_warnings_reference(environment))
     return test
+
+def make_c_should_warn_pedantic(environment, filename):
+	return make_c_should_warn(environment, filename, cflags=" -w -pedantic")
 
 def make_c_should_not_warn(environment, filename):
     setup_c_environment(environment, filename)
@@ -127,6 +130,7 @@ test_factories = [
     ( lambda name: is_c_file(name) and "C/should_fail/"   in name, make_c_should_fail ),
     ( lambda name: is_c_file(name) and "C++/should_fail/" in name, make_c_should_fail ),
     ( lambda name: is_c_file(name) and "C/should_warn/"   in name, make_c_should_warn ),
+	( lambda name: is_c_file(name) and "C/should_warn_pedantic/" in name, make_c_should_warn_pedantic ),
     ( lambda name: is_c_file(name) and "C/nowarn/"        in name, make_c_should_not_warn ),
     ( lambda name: is_c_file(name) and "C/gnu99/"         in name, make_make_c_test_cflags(" -std=gnu99") ),
     ( lambda name: is_c_file(name) and "C/MS/"            in name, make_make_c_test_cflags(" --ms") ),

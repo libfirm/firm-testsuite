@@ -46,6 +46,7 @@ _opts.set_defaults(
         "C/pragmatic",
         "C/should_fail",
         "C/should_warn",
+        "C/should_warn_pedantic",
         "C/nowarn",
         "C/gnu99",
         "C++/should_fail",
