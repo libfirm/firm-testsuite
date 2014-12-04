@@ -1,7 +1,8 @@
+static int __attribute__((noinline)) f(void) { return 0; }
+
 int main(void)
 {
-	int x = 23;
-	asm("xorl %0, %0" : "=&r" (x));
-	printf("%d\n", x);
-	return x;
+	int res = f();
+	asm("mov $23, %0; mov %1, %0" : "=&r" (res) : "r" (res));
+	return res;
 }
