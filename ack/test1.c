@@ -3,7 +3,6 @@
  * See the copyright notice in the ACK home directory, in the file "Copyright".
  *
  */
-#include <math.h>
 #include <stdio.h>
 
 char rcs_id[] = "$Id$" ;
