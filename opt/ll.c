@@ -63,6 +63,10 @@ ll_t neg_ll(ll_t a) {
 	return -a;
 }
 
+ll_t not_ll(ll_t a) {
+	return ~a;
+}
+
 ll_t abs_ll(ll_t a) {
 	return a < 0 ? -a : a;
 }
@@ -113,6 +117,10 @@ ull_t neg_ull(ull_t a) {
 	return -a;
 }
 
+ull_t not_ull(ull_t a) {
+	return ~a;
+}
+
 #if 0
 double conv_ull_d(ull_t a) {
 	return (double)a;
@@ -145,6 +153,7 @@ int main(void) {
 	printf("%lld >> %d = %lld\n", c, 33, shr_ll(c, 33));
 	printf("abs(%lld)    = %lld\n", c, abs_ll(c));
 	printf("neg(%lld)    = %lld\n", b, neg_ll(b));
+	printf("not(%lld)    = %lld\n", c, not_ll(c));
 	printf("conv(%lld)   = %lf\n",  c, conv_ll_d(c));
 	printf("conv(%lf)    = %lld\n", d, conv_d_ll(d));
 
@@ -159,6 +168,7 @@ int main(void) {
 	printf("%llu >> %d = %llu\n", ua, 2, shr_ull(ua, 2));
 	printf("%llu >> %d = %llu\n", uc, 33, shr_ull(uc, 33));
 	printf("neg(%llu)    = %llu\n", ub, neg_ull(ub));
+	printf("not(%llu)    = %llu\n", uc, not_ull(uc));
 #if 0
 	printf("conv(%llu)   = %lf\n",  uc, conv_ull_d(uc));
 	printf("conv(%lf)    = %llu\n", d, conv_d_ull(d));
