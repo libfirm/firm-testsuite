@@ -54,7 +54,7 @@ sizes = {
     "perf/crafty.c":                100000,
     "perf/serpent.c":               600,
     "perf/vpr0.c":                  3000,
-	"perf/iffoo.c":                 1000,
+    "perf/iffoo.c":                 1000,
     "langshootout/fannkuch.c":      9,
     "langshootout/bintree.c":       11,
     "langshootout/n-body.c":        2000,
