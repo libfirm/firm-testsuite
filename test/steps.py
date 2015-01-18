@@ -54,4 +54,4 @@ def step_execute(environment):
     if not hasattr(environment, "executionargs"):
         environment.executionargs = ""
     cmd = "%(runexe)s%(executable)s%(executionargs)s" % environment.__dict__
-    return execute(environment, cmd, timeout=30)
+    return execute(environment, cmd, timeout=environment.execute_timeout)

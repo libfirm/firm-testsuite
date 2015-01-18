@@ -21,6 +21,8 @@ _opts = optparse.OptionParser(version="%prog 0.1", usage="%prog [options]")
 _opts.set_defaults(
     debug=False,
     verbose=False,
+    compile_timeout=60,
+    execute_timeout=30,
     threads=multiprocessing.cpu_count() + 1,
     show_disappeared=False,
     reportdir="reports/",
@@ -73,6 +75,8 @@ _opts.add_option("--relax-expect", dest="relax_expect",
                  action="store_true", help="expect any error instead of specific ones")
 _opts.add_option("--show-disappeared", dest="show_disappeared",
                  action="store_true", help="show disappeared tests")
+_opts.add_option("--compile-timeout", dest="compile_timeout", type="int", help="Timeout for test compilation")
+_opts.add_option("--execute-timeout", dest="execute_timeout", type="int", help="Timeout for test execution")
 
 # List of (matchfunc, factory) tuples.
 # if matchfunc(filename) returns True then factory(filename, environment) will

@@ -10,7 +10,7 @@ _VALGRIND_MEMCHECK_FACTOR = 20
 def step_compile_c(environment):
     """Compile c source code to executable"""
     cmd = "%(cc)s %(filename)s %(cflags)s %(ldflags)s -o %(executable)s" % environment.__dict__
-    timeout=60
+    timeout=environment.compile_timeout
     if environment.memcheck:
       cmd = "valgrind --tool=memcheck "+cmd
       timeout *= _VALGRIND_MEMCHECK_FACTOR
@@ -27,7 +27,7 @@ def step_compile_c_syntax_only(environment):
 def step_compile_c_asm(environment):
     """Compile c source code to assembler"""
     cmd = "%(cc)s %(filename)s %(cflags)s -S -o %(asmfile)s" % environment.__dict__
-    timeout=60
+    timeout=environment.compile_timeout
     if environment.memcheck:
       cmd = "valgrind --tool=memcheck "+cmd
       timeout *= _VALGRIND_MEMCHECK_FACTOR
