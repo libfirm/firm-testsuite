@@ -69,7 +69,7 @@ def parse_embedded_commands(environment, filename):
     cmd_regex = re.compile("/\\*\\$ (.+) \\$\\*/")
     checkers = []
     for line in open(filename, "rb"):
-        m = cmd_regex.match(line)
+        m = cmd_regex.search(line)
         if m:
             cmd = m.group(1)
             if environment.debug:
