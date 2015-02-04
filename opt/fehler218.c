@@ -1,6 +1,6 @@
 int a;
 
-static int fn1(int p1)
+static int fn1(void)
 {
 	return 0;
 }
@@ -9,7 +9,7 @@ void fn2(void)
 {
 	int c = 0;
 	for (;;) {
-		c || a, fn1(1 && c) && a;
+		fn1() && a;
 		for (;!c; c++)
 			;
 	}
