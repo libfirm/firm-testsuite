@@ -7,8 +7,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define NULL	((void *)0)
-
 typedef struct Node Node;
 
 typedef struct Data {
