@@ -141,12 +141,12 @@ def register_options(opts):
     opts.add_option("--cflags", dest="cflags",
                     help="Use CFLAGS to compile test programs",
                     metavar="CFLAGS")
-    opts.add_option("--archcflags", dest="archcflags",
+    opts.add_option("--archcflags", dest="arch_cflags",
                     help="Append ARCHCFLAGS to cflags", metavar="ARCHCFLAGS")
     opts.add_option("--ldflags", dest="ldflags",
                     help="Use LDFLAGS to compile test programs",
                     metavar="LDFLAGS")
-    opts.add_option("--archldflags", dest="archldflags",
+    opts.add_option("--archldflags", dest="arch_ldflags",
                     help="Append ARCHLDFLAGS to LDFLAGS",
                     metavar="ARCHLDFLAGS")
     opts.add_option("--cc", dest="cc",
