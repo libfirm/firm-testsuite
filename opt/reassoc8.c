@@ -3,5 +3,5 @@ int b[1][1];
 
 int main(void)
 {
-	return b[a][a];;
+	return b[a][a];
 }
