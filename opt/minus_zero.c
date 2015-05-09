@@ -22,10 +22,22 @@ double __attribute__((noinline)) add_minus_zero(double x)
 	return x + (-0.0);
 }
 
+double __attribute__((noinline)) sub_minus_zero(double x)
+{
+	/* cannot be optimized to just 'x' */
+	return x - (-0.0);
+}
+
 float __attribute__((noinline)) add_minus_zerof(float x)
 {
 	/* can be optimized to just 'x' */
 	return x + (-0.0f);
+}
+
+float __attribute__((noinline)) sub_minus_zerof(float x)
+{
+	/* cannot be optimized to just 'x' */
+	return x - (-0.0f);
 }
 
 double __attribute__((noinline)) add_zero(double x)
@@ -34,10 +46,22 @@ double __attribute__((noinline)) add_zero(double x)
 	return x + 0.0;
 }
 
+double __attribute__((noinline)) sub_zero(double x)
+{
+	/* can be optimized to just 'x' */
+	return x - 0.0;
+}
+
 float __attribute__((noinline)) add_zerof(float x)
 {
 	/* cannot be optimized to just 'x'! */
 	return x + 0.0f;
+}
+
+float __attribute__((noinline)) sub_zerof(float x)
+{
+	/* can be optimized to just 'x' */
+	return x - 0.0f;
 }
 
 int main(void)
@@ -57,6 +81,8 @@ int main(void)
 	assert(!bitwise_equalf(add_zerof(minus_zerof), minus_zerof));
 	assert(bitwise_equalf(add_minus_zerof(minus_zerof), minus_zerof));
 	assert(bitwise_equalf(add_minus_zerof(zerof), zerof));
+	assert(bitwise_equalf(sub_zerof(minus_zerof), minus_zerof));
+	assert(bitwise_equalf(sub_minus_zerof(minus_zerof), zerof));
 	}
 
 	{
@@ -75,6 +101,8 @@ int main(void)
 	assert(!bitwise_equal(add_zero(minus_zero), minus_zero));
 	assert(bitwise_equal(add_minus_zero(minus_zero), minus_zero));
 	assert(bitwise_equal(add_minus_zero(zero), zero));
+	assert(bitwise_equal(sub_zero(minus_zero), minus_zero));
+	assert(bitwise_equal(sub_minus_zero(minus_zero), zero));
 	}
 
 	return 0;
