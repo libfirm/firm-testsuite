@@ -82,6 +82,26 @@ int justcompile(void)
 	return inb(20) + inb(5);
 }
 
+int global = 42;
+
+int __attribute__((noinline)) read_global(void) {
+	int out;
+	__asm__ __volatile__("movl %1, %0" : "=r"(out) : "g"(global));
+	return out;
+}
+
+int __attribute__((noinline)) read_addr(int *addr) {
+	int out;
+	__asm__ __volatile__("movl %1, %0" : "=r"(out) : "g"(*addr));
+	return out;
+}
+
+int __attribute__((noinline)) read_addr2(int var) {
+	int out;
+	__asm__ __volatile__("movl %1, %0" : "=r"(out) : "g"(*&var));
+	return out;
+}
+
 int main()
 {
 	kernel_fd_set s;
@@ -97,6 +117,10 @@ int main()
 	printf("mov(inc(41)): %d\n", mov_noeax(k));
 
 	sincostest(3.14159265358979323846);
+
+	assert(read_global() == 42);
+	assert(read_addr(&global) == 42);
+	assert(read_addr2(42) == 42);
 
 	return mov_noeax(0);
 }
