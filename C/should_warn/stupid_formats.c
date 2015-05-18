@@ -15,5 +15,8 @@ int main(void)
 	snprintf(buffer, sizeof(buffer), "%L");
 	snprintf(buffer, sizeof(buffer), "%%");
 	snprintf(buffer, sizeof(buffer), "%w");
+	snprintf(buffer, sizeof(buffer), "%lp");
+	int x = 23;
+	snprintf(buffer, sizeof(buffer), x ? "%d" : "%d %d %d", 23, 42);
 	return 0;
 }

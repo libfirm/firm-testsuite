@@ -10,5 +10,6 @@ int main(void)
 	sscanf(somestring, "%f", &d);
 	sscanf(somestring, "%lf", &f);
 	sscanf(somestring, "\0 %d", &i);
+	sscanf(somestring, i ? "%d" : "%d %d %d", &i, &i);
 	return 0;
 }
