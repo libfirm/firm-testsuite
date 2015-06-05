@@ -1,4 +1,4 @@
-/* ISO C99 does not allowex complement */
+/* ISO C99 does not allowed complement */
 _Complex double d;
 
 int main(void)
