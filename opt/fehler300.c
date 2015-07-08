@@ -2,7 +2,7 @@ short a;
 short *b = &a;
 int c;
 
-char fn1(p1, p2)
+char fn1(int p1, int p2)
 {
 	return p1 * p2;
 }
