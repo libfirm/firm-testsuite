@@ -7,14 +7,14 @@ void fatal(char *s, ...)
 
   va_start (ap, s);
 
-  vfprintf (stderr, s, ap);
+  vfprintf (stdout, s, ap);
 
   va_end (ap);
 }
 
 int main(void)
 {
-    fatal("i can crash the inliner");
+    fatal("i can crash the inliner\n");
 
     return 0;
 }
