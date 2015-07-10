@@ -1,5 +1,6 @@
-main()
+int main()
 {
-   switch (rand())
-   ;
+	/* Implicit declaration in switch. */
+	switch (rand())
+		;
 }
