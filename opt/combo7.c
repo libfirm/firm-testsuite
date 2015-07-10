@@ -1,4 +1,4 @@
-a;
+int a;
 
 int fn1(void)
 {
