@@ -1,0 +1,1 @@
+C/should_fail/complex_shift.c:5:11: error: operands of shift expression must have integer types, but are '_Complex double' and 'int'

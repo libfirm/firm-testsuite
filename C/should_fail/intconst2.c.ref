@@ -1,0 +1,1 @@
+C/should_fail/intconst2.c:1:11: error: array size '1.0' must have integer type but has type 'double'

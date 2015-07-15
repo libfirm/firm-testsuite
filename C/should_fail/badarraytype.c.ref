@@ -1,0 +1,1 @@
+C/should_fail/badarraytype.c:1:9: error: array size '"blup"' must have integer type but has type 'char*'

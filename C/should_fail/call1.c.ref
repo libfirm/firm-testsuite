@@ -1,0 +1,1 @@
+C/should_fail/call1.c:6:17: error: too many arguments to function 'test'

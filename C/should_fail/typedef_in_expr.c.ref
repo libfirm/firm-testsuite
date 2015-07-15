@@ -1,0 +1,1 @@
+C/should_fail/typedef_in_expr.c:5:3: error: encountered type 'Int' while parsing expression

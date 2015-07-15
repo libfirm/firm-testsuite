@@ -1,0 +1,1 @@
+C/should_fail/compoundlit0.c:7:10: error: type 'intfunc' invalid for compound literals

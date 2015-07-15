@@ -1,0 +1,1 @@
+C/should_fail/const.c:10:2: error: assignment to read-only location 'k' (type 'MyCInt')

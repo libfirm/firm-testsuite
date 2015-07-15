@@ -1,0 +1,2 @@
+C/should_fail/kr5.c:11:13: error: declaration 'void foo(int)' is incompatible with 'void foo(double)'
+C/should_fail/kr5.c:3:13: note: previous declaration of 'function foo' was here

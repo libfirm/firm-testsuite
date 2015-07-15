@@ -1,0 +1,2 @@
+C/should_fail/incompatible7.c:2:12: error: declaration 'int i0[20]' is incompatible with 'const int i0[20]'
+C/should_fail/incompatible7.c:1:18: note: previous declaration of 'variable i0' was here

@@ -1,0 +1,1 @@
+C/should_fail/funcassign.c:8:2: error: cannot assign to function 'func'

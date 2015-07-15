@@ -1,0 +1,1 @@
+C/should_fail/static_assert.c:1:1: error: assertion '0' failed: ""

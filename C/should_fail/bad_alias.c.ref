@@ -1,0 +1,1 @@
+C/should_fail/bad_alias.c:1:52: error: 'function blup' aliased to unknown entity 'doesnotexist'

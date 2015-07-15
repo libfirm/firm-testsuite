@@ -1,0 +1,1 @@
+C/should_fail/decl_without_name.c:1:5: error: function declarator must have a name

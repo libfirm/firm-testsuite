@@ -1,0 +1,2 @@
+C/should_fail/voidarray.c:2:7: error: array of incomplete type 'void' is not allowed
+C/should_fail/voidarray.c:3:10: error: array of incomplete type 'void' is not allowed

@@ -1,0 +1,1 @@
+C/should_fail/typedef_init.c:1:13: error: 'typedef c' is initialized (use __typeof__ instead)

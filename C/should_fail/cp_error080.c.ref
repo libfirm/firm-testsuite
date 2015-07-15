@@ -1,0 +1,1 @@
+C/should_fail/cp_error080.c:1:22: error: declarator 'int missing_enum' has a body but is not a function type

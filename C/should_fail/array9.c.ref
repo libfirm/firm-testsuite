@@ -1,0 +1,1 @@
+C/should_fail/array9.c:2:9: error: variable length array 'int[foo]' at file scope

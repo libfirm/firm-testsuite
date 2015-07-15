@@ -1,0 +1,2 @@
+C/should_fail/structd.c:5:9: error: multiple declarations of 'compound member a'
+C/should_fail/structd.c:2:6: note: previous declaration of 'compound member a' was here

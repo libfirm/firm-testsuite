@@ -1,0 +1,2 @@
+C/should_fail/kr2.c:4:6: error: declaration 'void f()' is incompatible with 'void f(char*, ...)'
+C/should_fail/kr2.c:3:6: note: previous declaration of 'function f' was here

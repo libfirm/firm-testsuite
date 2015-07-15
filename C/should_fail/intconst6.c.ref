@@ -1,0 +1,1 @@
+C/should_fail/intconst6.c:2:9: error: enumeration value '5.0' has non-integer type

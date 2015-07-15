@@ -1,0 +1,1 @@
+C/should_fail/offsetof.c:13:41: error: offsetof designator 'b' must not specify bitfield

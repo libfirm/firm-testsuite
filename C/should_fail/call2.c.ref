@@ -1,0 +1,1 @@
+C/should_fail/call2.c:6:13: error: too few arguments to function 'test'

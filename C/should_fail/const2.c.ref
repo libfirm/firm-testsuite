@@ -1,0 +1,1 @@
+C/should_fail/const2.c:9:6: error: assignment to read-only location 'xptr->x' (type 'const int')

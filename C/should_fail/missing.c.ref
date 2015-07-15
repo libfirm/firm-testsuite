@@ -1,0 +1,6 @@
+C/should_fail/missing.c:4:2: error: unexpected token 'else' while parsing statement
+C/should_fail/missing.c:4:2: error: expected '}', got 'else'
+C/should_fail/missing.c:10:17: error: unexpected token ':', expected an expression
+C/should_fail/missing.c:14:14: error: unexpected token ';', expected an expression
+C/should_fail/missing.c:14:14: error: expected ')', got ';'
+C/should_fail/missing.c:18:19: error: unexpected token ',', expected an expression

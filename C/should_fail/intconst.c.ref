@@ -1,0 +1,1 @@
+C/should_fail/intconst.c:4:7: error: case label '0.0' has non-integer type

@@ -1,0 +1,1 @@
+C/should_fail/cpponly.c:6:7: error: left hand side 'argc ? a = b : b' of assignment is not an lvalue

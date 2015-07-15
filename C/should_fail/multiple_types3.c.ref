@@ -1,0 +1,2 @@
+C/should_fail/multiple_types3.c:1:1: error: invalid type specifier
+C/should_fail/multiple_types3.c:1:12: error: expected 'identifier', '(' while parsing declarator, got '{'

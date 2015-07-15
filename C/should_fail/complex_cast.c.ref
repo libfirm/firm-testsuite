@@ -1,0 +1,1 @@
+C/should_fail/complex_cast.c:5:12: error: cannot convert type '_Complex double' to a pointer type

@@ -1,0 +1,1 @@
+C/should_fail/init8.c:8:23: error: initialisation expression '((int*)((short int)&intptr))' is not constant

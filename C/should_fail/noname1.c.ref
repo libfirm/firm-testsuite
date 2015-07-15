@@ -1,0 +1,2 @@
+C/should_fail/noname1.c:1:10: error: parameter name omitted
+C/should_fail/noname1.c:1:15: error: parameter name omitted

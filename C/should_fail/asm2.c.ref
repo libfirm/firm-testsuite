@@ -1,0 +1,2 @@
+C/should_fail/asm2.c:4:47: error: multiple declarations of 'asm argument foo'
+C/should_fail/asm2.c:4:30: note: previous declaration of 'asm argument foo' was here

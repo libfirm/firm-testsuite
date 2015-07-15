@@ -1,0 +1,1 @@
+C/should_fail/init3.c:7:23: error: Initialisation expression 'l' is not constant

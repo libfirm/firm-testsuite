@@ -1,0 +1,1 @@
+C/should_fail/multiple_types.c:1:10: error: multiple types in declaration specifiers

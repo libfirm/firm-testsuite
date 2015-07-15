@@ -1,0 +1,1 @@
+C/should_fail/cp_error066a.c:6:30: error: initialisation expression 'options.server' is not constant

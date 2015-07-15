@@ -1,0 +1,1 @@
+C/should_fail/suffix1.c:3:9: error: invalid suffix 'lL' on integer constant

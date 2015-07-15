@@ -1,0 +1,4 @@
+C/should_fail/bitfield.c:2:7: error: width of bitfield '<anonymous>' exceeds its type
+C/should_fail/bitfield.c:3:9: error: negative width in bit-field 'x'
+C/should_fail/bitfield.c:4:9: error: zero width for bit-field 'y'
+C/should_fail/bitfield.c:5:9: error: width of bitfield 'z' exceeds its type

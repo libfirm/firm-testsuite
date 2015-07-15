@@ -1,0 +1,2 @@
+C/should_fail/cp_error003.c:3:10: error: type of function definition 'functype blo' is a typedef
+C/should_fail/cp_error003.c:5:9: error: identifier 'a' is unknown.

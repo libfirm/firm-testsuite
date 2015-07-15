@@ -1,0 +1,2 @@
+C/should_fail/typedef_enum.c:2:8: error: redeclaration of 'typedef X' as enum value
+C/should_fail/typedef_enum.c:1:13: note: previous declaration of 'typedef X' was here

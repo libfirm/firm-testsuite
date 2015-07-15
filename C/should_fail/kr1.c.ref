@@ -1,0 +1,2 @@
+C/should_fail/kr1.c:6:6: error: declaration 'int first' is incompatible with 'float first'
+C/should_fail/kr1.c:2:7: note: previous declaration of 'parameter first' was here

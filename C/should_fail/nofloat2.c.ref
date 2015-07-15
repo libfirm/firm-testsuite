@@ -1,0 +1,1 @@
+C/should_fail/nofloat2.c:3:9: error: hexadecimal floating number constant '0x.e' requires an exponent

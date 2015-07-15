@@ -1,0 +1,1 @@
+C/should_fail/initializer7.c:4:10: error: 'compound member f' must not have function type 'intfunc'

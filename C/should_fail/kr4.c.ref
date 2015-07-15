@@ -1,0 +1,2 @@
+C/should_fail/kr4.c:13:12: error: declaration 'int a(int, float, const char*)' is incompatible with 'int a(int, double, const char*)'
+C/should_fail/kr4.c:5:12: note: previous declaration of 'function a' was here

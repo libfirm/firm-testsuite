@@ -1,0 +1,1 @@
+C/should_fail/array1.c:2:13: error: static array parameters require a size

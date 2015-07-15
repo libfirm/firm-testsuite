@@ -1,0 +1,1 @@
+C/should_fail/bad_alias4.c:4:47: error: 'void blup(void)' has a body but is declared as an alias for 'foo'

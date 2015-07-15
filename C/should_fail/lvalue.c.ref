@@ -1,0 +1,1 @@
+C/should_fail/lvalue.c:4:4: error: left hand side 'a + b' of assignment is not an lvalue

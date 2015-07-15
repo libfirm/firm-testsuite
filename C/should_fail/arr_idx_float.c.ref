@@ -1,0 +1,1 @@
+C/should_fail/arr_idx_float.c:4:11: error: array subscript must have integer type

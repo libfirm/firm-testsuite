@@ -1,0 +1,1 @@
+C/should_fail/complex_bitops.c:3:11: error: operands of binary expression must have integer types, but are '_Complex int' and '_Complex int'

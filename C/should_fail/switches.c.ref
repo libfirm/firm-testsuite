@@ -1,0 +1,9 @@
+C/should_fail/switches.c:4:2: error: case label not within a switch statement
+C/should_fail/switches.c:5:3: error: break statement not within loop or switch
+C/should_fail/switches.c:11:2: error: case label not within a switch statement
+C/should_fail/switches.c:12:3: error: break statement not within loop or switch
+C/should_fail/switches.c:13:2: error: 'default' label not within a switch statement
+C/should_fail/switches.c:13:11: error: continue statement not within loop
+C/should_fail/switches.c:19:7: error: expression 'argc' is not constant
+C/should_fail/switches.c:21:2: error: multiple default labels in one switch
+C/should_fail/switches.c:20:2: note: previous default label was here

@@ -1,0 +1,1 @@
+C/should_fail/initializer6.c:3:16: error: 'function f' is initialized like a variable

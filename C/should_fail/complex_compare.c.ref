@@ -1,0 +1,1 @@
+C/should_fail/complex_compare.c:3:12: error: invalid operands for relational operator, incompatible types: '_Complex double' - '_Complex double'

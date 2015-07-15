@@ -1,0 +1,1 @@
+C/should_fail/offsetof2.c:4:4: error: offsetof called on scalar type 'int'

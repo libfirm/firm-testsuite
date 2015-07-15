@@ -1,0 +1,2 @@
+C/should_fail/kr3.c:7:6: error: expected declaration of a function parameter, found 'k'
+C/should_fail/kr3.c:8:8: error: expected declaration of a function parameter, found 'l'

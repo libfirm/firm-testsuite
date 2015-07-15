@@ -1,0 +1,2 @@
+C/should_fail/bad_alias7.c:4:36: error: redefinition of 'function foo'
+C/should_fail/bad_alias7.c:1:6: note: previous declaration of 'function foo' was here

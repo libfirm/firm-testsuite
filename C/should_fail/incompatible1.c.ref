@@ -1,0 +1,2 @@
+C/should_fail/incompatible1.c:2:13: error: declaration 'long int i1' is incompatible with 'int i1'
+C/should_fail/incompatible1.c:1:12: note: previous declaration of 'variable i1' was here

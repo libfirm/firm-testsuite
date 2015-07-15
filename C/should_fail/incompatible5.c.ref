@@ -1,0 +1,2 @@
+C/should_fail/incompatible5.c:2:26: error: declaration 'const int* const* i0' is incompatible with 'int* const* i0'
+C/should_fail/incompatible5.c:1:26: note: previous declaration of 'variable i0' was here

@@ -1,0 +1,1 @@
+C/should_fail/decl_after_label.c:4:2: error: declaration after label

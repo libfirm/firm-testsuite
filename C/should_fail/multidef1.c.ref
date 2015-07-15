@@ -1,0 +1,2 @@
+C/should_fail/multidef1.c:3:5: error: redefinition of 'variable x'
+C/should_fail/multidef1.c:1:5: note: previous declaration of 'variable x' was here

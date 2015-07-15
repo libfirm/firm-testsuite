@@ -1,0 +1,2 @@
+C/should_fail/recursive_struct.c:4:11: error: 'compound member s' has incomplete type 'myStruct'
+C/should_fail/recursive_struct.c:10:10: error: 'compound member s' has incomplete type 'myUnion'

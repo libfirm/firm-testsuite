@@ -1,0 +1,4 @@
+C/should_fail/function_return.c:2:26: error: array of incomplete type 'void' is not allowed
+C/should_fail/function_return.c:7:23: error: function returning function is not allowed
+C/should_fail/function_return.c:11:19: error: function returning array is not allowed
+C/should_fail/function_return.c:12:16: error: function returning array is not allowed

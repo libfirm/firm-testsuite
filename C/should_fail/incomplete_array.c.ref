@@ -1,0 +1,2 @@
+C/should_fail/incomplete_array.c:2:6: error: declaration 'char incompleteArray[1000]' is incompatible with 'char incompleteArray[2]'
+C/should_fail/incomplete_array.c:1:6: note: previous declaration of 'variable incompleteArray' was here

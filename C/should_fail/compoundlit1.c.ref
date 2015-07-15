@@ -1,0 +1,1 @@
+C/should_fail/compoundlit1.c:3:13: error: type 'int[argc]' invalid for compound literals

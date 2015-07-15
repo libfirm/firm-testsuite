@@ -1,0 +1,2 @@
+C/should_fail/initializer5.c:1:13: error: 'typedef foo' is initialized (use __typeof__ instead)
+C/should_fail/initializer5.c:1:19: error: encountered type 'int' while parsing expression

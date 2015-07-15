@@ -1,0 +1,1 @@
+C/should_fail/number.c:3:9: error: number constant '0x' has no digits

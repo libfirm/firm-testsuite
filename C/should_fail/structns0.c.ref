@@ -1,0 +1,1 @@
+C/should_fail/structns0.c:8:10: error: request for member 'a' in incomplete type 'struct L'

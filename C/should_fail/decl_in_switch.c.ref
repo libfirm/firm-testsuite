@@ -1,0 +1,1 @@
+C/should_fail/decl_in_switch.c:4:3: error: declaration as inner statement, use {}

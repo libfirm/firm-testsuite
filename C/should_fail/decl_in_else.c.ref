@@ -1,0 +1,1 @@
+C/should_fail/decl_in_else.c:5:3: error: declaration as inner statement, use {}

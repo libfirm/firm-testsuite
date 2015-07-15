@@ -1,0 +1,1 @@
+C/should_fail/intconst4.c:1:16: error: static assert expression '5.0' has non-integer type

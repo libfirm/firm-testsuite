@@ -1,0 +1,1 @@
+C/should_fail/static_assert_syntax.c:1:11: error: expected ')', got '_Static_assert'

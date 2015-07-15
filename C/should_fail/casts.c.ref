@@ -1,0 +1,3 @@
+C/should_fail/casts.c:1:12: error: cannot convert type 'double' to a pointer type
+C/should_fail/casts.c:2:12: error: cannot convert type 'double' to a pointer type
+C/should_fail/casts.c:5:25: error: conversion to non-scalar type 'struct T' requested

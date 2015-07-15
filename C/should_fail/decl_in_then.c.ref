@@ -1,0 +1,1 @@
+C/should_fail/decl_in_then.c:4:3: error: declaration as inner statement, use {}

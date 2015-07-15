@@ -1,0 +1,1 @@
+C/should_fail/asm3.c:4:19: error: invalid register 'BAD' specified in clobbers

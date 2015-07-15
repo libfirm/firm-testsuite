@@ -1,0 +1,2 @@
+C/should_fail/incomplete_struct.c:3:11: error: variable 'struct S q' has incomplete type
+C/should_fail/incomplete_struct.c:3:14: error: variable 'struct S r' has incomplete type

@@ -1,0 +1,1 @@
+C/should_fail/nofloat.c:5:9: error: number constant '0x.p5' has no digits

@@ -1,0 +1,1 @@
+C/should_fail/static_assert_syntax2.c:4:3: error: declaration as inner statement, use {}

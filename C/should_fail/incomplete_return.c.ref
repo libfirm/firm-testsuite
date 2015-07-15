@@ -1,0 +1,1 @@
+C/should_fail/incomplete_return.c:2:10: error: incomplete return type 'struct S' in definition of 'function f'

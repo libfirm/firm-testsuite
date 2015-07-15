@@ -1,0 +1,1 @@
+C/should_fail/struct_flexible_array.c:2:6: error: flexible array member in otherwise empty struct

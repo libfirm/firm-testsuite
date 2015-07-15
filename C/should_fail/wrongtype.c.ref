@@ -1,0 +1,1 @@
+C/should_fail/wrongtype.c:5:11: error: 'itn' does not name a type

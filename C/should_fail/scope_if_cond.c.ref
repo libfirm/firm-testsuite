@@ -1,0 +1,1 @@
+C/should_fail/scope_if_cond.c:5:9: error: identifier 'A' is unknown.

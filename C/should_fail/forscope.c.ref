@@ -1,0 +1,1 @@
+C/should_fail/forscope.c:3:21: error: unexpected token ';', expected an expression

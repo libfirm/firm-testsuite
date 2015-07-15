@@ -1,0 +1,1 @@
+C/should_fail/float_and.c:1:38: error: operands of binary expression must have integer types, but are 'float' and 'float'

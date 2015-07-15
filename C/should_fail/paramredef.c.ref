@@ -1,0 +1,2 @@
+C/should_fail/paramredef.c:3:6: error: declaration of 'variable x' redeclares 'parameter x'
+C/should_fail/paramredef.c:2:14: note: previous declaration of 'parameter x' was here

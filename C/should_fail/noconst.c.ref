@@ -1,0 +1,1 @@
+C/should_fail/noconst.c:3:7: error: expression '"blup"' is not constant

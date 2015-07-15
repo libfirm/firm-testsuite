@@ -1,0 +1,1 @@
+C/should_fail/brace2.c:1:1: error: stray '}' outside of function

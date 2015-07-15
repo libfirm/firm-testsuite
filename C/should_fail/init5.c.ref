@@ -1,0 +1,1 @@
+C/should_fail/init5.c:6:26: error: initialisation expression 'opt->server' is not constant

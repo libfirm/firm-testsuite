@@ -1,0 +1,1 @@
+C/should_fail/paramstorageclass.c:1:18: error: invalid storage class for 'parameter k'

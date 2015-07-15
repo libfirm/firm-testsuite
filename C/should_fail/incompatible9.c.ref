@@ -1,0 +1,2 @@
+C/should_fail/incompatible9.c:2:14: error: declaration 'int (* f0)(short int)' is incompatible with 'int (* f0)()'
+C/should_fail/incompatible9.c:1:14: note: previous declaration of 'variable f0' was here
