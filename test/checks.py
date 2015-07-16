@@ -73,6 +73,29 @@ def check_missing_errors(result):
         result.error = "missed error"
 
 
+def _help_check_errors_reference(result, reference):
+    search_warnings_errors(result)
+    n_errors   = len(result.errors)
+    n_expected = len(reference.splitlines())
+    error_text = "\n".join(result.errors) + "\n"
+    if n_errors != n_expected:
+        result.error = "reported %s errors instead of %s" % (n_errors, n_expected)
+    elif error_text != reference:
+        result.error = "reported different errors"
+
+
+def create_check_errors_reference(environment):
+    """Read %(environment.filename)s.ref file and compare it with the errors
+    the compiler actually reported. If the reference file is missing we just
+    check that there are any errors at all."""
+    errors_file = environment.filename + ".ref"
+    if not os.path.isfile(errors_file):
+        return check_missing_errors
+    else:
+        reference = open(errors_file, "rb").read()
+        return partial(_help_check_errors_reference, reference=reference)
+
+
 def _help_check_reference_output(result, reference):
     """Compare stdout with a given reference output"""
     output = result.stdout

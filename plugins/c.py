@@ -1,7 +1,7 @@
 import os
 from test.test   import Test, ensure_dir
 from test.steps  import execute, step_execute
-from test.checks import check_retcode_zero, check_missing_errors, check_no_errors, check_no_warnings, check_firm_problems, check_cparser_problems, create_check_reference_output, create_check_warnings_reference, check_memcheck_output
+from test.checks import check_retcode_zero, create_check_errors_reference, check_no_errors, check_no_warnings, check_firm_problems, check_cparser_problems, create_check_reference_output, create_check_warnings_reference, check_memcheck_output
 from test.embedded_cmds import parse_embedded_commands
 from functools import partial
 
@@ -87,7 +87,7 @@ def make_c_should_fail(environment, filename):
 
     test = Test(environment, filename)
     compile = test.add_step("compile", step_compile_c_syntax_only)
-    compile.add_check(check_missing_errors)
+    compile.add_check(create_check_errors_reference(environment))
     test.steps.append(compile)
     return test
 
