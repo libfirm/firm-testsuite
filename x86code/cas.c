@@ -17,7 +17,7 @@ int main(void)
 	unsigned c0 = __sync_val_compare_and_swap(&a1, 17, 88);
 	unsigned c1 = __sync_val_compare_and_swap(&a1, 42, 3);
 	unsigned c2 = __sync_val_compare_and_swap(&a1, 42, 7);
-	printf("%u %u %u %u\n", a1, r0, r1, r2);
+	printf("%u %u %u %u\n", a1, c0, c1, c2);
 
 	return 0;
 }
