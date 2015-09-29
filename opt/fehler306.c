@@ -5,7 +5,7 @@ int main(void)
 {
 	for (a = 0; a < 1; a++) {
 		for (int c = 2; c >= 0; c--) {
-			b = c && -(long)b <= 0;
+			b = c && -(long long)b <= 0;
 		}
 	}
 
