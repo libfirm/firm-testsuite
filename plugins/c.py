@@ -5,7 +5,7 @@ from test.checks import check_retcode_zero, create_check_errors_reference, check
 from test.embedded_cmds import parse_embedded_commands
 from functools import partial
 
-_VALGRIND_MEMCHECK_FACTOR = 20
+_VALGRIND_MEMCHECK_FACTOR = 30
 
 def step_compile_c(environment):
     """Compile c source code to executable"""
