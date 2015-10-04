@@ -1,0 +1,171 @@
+#!/usr/bin/env python
+#
+# Imperfect clone of llvms FileCheck utility in python.
+#
+# llvm filecheck features not implemented yet:
+#   - CHECK-LABEL: behaves like CHECK: which is slightly wrong
+#   - CHECK-DAG: is missing
+#   - variables in patterns
+#   - [[@LINE]] expression in patterns
+#   - spaces are not properly canonicalized in input (and!) scriptfile
+import sys
+import re
+import argparse
+
+def die(message):
+    sys.stderr.write(message + "\n")
+    sys.exit(1)
+
+def parse_checkarg(arg):
+    '''Create regex matcher from check-like argument'''
+    regex = ''
+    i = 0
+    while i < len(arg):
+        c = arg[i]
+        i += 1
+        # 1 space in check script may match multiple spaces in input
+        if c == ' ':
+            regex += '\s+'
+        elif c == '{' and i < len(arg) and arg[i] == '{':
+            # Everything until '}}' is a regex
+            found = False
+            for i2 in range(i+1, len(arg)-1):
+                if arg[i2] == '}' and arg[i2+1] == '}':
+                    found = True
+                    slice = arg[i+1:i2]
+                    regex += slice
+                    i += len(slice)+4
+                    break
+            if not found:
+                regex += '\\{'
+        else:
+            regex += re.escape(c)
+    matcher = re.compile(regex)
+    return matcher
+
+def scan_for(matcher, command, arg, justoneline = False, sameline = False):
+    # Scan input to find regex
+    global inputline
+    global notmatchers
+    if sameline:
+        justoneline = True
+    while True:
+        if not sameline:
+            inputline = input.readline()
+        # Check if any of the CHECK-NOT pattersn applies
+        for (notmatcher,notcommand,notarg) in notmatchers:
+            if notmatcher.search(inputline):
+                die('%s:%d: %s: %s found:\n%s' % (scriptfile,linenum,notcommand,notarg,inputline[:-1]))
+        if matcher is not None and matcher.search(inputline):
+            break
+        if inputline == '' or justoneline:
+            if matcher is None:
+                break
+            die('%s:%d: %s: %s not found' % (scriptfile,linenum,command,arg))
+    # We can reset the notmarchers now
+    notmatchers = []
+
+# State
+input = sys.stdin
+inputline = ''
+linenum = 0
+notmatchers = []
+
+# Should have 1 handler for each of the named regex groups defined above
+handlers = {}
+def handle_check(command, arg):
+    matcher = parse_checkarg(arg)
+    scan_for(matcher, command, arg, justoneline=False)
+handlers['CHECK'] = handle_check
+
+def handle_check_next(command, arg):
+    matcher = parse_checkarg(arg)
+    scan_for(matcher, command, arg, justoneline=True)
+handlers['CHECK-NEXT'] = handle_check_next
+
+def handle_check_same(command, arg):
+    matcher = parse_checkarg(arg)
+    scan_for(matcher, command, arg, justoneline=True, sameline=True)
+handlers['CHECK-SAME'] = handle_check_same
+
+def handle_check_not(command, arg):
+    matcher = parse_checkarg(arg)
+    notmatchers.append( (matcher, command, arg) )
+handlers['CHECK-NOT'] = handle_check_not
+
+def handle_check_label(command, arg):
+    matcher = parse_checkarg(arg)
+    # TODO: this lacks the feature from llvm filecheck that you must not
+    # cross any upcoming CHECK-LABEL matches with any earlier CHECK: matches
+    scan_for(matcher, command)
+handlers['CHECK-LABEL'] = handle_check_label
+
+def run_checkscript(scriptfile, matcher):
+    try:
+        script = open(scriptfile, "r")
+    except:
+        die("Could not open script file '%s'" % scriptfile)
+
+    # Search for commands in scriptfile and execute them
+    global linenum
+    linenum = 0
+    for line in script:
+        linenum += 1
+        line = line.strip()
+
+        match = matcher.search(line)
+        if not match:
+            continue
+        handlerlist = handlers.items()
+        for i in range(len(handlerlist)):
+            handlername, handler = handlerlist[i]
+            groups = match.groups()
+            command = groups[i*2]
+            arg = groups[i*2+1]
+            if command is None or arg is None:
+                continue
+            handler(command, arg)
+
+    if len(notmatchers) > 0:
+        scan_for(None, 'CHECK-NOT')
+    script.close()
+
+def create_scriptregex(check_prefixes):
+    for prefix in check_prefixes:
+        # Check prefix must only be composed from letters (among other things
+        # this guarantees we have no special regex chars in it)
+        if not re.match(r'^[a-zA-Z0-9_]+$', prefix):
+            die("Prefix '%s' is invalid: Must only contain letters" % prefix)
+
+    regex = ""
+    sep = ""
+    for name,handler in handlers.items():
+        assert name.startswith('CHECK')
+        name = name[5:] # remove 'CHECK' from front
+        regex += sep + "("
+        prefixsep = ""
+        for prefix in check_prefixes:
+            regex += prefixsep
+            regex += "%s%s" % (prefix, name)
+            prefixsep = "|"
+        regex += "):\s*(.*)$"
+        sep = "|"
+
+    complete_matcher = re.compile(regex)
+    return complete_matcher
+
+opts = argparse.ArgumentParser(prog='FileCheck')
+opts.add_argument("--check-prefix", dest="check_prefixes", metavar="PREFIX",
+                  action='append', default=[])
+opts.add_argument("scriptfile")
+config = opts.parse_args()
+
+# Create matcher for check_prefixes
+check_prefixes = config.check_prefixes
+if len(check_prefixes) == 0:
+    check_prefixes = ['CHECK']
+matcher = create_scriptregex(check_prefixes)
+
+# Run script
+scriptfile = config.scriptfile
+run_checkscript(scriptfile, matcher)
