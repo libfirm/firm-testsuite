@@ -1,5 +1,6 @@
-// RUN: cparser -mtarget=i686-linux-gnu -integrated-cpp -S -o - %s | FileCheck %s
+// RUN: cparser -w -mtarget=i686-linux-gnu -integrated-cpp -S -o - %s | FileCheck %s
 
+// CHECK: .globl g0
 // CHECK: .section .tbss,"awT",@nobits
 // CHECK: .p2align 2
 // CHECK: .type g0, @object
@@ -26,6 +27,23 @@ __thread int g1 = 1;
 // CHECK: .long 0x00000002
 __thread const int g2 = 2;
 
-// TODO: Fix cparser!
-//static __thread int l;
-//void *escape_l(void) { return &l; }
+// CHECK-NOT: .globl l0
+// CHECK: .section .tbss,"awT",@nobits
+// CHECK: .p2align 2
+// CHECK: .type l0, @object
+// CHECK: .size l0, 4
+// CHECK: l0:
+// CHECK: .space 4, 0
+static __thread int l0;
+
+// CHECK-NOT: .globl l1
+// CHECK: .section .tdata,"awT",@progbits
+// CHECK: .p2align 2
+// CHECK: .type l1, @object
+// CHECK: .size l1, 4
+// CHECK: l1:
+// CHECK: .long 0x00000001
+static __thread int l1 = 1;
+
+int *escape_l0(void) { return &l0; }
+int *escape_l1(void) { return &l1; }
