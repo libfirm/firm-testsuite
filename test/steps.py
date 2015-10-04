@@ -1,4 +1,4 @@
-import util.shell as shell
+import util.shell
 import sys
 from time import time
 
@@ -26,7 +26,7 @@ class StepResult(object):
         return not self.fail()
 
 
-def execute(environment, cmd, timeout):
+def execute(environment, cmd, timeout, shell=False):
     "Executes an external command and returns a StepResult object"
     result     = StepResult()
     result.cmd = cmd
@@ -34,9 +34,9 @@ def execute(environment, cmd, timeout):
         sys.stderr.write(cmd + "\n")
     try:
         begin = time()
-        result.stdout, result.stderr, result.retcode = shell.execute(cmd, timeout=timeout)
+        result.stdout, result.stderr, result.retcode = util.shell.execute(cmd, timeout=timeout, shell=shell)
         result.time = time() - begin
-    except shell.SigKill as e:
+    except util.shell.SigKill as e:
         result.stdout = e.stdout
         result.stderr = e.stderr
         result.error = e.name

@@ -52,6 +52,7 @@ _opts.set_defaults(
         "C++/should_fail",
         "ack",
         "langshootout",
+        "lit",
         "llvm",
         "gcc"
     ],

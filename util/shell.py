@@ -19,7 +19,7 @@ class SigKill(Exception):
         self.stderr = stderr
 
 
-def execute(cmd, env=None, timeout=0):
+def execute(cmd, env=None, timeout=0, shell=False):
     """Execute a command and return stderr and stdout data"""
 
     def lower_rlimit(res, limit):
@@ -39,8 +39,10 @@ def execute(cmd, env=None, timeout=0):
         lower_rlimit(resource.RLIMIT_STACK, 1024 * MB)
         lower_rlimit(resource.RLIMIT_FSIZE,   32 * MB)
 
-    cmd = filter(lambda x: x, cmd.split(' '))
+    if not shell:
+        cmd = filter(lambda x: x, cmd.split(' '))
     proc = subprocess.Popen(cmd,
+                            shell=shell,
                             stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE,
                             preexec_fn=set_rlimit,
