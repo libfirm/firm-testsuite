@@ -3,28 +3,28 @@
 
 static void intfunc(void) {}
 
-// ELF: .globl glob
 // ELF: .data
-// MACHO: .globl _glob
+// ELF: .globl glob
 // MACHO: .section __DATA,__data
+// MACHO: .globl _glob
 unsigned glob = 13;
 
-// ELF: .globl cnst
 // ELF: .rodata
-// MACHO: .globl _cnst
+// ELF: .globl cnst
 // MACHO: .section __TEXT,__const
+// MACHO: .globl _cnst
 const unsigned cnst = 42;
 
 extern unsigned extglob;
 
-// ELF: .globl constaddr_glob
 // ELF: .section .data.rel.ro,"aw",@progbits
-// MACHO: .globl _constaddr_glob
+// ELF: .globl constaddr_glob
 // MACHO: .section __DATA,__const
+// MACHO: .globl _constaddr_glob
 void *const constaddr_glob = &glob;
 
-// ELF: .globl constaddr_intfunc
 // ELF: .section .data.rel.ro.local,"aw",@progbits
-// MACHO: .globl _constaddr_intfunc
+// ELF: .globl constaddr_intfunc
 // MACHO: .section __DATA,__const
+// MACHO: .globl _constaddr_intfunc
 void *const constaddr_intfunc = &intfunc;

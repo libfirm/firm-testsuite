@@ -6,13 +6,13 @@
 // MACHO: .comm _c0,4,2
 // ELF: .comm c0,4,4
 int c0;
-// MACHO: .globl _c1
 // MACHO: .section __DATA,__data
+// MACHO: .globl _c1
 // MACHO: .p2align 2
 // MACHO: _c1:
 // MACHO: .long 0x0000002a
-// ELF: .globl c1
 // ELF: .data
+// ELF: .globl c1
 // ELF: .p2align 2
 // ELF: .type c1, @object
 // ELF: .size c1, 4
