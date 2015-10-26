@@ -97,7 +97,7 @@ def handle_check_label(command, arg):
     matcher = parse_checkarg(arg)
     # TODO: this lacks the feature from llvm filecheck that you must not
     # cross any upcoming CHECK-LABEL matches with any earlier CHECK: matches
-    scan_for(matcher, command)
+    scan_for(matcher, command, arg)
 handlers['CHECK-LABEL'] = handle_check_label
 
 def run_checkscript(scriptfile, matcher):
@@ -127,7 +127,7 @@ def run_checkscript(scriptfile, matcher):
             handler(command, arg)
 
     if len(notmatchers) > 0:
-        scan_for(None, 'CHECK-NOT')
+        scan_for(None, '', '')
     script.close()
 
 def create_scriptregex(check_prefixes):
