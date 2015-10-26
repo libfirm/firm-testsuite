@@ -1,5 +1,5 @@
-// RUN: cparser -mtarget=i686-linux-gnu -fPIC -integrated-cpp -S -o - %s | FileCheck %s --check-prefix ELF --check-prefix CHECK
-// RUN: cparser -mtarget=i686-apple-darwin -fPIC -integrated-cpp -S -o - %s | FileCheck %s --check-prefix MACHO --check-prefix CHECK
+// RUN: cparser -target i686-linux-gnu -fPIC -integrated-cpp -S -o - %s | FileCheck %s --check-prefix ELF --check-prefix CHECK
+// RUN: cparser -target i686-apple-darwin -fPIC -integrated-cpp -S -o - %s | FileCheck %s --check-prefix MACHO --check-prefix CHECK
 
 static void intfunc(void) {}
 

@@ -1,4 +1,4 @@
-// RUN: cparser -w -mtarget=i686-linux-gnu -integrated-cpp -S -o - %s | FileCheck %s
+// RUN: cparser -w -target i686-linux-gnu -integrated-cpp -S -o - %s | FileCheck %s
 
 static __thread int l0;
 

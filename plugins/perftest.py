@@ -106,7 +106,7 @@ def config_leonperf(option, opt_str, value, parser):
     config.arch_ldflags += " -static -msoft-float"
     config.runexe        = "qemu-count -r 2.6.40 "
     if "cparser" in config.cc:
-        config.arch_cflags += " -mtarget=sparc-leon-linux-gnu"
+        config.arch_cflags += " -target sparc-leon-linux-gnu"
     for b in floatheavy:
         sizes[b] /= 30
 
@@ -117,7 +117,7 @@ def config_leonperf_hwfloat(option, opt_str, value, parser):
     config.arch_ldflags += " -static -msoft-float"
     config.runexe        = "qemu-count -r 2.6.40 "
     if "cparser" in config.cc:
-        config.arch_cflags += " -mtarget=sparc-leon-linux-gnu"
+        config.arch_cflags += " -target sparc-leon-linux-gnu"
     for b in floatheavy:
         sizes[b] /= 30
 

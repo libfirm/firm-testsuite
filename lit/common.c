@@ -1,5 +1,5 @@
-// RUN: cparser -mtarget=i686-apple-darwin -integrated-cpp -S -o - %s | FileCheck %s --check-prefix MACHO
-// RUN: cparser -mtarget=i686-linux-gnu -integrated-cpp -S -o - %s | FileCheck %s --check-prefix ELF
+// RUN: cparser -target i686-apple-darwin -integrated-cpp -S -o - %s | FileCheck %s --check-prefix MACHO
+// RUN: cparser -target i686-linux-gnu -integrated-cpp -S -o - %s | FileCheck %s --check-prefix ELF
 //
 // Test creation of "common" variables
 

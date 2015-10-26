@@ -1,4 +1,4 @@
-// RUN: cparser -w -mtarget=i686-linux-gnu -integrated-cpp -S -o - %s | FileCheck %s
+// RUN: cparser -w -target i686-linux-gnu -integrated-cpp -S -o - %s | FileCheck %s
 
 // CHECK: .section .tbss,"awT",@nobits
 // CHECK: .globl g0
