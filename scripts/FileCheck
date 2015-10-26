@@ -142,7 +142,7 @@ def create_scriptregex(check_prefixes):
     for name,handler in handlers.items():
         assert name.startswith('CHECK')
         name = name[5:] # remove 'CHECK' from front
-        regex += sep + "("
+        regex += sep + "\s("
         prefixsep = ""
         for prefix in check_prefixes:
             regex += prefixsep
