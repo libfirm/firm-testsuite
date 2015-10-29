@@ -1,5 +1,5 @@
-#define CONCAT(x,y) x ## y
+#define ID(x) x
 #define INT(a) int a
-#define TEST(t, a) t INT(a)
+#define TEST(a) long INT(a)
 
-TEST(long, CONCAT(, ))
+TEST(ID(x))
