@@ -19,7 +19,7 @@ class SigKill(Exception):
         self.stderr = stderr
 
 
-def execute(cmd, env=None, timeout=0, shell=False):
+def execute(cmd, env=None, timeout=0, shell=False, propagate_sigint=True):
     """Execute a command and return stderr and stdout data"""
 
     def lower_rlimit(res, limit):
@@ -49,6 +49,11 @@ def execute(cmd, env=None, timeout=0, shell=False):
                             env=env)
     out, err = proc.communicate()
     returncode = proc.returncode
+
+    # Propagate Ctrl-C in subprocess
+    if propagate_sigint and returncode == -signal.SIGINT:
+        raise KeyboardInterrupt
+
     # Usually python can recognize application terminations triggered by
     # signals, but somehow it doesn't do this for java (I suspect, that java
     # catches the signals itself but then shuts down more 'cleanly' than it
