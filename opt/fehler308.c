@@ -1,28 +1,13 @@
-int a;
-int b;
-
-int fn1(int p1)
-{
-	return p1 == 0 ? 0 / 0 : 0;
-}
-
-int fn2(void)
-{
-	for (int c = 2; c; --c) {
-		fn1(c);
-		if (b) {
-			return 0;
-		}
-	}
-
-	return 1;
-}
+volatile int a;
 
 int main(void)
 {
-	do {
-		a = fn2();
-	} while (b);
+	for (int f = 1; f < 3; f++) {
+		f || a;
+	}
+
+	for (a = 1; a; a = 0) {
+	}
 
 	return 0;
 }
