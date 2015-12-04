@@ -1,0 +1,1 @@
+C/should_fail/declspec.c:3:22: error: expected put or get in property declspec, but got 'foo'
