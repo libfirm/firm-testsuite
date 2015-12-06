@@ -1,0 +1,24 @@
+diff -ru orig/libfirm-1.21.0/ir/ir/irtypes.h libfirm-1.21.0/ir/ir/irtypes.h
+--- libfirm-1.21.0/ir/ir/irtypes.h	2012-11-19 18:07:17.000000000 +0100
++++ libfirm-1.21.0/ir/ir/irtypes.h	2015-12-06 11:29:11.946771544 +0100
+@@ -284,16 +284,16 @@
+ /** Load attributes. */
+ typedef struct load_attr {
+ 	except_attr   exc;            /**< The exception attribute. MUST be the first one. */
+-    ir_volatility volatility:1;   /**< The volatility of this Load operation. */
+-    ir_align      unaligned:1;    /**< The align attribute of this Load operation. */
++    unsigned volatility:1;   /**< The volatility of this Load operation. */
++    unsigned      unaligned:1;    /**< The align attribute of this Load operation. */
+ 	ir_mode       *mode;          /**< The mode of this Load operation. */
+ } load_attr;
+ 
+ /** Store attributes. */
+ typedef struct store_attr {
+ 	except_attr   exc;            /**< the exception attribute. MUST be the first one. */
+-	ir_volatility volatility:1;   /**< The volatility of this Store operation. */
+-	ir_align      unaligned:1;    /**< The align attribute of this Store operation. */
++	unsigned volatility:1;   /**< The volatility of this Store operation. */
++	unsigned      unaligned:1;    /**< The align attribute of this Store operation. */
+ } store_attr;
+ 
+ typedef struct phi_attr {
