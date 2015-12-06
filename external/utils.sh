@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Helper functions for testing stuff
-set -e
+set -eu
 
 TOPDIR="$(dirname $0)"
 cd "$TOPDIR"
@@ -46,5 +46,5 @@ MAKEFLAGS=-j3
 
 # Cleanup builddir
 echo "Cleanup $BUILDDIR"
-rm -fr "$BUILDDIR/*"
+rm -rf "$BUILDDIR"/*
 mkdir -p "$BUILDDIR"
