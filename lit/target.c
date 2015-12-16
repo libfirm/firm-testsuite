@@ -1,12 +1,12 @@
-// RUN: cparser -integrated-cpp -E -dM -x c /dev/null -target i686-linux-gnu | LC_ALL=C sort | FileCheck %s --check-prefix IA32 --check-prefix IA32_NOT_MINGW --check-prefix LINUX --check-prefix CHECK
-// RUN: cparser -integrated-cpp -E -dM -x c /dev/null -target i686-apple-darwin | LC_ALL=C sort | FileCheck %s --check-prefix IA32 --check-prefix IA32_NOT_MINGW --check-prefix DARWIN --check-prefix CHECK
-// RUN: cparser -integrated-cpp -E -dM -x c /dev/null -target i686-pc-mingw32 | LC_ALL=C sort | FileCheck %s --check-prefix IA32 --check-prefix IA32_MINGW --check-prefix MINGW --check-prefix CHECK
-// RUN: cparser -integrated-cpp -E -dM -x c /dev/null -target x86_64-linux-gnu | LC_ALL=C sort | FileCheck %s --check-prefix X86_64 --check-prefix X86_64_NOT_MINGW --check-prefix LINUX --check-prefix CHECK
-// RUN: cparser -integrated-cpp -E -dM -x c /dev/null -target x86_64-apple-darwin | LC_ALL=C sort | FileCheck %s --check-prefix X86_64 --check-prefix X86_64_NOT_MINGW --check-prefix DARWIN --check-prefix CHECK
-// RUN: cparser -integrated-cpp -E -dM -x c /dev/null -target x86_64-pc-mingw32 | LC_ALL=C sort | FileCheck %s --check-prefix X86_64 --check-prefix X86_64_MINGW --check-prefix MINGW --check-prefix CHECK
-// RUN: cparser -integrated-cpp -E -dM -x c /dev/null -target x86_64-linux-gnu -m32 | LC_ALL=C sort | FileCheck %s --check-prefix IA32 --check-prefix LINUX --check-prefix CHECK
-// RUN: cparser -integrated-cpp -E -dM -x c /dev/null -target x86_64-apple-darwin -m32 | LC_ALL=C sort | FileCheck %s --check-prefix IA32 --check-prefix DARWIN --check-prefix CHECK
-// RUN: cparser -integrated-cpp -E -dM -x c /dev/null -target x86_64-pc-mingw32 -m32 | LC_ALL=C sort | FileCheck %s --check-prefix IA32 --check-prefix MINGW --check-prefix CHECK
+// RUN: {cc} -integrated-cpp -E -dM -x c /dev/null -target i686-linux-gnu | LC_ALL=C sort | FileCheck {input} --check-prefix IA32 --check-prefix IA32_NOT_MINGW --check-prefix LINUX --check-prefix CHECK
+// RUN: {cc} -integrated-cpp -E -dM -x c /dev/null -target i686-apple-darwin | LC_ALL=C sort | FileCheck {input} --check-prefix IA32 --check-prefix IA32_NOT_MINGW --check-prefix DARWIN --check-prefix CHECK
+// RUN: {cc} -integrated-cpp -E -dM -x c /dev/null -target i686-pc-mingw32 | LC_ALL=C sort | FileCheck {input} --check-prefix IA32 --check-prefix IA32_MINGW --check-prefix MINGW --check-prefix CHECK
+// RUN: {cc} -integrated-cpp -E -dM -x c /dev/null -target x86_64-linux-gnu | LC_ALL=C sort | FileCheck {input} --check-prefix X86_64 --check-prefix X86_64_NOT_MINGW --check-prefix LINUX --check-prefix CHECK
+// RUN: {cc} -integrated-cpp -E -dM -x c /dev/null -target x86_64-apple-darwin | LC_ALL=C sort | FileCheck {input} --check-prefix X86_64 --check-prefix X86_64_NOT_MINGW --check-prefix DARWIN --check-prefix CHECK
+// RUN: {cc} -integrated-cpp -E -dM -x c /dev/null -target x86_64-pc-mingw32 | LC_ALL=C sort | FileCheck {input} --check-prefix X86_64 --check-prefix X86_64_MINGW --check-prefix MINGW --check-prefix CHECK
+// RUN: {cc} -integrated-cpp -E -dM -x c /dev/null -target x86_64-linux-gnu -m32 | LC_ALL=C sort | FileCheck {input} --check-prefix IA32 --check-prefix LINUX --check-prefix CHECK
+// RUN: {cc} -integrated-cpp -E -dM -x c /dev/null -target x86_64-apple-darwin -m32 | LC_ALL=C sort | FileCheck {input} --check-prefix IA32 --check-prefix DARWIN --check-prefix CHECK
+// RUN: {cc} -integrated-cpp -E -dM -x c /dev/null -target x86_64-pc-mingw32 -m32 | LC_ALL=C sort | FileCheck {input} --check-prefix IA32 --check-prefix MINGW --check-prefix CHECK
 
 // Just check some defines to see that we got a sane baseline, this is not
 // comprehensive.

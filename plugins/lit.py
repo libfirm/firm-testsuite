@@ -24,12 +24,11 @@ def make_lit_test(environment, filename):
         if not match:
             break
         cmd = match.group(1)
-        cmd = cmd.replace("%s", filename)
-        cmd = cmd.replace("%S", os.path.dirname(filename))
+        # Fill in placeholders like %(cc)s
+        cmd = cmd.format(cc=environment.cc, input=filename)
         # hack
         cmd = cmd.replace("FileCheck", "scripts/FileCheck")
         # TODO: handle further replacements
-        cmd = cmd.replace("%%", "%")
         runlines.append(cmd)
 
     if len(runlines) == 0:

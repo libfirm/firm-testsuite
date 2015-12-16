@@ -1,7 +1,7 @@
-// RUN: cparser -integrated-cpp -E -dM -x c /dev/null -fshort-wchar -target i686-linux-gnu | LC_ALL=C sort | FileCheck %s --check-prefix SHORT_WCHAR
-// RUN: cparser -integrated-cpp -E -dM -x c /dev/null -target i686-linux-gnu -fshort-wchar | LC_ALL=C sort | FileCheck %s --check-prefix SHORT_WCHAR
-// RUN: cparser -integrated-cpp -E -dM -x c /dev/null -target i686-linux-gnu | LC_ALL=C sort | FileCheck %s --check-prefix INT_WCHAR
-// RUN: cparser -integrated-cpp -E -dM -x c /dev/null -fshort-wchar -target i686-linux-gnu -fno-short-wchar | LC_ALL=C sort | FileCheck %s --check-prefix INT_WCHAR
+// RUN: {cc} -integrated-cpp -E -dM -x c /dev/null -fshort-wchar -target i686-linux-gnu | LC_ALL=C sort | FileCheck {input} --check-prefix SHORT_WCHAR
+// RUN: {cc} -integrated-cpp -E -dM -x c /dev/null -target i686-linux-gnu -fshort-wchar | LC_ALL=C sort | FileCheck {input} --check-prefix SHORT_WCHAR
+// RUN: {cc} -integrated-cpp -E -dM -x c /dev/null -target i686-linux-gnu | LC_ALL=C sort | FileCheck {input} --check-prefix INT_WCHAR
+// RUN: {cc} -integrated-cpp -E -dM -x c /dev/null -fshort-wchar -target i686-linux-gnu -fno-short-wchar | LC_ALL=C sort | FileCheck {input} --check-prefix INT_WCHAR
 
 // Tests that specific options like -fshort-wchar override target defaults set
 // by -target.

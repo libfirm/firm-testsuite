@@ -1,5 +1,5 @@
-// RUN: cparser -std=c99 -target i686-linux-gnu -integrated-cpp -S -o - %s | FileCheck %s --check-prefix=CHECK --check-prefix=C99
-// RUN: cparser -std=gnu89 -target i686-linux-gnu -integrated-cpp -S -o - %s | FileCheck %s --check-prefix=CHECK --check-prefix=GNU89
+// RUN: {cc} -std=c99 -target i686-linux-gnu -integrated-cpp -S -o - {input} | FileCheck --check-prefix=CHECK --check-prefix=C99 {input}
+// RUN: {cc} -std=gnu89 -target i686-linux-gnu -integrated-cpp -S -o - {input} | FileCheck --check-prefix=CHECK --check-prefix=GNU89 {input}
 
 // CHECK-NOT: func0
 extern inline __attribute__((gnu_inline)) int func0(void) { return 13; }
