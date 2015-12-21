@@ -1,6 +1,7 @@
 #include <float.h>
 #include <math.h>
 #include <stdio.h>
+#include <limits.h>
 
 static long double __attribute__((noinline)) f_to_ld(float val) {
 	return val;
@@ -14,11 +15,7 @@ static long double __attribute__((noinline)) c_to_ld(signed char val) {
 	return val;
 }
 
-static long double __attribute__((noinline)) i_to_ld(signed int val) {
-	return val;
-}
-
-static long double __attribute__((noinline)) llu_to_ld(unsigned long long val) {
+static long double __attribute__((noinline)) ll_to_ld(long long val) {
 	return val;
 }
 
@@ -49,6 +46,15 @@ int main(void) {
 	for (size_t i = 0; i < ARRAY_SIZE(cvals); ++i) {
 		signed char val = cvals[i];
 		printf("%d -> %La\n", val, c_to_ld(val));
+	}
+
+	static long long llvals[] = { LLONG_MIN+1, -127, -64, -1, 0, 1, 2, 4, 6, 16,
+		32, 42, 64, 126, 127, 128, 0x5555555555555555ull,
+		0xAAAAAAAAAAAAAAAAull, LLONG_MAX };
+	printf("\n# long long -> long double\n");
+	for (size_t i = 0; i < ARRAY_SIZE(llvals); ++i) {
+		long long val = llvals[i];
+		printf("%lld -> %La\n", val, c_to_ld(val));
 	}
 
 	return 0;
