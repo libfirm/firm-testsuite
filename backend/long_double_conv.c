@@ -37,7 +37,7 @@ int main(void) {
 	printf("\n# double -> long double\n");
 	for (size_t i = 0; i < ARRAY_SIZE(dvals); ++i) {
 		double val = dvals[i];
-		printf("%a -> %La\n", val, f_to_ld(val));
+		printf("%a -> %La\n", val, d_to_ld(val));
 	}
 
 	static signed char cvals[] = { -128, -127, -64, -1, 0, 1, 2, 4, 6, 16, 32,
