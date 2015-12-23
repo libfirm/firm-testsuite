@@ -1,0 +1,1 @@
+C/should_fail/sizeof_error.c:1:16: error: identifier 'asd' is unknown.
