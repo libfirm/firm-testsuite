@@ -19,6 +19,26 @@ static long double __attribute__((noinline)) ll_to_ld(long long val) {
 	return val;
 }
 
+static float __attribute__((noinline)) ld_to_f(long double val) {
+	return val;
+}
+
+static double __attribute__((noinline)) ld_to_d(long double val) {
+	return val;
+}
+
+static signed char __attribute__((noinline)) ld_to_c(long double val) {
+	return val;
+}
+
+static int __attribute__((noinline)) ld_to_i(long double val) {
+	return val;
+}
+
+static long long __attribute__((noinline)) ld_to_ll(long double val) {
+	return val;
+}
+
 #define ARRAY_SIZE(x)  (sizeof(x)/sizeof(x[0]))
 
 int main(void) {
@@ -55,6 +75,13 @@ int main(void) {
 	for (size_t i = 0; i < ARRAY_SIZE(llvals); ++i) {
 		long long val = llvals[i];
 		printf("%lld -> %La\n", val, c_to_ld(val));
+	}
+
+	static long double ldvals[] = { -42, 13.13, -77.77, 1.5, 2.99999999 };
+	printf("\n# long double -> int\n");
+	for (size_t i = 0; i < ARRAY_SIZE(ldvals); ++i) {
+		long double val = ldvals[i];
+		printf("%La -> %d\n", val, ld_to_i(val));
 	}
 
 	return 0;
