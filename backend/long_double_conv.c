@@ -52,13 +52,15 @@ int main(void) {
 	}
 
 	static double dvals[] = { -1., 0., -0.0f, 42., DBL_MIN, DBL_MAX,
-		DBL_EPSILON, INFINITY, HUGE_VAL, DBL_MIN * DBL_EPSILON };
+		DBL_EPSILON, INFINITY, HUGE_VAL };
 
 	printf("\n# double -> long double\n");
 	for (size_t i = 0; i < ARRAY_SIZE(dvals); ++i) {
 		double val = dvals[i];
 		printf("%a -> %La\n", val, d_to_ld(val));
 	}
+	double denorm = DBL_MIN * DBL_EPSILON;
+	printf("denorm -> %La\n", d_to_ld(denorm));
 
 	static signed char cvals[] = { -128, -127, -64, -1, 0, 1, 2, 4, 6, 16, 32,
 		42, 64, 126, 127 };

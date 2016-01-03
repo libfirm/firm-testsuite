@@ -20,7 +20,7 @@ inf -> inf
 0x1p-52 -> 0x8p-55
 inf -> inf
 inf -> inf
-0x1p-1074 -> 0x8p-1077
+denorm -> 0x8p-1077
 
 # char -> long double
 -128 -> -0x8p+4
