@@ -134,7 +134,7 @@ def create_scriptregex(check_prefixes):
     for prefix in check_prefixes:
         # Check prefix must only be composed from letters (among other things
         # this guarantees we have no special regex chars in it)
-        if not re.match(r'^[a-zA-Z0-9_]+$', prefix):
+        if not re.match(r'^[a-zA-Z0-9_-]+$', prefix):
             die("Prefix '%s' is invalid: Must only contain letters" % prefix)
 
     regex = ""
