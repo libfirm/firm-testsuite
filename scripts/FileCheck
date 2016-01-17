@@ -26,18 +26,38 @@ def parse_checkarg(arg):
         # 1 space in check script may match multiple spaces in input
         if c == ' ':
             regex += '\s+'
-        elif c == '{' and i < len(arg) and arg[i] == '{':
-            # Everything until '}}' is a regex
-            found = False
-            for i2 in range(i+1, len(arg)-1):
-                if arg[i2] == '}' and arg[i2+1] == '}':
-                    found = True
-                    slice = arg[i+1:i2]
-                    regex += slice
-                    i += len(slice)+4
-                    break
-            if not found:
-                regex += '\\{'
+        elif c == '{' or c == '[':
+            rest = arg[i-1:]
+            if rest.startswith("{{"):
+                # Everything until '}}' is a regex
+                found = False
+                for i2 in range(i+1, len(arg)-1):
+                    if arg[i2] == '}' and arg[i2+1] == '}':
+                        found = True
+                        slice = arg[i+1:i2]
+                        regex += slice
+                        i += len(slice)+4
+                        break
+                if not found:
+                    regex += '\\{'
+            elif rest.startswith('[[@FILE]]'):
+                i += 8 # need to skip 9, but 1 was already skipped above
+                regex += re.escape(scriptfile)
+            elif rest.startswith('[[@LINE'):
+                rest = rest[7:]
+                i += 6 # need to skip 7 chars, but 1 was alrady skipped above
+                m = re.match('[+-][0-9]+', rest)
+                if m:
+                    offset_string = m.group(0)
+                    offset = int(offset_string)
+                    rest = rest[len(offset_string):]
+                    i += len(offset_string)
+                    regex += str(linenum + offset)
+                if not rest.startswith("]]"):
+                    die("Unexpected chars after @LINE expression")
+                i += 2
+            else:
+                regex += re.escape(c)
         else:
             regex += re.escape(c)
     matcher = re.compile(regex)
