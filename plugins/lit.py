@@ -28,6 +28,7 @@ def make_lit_test(environment, filename):
         cmd = cmd.format(cc=environment.cc, input=filename)
         # hack
         cmd = cmd.replace("FileCheck", "scripts/FileCheck")
+        cmd = cmd.replace("not", "scripts/not")
         # TODO: handle further replacements
         runlines.append(cmd)
 
@@ -46,7 +47,8 @@ def make_lit_test(environment, filename):
     return test
 
 test_factories = [
-    ( lambda name: "lit/" in name, make_lit_test ),
+    (lambda name: "lit/" in name,        make_lit_test),
+    (lambda name: name.endswith(".lit"), make_lit_test),
 ]
 
 def register_options(opts):
