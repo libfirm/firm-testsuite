@@ -1,1 +1,2 @@
 C/should_fail/declspec.c:3:22: error: expected put or get in property declspec, but got 'foo'
+C/should_fail/declspec.c:4:22: error: expected 'identifier' while parsing property declspec, got '='
