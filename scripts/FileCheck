@@ -73,9 +73,9 @@ def scan_for(matcher, command, arg, justoneline = False, sameline = False):
         if not sameline:
             inputline = input.readline()
         # Check if any of the CHECK-NOT pattersn applies
-        for (notmatcher,notcommand,notarg) in notmatchers:
+        for (notmatcher,notlinenum,notcommand,notarg) in notmatchers:
             if notmatcher.search(inputline):
-                die('%s:%d: %s: %s found:\n%s' % (scriptfile,linenum,notcommand,notarg,inputline[:-1]))
+                die('%s:%d: %s: %s found:\n%s' % (scriptfile,notlinenum,notcommand,notarg,inputline[:-1]))
         if matcher is not None and matcher.search(inputline):
             break
         if inputline == '' or justoneline:
@@ -110,7 +110,7 @@ handlers['CHECK-SAME'] = handle_check_same
 
 def handle_check_not(command, arg):
     matcher = parse_checkarg(arg)
-    notmatchers.append( (matcher, command, arg) )
+    notmatchers.append( (matcher, linenum, command, arg) )
 handlers['CHECK-NOT'] = handle_check_not
 
 def handle_check_label(command, arg):
