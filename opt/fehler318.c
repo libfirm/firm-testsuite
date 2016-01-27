@@ -1,7 +1,7 @@
 int a;
 int *b = &a;
 
-int main(void)
+void fn1(void)
 {
 	short e = 1;
 	for (a = -1; a <= 1;) {
@@ -10,6 +10,9 @@ int main(void)
 		}
 		a = *b <= (e > 0);
 	}
+}
 
+int main(void)
+{
 	return 0;
 }
