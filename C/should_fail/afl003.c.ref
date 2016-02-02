@@ -1,0 +1,1 @@
+C/should_fail/afl003.c:1:14: error: statement expression outside of a function
