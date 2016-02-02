@@ -1,0 +1,1 @@
+C/should_fail/afl002.c:1:13: error: using label 'x' outside of function
