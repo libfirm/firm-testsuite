@@ -1,0 +1,1 @@
+C/should_fail/too_big_number.c:1:9: error: integer constant '88888888888888888888888888' is larger than the largest signed integer type
