@@ -127,14 +127,14 @@ def is_c_file(name):
     return name.endswith(".c") or name.endswith(".cc")
 
 test_factories = [
-    ( lambda name: is_c_file(name) and "C/should_fail/"   in name, make_c_should_fail ),
-    ( lambda name: is_c_file(name) and "C++/should_fail/" in name, make_c_should_fail ),
-    ( lambda name: is_c_file(name) and "C/should_warn/"   in name, make_c_should_warn ),
-	( lambda name: is_c_file(name) and "C/should_warn_pedantic/" in name, make_c_should_warn_pedantic ),
-    ( lambda name: is_c_file(name) and "C/nowarn/"        in name, make_c_should_not_warn ),
-    ( lambda name: is_c_file(name) and "C/gnu99/"         in name, make_make_c_test_cflags(" -std=gnu99") ),
-    ( lambda name: is_c_file(name) and "C/MS/"            in name, make_make_c_test_cflags(" --ms") ),
-    ( lambda name: is_c_file(name) and "C/"               in name, make_make_c_test_cflags(" -std=c99") ),
+    ( lambda name: is_c_file(name) and "C/should_fail/"          in name, make_c_should_fail ),
+    ( lambda name: is_c_file(name) and "C++/should_fail/"        in name, make_c_should_fail ),
+    ( lambda name: is_c_file(name) and "C/should_warn/"          in name, make_c_should_warn ),
+    ( lambda name: is_c_file(name) and "C/should_warn_pedantic/" in name, make_c_should_warn_pedantic ),
+    ( lambda name: is_c_file(name) and "C/nowarn/"               in name, make_c_should_not_warn ),
+    ( lambda name: is_c_file(name) and "C/gnu99/"                in name, make_make_c_test_cflags(" -std=gnu99") ),
+    ( lambda name: is_c_file(name) and "C/MS/"                   in name, make_make_c_test_cflags(" --ms") ),
+    ( lambda name: is_c_file(name) and "C/"                      in name, make_make_c_test_cflags(" -std=c99") ),
 ]
 wildcard_factories = [
     ( "*.c",  make_c_test ),
