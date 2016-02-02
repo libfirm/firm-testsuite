@@ -1,0 +1,2 @@
+C/should_fail/afl000.c:1:11: error: 'T' does not name a type
+C/should_fail/afl000.c:1:13: error: expected declaration of a function parameter, found 'x'
