@@ -1,1 +1,0 @@
-C/should_fail/label_address_outside_func.c:1:11: error: taking address of label outside of function
