@@ -1,0 +1,1 @@
+C/gnu99/should_warn/empty_stmtexpr.c:3:2: warning: empty statement expression ({}) [-Wother]
