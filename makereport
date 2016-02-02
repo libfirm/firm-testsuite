@@ -50,6 +50,7 @@ _opts.set_defaults(
         "C/should_warn_pedantic",
         "C/nowarn",
         "C/gnu99",
+        "C/gnu99/should_warn",
         "C++/should_fail",
         "ack",
         "langshootout",
