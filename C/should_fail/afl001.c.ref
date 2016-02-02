@@ -1,0 +1,1 @@
+C/should_fail/afl001.c:1:13: error: type 'int()' invalid for compound literals
