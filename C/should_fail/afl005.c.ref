@@ -1,0 +1,1 @@
+C/should_fail/afl005.c:1:1: error: 'T' does not name a type
