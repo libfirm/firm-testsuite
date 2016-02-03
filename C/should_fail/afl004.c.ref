@@ -1,0 +1,1 @@
+C/should_fail/afl004.c:1:9: error: variable length array 'int[(int)4]' at file scope
