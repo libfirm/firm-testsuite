@@ -1,0 +1,1 @@
+C/should_fail/afl006.c:1:13: error: operands of binary expression must have integer types, but are 'double' and 'int'
