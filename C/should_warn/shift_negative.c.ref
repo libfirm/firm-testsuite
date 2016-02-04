@@ -1,0 +1,1 @@
+C/should_warn/shift_negative.c:1:15: warning: shift count must be non-negative [-Wother]
