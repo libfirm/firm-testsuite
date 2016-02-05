@@ -71,6 +71,8 @@ def check_missing_errors(result):
     n_errors = len(result.errors)
     if n_errors == 0:
         result.error = "missed error"
+    else:
+        result.error = "ok (but no reference file)"
 
 
 def _help_check_errors_reference(result, reference):
@@ -131,6 +133,8 @@ def check_missing_warnings(result):
     n_warnings = len(result.warnings)
     if n_warnings == 0:
         result.error = "missed warnings"
+    else:
+        result.error = "ok (but no reference file)"
 
 
 def check_no_warnings(result):
