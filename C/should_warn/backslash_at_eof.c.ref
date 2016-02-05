@@ -1,0 +1,1 @@
+C/should_warn/afl008.c:1:29: warning: '\' at end of file [-Wother]
