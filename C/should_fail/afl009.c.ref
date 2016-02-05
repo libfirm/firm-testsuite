@@ -1,0 +1,1 @@
+C/should_fail/afl009.c:1:13: error: expected 'identifier' while parsing designator, got '}'
