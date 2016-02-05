@@ -1,0 +1,1 @@
+C/should_warn/afl007.c:1:12: warning: unknown escape sequence '\H' [-Wother]
