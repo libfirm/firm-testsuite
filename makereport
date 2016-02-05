@@ -33,6 +33,7 @@ _opts.set_defaults(
     ldflags="-lm",
     arch_ldflags="-m32",
     expect_url="http://pp.info.uni-karlsruhe.de/git/firm-testresults/plain/fail_expectations-i686-linux-gnu",
+    fetch = True,
     default_dirs=[
         "cparser/should_work",
         "cparser/should_warn",
@@ -75,6 +76,7 @@ _opts.add_option("--faillog", dest="faillog_out",
                  help="Write faillog into file specified here")
 _opts.add_option("--expect", dest="expect_url",
                  help="file/url with fail expectations")
+_opts.add_option("--no-fetch", dest="fetch", action="store_false")
 _opts.add_option("--relax-expect", dest="relax_expect",
                  action="store_true", help="expect any error instead of specific ones")
 _opts.add_option("--show-disappeared", dest="show_disappeared",
@@ -107,19 +109,20 @@ if not sys.stdout.isatty():
     _console_normal = ""
     _console_clear  = ""
 
-def load_expectations(url, environment):
-    try:
-        fetched = True
-        input   = urlopen(url)
-        if input.getcode() is not None and input.getcode() != 200:
+def load_expectations(fetched, url, environment):
+    if fetched:
+        try:
+            fetched = True
+            input   = urlopen(url)
+            if input.getcode() is not None and input.getcode() != 200:
+                fetched = False
+        except:
             fetched = False
-    except:
-        fetched = False
+        if not fetched:
+            _out.write("Warning: Couldn't download from '%s', using cache file\n" % url)
 
     cachefile = environment.builddir + "/" + os.path.basename(url)
     if not fetched:
-        _out.write("Warning: Couldn't download from '%s', using cache file\n"
-                   % url)
         input = open(cachefile)
 
     results = dict()
@@ -309,7 +312,7 @@ def makereport(config, args):
     expectations = {}
     if config.expect_url:
         try:
-            expectations = load_expectations(config.expect_url, config)
+            expectations = load_expectations(config.fetch, config.expect_url, config)
         except Exception as e:
             _out.write("Couldn't load fail expectations: %s\n" % e)
 
