@@ -1,0 +1,1 @@
+C/should_fail/afl008.c:1:7: error: function returning function is not allowed
