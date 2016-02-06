@@ -1,0 +1,1 @@
+C/should_fail/unclosed_string.c:2:1: error: expected ';', got 'end of input'

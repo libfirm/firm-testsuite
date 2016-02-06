@@ -1,0 +1,1 @@
+C/should_fail/universal_character2.c:1:15: error: universal character '\U0001D11E' is not valid in an identifier
