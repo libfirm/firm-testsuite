@@ -1,0 +1,1 @@
+C/should_warn/nested_comment.c:3:4: warning: '/*' within block comment [-Wcomment]

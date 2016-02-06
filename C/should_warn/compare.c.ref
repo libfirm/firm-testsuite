@@ -1,0 +1,1 @@
+C/should_warn/compare.c:7:14: warning: comparison between pointer and integer: 'int' and 'void*' [-Wother]

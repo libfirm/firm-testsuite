@@ -1,0 +1,1 @@
+C/should_warn/initializer8.c:2:11: warning: excess elements in initializer for 'variable a' [-Wother]

@@ -1,0 +1,1 @@
+C/should_warn/printf3.c:6:15: warning: conversion '%u' at position 1 specifies type 'unsigned int' but the argument has type 'long unsigned int' [-Wformat]

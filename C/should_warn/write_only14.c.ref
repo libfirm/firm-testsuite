@@ -1,0 +1,1 @@
+C/should_warn/write_only14.c:1:21: warning: 'parameter x' is never read [-Wunused-parameter]
