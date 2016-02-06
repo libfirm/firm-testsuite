@@ -1,4 +1,4 @@
-/*$ -Wcomments $*/
+/*$ -integrated-cpp -Wcomments $*/
 
 /* /* nested */
 
