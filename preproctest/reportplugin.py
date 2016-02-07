@@ -1,7 +1,7 @@
 from plugins.c   import setup_c_environment
 from test.test   import Test
 from test.steps  import execute
-from test.checks import check_retcode_zero, check_no_errors, check_no_warnings, create_check_reference_output, create_check_warnings_reference, check_missing_errors
+from test.checks import check_retcode_zero, check_no_errors, check_no_warnings, create_check_errors_reference, create_check_reference_output, create_check_warnings_reference
 
 
 def step_preprocess(environment):
@@ -46,7 +46,7 @@ def make_preprocessor_should_fail(environment, filename):
 
     test = Test(environment, filename)
     preprocess = test.add_step("preprocess", step_preprocess)
-    preprocess.add_check(check_missing_errors)
+    preprocess.add_check(create_check_errors_reference(environment))
     return test
 
 test_factories = [
