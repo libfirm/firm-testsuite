@@ -1,4 +1,4 @@
-#1 "bad_retypedef_sys.cc" 3
+#2 "bad_retypedef_sys.cc" 3
 typedef int arr[];
 typedef int arr[10];
 

@@ -1,0 +1,2 @@
+C++/should_fail/bad_retypedef2.cc:2:18: error: redefinition of 'typedef foo'
+C++/should_fail/bad_retypedef2.cc:1:23: note: previous declaration of 'typedef foo' was here

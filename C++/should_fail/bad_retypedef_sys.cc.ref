@@ -1,0 +1,2 @@
+bad_retypedef_sys.cc:3:13: error: redefinition of 'typedef arr'
+bad_retypedef_sys.cc:2:13: note: previous declaration of 'typedef arr' was here
