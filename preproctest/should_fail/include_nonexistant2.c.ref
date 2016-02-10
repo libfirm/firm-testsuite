@@ -1,0 +1,1 @@
+preproctest/should_fail/include_nonexistant2.c:1:10: error: failed including <does_not_exist>: No such file or directory

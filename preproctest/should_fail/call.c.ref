@@ -1,0 +1,1 @@
+preproctest/should_fail/call.c:2:7: error: macro 'FOO' requires 2 arguments, but only 1 provided

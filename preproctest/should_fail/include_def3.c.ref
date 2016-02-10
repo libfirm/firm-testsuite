@@ -1,0 +1,1 @@
+preproctest/should_fail/include_def3.c:3:15: error: expected "FILENAME" or <FILENAME> after #include

@@ -1,0 +1,5 @@
+preproctest/should_fail/toomanyargs.c:2:8: error: too many arguments passed for macro 'foo'
+preproctest/should_fail/toomanyargs.c:4:6: error: too many arguments passed for macro 'a'
+preproctest/should_fail/toomanyargs.c:4:8: error: too many arguments passed for macro 'a'
+preproctest/should_fail/toomanyargs.c:5:2: error: too many arguments passed for macro 'a'
+preproctest/should_fail/toomanyargs.c:5:4: error: too many arguments passed for macro 'a'

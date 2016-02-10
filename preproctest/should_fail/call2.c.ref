@@ -1,0 +1,1 @@
+preproctest/should_fail/call2.c:2:8: error: too many arguments passed for macro 'FOO'

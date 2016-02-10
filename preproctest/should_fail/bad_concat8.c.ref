@@ -1,0 +1,1 @@
+preproctest/should_fail/bad_concat8.c:1:23: error: pasting string literal "he" and string literal "llo" does not result in a valid preprocessing token

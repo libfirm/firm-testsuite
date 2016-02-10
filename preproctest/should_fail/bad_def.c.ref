@@ -1,0 +1,1 @@
+preproctest/should_fail/bad_def.c:1:15: error: expected identifier, '...' or ')' in macro parameter list, got 'newline'

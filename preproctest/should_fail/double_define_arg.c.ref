@@ -1,0 +1,9 @@
+preproctest/should_fail/double_define_arg.c:6:1: error: duplicate macro parameter 'x'
+preproctest/should_fail/double_define_arg.c:4:13: note: previous parameter with same name is here
+preproctest/should_fail/double_define_arg.c:7:1: error: duplicate macro parameter 'y'
+preproctest/should_fail/double_define_arg.c:4:15: note: previous parameter with same name is here
+preproctest/should_fail/double_define_arg.c:8:1: error: duplicate macro parameter 'y'
+preproctest/should_fail/double_define_arg.c:4:15: note: previous parameter with same name is here
+preproctest/should_fail/double_define_arg.c:8:3: error: duplicate macro parameter 'x'
+preproctest/should_fail/double_define_arg.c:4:13: note: previous parameter with same name is here
+preproctest/should_fail/double_define_arg.c:10:16: error: macro 'foo' requires 2 arguments, but only 1 provided

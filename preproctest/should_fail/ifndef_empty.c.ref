@@ -1,0 +1,1 @@
+preproctest/should_fail/ifndef_empty.c:1:8: error: unexpected end of line after #ifndef

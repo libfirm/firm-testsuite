@@ -1,0 +1,1 @@
+preproctest/should_fail/bad_concat10.c:1:23: error: pasting number constant '34' and '+' does not result in a valid preprocessing token

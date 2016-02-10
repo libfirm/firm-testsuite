@@ -1,0 +1,1 @@
+preproctest/should_fail/bad_concat4.c:1:16: error: no token before '##'

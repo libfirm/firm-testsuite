@@ -1,0 +1,2 @@
+preproctest/should_fail/unbalanced2.c:3:2: error: #else after #else
+preproctest/should_fail/unbalanced2.c:2:2: note: condition started here

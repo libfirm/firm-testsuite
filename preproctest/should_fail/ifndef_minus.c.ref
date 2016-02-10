@@ -1,0 +1,1 @@
+preproctest/should_fail/ifndef_minus.c:1:9: error: expected identifier after #ifndef, got '-'

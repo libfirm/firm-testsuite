@@ -1,0 +1,1 @@
+preproctest/should_fail/define_defined.c:1:9: error: identifier 'defined' cannot be used as macro name in #define

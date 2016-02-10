@@ -1,0 +1,1 @@
+preproctest/should_fail/bad_concat11.c:1:22: error: pasting '.' and number constant '.4' does not result in a valid preprocessing token

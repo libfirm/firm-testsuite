@@ -1,0 +1,1 @@
+preproctest/should_fail/bad_concat6.c:1:23: error: pasting identifier 'foo' and '=' does not result in a valid preprocessing token

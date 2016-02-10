@@ -1,0 +1,1 @@
+preproctest/should_fail/no_hash_param.c:1:17: error: '#' is not followed by a macro parameter
