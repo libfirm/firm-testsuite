@@ -1,0 +1,1 @@
+preproctest/should_fail/halfcall.c:2:1: error: reached end of file while parsing arguments for 'foo'

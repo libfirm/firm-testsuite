@@ -1,0 +1,1 @@
+preproctest/should_warn/nospace.c:1:10: warning: missing whitespace after macro name [-Wother]

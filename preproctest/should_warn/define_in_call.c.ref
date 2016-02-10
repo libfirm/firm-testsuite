@@ -1,0 +1,1 @@
+preproctest/should_warn/define_in_call.c:4:1: warning: preprocessing directive in macro argument [-Wother]

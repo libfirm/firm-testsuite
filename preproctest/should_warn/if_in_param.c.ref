@@ -1,0 +1,2 @@
+preproctest/should_warn/if_in_param.c:4:1: warning: preprocessing directive in macro argument [-Wother]
+preproctest/should_warn/if_in_param.c:6:1: warning: preprocessing directive in macro argument [-Wother]

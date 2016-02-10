@@ -1,0 +1,1 @@
+preproctest/should_warn/vaarg.c:1:15: warning: __VA_ARGS__ must only appear in a C99 variadic macro [-Wother]

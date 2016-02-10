@@ -1,0 +1,2 @@
+preproctest/should_warn/redef6.c:2:9: warning: multiple definitions of macro 'm' [-Wother]
+preproctest/should_warn/redef6.c:1:9: note: macro 'm' first defined here

@@ -1,0 +1,1 @@
+preproctest/should_warn/missing_end2.c:2:1: warning: newline while parsing character constant [-Wother]

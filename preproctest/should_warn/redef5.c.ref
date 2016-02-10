@@ -1,0 +1,2 @@
+preproctest/should_warn/redef5.c:2:9: warning: multiple definitions of macro 'foo' [-Wother]
+preproctest/should_warn/redef5.c:1:9: note: macro 'foo' first defined here
