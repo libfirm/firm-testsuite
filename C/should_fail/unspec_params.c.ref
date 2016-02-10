@@ -1,0 +1,1 @@
+C/should_fail/unspec_params.c:10:4: error: too many arguments to function 'f'

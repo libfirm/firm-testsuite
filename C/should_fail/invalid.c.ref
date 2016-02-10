@@ -1,0 +1,5 @@
+C/should_fail/invalid.c:1:1: error: 'AVProbeData' does not name a type
+C/should_fail/invalid.c:2:29: error: identifier 'pb' is unknown.
+C/should_fail/invalid.c:3:1: error: unexpected token 'end of input', expected an expression
+C/should_fail/invalid.c:3:1: error: expected '}', got 'end of input'
+C/should_fail/invalid.c:3:1: error: expected ';', got 'end of input'
