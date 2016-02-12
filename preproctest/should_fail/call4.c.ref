@@ -1,0 +1,1 @@
+preproctest/should_fail/call4.c:4:1: error: reached end of file while parsing arguments for 'J'
