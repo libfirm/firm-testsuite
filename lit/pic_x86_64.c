@@ -70,11 +70,11 @@ void switchtable(unsigned val)
 	// LINUX-NOPIC: jmp *.LTBL1(,%rdi,8)
 	// LINUX-PIC: leaq .LTBL1(%rip), %rcx
 	// LINUX-PIC: movslq (%rcx,%rdi,4), %rax
-	// LINUX-PIC: leaq (%rcx,%rax), %rax
+	// LINUX-PIC: addq %rcx, %rax
 	// LINUX-PIC: jmp *%rax
 	// DARWIN: leaq LTBL1(%rip), %rcx
 	// DARWIN: movslq (%rcx,%rdi,4), %rax
-	// DARWIN: leaq (%rcx,%rax), %rax
+	// DARWIN: addq %rcx, %rax
 	// DARWIN: jmp *%rax
 	switch (val) {
 	case 0: helper0(); break;
