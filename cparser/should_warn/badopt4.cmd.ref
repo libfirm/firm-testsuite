@@ -1,1 +1,1 @@
-warning: ignoring unknown option -Wdoesnotexist [-Wunknown-warning-option]
+warning: ignoring unknown option '-Wdoesnotexist' [-Wunknown-warning-option]
