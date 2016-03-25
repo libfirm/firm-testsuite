@@ -1,0 +1,2 @@
+C/should_fail/incompatible12.c:3:13: error: redefinition of 'typedef T'
+C/should_fail/incompatible12.c:2:13: note: previous declaration of 'typedef T' was here
