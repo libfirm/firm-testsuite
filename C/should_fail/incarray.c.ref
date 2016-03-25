@@ -1,0 +1,1 @@
+C/should_fail/incarray.c:4:2: error: operation needs a real or pointer type, but got 'short int[1]'
