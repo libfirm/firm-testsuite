@@ -1,1 +1,1 @@
-large_array2.c:1:7: error: array is too large
+C/should_fail/large_array2.c:1:7: error: array is too large
