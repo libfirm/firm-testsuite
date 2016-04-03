@@ -11,10 +11,11 @@ int main(void)
 	int n2 = 13;
 
 	__asm__(
+			"sub $8, %%esp\n"
 			"pushl %0\n"
 			"pushl %1\n"
 			"call *%2\n"
-			"addl $8, %%esp"
+			"addl $16, %%esp"
 		:  /* no outputs */
 		: "rmi"(n1), "rmi"(n2), "r" (printadd)
 		: "cc", "edx", "ecx", "eax", "memory" );
