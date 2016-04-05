@@ -178,6 +178,7 @@ def console_output(config, test, expected):
         if time is not None:
             timing = " [%s%.2fs%s]" % (_console_yellow, time, _console_normal)
     result = test.result
+    write_details = False
     if expected and expectation_match(result, expected, config):
         if test.success and not config.verbose:
             newline = "\n" if _console_clear == "" else ""
@@ -195,12 +196,24 @@ def console_output(config, test, expected):
         if expected and not test.success:
             global _rc
             _rc = 1
+            if config.verbose:
+                write_details = True
 
         if expected:
             result += " (expected %s)" % expected
         else:
             result += " (new)"
     _out.write("%s%s%-40s %s%s%s\n" % (_console_clear, prefix, test.id, result, _console_normal, timing))
+    if write_details:
+        for step in test.steps:
+            result = test.stepresults[step.name]
+            _out.write("===> Step '%s': %s\n" % (step.name, result.error))
+            _out.write("> %s\n" % (result.cmd,))
+            _out.write("retcode %s\n" % (result.retcode,))
+            _out.write("time %s\n" % (result.time,))
+            _out.write("%s\n" % (result.stdout,))
+            _out.write("%s\n" % (result.stderr,))
+
     _out.flush()
 
 
