@@ -1,2 +1,2 @@
 C/should_fail/cp_error002.c:5:6: error: declaration 'void bi_windup(void)' is incompatible with 'void bi_windup(int)'
-C/should_fail/cp_error002.c:1:6: note: previous declaration of 'function bi_windup' was here
+C/should_fail/cp_error002.c:1:6: note: previous declaration of function 'bi_windup' was here

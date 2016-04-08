@@ -1,3 +1,3 @@
-C/should_fail/bad_alias6.c:1:35: error: 'variable x' is a definition but declared as an alias for 'bar'
-C/should_fail/bad_alias6.c:4:5: error: redefinition of 'variable x'
-C/should_fail/bad_alias6.c:1:35: note: previous declaration of 'variable x' was here
+C/should_fail/bad_alias6.c:1:35: error: variable 'x' is a definition but declared as an alias for 'bar'
+C/should_fail/bad_alias6.c:4:5: error: redefinition of variable 'x'
+C/should_fail/bad_alias6.c:1:35: note: previous declaration of variable 'x' was here

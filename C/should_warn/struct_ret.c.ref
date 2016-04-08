@@ -1,4 +1,4 @@
-C/should_warn/struct_ret.c:6:17: warning: 'function testS' returns an aggregate [-Waggregate-return]
-C/should_warn/struct_ret.c:12:16: warning: 'function testU' returns an aggregate [-Waggregate-return]
+C/should_warn/struct_ret.c:6:17: warning: function 'testS' returns an aggregate [-Waggregate-return]
+C/should_warn/struct_ret.c:12:16: warning: function 'testU' returns an aggregate [-Waggregate-return]
 C/should_warn/struct_ret.c:20:20: warning: function call has aggregate value [-Waggregate-return]
 C/should_warn/struct_ret.c:21:19: warning: function call has aggregate value [-Waggregate-return]

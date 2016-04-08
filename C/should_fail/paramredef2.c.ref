@@ -1,2 +1,2 @@
-C/should_fail/paramredef2.c:1:18: error: declaration of 'parameter x' redeclares 'parameter x'
-C/should_fail/paramredef2.c:1:11: note: previous declaration of 'parameter x' was here
+C/should_fail/paramredef2.c:1:18: error: declaration of parameter 'x' redeclares parameter 'x'
+C/should_fail/paramredef2.c:1:11: note: previous declaration of parameter 'x' was here

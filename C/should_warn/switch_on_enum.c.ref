@@ -1,2 +1,2 @@
-C/should_warn/switch_on_enum.c:9:2: warning: 'enum value b' not handled in switch [-Wswitch-enum]
-C/should_warn/switch_on_enum.c:9:2: warning: 'enum value c' not handled in switch [-Wswitch-enum]
+C/should_warn/switch_on_enum.c:9:2: warning: enum value 'b' not handled in switch [-Wswitch-enum]
+C/should_warn/switch_on_enum.c:9:2: warning: enum value 'c' not handled in switch [-Wswitch-enum]

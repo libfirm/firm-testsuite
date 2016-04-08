@@ -1,1 +1,1 @@
-C/should_fail/struct_self.c:2:11: error: 'compound member x' has incomplete type 'struct X'
+C/should_fail/struct_self.c:2:11: error: compound member 'x' has incomplete type 'struct X'

@@ -1,1 +1,1 @@
-C/should_fail/initializer2.c:4:16: error: 'function f' is initialized like a variable
+C/should_fail/initializer2.c:4:16: error: function 'f' is initialized like a variable

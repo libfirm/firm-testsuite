@@ -1,1 +1,1 @@
-C/should_fail/adr_reg.c:8:23: error: address of register 'variable a' requested
+C/should_fail/adr_reg.c:8:23: error: address of register variable 'a' requested

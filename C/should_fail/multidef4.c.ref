@@ -1,2 +1,2 @@
-C/should_fail/multidef4.c:6:5: error: redefinition of 'function blup'
-C/should_fail/multidef4.c:1:5: note: previous declaration of 'function blup' was here
+C/should_fail/multidef4.c:6:5: error: redefinition of function 'blup'
+C/should_fail/multidef4.c:1:5: note: previous declaration of function 'blup' was here

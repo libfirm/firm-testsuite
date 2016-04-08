@@ -1,2 +1,2 @@
-C/should_fail/multidef2.c:4:6: error: multiple declarations of 'compound member x'
-C/should_fail/multidef2.c:2:6: note: previous declaration of 'compound member x' was here
+C/should_fail/multidef2.c:4:6: error: multiple declarations of compound member 'x'
+C/should_fail/multidef2.c:2:6: note: previous declaration of compound member 'x' was here

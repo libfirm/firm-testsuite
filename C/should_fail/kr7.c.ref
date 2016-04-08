@@ -1,2 +1,2 @@
 C/should_fail/kr7.c:5:6: error: declaration 'void f(int)' is incompatible with 'void f(char)'
-C/should_fail/kr7.c:3:6: note: previous declaration of 'function f' was here
+C/should_fail/kr7.c:3:6: note: previous declaration of function 'f' was here

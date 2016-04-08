@@ -1,2 +1,2 @@
 C/should_fail/incompatible8.c:2:20: error: declaration 'const int (* f0)(int)' is incompatible with 'int (* f0)(int)'
-C/should_fail/incompatible8.c:1:14: note: previous declaration of 'variable f0' was here
+C/should_fail/incompatible8.c:1:14: note: previous declaration of variable 'f0' was here

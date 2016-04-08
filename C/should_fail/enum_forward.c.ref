@@ -1,1 +1,1 @@
-C/should_fail/enum_forward.c:3:19: error: 'parameter bla' has incomplete type
+C/should_fail/enum_forward.c:3:19: error: parameter 'bla' has incomplete type

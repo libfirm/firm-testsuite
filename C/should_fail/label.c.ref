@@ -1,2 +1,2 @@
-C/should_fail/label.c:2:7: error: 'label missing' used but not defined
-C/should_fail/label.c:3:7: error: 'label missing2' used but not defined
+C/should_fail/label.c:2:7: error: label 'missing' used but not defined
+C/should_fail/label.c:3:7: error: label 'missing2' used but not defined

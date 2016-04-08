@@ -1,1 +1,1 @@
-C/should_fail/union.c:2:13: error: 'compound member a' must have no storage class
+C/should_fail/union.c:2:13: error: compound member 'a' must have no storage class

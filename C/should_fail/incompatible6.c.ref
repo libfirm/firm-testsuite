@@ -1,2 +1,2 @@
 C/should_fail/incompatible6.c:2:12: error: declaration 'int i0[8]' is incompatible with 'int i0[5]'
-C/should_fail/incompatible6.c:1:12: note: previous declaration of 'variable i0' was here
+C/should_fail/incompatible6.c:1:12: note: previous declaration of variable 'i0' was here

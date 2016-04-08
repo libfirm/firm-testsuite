@@ -1,1 +1,1 @@
-C/should_fail/initializer4.c:3:6: error: variable sized 'variable strange' may not be initialized
+C/should_fail/initializer4.c:3:6: error: variable sized variable 'strange' may not be initialized

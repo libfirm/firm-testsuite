@@ -1,2 +1,2 @@
-C/should_warn/padded.c:3:1: warning: 'struct S' needs padding [-Wpadded]
-C/should_warn/padded.c:8:1: warning: 'struct T' needs padding [-Wpadded]
+C/should_warn/padded.c:3:1: warning: struct 'S' needs padding [-Wpadded]
+C/should_warn/padded.c:8:1: warning: struct 'T' needs padding [-Wpadded]

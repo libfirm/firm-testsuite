@@ -1,2 +1,2 @@
-C/should_fail/multidef3.c:3:16: error: redeclaration of 'variable c' as enum value
-C/should_fail/multidef3.c:1:5: note: previous declaration of 'variable c' was here
+C/should_fail/multidef3.c:3:16: error: redeclaration of variable 'c' as enum value
+C/should_fail/multidef3.c:1:5: note: previous declaration of variable 'c' was here

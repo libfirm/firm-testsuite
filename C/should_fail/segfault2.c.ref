@@ -3,7 +3,7 @@ C/should_fail/segfault2.c:10:40: error: 'Window' does not name a type
 C/should_fail/segfault2.c:11:39: error: 'GC' does not name a type
 C/should_fail/segfault2.c:11:53: error: 'Display' does not name a type
 C/should_fail/segfault2.c:14:23: error: identifier 'KeyPressMask' is unknown.
-C/should_fail/segfault2.c:14:87: error: 'variable G' has incomplete type 'struct timeval' but is initialized
+C/should_fail/segfault2.c:14:87: error: variable 'G' has incomplete type 'struct timeval' but is initialized
 C/should_fail/segfault2.c:14:87: error: variable 'struct timeval G' has incomplete type
 C/should_fail/segfault2.c:20:91: error: identifier 'CS' is unknown.
 C/should_fail/segfault2.c:21:36: error: 'XEvent' does not name a type

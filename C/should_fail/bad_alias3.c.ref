@@ -1,1 +1,1 @@
-C/should_fail/bad_alias3.c:2:33: error: 'variable l' has an initializer but is declared as an alias for 'k'
+C/should_fail/bad_alias3.c:2:33: error: variable 'l' has an initializer but is declared as an alias for 'k'

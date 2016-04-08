@@ -1,1 +1,1 @@
-C/should_fail/bad_alias9.c:2:35: error: 'variable foo' is a definition but declared as an alias for 'var'
+C/should_fail/bad_alias9.c:2:35: error: variable 'foo' is a definition but declared as an alias for 'var'

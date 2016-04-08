@@ -1,1 +1,1 @@
-C/should_fail/initializer3.c:3:12: error: 'variable f' has incomplete type 'foo' but is initialized
+C/should_fail/initializer3.c:3:12: error: variable 'f' has incomplete type 'foo' but is initialized

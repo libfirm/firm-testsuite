@@ -1,1 +1,1 @@
-C/should_warn/unused_param.c:1:19: warning: 'parameter k' is unused [-Wunused-parameter]
+C/should_warn/unused_param.c:1:19: warning: parameter 'k' is unused [-Wunused-parameter]

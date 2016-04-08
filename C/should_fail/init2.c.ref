@@ -1,1 +1,1 @@
-C/should_fail/init2.c:5:28: error: extra brace group at end of initializer for 'variable arr'
+C/should_fail/init2.c:5:28: error: extra brace group at end of initializer for variable 'arr'

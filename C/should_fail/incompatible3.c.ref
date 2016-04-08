@@ -1,2 +1,2 @@
 C/should_fail/incompatible3.c:2:18: error: declaration 'const int i0' is incompatible with 'int i0'
-C/should_fail/incompatible3.c:1:12: note: previous declaration of 'variable i0' was here
+C/should_fail/incompatible3.c:1:12: note: previous declaration of variable 'i0' was here

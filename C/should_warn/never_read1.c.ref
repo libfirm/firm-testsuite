@@ -1,1 +1,1 @@
-C/should_warn/never_read1.c:6:6: warning: 'variable x' is never read [-Wunused-variable]
+C/should_warn/never_read1.c:6:6: warning: variable 'x' is never read [-Wunused-variable]

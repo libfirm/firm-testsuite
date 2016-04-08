@@ -1,1 +1,1 @@
-C/should_fail/cp_error054.c:2:14: error: invalid storage class for 'function read_number'
+C/should_fail/cp_error054.c:2:14: error: invalid storage class for function 'read_number'

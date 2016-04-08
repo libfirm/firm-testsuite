@@ -1,2 +1,2 @@
-C/should_fail/multifield.c:3:9: error: multiple declarations of 'compound member a'
-C/should_fail/multifield.c:2:6: note: previous declaration of 'compound member a' was here
+C/should_fail/multifield.c:3:9: error: multiple declarations of compound member 'a'
+C/should_fail/multifield.c:2:6: note: previous declaration of compound member 'a' was here

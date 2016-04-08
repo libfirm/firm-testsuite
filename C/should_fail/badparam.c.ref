@@ -1,1 +1,1 @@
-C/should_fail/badparam.c:3:13: error: 'parameter f' has incomplete type
+C/should_fail/badparam.c:3:13: error: parameter 'f' has incomplete type

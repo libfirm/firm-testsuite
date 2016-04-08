@@ -1,2 +1,2 @@
-C/should_fail/multidef5.c:5:1: error: duplicate 'label label'
-C/should_fail/multidef5.c:3:1: note: previous declaration of 'label label' was here
+C/should_fail/multidef5.c:5:1: error: duplicate label 'label'
+C/should_fail/multidef5.c:3:1: note: previous declaration of label 'label' was here

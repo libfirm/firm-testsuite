@@ -1,2 +1,2 @@
 C/should_fail/incompatible4.c:2:18: error: declaration 'unsigned int* i0' is incompatible with 'int* i0'
-C/should_fail/incompatible4.c:1:13: note: previous declaration of 'variable i0' was here
+C/should_fail/incompatible4.c:1:13: note: previous declaration of variable 'i0' was here

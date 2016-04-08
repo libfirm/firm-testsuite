@@ -1,2 +1,2 @@
-C++/should_fail/bad_retypedef.cc:2:13: error: redefinition of 'typedef arr'
-C++/should_fail/bad_retypedef.cc:1:13: note: previous declaration of 'typedef arr' was here
+C++/should_fail/bad_retypedef.cc:2:13: error: redefinition of typedef 'arr'
+C++/should_fail/bad_retypedef.cc:1:13: note: previous declaration of typedef 'arr' was here
