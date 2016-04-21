@@ -1,0 +1,1 @@
+C/should_fail/macro_errloc.c:3:7: error: expected 'identifier', '(' while parsing declarator, got number constant '23'
