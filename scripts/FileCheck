@@ -30,15 +30,11 @@ def parse_checkarg(arg):
             rest = arg[i-1:]
             if rest.startswith("{{"):
                 # Everything until '}}' is a regex
-                found = False
-                for i2 in range(i+1, len(arg)-1):
-                    if arg[i2] == '}' and arg[i2+1] == '}':
-                        found = True
-                        slice = arg[i+1:i2]
-                        regex += slice
-                        i += len(slice)+4
-                        break
-                if not found:
+                end = rest.find("}}")
+                if end != -1:
+                    regex += rest[2:end]
+                    i     += end + 1 # another +1 is added at the head of the loop
+                else:
                     regex += '\\{'
             elif rest.startswith('[[@FILE]]'):
                 i += 8 # need to skip 9, but 1 was already skipped above
