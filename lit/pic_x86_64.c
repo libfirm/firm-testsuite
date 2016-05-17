@@ -57,9 +57,9 @@ void calls(void)
 // CHECK-LABEL: getdconst:
 double getdconst(void)
 {
-	// LINUX-NOPIC: movsd .LC0, %xmm0
-	// LINUX-PIC: movsd .LC0(%rip), %xmm0
-	// DARWIN: movsd LC0(%rip), %xmm0
+	// LINUX-NOPIC: movsd .LC.{{\d+}}, %xmm0
+	// LINUX-PIC: movsd .LC.{{\d+}}(%rip), %xmm0
+	// DARWIN: movsd LC.{{\d+}}(%rip), %xmm0
 	// CHECK: ret
 	return 42.42;
 }
@@ -67,12 +67,12 @@ double getdconst(void)
 // CHECK-LABEL: switchtable:
 void switchtable(unsigned val)
 {
-	// LINUX-NOPIC: jmp *.LTBL1(,%rdi,8)
-	// LINUX-PIC: leaq .LTBL1(%rip), %rcx
+	// LINUX-NOPIC: jmp *.LTBL.{{\d+}}(,%rdi,8)
+	// LINUX-PIC: leaq .LTBL.{{\d+}}(%rip), %rcx
 	// LINUX-PIC: movslq (%rcx,%rdi,4), %rax
 	// LINUX-PIC: addq %rcx, %rax
 	// LINUX-PIC: jmp *%rax
-	// DARWIN: leaq LTBL1(%rip), %rcx
+	// DARWIN: leaq LTBL.{{\d+}}(%rip), %rcx
 	// DARWIN: movslq (%rcx,%rdi,4), %rax
 	// DARWIN: addq %rcx, %rax
 	// DARWIN: jmp *%rax
