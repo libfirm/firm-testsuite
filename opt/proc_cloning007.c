@@ -10,7 +10,7 @@ void fn1(int p1, unsigned p2)
 
 int main(void)
 {
-	fn1(0, 0);
+	fn1(b, 0);
 
 	return 0;
 }
