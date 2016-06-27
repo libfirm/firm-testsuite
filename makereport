@@ -206,7 +206,9 @@ def console_output(config, test, expected):
     _out.write("%s%s%-40s %s%s%s\n" % (_console_clear, prefix, test.id, result, _console_normal, timing))
     if write_details:
         for step in test.steps:
-            result = test.stepresults[step.name]
+            result = test.stepresults.get(step.name)
+            if result is None:
+                continue
             _out.write("===> Step '%s': %s\n" % (step.name, result.error))
             _out.write("> %s\n" % (result.cmd,))
             _out.write("retcode %s\n" % (result.retcode,))
