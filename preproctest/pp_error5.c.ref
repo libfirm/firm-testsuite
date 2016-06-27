@@ -1,0 +1,14 @@
+# 1 "preproctest/pp_error5.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/pp_error5.c"
+
+
+
+
+
+int main(int argc, char **argv)
+{
+ (void)argv;
+ printf("%d" "\n", argc);;
+}
