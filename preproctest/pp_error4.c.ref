@@ -1,6 +1,6 @@
-# 1 "pp_error4.c"
+# 1 "preproctest/pp_error4.c"
 # 1 "<built-in>"
 # 1 "<command-line>"
-# 1 "pp_error4.c"
-# 11 "pp_error4.c"
+# 1 "preproctest/pp_error4.c"
+# 11 "preproctest/pp_error4.c"
 (((uintptr_t) (((((uintptr_t) ((sizeof(HashJoinTupleData))) + ((MAXIMUM_ALIGNOF) - 1)) & ~((uintptr_t) ((MAXIMUM_ALIGNOF) - 1))) + ((MinimalTuple) ((char *) (hashTuple) + (((uintptr_t) ((sizeof(HashJoinTupleData))) + ((MAXIMUM_ALIGNOF) - 1)) & ~((uintptr_t) ((MAXIMUM_ALIGNOF) - 1)))))->t_len)) + ((MAXIMUM_ALIGNOF) - 1)) & ~((uintptr_t) ((MAXIMUM_ALIGNOF) - 1)));
