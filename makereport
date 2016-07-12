@@ -159,8 +159,8 @@ def expectation_match(error, expectation, config):
         return True
     if config.relax_expect:
        # consider any kind of error equivalent
-       for er in ("execute: ", "compile: "):
-          for ex in ("execute: ", "compile: "):
+       for er in ("execute: ", "compile: ", "preprocess: "):
+          for ex in ("execute: ", "compile: ", "preprocess: "):
              if error.startswith(er) and expectation.startswith(ex):
                 return True
     return error == expectation
