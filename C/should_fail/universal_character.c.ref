@@ -1,1 +1,1 @@
-C/should_fail/universal_character.c:1:8: error: universal character '\u00AC' is not valid in an identifier
+C/should_fail/universal_character.c:3:8: error: universal character '\u00AC' is not valid in an identifier

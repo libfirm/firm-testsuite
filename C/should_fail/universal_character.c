@@ -1,3 +1,5 @@
+/*$ -integrated-cpp $*/
+
 int not\u00AC = 13;
 
 int main(void)
