@@ -11,9 +11,9 @@ static inline unsigned cas(unsigned *addr, unsigned oldval, unsigned newval)
 {
 	unsigned result;
 #ifdef __leon__
-	__asm__ __volatile__("cas [%[address]], %[old], %[new]"
-		: "=r" (result)
-		: [new] "0"  (newval), [address] "r"  (addr), [old] "r"  (oldval)
+	__asm__ __volatile__("cas %[mem], %[old], %[new]"
+		: "=r" (result), [mem] "+w"  (*addr)
+		: [new] "0"  (newval), [old] "r"  (oldval)
 		: "memory");
 #else
 	// not atomic... but this file is just a stupid compilertest
@@ -27,9 +27,9 @@ static inline unsigned cas(unsigned *addr, unsigned oldval, unsigned newval)
 static inline unsigned cas2(unsigned *addr, unsigned oldval, unsigned newval)
 {
 #ifdef __leon__
-	__asm__ __volatile__("stbar\n\tcas [%[address]], %[old], %[new]"
-		: [new] "+r" (newval)
-		: [address] "r"  (addr), [old] "r"  (oldval)
+	__asm__ __volatile__("stbar\n\tcas %[mem], %[old], %[new]"
+		: [new] "+r" (newval), [mem] "+w" (*addr)
+		: [old] "r"  (oldval)
 		: "memory");
 	return newval;
 #else
