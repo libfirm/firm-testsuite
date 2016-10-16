@@ -1,0 +1,2 @@
+C/should_warn/scanf.c:16:14: warning: conversion '%s' at position 1 specifies type 'char*' but the argument has type 'unsigned char*' [-Wformat]
+C/should_warn/scanf.c:17:14: warning: conversion '%s' at position 1 specifies type 'char*' but the argument has type 'const char*' [-Wformat]
