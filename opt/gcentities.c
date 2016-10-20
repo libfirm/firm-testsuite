@@ -14,12 +14,12 @@
 
 extern int puts(const char *str);
 
-static void remove_not_1(void)
+static void __attribute__((noinline)) remove_not_1(void)
 {
 	puts("Hello");
 }
 
-static void remove_not_2(void)
+static void __attribute__((noinline)) remove_not_2(void)
 {
 	puts("garbage collector");
 }
