@@ -32,7 +32,7 @@ _opts.set_defaults(
     cflags="-O3",
     ldflags="-lm",
     arch_ldflags="-m32",
-    expect_url="http://pp.info.uni-karlsruhe.de/git/firm-testresults/plain/fail_expectations-i686-linux-gnu",
+    expect_url="https://raw.githubusercontent.com/libfirm/testresults/master/fail_expectations-i686-linux-gnu",
     fetch = True,
     default_dirs=[
         "cparser/should_work",
