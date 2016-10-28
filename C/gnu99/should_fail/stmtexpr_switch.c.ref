@@ -1,0 +1,1 @@
+C/gnu99/should_fail/stmtexpr_switch.c:6:9: error: switch jumps into statement expression
