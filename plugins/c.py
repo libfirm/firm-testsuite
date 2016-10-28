@@ -109,10 +109,10 @@ def make_c_should_warn(environment, filename, cflags=" -Wall -W"):
     return test
 
 def make_c_gnu99_should_warn(environment, filename):
-	return make_c_should_warn(environment, filename, cflags=" -Wall -W -std=gnu99")
+    return make_c_should_warn(environment, filename, cflags=" -Wall -W -std=gnu99")
 
 def make_c_should_warn_pedantic(environment, filename):
-	return make_c_should_warn(environment, filename, cflags=" -w -pedantic")
+    return make_c_should_warn(environment, filename, cflags=" -w -pedantic")
 
 def make_c_should_not_warn(environment, filename):
     setup_c_environment(environment, filename)
