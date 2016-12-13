@@ -1,15 +1,8 @@
 /*$ -O0 -fconst-fold $*/
 
-int volatile g;
-
-void f(int a, int b)
-{
-	for (;;) {
-		g ? g, a / b : a / b;
-	}
-}
+int a = 1;
 
 int main(void)
 {
-	return 0;
+	return a = a ? 0 / a : a / a;
 }
