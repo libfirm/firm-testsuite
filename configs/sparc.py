@@ -4,7 +4,7 @@ def config_sparc(option, opt_str, value, parser):
     config.arch_cflags  = "-target sparc-linux-gnu"
     config.arch_ldflags = "-static"
     config.runexe       = "qemu-sparc32plus "
-    config.expect_url   = "http://pp.info.uni-karlsruhe.de/git/firm-testresults/plain/fail_expectations-sparc"
+    config.expect_url   = "https://github.com/libfirm/testresults/raw/master/fail_expectations-"
 
 configurations = {
     'sparc': config_sparc

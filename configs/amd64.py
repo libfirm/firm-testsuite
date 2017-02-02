@@ -4,7 +4,7 @@ def config_x86_64(option, opt_str, value, parser):
     config.arch_dirs    = [ "x86_64code" ]
     config.arch_cflags  = "-integrated-cpp -target " + target_triple
     config.arch_ldflags = ""
-    config.expect_url   = "http://pp.info.uni-karlsruhe.de/git/firm-testresults/plain/fail_expectations-" + target_triple
+    config.expect_url   = "https://github.com/libfirm/testresults/raw/master/fail_expectations-" + target_triple
 
 configurations = {
     'amd64':       config_x86_64,
