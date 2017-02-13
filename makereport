@@ -196,8 +196,9 @@ def console_output(config, test, expected):
         if expected and not test.success:
             global _rc
             _rc = 1
-            if config.verbose:
-                write_details = True
+
+        if not test.success and config.verbose:
+            write_details = True
 
         if expected:
             result += " (expected %s)" % expected
