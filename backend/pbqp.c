@@ -1,4 +1,4 @@
-/*$ -bra-chordal-coloring=pbqp $*/
+/*$ -mra-chordal-coloring=pbqp $*/
 
 int a;
 char b;

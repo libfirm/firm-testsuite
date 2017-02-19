@@ -1,4 +1,4 @@
-/*$ -march=i386 -bia32-unsafe_floatconv $*/
+/*$ -march=i386 -munsafe_floatconv $*/
 
 int f2i(float x) { return x; }
 

@@ -1,5 +1,5 @@
-// RUN: {cc} -target i686-unknown-linux-gnu -integrated-cpp -bdebug=frameinfo -S -o - -O3 -fno-omit-frame-pointer {input} | FileCheck {input} --check-prefix CHECK --check-prefix NORMALFP
-// RUN: {cc} -target i686-unknown-linux-gnu -integrated-cpp -bdebug=frameinfo -S -o - -O3 -fomit-frame-pointer {input} | FileCheck {input} --check-prefix CHECK --check-prefix OMITFP
+// RUN: {cc} -target i686-unknown-linux-gnu -integrated-cpp -mdebug=frameinfo -S -o - -O3 -fno-omit-frame-pointer {input} | FileCheck {input} --check-prefix CHECK --check-prefix NORMALFP
+// RUN: {cc} -target i686-unknown-linux-gnu -integrated-cpp -mdebug=frameinfo -S -o - -O3 -fomit-frame-pointer {input} | FileCheck {input} --check-prefix CHECK --check-prefix OMITFP
 
 void extfunc(int a);
 

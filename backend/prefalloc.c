@@ -1,4 +1,4 @@
-/*$ -bregalloc=pref $*/
+/*$ -mregalloc=pref $*/
 
 int f(float *i, float *e)
 {
