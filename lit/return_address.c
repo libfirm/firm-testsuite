@@ -9,7 +9,7 @@ void *retaddr(void)
 	// IA32-NOOMITFP: movl 4(%ebp), %eax
 	// IA32-NOOMITFP: popl %ebp
 	// IA32-NOOMITFP: ret
-	// IA32-OMITFP: movl 12(%esp), %eax
+	// IA32-OMITFP: movl (%esp), %eax
 	// IA32_OMITFP: ret
 	return __builtin_return_address(0);
 }

@@ -11,10 +11,10 @@ void extfunc(int a);
 
 // OMITFP: .cfi_def_cfa_register 4
 // OMITFP: .cfi_def_cfa_offset 4
-// OMITFP: subl $12, %esp
-// OMITFP: .cfi_def_cfa_offset 16
+// OMITFP: subl $4, %esp
+// OMITFP: .cfi_def_cfa_offset 8
 // OMITFP: call extfunc
-// OMITFP: addl $12, %esp
+// OMITFP: popl
 // OMITFP: .cfi_def_cfa_offset 4
 
 // CHECK: ret
