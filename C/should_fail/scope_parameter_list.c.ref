@@ -1,0 +1,2 @@
+C/should_fail/scope_parameter_list.c:8:11: error: variable 'v' has incomplete type 'struct T' but is initialized
+C/should_fail/scope_parameter_list.c:8:11: error: variable 'struct T v' has incomplete type
