@@ -7,6 +7,8 @@
 #elif defined __mips__
 #define RESULT "v0"
 #define PREFIX "$"
+#elif defined __riscv
+#define RESULT "a0"
 #elif defined __sh__
 #define RESULT "r0"
 #elif defined __sparc__
