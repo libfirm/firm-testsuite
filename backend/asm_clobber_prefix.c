@@ -24,10 +24,10 @@ int main(void)
 	int x = zero();
 	/* GCC accepts these two for all architectures.
 	 * See strip_reg_name() in varasm.c */
-	asm("/* %% */" ::: "%" RESULT);
-	asm("/* # */" ::: "#" RESULT);
+	asm("/* %%" RESULT " */" ::: "%" RESULT);
+	asm("/* #" RESULT " */" ::: "#" RESULT);
 #ifdef PREFIX
-	asm("/* " PREFIX " */" ::: PREFIX RESULT);
+	asm("/* " PREFIX RESULT " */" ::: PREFIX RESULT);
 #endif
 	return x;
 }
