@@ -19,15 +19,19 @@
 
 int __attribute__((noinline)) zero(void) { return 0; }
 
+int __attribute__((noinline)) id(int v) { return v; }
+
 int main(void)
 {
 	int x = zero();
 	/* GCC accepts these two for all architectures.
 	 * See strip_reg_name() in varasm.c */
-	asm("/* %%" RESULT " */" ::: "%" RESULT);
-	asm("/* #" RESULT " */" ::: "#" RESULT);
+	asm("/* x:%0 clobber:%%" RESULT " */" : "+r" (x) :: "%" RESULT);
+	x = id(x);
+	asm("/* x:%0 clobber:#" RESULT " */" : "+r" (x) :: "#" RESULT);
+	x = id(x);
 #ifdef PREFIX
-	asm("/* " PREFIX RESULT " */" ::: PREFIX RESULT);
+	asm("/* x:%0 clobber:" PREFIX RESULT " */" : "+r" (x) :: PREFIX RESULT);
 #endif
 	return x;
 }
