@@ -1,0 +1,7 @@
+# 1 "preproctest/pp_error6.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "preproctest/pp_error6.c"
+# 1 "/this/path/does/not/exist"
+# 1 "preproctest/empty.h" 1
+# 2 "/this/path/does/not/exist" 2
