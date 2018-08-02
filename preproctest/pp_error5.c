@@ -1,10 +1,13 @@
 /* From stltwalker src/stltwalker.c */
 
-#define log_err(M, ...) printf(M "\n", ##__VA_ARGS__)
-#define check(A, M, ...) log_err(M, ##__VA_ARGS__);
+#define err(...) (void)0;
+#define check(...) err(1, ##__VA_ARGS__)
 
 int main(int argc, char **argv)
 {
+	(void)argc;
 	(void)argv;
-	check(cond, "%d", argc);
+	check()
+	check("")
+	check("", "")
 }
