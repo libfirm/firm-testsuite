@@ -24,7 +24,8 @@ def make_preprocessor_test(environment, filename):
     test = Test(environment, filename)
     preprocess = test.add_step("preprocess", step_preprocess)
     preprocess.add_check(check_no_errors)
-    preprocess.add_check(check_no_warnings)
+    if not filename.endswith('ok_warn.c'):
+        preprocess.add_check(check_no_warnings)
     preprocess.add_check(check_retcode_zero)
     preprocess.add_check(create_check_reference_output(environment))
     return test

@@ -1,0 +1,8 @@
+preproctest/should_warn/_Pragma.c:7:32: warning: _Pragma is not currently supported [-Wunknown-pragmas]
+preproctest/should_warn/_Pragma.c:8:1: warning: _Pragma is not currently supported [-Wunknown-pragmas]
+preproctest/should_warn/_Pragma.c:8:1: warning: _Pragma is not currently supported [-Wunknown-pragmas]
+preproctest/should_warn/_Pragma.c:8:1: warning: _Pragma is not currently supported [-Wunknown-pragmas]
+preproctest/should_warn/_Pragma.c:11:32: warning: _Pragma is not currently supported [-Wunknown-pragmas]
+preproctest/should_warn/_Pragma.c:12:13: warning: _Pragma is not currently supported [-Wunknown-pragmas]
+preproctest/should_warn/_Pragma.c:12:13: warning: _Pragma is not currently supported [-Wunknown-pragmas]
+preproctest/should_warn/_Pragma.c:12:13: warning: _Pragma is not currently supported [-Wunknown-pragmas]
