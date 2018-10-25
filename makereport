@@ -42,6 +42,7 @@ _opts.set_defaults(
         "preproctest",
         "preproctest/should_warn",
         "preproctest/should_fail",
+        "preproctest/ignore_warnings",
         "backend",
         "opt",
         "C",

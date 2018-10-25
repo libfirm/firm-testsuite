@@ -24,8 +24,7 @@ def make_preprocessor_test(environment, filename):
     test = Test(environment, filename)
     preprocess = test.add_step("preprocess", step_preprocess)
     preprocess.add_check(check_no_errors)
-    if not filename.endswith('ok_warn.c'):
-        preprocess.add_check(check_no_warnings)
+    preprocess.add_check(check_no_warnings)
     preprocess.add_check(check_retcode_zero)
     preprocess.add_check(create_check_reference_output(environment))
     return test
@@ -41,6 +40,15 @@ def make_preprocessor_should_warn(environment, filename):
     preprocess.add_check(create_check_warnings_reference(environment))
     return test
 
+def make_preprocessor_ignore_warnings(environment, filename):
+    setup_preprocess_environment(environment, filename)
+
+    test = Test(environment, filename)
+    preprocess = test.add_step("preprocess", step_preprocess)
+    preprocess.add_check(check_no_errors)
+    preprocess.add_check(check_retcode_zero)
+    preprocess.add_check(create_check_reference_output(environment))
+    return test
 
 def make_preprocessor_should_fail(environment, filename):
     setup_preprocess_environment(environment, filename)
@@ -51,9 +59,10 @@ def make_preprocessor_should_fail(environment, filename):
     return test
 
 test_factories = [
-    (lambda name: name.endswith(".c") and "preproctest/should_fail/" in name, make_preprocessor_should_fail),
-    (lambda name: name.endswith(".c") and "preproctest/should_warn/" in name, make_preprocessor_should_warn),
-    (lambda name: name.endswith(".c") and "preproctest/" in name,             make_preprocessor_test),
+    (lambda name: name.endswith(".c") and "preproctest/should_fail/"            in name, make_preprocessor_should_fail),
+    (lambda name: name.endswith(".c") and "preproctest/should_warn/"            in name, make_preprocessor_should_warn),
+    (lambda name: name.endswith(".c") and "preproctest/ignore_warnings/"        in name, make_preprocessor_ignore_warnings),
+    (lambda name: name.endswith(".c") and "preproctest/"                        in name, make_preprocessor_test),
 ]
 
 
