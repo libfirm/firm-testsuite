@@ -14,7 +14,12 @@ def step_compile_c(environment):
     if environment.memcheck:
       cmd = "valgrind --tool=memcheck "+cmd
       timeout *= _VALGRIND_MEMCHECK_FACTOR
-    return execute(environment, cmd, timeout=timeout)
+    result = execute(environment, cmd, timeout=timeout)
+    if environment.compileroutput and not environment.memcheck:
+        f = open(environment.outputfile, "w")
+        f.write(result.stdout)
+        f.close()
+    return result
 
 def step_compile_c_syntax_only(environment):
     cmd = "%(cc)s %(filename)s %(cflags)s -fsyntax-only" % environment.__dict__
@@ -22,7 +27,12 @@ def step_compile_c_syntax_only(environment):
     if environment.memcheck:
       cmd = "valgrind --tool=memcheck "+cmd
       timeout *= _VALGRIND_MEMCHECK_FACTOR
-    return execute(environment, cmd, timeout=timeout)
+    result = execute(environment, cmd, timeout=timeout)
+    #if environment.compileroutput and not environment.memcheck:
+    #    f = open(environment.outputfile, "w")
+    #    f.write(result.stdout)
+    #    f.close()
+    return result
 
 def step_compile_c_asm(environment):
     """Compile c source code to assembler"""
@@ -32,6 +42,10 @@ def step_compile_c_asm(environment):
       cmd = "valgrind --tool=memcheck "+cmd
       timeout *= _VALGRIND_MEMCHECK_FACTOR
     result = execute(environment, cmd, timeout=timeout)
+    if environment.compileroutput and not environment.memcheck:
+        f = open(environment.outputfile, "w")
+        f.write(result.stdout)
+        f.close()
     if result.fail():
         return result
 
@@ -46,6 +60,8 @@ def setup_c_environment(environment, filename):
     environment.cflags  += " %s" % environment.arch_cflags
     environment.cflags  += " -I%s " % os.path.dirname(environment.filename)
     environment.ldflags += " %s" % environment.arch_ldflags
+    environment.outputfile = environment.builddir + "/" + filename + ".out"
+
 
 def make_c_test(environment, filename):
     setup_c_environment(environment, filename)
@@ -62,13 +78,14 @@ def make_c_test(environment, filename):
     compile.add_check(check_memcheck_output)
 
     asmchecks = parse_embedded_commands(environment, environment.filename)
-    if asmchecks:
+    if asmchecks or environment.compileasm:
         environment.asmfile = environment.builddir + "/" + environment.filename + ".s"
         ensure_dir(os.path.dirname(environment.asmfile))
         asm = test.add_step("asm", step_compile_c_asm)
-        asm.add_checks(asmchecks)
+        if asmchecks:
+            asm.add_checks(asmchecks)
 
-    if environment.memcheck:
+    if environment.memcheck or environment.compileasm:
         return test # no execute necessary
     execute = test.add_step("execute", step_execute)
     execute.add_check(check_retcode_zero)
@@ -166,6 +183,10 @@ def register_options(opts):
                     help="Use CC to compile c programs", metavar="CC")
     opts.add_option("--memcheck", dest="memcheck", action="store_true",
                     help="Use valgrind memcheck on C compiler")
+    opts.add_option("--savecompileroutput", dest="compileroutput", action="store_true",
+                    help="Save the stdout output of the compile step")
+    opts.add_option("--compile-asm", dest="compileasm", action="store_true",
+                    help="Compile to assembly files")
     opts.set_defaults(
         cc="cparser",
         cflags="-O3",

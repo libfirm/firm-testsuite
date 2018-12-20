@@ -288,6 +288,7 @@ def make_tests_from_dir(environment, directory):
             names.append((name, default_factory))
     tests = []
     for (name, default_factory) in names:
+        environment.filename = name
         test = make_test(environment, name, default_factory)
         if test:
             tests.append(test)
