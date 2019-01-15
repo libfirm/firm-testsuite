@@ -2,6 +2,7 @@
 Convenience function
 Alternative to subprocess and os.system
 """
+from __future__ import print_function
 import subprocess
 import resource
 import sys

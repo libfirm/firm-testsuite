@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from __future__ import print_function
 import sys
 import os
 
@@ -12,7 +13,7 @@ def makedirs(path):
 		pass # all fine
 
 def actions(cparser_rev, libfirm_rev, id, resultdir):
-	print "Processing revision %s" % id
+	print("Processing revision %s" % id)
 	os.chdir("%s/cparser/libfirm" % basedir)
 	os.system("rm -rf build")
 	os.system("git checkout -f %s" % libfirm_rev)
@@ -46,7 +47,7 @@ for rev in revs:
 	resultdir = "%s/result/%s" % (basedir,id)
 	# Check if results exist...
 	if os.path.exists(resultdir):
-		print "%s already exists, skipping" % id
+		print("%s already exists, skipping" % id)
 		continue
 
 	# Checkout and build

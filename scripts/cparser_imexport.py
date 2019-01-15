@@ -3,6 +3,7 @@
 # Stupid cparser wrapper which first exports the C file to a .ir file,
 # and then imports this .ir file and compiles it.
 # This way you can test the .ir import/export facilities.
+from __future__ import print_function
 import sys
 import os
 from subprocess import check_output, CalledProcessError
@@ -12,7 +13,7 @@ debug = "CPARSER_IMEXPORT_DEBUG" in os.environ
 def exec_cparser(args):
 	cmdline = ["cparser"] + args
 	if debug:
-		print " ".join(cmdline)
+		print(" ".join(cmdline))
 	try:
 		out = check_output(cmdline)
 		sys.stdout.write(out)
