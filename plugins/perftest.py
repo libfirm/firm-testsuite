@@ -72,7 +72,7 @@ floatheavy = set([
 
 def create_performance_testset(config, args):
     if not args:
-        args = sizes.keys()
+        args = list(sizes.keys())
 
     tests = []
     for name in args:

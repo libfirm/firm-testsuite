@@ -2,6 +2,10 @@
 # Licensed to PSF under a Contributor Agreement.
 
 from __future__ import with_statement
+from builtins import zip
+from builtins import hex
+from builtins import object
+
 import functools
 import logging
 import threading

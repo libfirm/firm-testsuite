@@ -1,3 +1,5 @@
+from builtins import map
+from past.builtins import basestring
 from keyword import iskeyword as _iskeyword
 from operator import itemgetter as _itemgetter
 import sys as _sys

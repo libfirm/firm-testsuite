@@ -1,3 +1,4 @@
+from builtins import object
 import util.shell
 import sys
 from time import time

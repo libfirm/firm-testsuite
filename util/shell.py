@@ -8,7 +8,7 @@ import resource
 import sys
 import signal
 
-_EXIT_CODES = dict((-k, v) for v, k in signal.__dict__.items() if v.startswith('SIG'))
+_EXIT_CODES = dict((-k, v) for v, k in list(signal.__dict__.items()) if v.startswith('SIG'))
 del _EXIT_CODES[0]
 
 
@@ -41,7 +41,7 @@ def execute(cmd, env=None, timeout=0, shell=False, propagate_sigint=True):
         lower_rlimit(resource.RLIMIT_FSIZE,   32 * MB)
 
     if not shell:
-        cmd = filter(lambda x: x, cmd.split(' '))
+        cmd = [x for x in cmd.split(' ') if x]
     proc = subprocess.Popen(cmd,
                             shell=shell,
                             stdout=subprocess.PIPE,

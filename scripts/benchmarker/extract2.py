@@ -29,7 +29,7 @@ def read_rev(cparser_rev, libfirm_rev):
 	print("\t{ ")
 	print('"rev": "%s", ' % rev)
 	print('"info": "%s", ' % open("result/%s/info.txt" % rev).read().replace('\\', '\\\\').replace('"', '\\"').replace('\n', '<br/>'))
-	for (key,value) in values.iteritems():
+	for (key,value) in values.items():
 		print('"%s": %s, ' % (key,value), end=' ')
 	print(" },\n")
 
