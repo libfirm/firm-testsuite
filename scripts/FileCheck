@@ -132,7 +132,7 @@ def run_checkscript(scriptfile, matcher):
         match = matcher.search(line)
         if not match:
             continue
-        handlerlist = handlers.items()
+        handlerlist = list(handlers.items())
         for i in range(len(handlerlist)):
             handlername, handler = handlerlist[i]
             groups = match.groups()

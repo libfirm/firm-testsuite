@@ -37,6 +37,8 @@ def execute(environment, cmd, timeout, shell=False):
         begin = time()
         result.stdout, result.stderr, result.retcode = util.shell.execute(cmd, timeout=timeout, shell=shell)
         result.time = time() - begin
+        # result.stdout = str(result.stdout)
+        # result.stderr = str(result.stderr)
     except util.shell.SigKill as e:
         result.stdout = e.stdout
         result.stderr = e.stderr

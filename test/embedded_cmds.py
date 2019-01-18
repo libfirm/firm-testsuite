@@ -29,12 +29,12 @@ def _embedded_add_check(environment, regex_string, count_arg, flag):
         else:
             raise Exception("!check cannot be used with an argument")
     regex = re.compile(regex_string)
-    return partial(_check_regex, regex=regex, txt=regex_string, count=c, expected_result=flag)
+    return partial(_check_regex, regex=regex, txt=regex_string.decode("utf-8"), count=c, expected_result=flag)
 
 
 def _parse_embedded_command(environment, cmd):
     """parse one /*$ $*/ embedded command"""
-    cmdre = re.compile("(!?check(\[[0-9]+\])?|shell|cflags|ldflags)(.*)")
+    cmdre = re.compile(b"(!?check(\[[0-9]+\])?|shell|cflags|ldflags)(.*)")
     m = cmdre.match(cmd)
     checkers = []
     if m:
@@ -43,7 +43,7 @@ def _parse_embedded_command(environment, cmd):
             base = base[0:-len(m.group(2))]
         if m.group(3):
             arg = m.group(3).strip()
-
+        base = base.decode("utf-8")
         if base == "check":
             checker = _embedded_add_check(environment, arg, m.group(2), True)
             checkers.append(checker)
@@ -51,14 +51,14 @@ def _parse_embedded_command(environment, cmd):
             checker = _embedded_add_check(environment, arg, m.group(2), False)
             checkers.append(checker)
         elif base == "cflags":
-            environment.cflags += " %s" % (arg,)
+            environment.cflags += " %s" % (arg.decode("utf-8"),)
         elif base == "ldflags":
-            environment.ldflags += " %s" % (arg,)
+            environment.ldflags += " %s" % (arg.decode("utf-8"),)
         else:
-            sys.stderr.write("Error: unsupported command %s\n" % (base))
+            sys.stderr.write("Error: unsupported command %s\n" % base)
     else:
         # treat as a cflag option
-        environment.cflags += " %s" % (cmd.strip(), )
+        environment.cflags += " %s" % (cmd.strip().decode("utf-8"), )
     return checkers
 
 
@@ -66,8 +66,9 @@ def parse_embedded_commands(environment, filename):
     """Parse a given file for embedded test commands (/*$ ... $*/ sequences).
     Commands may modify the environment (like adding cflags, ldflags) or create
     additional checkers for a step which produces assembler output."""
-    cmd_regex = re.compile("/\\*\\$ (.+) \\$\\*/")
+    cmd_regex = re.compile(b"/\\*\\$ (.+) \\$\\*/")
     checkers = []
+    # print(filename)
     for line in open(filename, "rb"):
         m = cmd_regex.search(line)
         if m:

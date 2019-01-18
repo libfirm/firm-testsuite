@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# from concurrent.futures import ProcessPoolExecutor
+
 from future import standard_library
 standard_library.install_aliases()
 from builtins import object
@@ -217,8 +219,8 @@ def console_output(config, test, expected):
             _out.write("> %s\n" % (result.cmd,))
             _out.write("retcode %s\n" % (result.retcode,))
             _out.write("time %s\n" % (result.time,))
-            _out.write("%s\n" % (result.stdout,))
-            _out.write("%s\n" % (result.stderr,))
+            _out.write("%s\n" % (result.stdout.decode("utf-8"),))
+            _out.write("%s\n" % (result.stderr.decode("utf-8"),))
 
     _out.flush()
 

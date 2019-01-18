@@ -12,10 +12,10 @@ def check_retcode_zero(result):
 def check_firm_problems(result):
     """Check output of step command for problematic firm messages"""
     for line in result.stderr.splitlines() + result.stdout.splitlines():
-        if line.startswith("Verify warning:"):  # libfirm verifier warnings
+        if line.startswith(b"Verify warning:"):  # libfirm verifier warnings
             result.error = "verify warning"
             break
-        elif "libFirm panic" in line:
+        elif b"libFirm panic" in line:
             result.errors_msg = "libFirm panic"
             break
 
@@ -23,10 +23,10 @@ def check_firm_problems(result):
 def check_cparser_problems(result):
     """Check output of step command for problematic cparser outputs"""
     for line in result.stderr.splitlines() + result.stdout.splitlines():
-        if "linker reported an error" in line:
+        if b"linker reported an error" in line:
             result.error = "linker error"
             break
-        elif "assembler reported an error" in line:
+        elif b"assembler reported an error" in line:
             result.error = "assembler error"
             break
 
@@ -41,15 +41,15 @@ def search_warnings_errors(result):
     result.errors   = []
     last_message    = None
     for line in result.stderr.splitlines() + result.stdout.splitlines():
-        if "warning: " in line:  # frontend warnings
+        if b"warning: " in line:  # frontend warnings
             last_message = "warning"
             result.warnings.append(line)
-        elif "error: " in line:  # frontend errors
+        elif b"error: " in line:  # frontend errors
             last_message = "error"
             result.errors.append(line)
         # Catch notes for the last problem, but not notes reporting in
         # which function the next problem occurs
-        elif " note: " in line and not " note: in " in line:
+        elif b" note: " in line and not b" note: in " in line:
             if last_message == "warning":
                 result.warnings.append(line)
             elif last_message == "error":
@@ -79,7 +79,7 @@ def _help_check_errors_reference(result, reference):
     search_warnings_errors(result)
     n_errors   = len(result.errors)
     n_expected = len(reference.splitlines())
-    error_text = "\n".join(result.errors) + "\n"
+    error_text = b"\n".join(result.errors) + b"\n"
     if n_errors != n_expected:
         result.error = "reported %s errors instead of %s" % (n_errors, n_expected)
     elif error_text != reference:
@@ -149,7 +149,7 @@ def _help_check_warnings_reference(result, reference):
     search_warnings_errors(result)
     n_warnings   = len(result.warnings)
     n_expected   = len(reference.splitlines())
-    warning_text = "\n".join(result.warnings) + "\n"
+    warning_text = b"\n".join(result.warnings) + b"\n"
     if n_warnings != n_expected:
         result.error = "reported %s warnings instead of %s" % (n_warnings, n_expected)
     elif warning_text != reference:
@@ -169,7 +169,7 @@ def create_check_warnings_reference(environment):
 
 def check_memcheck_output(result):
     """Check output of step command for valgrind memcheck errors"""
-    for line in result.stderr.splitlines():
+    for line in result.stderr.decode("utf-8").splitlines():
         if not "== ERROR SUMMARY:" in line:
             continue
         i = line.index(":")

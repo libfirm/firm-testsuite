@@ -6,7 +6,7 @@ import os.path
 
 def step_runcommand(environment):
     """Preprocess c source code (to stdout)"""
-    cmd = environment.cmd % environment.__dict__
+    cmd = environment.cmd.decode("utf-8") % environment.__dict__
     return execute(environment, cmd, timeout=20)
 
 def check_retcode_not_zero(result):
@@ -16,7 +16,7 @@ def check_retcode_not_zero(result):
 
 def read_cmds(environment, filename):
     cmd = open(filename, "rb").read()
-    while cmd.endswith("\n"):
+    while cmd.endswith(b"\n"):
         cmd = cmd[:-1]
     environment.cmd = cmd
     environment.filename = filename
