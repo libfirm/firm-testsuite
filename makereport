@@ -1,15 +1,12 @@
-#!/usr/bin/env python
-# from concurrent.futures import ProcessPoolExecutor
+#!/usr/bin/env python3
 
-from future import standard_library
-standard_library.install_aliases()
 from builtins import object
 from copy                    import deepcopy
 from datetime                import datetime
 from glob                    import iglob as glob
 from test.test               import ensure_dir
 from urllib.request          import urlopen
-from util.concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ProcessPoolExecutor
 import fnmatch
 import imp
 import multiprocessing
@@ -116,19 +113,25 @@ if not sys.stdout.isatty():
 
 def load_expectations(fetched, url, environment):
     if fetched:
-        try:
-            fetched = True
-            input   = urlopen(url)
-            if input.getcode() is not None and input.getcode() != 200:
-                fetched = False
-        except:
+        if os.path.isfile(url):
+            cachefile = url
             fetched = False
-        if not fetched:
-            _out.write("Warning: Couldn't download from '%s', using cache file\n" % url)
+        else:
+            try:
+                fetched = True
+                input   = urlopen(url)
+                if input.getcode() is not None and input.getcode() != 200:
+                    fetched = False
+            except:
+                fetched = False
+            if not fetched:
+                _out.write("Warning: Couldn't download from '%s', using cache file\n" % url)
+            cachefile = environment.builddir + "/" + os.path.basename(url)
+    else:
+        cachefile = environment.builddir + "/" + os.path.basename(url)
 
-    cachefile = environment.builddir + "/" + os.path.basename(url)
     if not fetched:
-        input = open(cachefile)
+        input = open(cachefile, "rb")
 
     results = dict()
     for line in input:
