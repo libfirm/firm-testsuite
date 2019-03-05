@@ -16,9 +16,12 @@ def step_compile_c(environment):
       timeout *= _VALGRIND_MEMCHECK_FACTOR
     result = execute(environment, cmd, timeout=timeout)
     if environment.compileroutput and not environment.memcheck:
-        f = open(environment.outputfile, "w")
-        f.write(result.stdout)
-        f.close()
+        out = open(environment.outputfile, "wb")
+        out.write(result.stdout)
+        out.close()
+        err = open(environment.stderrfile, "wb")
+        err.write(result.stderr)
+        err.close()
     return result
 
 def step_compile_c_syntax_only(environment):
@@ -43,15 +46,18 @@ def step_compile_c_asm(environment):
       timeout *= _VALGRIND_MEMCHECK_FACTOR
     result = execute(environment, cmd, timeout=timeout)
     if environment.compileroutput and not environment.memcheck:
-        f = open(environment.outputfile, "w")
-        f.write(result.stdout)
-        f.close()
+        out = open(environment.outputfile, "wb")
+        out.write(result.stdout)
+        out.close()
+        err = open(environment.stderrfile, "wb")
+        err.write(result.stderr)
+        err.close()
     if result.fail():
         return result
 
     try:
         result.asm = open(environment.asmfile, "rb").read()
-    except:
+    except IOError:
         result.error = "couldn't read assembler output"
     return result
 
@@ -61,6 +67,7 @@ def setup_c_environment(environment, filename):
     environment.cflags  += " -I%s " % os.path.dirname(environment.filename)
     environment.ldflags += " %s" % environment.arch_ldflags
     environment.outputfile = environment.builddir + "/" + filename + ".out"
+    environment.stderrfile = environment.builddir + "/" + filename + ".err"
 
 
 def make_c_test(environment, filename):
@@ -184,7 +191,7 @@ def register_options(opts):
     opts.add_option("--memcheck", dest="memcheck", action="store_true",
                     help="Use valgrind memcheck on C compiler")
     opts.add_option("--savecompileroutput", dest="compileroutput", action="store_true",
-                    help="Save the stdout output of the compile step")
+                    help="Save the stdout and stderr output of the compile step")
     opts.add_option("--compile-asm", dest="compileasm", action="store_true",
                     help="Compile to assembly files")
     opts.set_defaults(
