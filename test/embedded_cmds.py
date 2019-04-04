@@ -1,4 +1,4 @@
-# A module to parse commands embedded into the tests themselfes
+# A module to parse commands embedded into the tests themselves
 import re
 import sys
 from functools import partial
@@ -34,15 +34,18 @@ def _embedded_add_check(environment, regex_string, count_arg, flag):
 
 def _parse_embedded_command(environment, cmd):
     """parse one /*$ $*/ embedded command"""
-    cmdre = re.compile(b"(!?check(\[[0-9]+\])?|shell|cflags|ldflags)(.*)")
+    cmdre = re.compile(b"(!?check(\[[0-9]+\])?|shell|cflags|ldflags|compiletimeout)(.*)")
     m = cmdre.match(cmd)
     checkers = []
     if m:
         base = m.group(1)
         if m.group(2):
             base = base[0:-len(m.group(2))]
-        if m.group(3):
+        if m.group(3) and m.group(3).strip():
             arg = m.group(3).strip()
+        else:
+            sys.stderr.write("Error: missing command argument for %s\n" % base)
+            return checkers
         base = base.decode("utf-8")
         if base == "check":
             checker = _embedded_add_check(environment, arg, m.group(2), True)
@@ -54,6 +57,14 @@ def _parse_embedded_command(environment, cmd):
             environment.cflags += " %s" % (arg.decode("utf-8"),)
         elif base == "ldflags":
             environment.ldflags += " %s" % (arg.decode("utf-8"),)
+        elif base == "compiletimeout":
+            # compiletimeout requires an integer argument specifying the compile timeout in seconds
+            try:
+                timeout = int(arg.decode("utf-8"))
+                if timeout > 0:
+                    environment.compile_timeout = timeout
+            except ValueError:
+                sys.stderr.write("Error: invalid argument format %s\n" % arg)
         else:
             sys.stderr.write("Error: unsupported command %s\n" % base)
     else:
@@ -68,7 +79,6 @@ def parse_embedded_commands(environment, filename):
     additional checkers for a step which produces assembler output."""
     cmd_regex = re.compile(b"/\\*\\$ (.+) \\$\\*/")
     checkers = []
-    # print(filename)
     for line in open(filename, "rb"):
         m = cmd_regex.search(line)
         if m:
