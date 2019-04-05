@@ -8,14 +8,14 @@ import re
 import sys
 
 def check_valgrind_perf(result):
-    m = re.search('I\s+refs:\s+([0-9,]+)', result.stderr)
+    m = re.search('I\s+refs:\s+([0-9,]+)', result.stderr.decode("utf-8"))
     if not m:
         result.error = "Couldn't parse valgrind result"
     else:
         result.error = m.group(1)
 
 def check_qemu_perf(result):
-    m = re.search('Instructions:\s*([0-9]+)', result.stderr)
+    m = re.search('Instructions:\s*([0-9]+)', result.stderr.decode("utf-8"))
     if not m:
         result.error = "Couldn't parse qemu result"
     else:
