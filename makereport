@@ -222,8 +222,8 @@ def console_output(config, test, expected):
             _out.write("> %s\n" % (result.cmd,))
             _out.write("retcode %s\n" % (result.retcode,))
             _out.write("time %s\n" % (result.time,))
-            _out.write("%s\n" % (result.stdout.decode("utf-8"),))
-            _out.write("%s\n" % (result.stderr.decode("utf-8"),))
+            _out.write("%s\n" % (result.stdout.decode("utf-8", "replace"),))
+            _out.write("%s\n" % (result.stderr.decode("utf-8", "replace"),))
 
     _out.flush()
 
