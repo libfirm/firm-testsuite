@@ -275,8 +275,7 @@ def make_test(environment, filename, default_factory=None):
     try:
         test = factory(environment, filename)
     except Exception as e:
-        (_, _, tb) = sys.exc_info()
-        sys.stderr.write("Couldn't create test '%s': %s\n%s\n" % (filename, e, traceback.format_exc(tb)))
+        sys.stderr.write("Couldn't create test '%s': %s\n%s\n" % (filename, e, traceback.format_exc()))
         return None
     if test is None:
         sys.stderr.write("Factory returned None for test '%s'\n" % filename)
@@ -324,8 +323,7 @@ def run_test(test):
     try:
         test.run()
     except Exception as e:
-        (_, _, tb) = sys.exc_info()
-        sys.stderr.write("Exception in %s: %s\n%s\n" % (test.id, e, traceback.format_exc(tb)))
+        sys.stderr.write("Exception in %s: %s\n%s\n" % (test.id, e, traceback.format_exc()))
         raise e
     return test
 
@@ -438,8 +436,7 @@ def try_load_plugin(filename):
         if hasattr(plugin, "register_options"):
             plugin.register_options(_opts)
     except Exception as e:
-        (_, _, tb) = sys.exc_info()
-        sys.stderr.write("Warning: loading plugin '%s' failed: %s\n%s\n" % (filename, e, traceback.format_exc(tb)))
+        sys.stderr.write("Warning: loading plugin '%s' failed: %s\n%s\n" % (filename, e, traceback.format_exc()))
         return
 
 if __name__ == "__main__":
