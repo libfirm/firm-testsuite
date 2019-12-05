@@ -8,7 +8,7 @@ from test.test               import ensure_dir
 from urllib.request          import urlopen
 from concurrent.futures import ProcessPoolExecutor
 import fnmatch
-import imp
+import importlib.util
 import multiprocessing
 import optparse
 import os
@@ -406,18 +406,12 @@ def try_load_plugin(filename):
         dirname      = os.path.dirname(filename)
         basename     = os.path.basename(filename)
         parentmodule = dirname.replace("/", ".")
-        if parentmodule not in list(sys.modules.keys()):
-            try:
-                __import__(parentmodule)
-            except:
-                # Create a fake module
-                module = imp.new_module(parentmodule)
-                sys.modules[parentmodule] = module
-        modulename = "%s.%s" % (parentmodule, basename.replace(".py", ""))
-        with open(filename, "r") as file:
-            plugin = imp.load_module(modulename, file, filename,
-                                     ("py", "r", imp.PY_SOURCE))
 
+        modulename = "%s.%s" % (parentmodule, basename.replace(".py", ""))
+        spec = importlib.util.spec_from_file_location(modulename, filename)
+        plugin = importlib.util.module_from_spec(spec)
+        sys.modules[modulename] = plugin
+        spec.loader.exec_module(plugin)
         if hasattr(plugin, "test_factories"):
             _test_factories += plugin.test_factories
         if hasattr(plugin, "wildcard_factories"):
